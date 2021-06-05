@@ -30,4 +30,4 @@ print("Shared objects loaded.")
 
 import ROOT
 
-print("Completed.")
+print("Completed!")
