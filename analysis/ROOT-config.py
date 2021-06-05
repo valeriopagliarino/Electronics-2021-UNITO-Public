@@ -27,7 +27,5 @@ ctypes.cdll.LoadLibrary('/content/root_build/lib//libThread.so')
 ctypes.cdll.LoadLibrary('/content/root_build/lib//libTreePlayer.so')
 
 print("Shared objects loaded.")
-
 import ROOT
-
 print("Completed!")
