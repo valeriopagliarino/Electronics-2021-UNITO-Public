@@ -5,7 +5,7 @@ print("Start config for JupyROOT Env. on Google Coolab - It takes about 3 minute
 print("WGET...")
 os.system("wget https://github.com/MohamedElashri/HEP-ML/releases/download/ROOT/ROOT.tar.zip > /dev/null")
 print("Done.")
-#Se questo ^^ non dovesse risultare esistente oppure modificato, ne esiste una copia sul LaCie D2 in Collegio
+#Se questo ^^ non dovesse risultare esistente oppure modificato, ne esiste una copia sul LaCie D2 in Collegio. Ringraziamo Mohamed Elashri.
 print("UNZIP...")
 os.system("unzip /content/ROOT.tar.zip > /dev/null")
 print("TAR...")
