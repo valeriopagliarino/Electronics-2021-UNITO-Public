@@ -1,0 +1,30 @@
+Integratore1
+
+Condensatore, 23.40nF
+Resistenza(10), 9.92K
+Resistenza(10), 9.85K
+
+Derivatore
+Condensatore, 23,40nF
+Resistenza(10), 9.87K
+Resistenza(1), 992
+
+
+Logaritmo
+Resistenza, 1.995K
+Diodo, Silicio
+Manda Vs a 1 per togliere termine
+
+XY
+sonda su variabile
+CH1 X
+CH2 Y
+
+NonInv circuito chiuso
+R1 = 1K
+R2 = 1K
+
+
+Tensioni al 
++Vcc = 15.23 V
+-Vdd = -15.29 V
