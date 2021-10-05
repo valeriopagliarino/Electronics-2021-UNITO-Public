@@ -1,0 +1,10 @@
+Rf,R
+9700,987
+
+Capacita Vcc,Capacita -Vcc
+10 + 22 + 100 n paralleli,10 + 22 + 100 n paralleli
+
+tensione ingresso 100 mV,medie mobili su 64 successivi
+
+200mV/div CH2,20mV/div CH1,
+poi 20/20 da 1Mhz in poi
