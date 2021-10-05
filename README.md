@@ -8,8 +8,8 @@ Authors:
 #### Analog electronics:
 1. Delay line
 2. OpAmp open ring, OpAmp inverting
-4. OpAmp integrator, OpAmp logarithmic
-5. OpAmp sum, OpAmp Schmitt trigger
+4. OpAmp integrator, OpAmp deriv, OpAmp logarithmic
+5. OpAmp sum, OpAmp diff OpAmp Schmitt trigger
 6. Silicon Photomultipliers
 
 #### Digital electronics:
