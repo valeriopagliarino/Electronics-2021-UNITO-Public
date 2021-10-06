@@ -1,4 +1,4 @@
-'''Functions for bode_gain.py'''
+'''Functions for analysis'''
 
 import ROOT
 from uncertainties import ufloat
@@ -13,7 +13,7 @@ def pair_dat_err(data, errors):
 
     tmp_list = []
     for d, e in zip(data, errors):
-        tmp_list.append(ufloat(d, e))
+        tmp_list.append(ufloat(d, np.abs(e)))
 
     return np.array(tmp_list)
 
