@@ -41,4 +41,16 @@ Figura non scritta Deltav 1mm
 
 
 Figura non scritta Deltav 3mm
-1, 
+(prendiamo da foto)
+
+LINEA RIT 1
+freq. 1KHz
+amp 2 V (bassa 0)
+rising 5nano
+durata impulso 20 n
+
+LINEA RIT 2 (misura piu precisa)
+267.2(2) ns --> Foto CH2 a 0
+
+Calcolo attenuazione: 
+940,660 @1KHz
