@@ -1,3 +1,9 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%LUNGHEZZA STIMATA 3-4 FACCIATE DI TESTO PER GIORNATA DI LAB%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%IN TOTALE CIRCA 15 FACCIATE DI TESTO IMMAGINI ESCLUSE%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \documentclass[journal]{IEEEtran}
 
 % *** CITATION PACKAGES ***
@@ -39,7 +45,7 @@
         \end{center}}% <-this % stops a space
         
 % The report headers
-\markboth{Universita' degli Studi di Torino - C.d.L. Triennale in Fisica - 01/01/19 - A.A. 2021-2022    \quad   \quad \quad \quad   \quad \quad \quad  \quad   \quad \quad \quad   \quad \quad LABORATORIO DI ELETTRONICA \quad \quad }%do not delete next lines
+\markboth{Universita' degli Studi di Torino - C.d.L. Triennale in Fisica - 21/10/21 - A.A. 2021-2022    \quad   \quad \quad \quad   \quad \quad \quad  \quad   \quad \quad \quad   \quad \quad LABORATORIO DI ELETTRONICA \quad \quad }%do not delete next lines
 {Shell \MakeLowercase{\textit{et al.}}: Bare Demo of IEEEtran.cls for IEEE Journals}
 
 % make the title area
@@ -60,16 +66,44 @@ Due righe di introduzione: focus della relazione sull'elettronica analogica, sua
 \subsection{\textbf{Oscilloscopio Tektronix}}
 Descrizione specifiche tecniche del device e suo utilizzo e sue peculiarità. [DSO = Digital storage oscilloscope]
 
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=0.18\textwidth]{lab-reports/Schematics-and-graphics/TEK Osc.png}
+\end{figure}
+
 \subsection{\textbf{Oscilloscopio Rhode & Schwartz}}
 Descrizione specifiche tecniche 
 Descrizione specifiche tecniche del device e suo utilizzo e sue peculiarità (banda 70 MHz, ma 2.5 GSa/s acquisizione!)
 [DPO = Digital phosphore oscilloscope]
 
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=0.18\textwidth]{lab-reports/Schematics-and-graphics/RS Osc.png}
+\end{figure}
+
 \subsection{\textbf{Generatore di funzioni Rigol DG1022Z}}
 Descrizione
 
-\subsection{\textbf{Generatore di impulsi veloci Keythley ...}}
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=0.18\textwidth]{lab-reports/Schematics-and-graphics/RIGOL Gen.png}
+\end{figure}
+
+\subsection{\textbf{Generatore di funzioni Siglent SDG1010}}
 Descrizione
+
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=0.18\textwidth]{lab-reports/Schematics-and-graphics/SIGLENT Gen.png}
+\end{figure}
+
+\subsection{\textbf{Generatore di impulsi veloci Keythley 3390}}
+Descrizione
+
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=0.18\textwidth]{lab-reports/Schematics-and-graphics/KEIT Gen.png}
+\end{figure}
 
 \subsection{\textbf{Multimetro digitale}}
 Descrizione
@@ -85,7 +119,7 @@ DV controllo con materiale
 
 \begin{figure}[H]%[!ht]
 \begin {center}
-\includegraphics[width=0.35\textwidth]{sch-simulations/output/Diode-rectifier.pdf}
+\includegraphics[width=0.38\textwidth]{sch-simulations/output/Diode-rectifier.pdf}
 \caption{Didascalia}
 \label{fig:oscilloscope}
 \end {center}
@@ -118,7 +152,7 @@ Descrizione
 
 \begin{figure}[H]%[!ht]
 \begin {center}
-\includegraphics[width=0.35\textwidth]{sch-simulations/output/OPA-open-loop-inverting.pdf}
+\includegraphics[width=0.38\textwidth]{sch-simulations/output/OPA-open-loop-inverting.pdf}
 \caption{Didascalia}
 \label{fig:oscilloscope}
 \end {center}
@@ -131,7 +165,7 @@ Descrizione
 
 \begin{figure}[H]%[!ht]
 \begin {center}
-\includegraphics[width=0.35\textwidth]{sch-simulations/output/OPA-open-loop-non-inverting.pdf}
+\includegraphics[width=0.38\textwidth]{sch-simulations/output/OPA-open-loop-non-inverting.pdf}
 \caption{Didascalia}
 \label{fig:oscilloscope}
 \end {center}
@@ -144,7 +178,7 @@ Descrizione
 
 \begin{figure}[H]%[!ht]
 \begin {center}
-\includegraphics[width=0.35\textwidth]{sch-simulations/output/OPA-closed-loop-inverting.pdf}
+\includegraphics[width=0.38\textwidth]{sch-simulations/output/OPA-closed-loop-inverting.pdf}
 \caption{Didascalia}
 \label{fig:oscilloscope}
 \end {center}
@@ -159,7 +193,7 @@ Descrizione
 
 \begin{figure}[H]%[!ht]
 \begin {center}
-\includegraphics[width=0.35\textwidth]{sch-simulations/output/OPA-closed-loop-non-inverting.pdf}
+\includegraphics[width=0.38\textwidth]{sch-simulations/output/OPA-closed-loop-non-inverting.pdf}
 \caption{Didascalia}
 \label{fig:oscilloscope}
 \end {center}
@@ -174,7 +208,7 @@ Descrizione
 
 \begin{figure}[H]%[!ht]
 \begin {center}
-\includegraphics[width=0.35\textwidth]{sch-simulations/output/OPA-biased.pdf}
+\includegraphics[width=0.38\textwidth]{sch-simulations/output/OPA-biased.pdf}
 \caption{Didascalia}
 \label{fig:oscilloscope}
 \end {center}
@@ -188,7 +222,7 @@ Descrizione
 
 \begin{figure}[H]%[!ht]
 \begin {center}
-\includegraphics[width=0.35\textwidth]{sch-simulations/output/OPA-log.pdf}
+\includegraphics[width=0.38\textwidth]{sch-simulations/output/OPA-log.pdf}
 \caption{Didascalia}
 \label{fig:oscilloscope}
 \end {center}
@@ -203,7 +237,7 @@ Descrizione
 
 \begin{figure}[H]%[!ht]
 \begin {center}
-\includegraphics[width=0.35\textwidth]{sch-simulations/output/OPA-integratore.pdf}
+\includegraphics[width=0.38\textwidth]{sch-simulations/output/OPA-integratore.pdf}
 \caption{Didascalia}
 \label{fig:oscilloscope}
 \end {center}
@@ -218,7 +252,7 @@ Descrizione
 
 \begin{figure}[H]%[!ht]
 \begin {center}
-\includegraphics[width=0.35\textwidth]{sch-simulations/output/OPA-deriv.pdf}
+\includegraphics[width=0.38\textwidth]{sch-simulations/output/OPA-deriv.pdf}
 \caption{Didascalia}
 \label{fig:oscilloscope}
 \end {center}
@@ -232,7 +266,7 @@ Descrizione
 
 \begin{figure}[H]%[!ht]
 \begin {center}
-\includegraphics[width=0.35\textwidth]{sch-simulations/output/OPA-mixer.pdf}
+\includegraphics[width=0.38\textwidth]{sch-simulations/output/OPA-mixer.pdf}
 \caption{Didascalia}
 \label{fig:oscilloscope}
 \end {center}
@@ -245,7 +279,7 @@ Descrizione
 \section{Amplificatore di differenze} %Federico
 \begin{figure}[H]%[!ht]
 \begin {center}
-\includegraphics[width=0.35\textwidth]{sch-simulations/output/OPA-difference-amp.pdf}
+\includegraphics[width=0.38\textwidth]{sch-simulations/output/OPA-difference-amp.pdf}
 \caption{Didascalia}
 \label{fig:oscilloscope}
 \end {center}
@@ -256,7 +290,7 @@ Descrizione
 
 \begin{figure}[H]%[!ht]
 \begin {center}
-\includegraphics[width=0.45\textwidth]{sch-simulations/output/OPA-mixer-trigger.pdf}
+\includegraphics[width=0.48\textwidth]{sch-simulations/output/OPA-mixer-trigger.pdf}
 \caption{Didascalia}
 \label{fig:oscilloscope}
 \end {center}
@@ -272,7 +306,7 @@ Descrizione
 
 \begin{figure}[H]%[!ht]
 \begin {center}
-\includegraphics[width=0.45\textwidth]{sch-simulations/output/SiPM.pdf}
+\includegraphics[width=0.46\textwidth]{sch-simulations/output/SiPM.pdf}
 \caption{Didascalia}
 \label{fig:oscilloscope}
 \end {center}
@@ -285,7 +319,7 @@ Descrizione
 
 \begin{figure}[H]%[!ht]
 \begin {center}
-\includegraphics[width=0.35\textwidth]{sch-simulations/output/Transmission line.pdf}
+\includegraphics[width=0.38\textwidth]{sch-simulations/output/Transmission line.pdf}
 \caption{Didascalia}
 \label{fig:oscilloscope}
 \end {center}
