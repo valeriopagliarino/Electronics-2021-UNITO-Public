@@ -20,10 +20,12 @@
 
 % *** PDF, URL AND HYPERLINK PACKAGES ***
 \usepackage{url}
+\usepackage{makeidx}
 % correct bad hyphenation here
 \hyphenation{op-tical net-works semi-conduc-tor}
 \usepackage{graphicx}  %needed to include png, eps figures
 \usepackage{float}  % used to fix location of images i.e.\begin{figure}[H]
+\makeindex
 
 \begin{document}
 
@@ -309,39 +311,43 @@ Descrizione
 \section{Silicon photomultiplier} %Valerio
 
 \begin{figure}[H]%[!ht]
-\begin {center}
+\begin{center}
 \includegraphics[width=0.46\textwidth]{sch-simulations/output/SiPM.pdf}
 \caption{Didascalia}
 \label{fig:oscilloscope}
-\end {center}
+\end{center}
 \end{figure}
 
 \begin{figure}[H]%[!ht]
-\begin {center}
+\begin{center}
 \includegraphics[width=0.40\textwidth]{analysis/output/SiPM_sat_1mm.pdf}
 \caption{Didascalia}
 \label{fig:oscilloscope}
-\end {center}
+\end{center}
 \end{figure}
 
 \begin{figure}[H]%[!ht]
-\begin {center}
+\begin{center}
 \includegraphics[width=0.40\textwidth]{analysis/output/SiPM_sat_3mm.pdf}
 \caption{Didascalia}
 \label{fig:oscilloscope}
-\end {center}
+\end{center}
 \end{figure}
 
-\begin{figure*}[h]%[t]
+\begin{figure*}[t]%[t]
 \centering
-\includegraphics[width=\linewidth]{analysis/output/SiPM_3mm_gain_staircase.pdf}
+\begin{center}
+\includegraphics[width=1.05\textwidth]{analysis/output/SiPM_1mm_gain_staircase.pdf}
+\end{center}
 \caption{Didascalia}
 \label{fig:forces}
 \end{figure*}
 
-\begin{figure*}[h]%[t]
+\begin{figure*}[t]%[t]
 \centering
-\includegraphics[width=\linewidth]{analysis/output/SiPM_1mm_gain_staircase.pdf}
+\begin{center}
+\includegraphics[width=1.05\textwidth]{analysis/output/SiPM_3mm_gain_staircase.pdf}
+\end{center}
 \caption{Didascalia}
 \label{fig:forces}
 \end{figure*}
@@ -379,8 +385,11 @@ Descrizione
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Riferimenti}
-
 \printbibliography
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Indice}
+\tableofcontents
 
 
 \end{document}
