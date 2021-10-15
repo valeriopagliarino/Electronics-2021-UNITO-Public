@@ -3,6 +3,10 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%IN TOTALE CIRCA 15 FACCIATE DI TESTO IMMAGINI ESCLUSE%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Di solito nei papers accademici / tecnici si usa sempre
+%la forma impersonale, quindi "E' stata misurata la corrente..."
+%oppure "si è proceduto a misurare la corrente...."
+%anziché "Abbiamo misurato la corrente..."
 
 \documentclass[journal]{IEEEtran}
 
@@ -45,7 +49,7 @@
         \end{center}}% <-this % stops a space
         
 % The report headers
-\markboth{Universita' degli Studi di Torino - C.d.L. Triennale in Fisica - 21/10/21 - A.A. 2021-2022    \quad   \quad \quad \quad   \quad \quad \quad  \quad   \quad \quad \quad   \quad \quad LABORATORIO DI ELETTRONICA \quad \quad }%do not delete next lines
+\markboth{Università degli Studi di Torino - C.d.L. Triennale in Fisica - 21/10/21 - A.A. 2021-2022    \quad   \quad \quad \quad   \quad \quad \quad  \quad   \quad \quad \quad   \quad \quad LABORATORIO DI ELETTRONICA \quad \quad }%do not delete next lines
 {Shell \MakeLowercase{\textit{et al.}}: Bare Demo of IEEEtran.cls for IEEE Journals}
 
 % make the title area
@@ -312,6 +316,29 @@ Descrizione
 \end {center}
 \end{figure}
 
+\begin{figure}[H]%[!ht]
+\begin {center}
+\includegraphics[width=0.40\textwidth]{analysis/output/SiPM_sat_1mm.pdf}
+\caption{Didascalia}
+\label{fig:oscilloscope}
+\end {center}
+\end{figure}
+
+\begin{figure}[H]%[!ht]
+\begin {center}
+\includegraphics[width=0.40\textwidth]{analysis/output/SiPM_sat_3mm.pdf}
+\caption{Didascalia}
+\label{fig:oscilloscope}
+\end {center}
+\end{figure}
+
+\begin{figure*}[t]%[t]
+\centering
+\includegraphics[width=\linewidth]{analysis/output/}
+\caption{Didascalia}
+\label{fig:forces}
+\end{figure*}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Linea di ritardo} %Federico
 
@@ -336,7 +363,7 @@ Descrizione
 \subsection{Armoniche L}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Conclusioni generali} %Valerio e tutti quanti
+\section{Conclusioni generali} %Tutti quanti
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
