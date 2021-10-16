@@ -1,0 +1,56 @@
+Tensione SIPM circuito 30.31 V
+Cambianmo freq. e ampiezza
+Dall'altra tensione di bias
+
+Figura: (1)
+Deltav matematica
+1,88muV
+2,674muV
+3,2373muV
+4,3248muV
+5,4228muV
+6,4971muV
+7,6162muV
+8,7568muV
+
+Figura: (2)
+Deltav matematica
+1,395.4muV
+2,859.2muV
+3,1113.1muV
+4,1381.7muV
+5,1577.2muV
+6,1874.7muV
+7,2143.3muV
+8,2372.9muV
+9,2861.3muV
+10,3251.9muV
+11,3432.4muV
+12,3632.7muV
+
+
+Figura non scritta Deltav 1mm 
+1,478.4
+2,952.1
+3,1415.9
+4,1836.0
+5,2168.0
+6,2617.1
+7,3012.5
+8,3535.1
+
+
+Figura non scritta Deltav 3mm
+(prendiamo da foto)
+
+LINEA RIT 1
+freq. 1KHz
+amp 2 V (bassa 0)
+rising 5nano
+durata impulso 20 n
+
+LINEA RIT 2 (misura piu precisa)
+267.2(2) ns --> Foto CH2 a 0
+
+Calcolo attenuazione: 
+940,660 @1KHz

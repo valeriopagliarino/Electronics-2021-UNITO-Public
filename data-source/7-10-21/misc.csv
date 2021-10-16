@@ -1,0 +1,22 @@
+Sommatore
+
+R1 CH1 9.81K
+R2 CH2 9.95K
+R3 FB 9.89K
+
+CH1 Sin 1 KHz 1 V 
+CH2 Sin 1 KHz 1 V 
+
+Onde battimento
+1v,1KHz
+1V,1.1Hz
+
+
+Differenze
+
+R2 -> Non invertente
+R(4) = 9.83K
+
+Discriminatore
+1. Ingresso 20 Vpp, Freq. 50Hz
+
