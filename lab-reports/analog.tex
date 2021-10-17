@@ -204,8 +204,7 @@ Descrizione
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{\textbf{Amplificatore reazionato non invertente}} %Matteo
-Descrizione
-
+\subsection{\textbf{Introduzione all'esperienza}}
 \begin{figure}[H]%[!ht]
 \begin {center}
 \includegraphics[width=0.38\textwidth]{sch-simulations/output/OPA-closed-loop-non-inverting.pdf}
@@ -213,6 +212,21 @@ Descrizione
 \label{fig:oscilloscope}
 \end {center}
 \end{figure}
+Un amplificatore non invertente ha la peculiarità di dare in uscita un segnale proporzionale a quello d'ingresso e in fase con esso. Il segnale è applicato all'ingresso non invertente affinché il guadagno $A$ sia positivo. Infatti per l'equipotenzialità degli ingressi si ha: \[V_{-} = V_{+} = V_{i}\] \[V_{-} = \frac{R_1}{R_1+R_2}=V_{+}\] \[V_{o}=(1+\frac{R_2}{R_1}V_{+}\]
+da cui si ricava che $A=\frac{V_{o}}{V_i}=1+\frac{R_2}{R_1}$.
+\subsection{\textbf{Caratterizzazione}}
+Sono state selezionati diversi resistori in maniera tale da esaminare più casi di amplificazione. Nel primo caso $R_1=\Omega$ e $R_2=\Omega$ in maniera da tale da attendersi un guadagno di circa due volte. Si è proceduto con la presa dati della risposta in frequenza del circuito. I dati sono stati successivamente fittati attraverso l'utilizzo di una funzione di transfer caratterizzata da tre poli:
+\[H(s)=\frac{k}{(1+as)(1+bs)(1+cs)}\] 
+per poi estrarre il valore della $H.F.$
+
+\begin{figure}[H]%[!ht]
+\begin {center}
+\includegraphics[width=0.38\textwidth]{analysis/output/OPA-bode}
+\caption{Didascalia}
+\label{fig:oscilloscope}
+\end {center}
+\end{figure}
+
 
 \subsection{Studio della risposta in frequenza}
 
@@ -267,12 +281,22 @@ Inizialmente si sono scelte $R$ e $C$ con lo scopo di ottenere una frequenza di 
 
 \begin{figure}[H]%[!ht]
 \begin {center}
-\includegraphics[width=0.38\textwidth]{sch-simulations/output/OPA-integratore.pdf}
+\includegraphics[width=0.38\textwidth]{analysis/output/OPA-integ-with-res.pdf}
 \caption{Didascalia}
 \label{fig:oscilloscope}
 \end {center}
 \end{figure}
-Impostando una frequenza, $f=valore_da _controllare$, si è proceduto con l'osservazione della risposta del circuito, \textit{Fig. 10}.
+Impostando una frequenza, $f=valore_da _controllare$, si è proceduto con l'osservazione della risposta del circuito, \textit{Fig. 10}. Come atteso la $V_{out}$ risulta essere molto vicina all'integrale del segnale in ingresso. In particolare si nota l'affinità con l'integrale calcolato numericamente rappresentato dalla linea rossa tratteggiata.
+Terminata la prima fase si è passati all'analisi della output del circuito in funzione della frequenza. I dati sono stati graficati e fittati in primo luogo con la forma funzionale di un filtro passa basso e poi in seguito attraverso la trasformata di Laplace della funzione di transfer: \[H(s)=k/(as+1)^2\] con polo doppio in corrispondenza di $f=685 Hz$ valore pienamente compatibile con la frequenza di taglio.
+\begin{figure}[H]%[!ht]
+\begin {center}
+\includegraphics[width=0.38\textwidth]{analysis/output/OPA-integrator_bode(mag).pdf}
+\caption{Didascalia}
+\label{fig:oscilloscope}
+\end {center}
+\end{figure}
+Dalla forma funzionale ottenuta è poi stato estratto il valore della $H.F. = 418.28892698398096 Hz$ (serve trovare modo per estrarre errore per poi confrontarlo con frequenza di taglio).
+Infine facendo la regressione del fit è stato ricavato il valore di \textit{magnitude} relativo alla frequenza nulla, $A_{v}(0)=-0.317$ ed è stato confrontato col valore ricavato dall'espressione, derivata dalla letteratura, $A_{v} = 20log_{10}(-R_{2}/R{1}) = -0.142 \pm 0.397 $. La misura empirica risulta consistente con quella teorica ($Z=0.44$).
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Diagramma di Bode}
 
