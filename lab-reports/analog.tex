@@ -120,9 +120,7 @@ Il corredo di strumentazione è stato completato con multimetro digitale Meterma
 \subsection{\textbf{Introduzione all'esperienza}}
 In molteplici applicazioni si ha la necessità di convertire tensioni alternate in tensioni continue (AC/DC). Uno dei modi più immediati per ottenere tale risultato è quello di sfruttare raddrizzatori non controllati, quali raddrizzatori a singola/doppia semi-onda, a ponte monofase/trifase o esafase.
 I diodi a giunzione p-n sono dei componenti elettronici passivi non lineari, il cui funzionamento è regolato dalla struttura cristallina delle due giunzioni, le quali saranno rispettivamente di tipo \textit{n} (drogati con atomi pentavalenti, che comporta un eccesso di elettroni) e di tipo \textit{p} (eccesso di lacune). Nei pressi del punto di contatto tra le due si formerà una \textit{regione di svuotamento}, grazie alla combinazione tra elettroni e lacune, che creerà una barriera di potenziale. I diodi presentano dunque due possibilità di impiego. Una delle quali è la \textit{polarizzazione diretta}, in cui il polo positivo del generatore è collegato al terminale di
-tipo \textit{p}. In questa configurazione la regione di svuotamento si ridurrà fino a permettere il passaggio di corrente. La forma funzionale della corrente in funzione della tensione sarà descritta dalla \textit{funzione di Shockley}:
-\[I_D = I_0(\e^{V/\eta V_T}-1)\] 
-dove $I_{0}$ rappresenta la corrente di saturazione inversa, il termine $V_{T}$ è il potenziale di Einstein, dipendente dalla temperatura e $\eta$ è il fattore di idealità dipendente dal materiale costituente del diodo.
+tipo \textit{p}. In questa configurazione la regione di svuotamento si ridurrà fino a permettere il passaggio di corrente. La forma funzionale della corrente in funzione della tensione sarà descritta dalla \textit{funzione di Shockley}: \[I_{D} = I_{0}(e^{V/\eta V_T}-1)\] dove $I_{0}$ rappresenta la corrente di saturazione inversa, il termine $V_{T}$ è il potenziale di Einstein, dipendente dalla temperatura e $\eta$ è il fattore di idealità dipendente dal materiale costituente del diodo.
 \begin{figure}[H]%[!ht]
 \begin {center}
 \includegraphics[width=0.38\textwidth]{sch-simulations/output/Diode-rectifier.pdf}
@@ -140,8 +138,8 @@ Analizzando il funzionamento del circuito in assenza del condensatore di livella
 \label{fig:oscilloscope}
 \end {center}
 \end{figure}
-\[\Delta V = 0.6399999999999997 V (aggiustare cifre sig)\] 
-Ricordando che in letteratura il valore della \textit{tensione di soglia} per i diodi al Silicio è pari a $V_{\gamma}=0.6V$ e considerando possibili impurità del diodo considerato si evince un totale accordo col dato empirico.
+\[\Delta V = 0.64 V \] 
+Ricordando che in letteratura il valore della \textit{tensione di soglia} per i diodi al Silicio è pari a $V_{\gamma}=0.6V$ e considerando possibili impurità del diodo in questione si evince un totale accordo col dato empirico. Tale supposizione è sostenuta dal risultato del \textit{Test di Gauss} ($Z = 0.071$).
 
 
 
@@ -250,7 +248,22 @@ Descrizione
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Amplificatore integratore} %Matteo
+\section{Amplificatore integratore reale invertente} %Matteo
+\subsection{\textbf{Introduzione all'esperienza}}
+In questa esperienza di laboratorio verrà analizzato il funzionamento di un \textit{OPA integratore}, osservandone in primo luogo la risposta a diversi tipi di segnali, quali a gradino, rampa e sinusoidali, per poi studiarne il comportamento in funzione della variazione di frequenza della $V_{in}$.
+\subsection{\textbf{circuito}}
+\begin{figure}[H]%[!ht]
+\begin {center}
+\includegraphics[width=0.38\textwidth]{sch-simulations/output/OPA-integratore.pdf}
+\caption{Didascalia}
+\label{fig:oscilloscope}
+\end {center}
+\end{figure}
+Come sottintende il nome, l'Op-Amp integratore è un operazionale che esegue l'operazione matematica dell'integrazione, facendo si che il circuito emetta una $V_{out}$ proporzionale all'integrale della $V_{in}$. In altre parole, facendo riferimento alla \textit{Fig.9}, l'ampiezza del segnale in uscita è determinato dal periodo di tempo in cui una tensione è presente in input, poiché la corrente attraverso il circuito di feedback carica o scarica il condensatore mentre il feedback negativo richiesto avviene attraverso il condensatore.
+Affinchè l'amplificatore non vada in saturazione alle basse frequenze è stato aggiunto in parallelo a $C$ un resistore $R_{2}$. Ciò fa si che a fequenze limitate, essendo il periodo della tensione in ingresso relativamente lungo, il condensatore si commporti come una impedenza infinita, determinando un guadagno $A_{v}=-R_{2}/R{1}$. In questa configurazione si parla infatti di \textit{integratore limitato}. 
+Un fattore importante è che il circuito si comporta effettivamente da integratore solo per frequenze superiori a quella di taglio, $f_{t}=\frac{1}{2 \pi C R_{1} }$, per cui buona norma per ottenere un circuito efficiente è quella di scegliere $R$ e $C$ in maniera consona ai propri obiettivi. 
+\subsection{\textbf{Caratterizzazione}}
+Inizialmente si sono scelte $R$ e $C$ con lo scopo di ottenere una frequenza di taglio non eccessivamente bassa per favorire lo studio della risposta in frequenza della fase successiva: \[f_{t} = \frac{1}{2 \pi R_{1} C}= 685.63 \pm 44.13 Hz\] 
 
 \begin{figure}[H]%[!ht]
 \begin {center}
@@ -259,7 +272,7 @@ Descrizione
 \label{fig:oscilloscope}
 \end {center}
 \end{figure}
-
+Impostando una frequenza, $f=valore_da _controllare$, si è proceduto con l'osservazione della risposta del circuito, \textit{Fig. 10}.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Diagramma di Bode}
 
