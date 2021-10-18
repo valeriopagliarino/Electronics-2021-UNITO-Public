@@ -264,7 +264,29 @@ ottenendo i valori \[H.F_{2}\times Gain_2 = 727612.75410076 Hz\]  \[H.F_{11}\tim
 \subsection{Studio della risposta in frequenza}
 
 \subsection{Slew rate}
-
+In un amplificatore operazionale reale la velocità di variazione della tensione di uscita non può superare un valore limite detto \textit{slew-rate} anche detta velocità di risposta:
+\[SR = (\frac{dV_{out}}{dt})_{max}\]
+i cui valori tipici sono dell'ordine dei $\frac{V}{\mu s}$.
+Questa limitazione è dovuta a fenomeni non lineari quali la saturazione dello stadio di ingresso dell'amplificatore operazionale e non è in relazione 
+con la larghezza di banda finita dell'OPA. 
+Per l'analisi di tale fenomeno si è osservata la risposta del circuito a frequenze diverse
+\begin{figure}[H]%[!ht]
+\begin {center}
+\includegraphics[width=0.38\textwidth]{analysis/output/OPA-open-loop-slew-rate.pdf}
+\caption{Didascalia}
+\label{fig:OPA}
+\end {center}
+\end{figure}
+Infine è stata effettuata la regressione lineare dei dati estratti dalla regione di commutazione dell'OPA in corrispondenza di $f = 100 kHz$ 
+\begin{figure}[H]%[!ht]
+\begin {center}
+\includegraphics[width=0.38\textwidth]{analysis/output/OPA-slew-rate-fit.pdf}
+\caption{Didascalia}
+\label{fig:OPA}
+\end {center}
+\end{figure}
+\[SR = 0.6858 \frac{V}{\mu s}\]
+Il valore è consistente con la letteratura.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Discriminatore ad anello aperto con soglia arbitraria} %Stefano
 
@@ -357,6 +379,11 @@ Una volta assemblato il circuito si è proseguito analizzando qualitativamente i
 \label{fig:OPA}
 \end {center}
 \end{figure}
+Dalla \textit{Fig. }, in cui le scale dei voltaggi sono diverse fra input e output col fine di ottimizzarne la comprensibilità visiva, si vede come il segnale in uscita sia effettivamente paragonabile con la derivata della $V_{in}$. In particolare ricavando la sfasamento tra le due onde secondo la legge:
+\[\theta = \frac{360}{T}\Delta t\]
+in cui $T$ è il periodo dell'onda e $\Delta t$ è lo sfasamento calcolato tra i due picchi di input e output. Si ricava $\theta = 87.22792607802886 °$.
+
+Si può dunque confermare che il funzionamento del circuito rispecchi la teoria. Ovviamente è necessario tener conto del fatto che la bontà della derivazione dipenda strettamente dalla frequenza del segnale in ingresso. Infatti se quest'ultima non fosse stata molto minore rispetto alla frequenza di taglio il circuito avrebbe agito da semplice amplificatore invertente.
 %%%%%%%%%%FINE SECONDO GIORNO%%%%%%%%%%%%%%%
 %%%%%%%%%%INIZIO TERZO GIORNO%%%%%%%%%%%%%%%
 
@@ -401,7 +428,26 @@ I primi due canali dell'oscilloscopio sono collegati ai segnali $V_1$ e $V_2$ pr
 \end{figure}
 
 \subsection{Ciclo di isteresi al variare della frequenza} %Matteo
-
+Il \textit{Trigger di Schmitt} è un circuito elettronico che impone isteresi alla soglia di transizione ingresso-uscita con l'aiuto di un feedback positivo. L'isteresi fa si che vengano forniti due diversi livelli di tensione di soglia per il bordo ascendente e discendente. Essenzialmente, si tratta di un multivibratore bi-stabile e la sua uscita rimane in uno degli stati stabili indefinitamente. Affinché l'uscita cambi da uno stato stabile all'altro, il segnale di ingresso deve cambiare (o attivarsi) in modo appropriato. Questo funzionamento bistabile del trigger di Schmitt richiede un amplificatore con feedback positivo (o \textit{feedback rigenerativo}) con un guadagno in loop maggiore di uno. Quindi, il Trigger di Schmitt è anche noto come \textit{comparatore rigenerativo}.
+In particolare quando $V_{in}$ è leggermente superiore alla tensione di riferimento, $V_{ref}$, la $V_{out}$ diventa $-V_sat$ e nel caso in cui sia inferiore diventerà invecete $V_{sat}$. La tensione di input a cui avviene il cambio può essere controllato attraverso i valori di $R_1$ e $R_2$.
+\[V_{ref} = \frac{V_{sat}R_2}{R_1+R_2}\]
+Si definisce $V_{UT}$ la tensione di soglia superiore e $V_{LT}$ quella inferiore. $V_{sat}$ e $V_{ref}$ sono i punti dove la funzione di trasferimento caratteristica incrocia gli assi relativi a $V_{out}$ e $V_{in}$.
+\begin{figure}[H]%[!ht]
+\begin {center}
+\includegraphics[width=0.38\textwidth]{analysis/output/OPA-trigger-histeresis-overlapped.pdf}
+\caption{Didascalia}
+\label{fig:OPA}
+\end {center}
+\end{figure}
+Osservando la risposta a $100 Hz$ si vede come effettivamente i valori empirici di $V_{sat}$ e $V_{ref}$ rispettino le leggi sopracitate.
+Si ricorda che l'isteresi previene il trigger dall'oscillare quando un input che varia a bassa frequenza si trova vicina al \textit{threshold voltage}. Aumentando la frequenza ci si aspetta perciò una minore efficacia del comparatore come visibile qua di seguito
+\begin{figure}[H]%[!ht]
+\begin {center}
+\includegraphics[width=0.38\textwidth]{analysis/output/OPA-trigger-histeresis-table.pdf}
+\caption{Didascalia}
+\label{fig:OPA}
+\end {center}
+\end{figure}
 %%%%%%%%%%FINE TERZO GIORNO%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%INIZIO QUARTO GIORNO%%%%%%%%%%%%%%%
 
