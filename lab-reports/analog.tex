@@ -215,7 +215,7 @@ Descrizione
 Un amplificatore non invertente ha la peculiarità di dare in uscita un segnale proporzionale a quello d'ingresso e in fase con esso. Il segnale è applicato all'ingresso non invertente affinché il guadagno $A$ sia positivo. Infatti per l'equipotenzialità degli ingressi si ha: \[V_{-} = V_{+} = V_{i}\] \[V_{-} = \frac{R_1}{R_1+R_2}=V_{+}\] \[V_{o}=(1+\frac{R_2}{R_1}V_{+}\]
 da cui si ricava che $A=\frac{V_{o}}{V_i}=1+\frac{R_2}{R_1}$.
 \subsection{\textbf{Caratterizzazione}}
-Sono state selezionati diversi resistori in maniera tale da esaminare più casi di amplificazione. Nel primo caso $R_1=\Omega$ e $R_2=\Omega$ in maniera da tale da attendersi un guadagno di circa due, mentre secondariamente $R_1=\Omega$ e $R_2=\Omega$, quindi con un guadagno atteso di undici. Come previsto dalla teoria i valori di $V_{out}$ ottenuti rispecchiano ciò che è stato appena detto. Dalla \testit{Fig.} si nota infatti il comportamento del circuito comporta un segnale in uscita in fase con quello in entrata, ma amplificato dei valori sopracitati.
+Sono state selezionati diversi resistori in maniera tale da esaminare più casi di amplificazione. Nel primo caso $R_1=\Omega$ e $R_2=\Omega$ in maniera da tale da attendersi un guadagno di circa due, mentre secondariamente $R_1=\Omega$ e $R_2=\Omega$, quindi con un guadagno atteso di undici. Come previsto dalla teoria i valori di $V_{out}$ ottenuti rispecchiano ciò che è stato appena detto. Dalla \testit{Fig.} si nota infatti che la risposta del circuito comporta un segnale in uscita in fase con quello in entrata, ma amplificato dei valori sopracitati.
 \begin{figure}[H]%[!ht]
 \begin {center}
 \includegraphics[width=0.38\textwidth]{analysis/output/OPA-closed-loop-non-inv-G2-11.pdf}
@@ -223,7 +223,7 @@ Sono state selezionati diversi resistori in maniera tale da esaminare più casi 
 \label{fig:oscilloscope}
 \end {center}
 \end{figure}
-
+Dai valori delle resistenze e dalla delle che regola il guadagno è possibile fare un confronto tra i valori attesi e quelli ottenuti empiricamente. (  )
 Si è proceduto con la presa dati della risposta in frequenza del circuito. I dati sono stati successivamente fittati attraverso l'utilizzo di una funzione di transfer caratterizzata da tre poli:
 \[H(s)=\frac{k}{(1+as)(1+bs)(1+cs)}\] 
 per poi estrarre il valore della $H.F$
@@ -296,7 +296,6 @@ ottenendo i valori \[H.F_{2}\times Gain_2 = 727612.75410076 Hz\]  \[H.F_{11}\tim
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Amplificatore integratore reale invertente} %Matteo
-\subsection{\textbf{Introduzione all'esperienza}}
 In questa esperienza di laboratorio verrà analizzato il funzionamento di un \textit{OPA integratore}, osservandone in primo luogo la risposta a diversi tipi di segnali, quali a gradino, rampa e sinusoidali, per poi studiarne il comportamento in funzione della variazione di frequenza della $V_{in}$.
 \subsection{\textbf{circuito}}
 \begin{figure}[H]%[!ht]
@@ -306,9 +305,13 @@ In questa esperienza di laboratorio verrà analizzato il funzionamento di un \te
 \label{fig:oscilloscope}
 \end {center}
 \end{figure}
-Come sottintende il nome, l'Op-Amp integratore è un operazionale che esegue l'operazione matematica dell'integrazione, facendo si che il circuito emetta una $V_{out}$ proporzionale all'integrale della $V_{in}$. In altre parole, facendo riferimento alla \textit{Fig.9}, l'ampiezza del segnale in uscita è determinato dal periodo di tempo in cui una tensione è presente in input, poiché la corrente attraverso il circuito di feedback carica o scarica il condensatore mentre il feedback negativo richiesto avviene attraverso il condensatore.
-Affinché l'amplificatore non vada in saturazione alle basse frequenze è stato aggiunto in parallelo a $C$ un resistore $R_{2}$. Ciò fa si che a frequenze limitate, essendo il periodo della tensione in ingresso relativamente lungo, il condensatore si comporti come una impedenza infinita, determinando un guadagno $A_{v}=-R_{2}/R{1}$. In questa configurazione si parla infatti di \textit{integratore limitato}. 
-Un fattore importante è che il circuito si comporta effettivamente da integratore solo per frequenze superiori a quella di taglio, $f_{t}=\frac{1}{2 \pi C R_{1} }$, per cui buona norma per ottenere un circuito efficiente è quella di scegliere $R$ e $C$ in maniera consona ai propri obiettivi. 
+%Come sottintende il nome, l'Op-Amp integratore è un operazionale che esegue l'operazione matematica dell'integrazione, facendo si che il circuito emetta una $V_{out}$ proporzionale all'integrale della $V_{in}$. In altre parole, facendo riferimento alla \textit{Fig.9}, l'ampiezza del segnale in uscita è determinato dal periodo di tempo in cui una tensione è presente in input, poiché la corrente attraverso il circuito di feedback carica o scarica il condensatore mentre il feedback negativo richiesto avviene attraverso il condensatore.
+Mediante un amplificatore operazione è possibile realizzare un circuito integratore, cioè in grado di produrre in uscita un segnale proporzionale alla primitiva della forma d'onda in ingresso, inserendo una capacità nella rete di feedback tra l'ingresso invertente e l'uscita.
+Affinché l'amplificatore non vada in saturazione alle basse frequenze, viene aggiunto in parallelo a $C$ un resistore $R_{2}$ che fa si che in tale regime operativo il condensatore si comporti come una impedenza infinita, determinando un guadagno $A_{v}=-R_{2}/R{1}$. In questa configurazione è detta \textit{circuito integratore attivo limitato}. 
+%essendo il periodo della tensione in ingresso relativamente lungo,
+Una caratteristica importante è che il circuito si comporta effettivamente da integratore solo per frequenze superiori a quella di taglio, $f_{t}=\frac{1}{2 \pi C R_{1} }$, è quindi necessario scegliere $R$ e $C$ opportunamente, in relazione alla distribuzione spettrale del segnale da integrare. 
+%Questo apparirebbe chiaro se si osservasse il grafico di fase del diagramma di Bode associato: oltre la frequenza di taglio tutte le armoniche sinusoidali di Fourier vengono sfasate di un angolo tale da essere approssimabili come inverse di cosinusoidi (integrale). [CURIOSITA']
+%per cui buona norma per ottenere un circuito efficiente è quella di 
 \subsection{\textbf{Caratterizzazione}}
 Inizialmente si sono scelte $R$ e $C$ con lo scopo di ottenere una frequenza di taglio non eccessivamente bassa per favorire lo studio della risposta in frequenza della fase successiva: \[f_{t} = \frac{1}{2 \pi R_{1} C}= 685.63 \pm 44.13 Hz\] 
 
@@ -336,7 +339,6 @@ Infine facendo la regressione del fit è stato ricavato il valore di \textit{mag
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Amplificatore derivatore} %Matteo
-
 \begin{figure}[H]%[!ht]
 \begin {center}
 \includegraphics[width=0.38\textwidth]{sch-simulations/output/OPA-deriv.pdf}
@@ -344,7 +346,17 @@ Infine facendo la regressione del fit è stato ricavato il valore di \textit{mag
 \label{fig:oscilloscope}
 \end {center}
 \end{figure}
-
+Il circuito di base dell'amplificatore differenziatore è l'esatto opposto di quello del circuito dell'OpAmp integratore sopracitato. In questo caso le posizioni del condensatore e del resistore sono state invertite affinché il condensatore $C$ sia collegato al terminale di ingresso dell'amplificatore invertente mentre il resistore, $R_1$ costituisca l'elemento di feedback negativo attraverso l'OpAmp. Questo circuito esegue l'operazione matematica di differenziazione cioè produce un'uscita di tensione proporzionale alla velocità di variazione della tensione di ingresso e alla corrente che scorre attraverso il condensatore. In altri termini la tensione di uscita è una versione scalata della derivata della tensione di ingresso. Il condensatore blocca qualsiasi contenuto \textit{DC}, consentendo  quindi il solo passaggio di segnali di tipo \textit{AC}, la cui frequenza dipende dalla velocità di variazione del segnale di ingresso. Alle basse frequenze la reattanza del condensatore è "Alta" con conseguente basso guadagno (R1/Xc) e bassa tensione di uscita, mentre per alte frequenze si avrà un gain nettamente maggiore e un segnale di output più intenso. Ciò è dovuto principalmente all'effetto di primo ordine, che determina la risposta in frequenza del circuito provocandone una risposta di secondo ordine che, alle alte frequenze, dà una tensione di uscita molto superiore a quella che ci si aspetterebbe. Per evitare ciò, il gain ad alta frequenza deve essere ridotto aggiungendo un resistore di feedback $R_f$,di resistenza ridotta,in serie al condensatore. 
+\subsection{\textbf{Valutazione della risposta}}
+Una volta assemblato il circuito si è proseguito analizzando qualitativamente il comportamento del OPA derivatore a segnali in input di diversa entità, verificando che l'output fosse all'incirca quello previsto.
+\section{Amplificatore derivatore} %Matteo
+\begin{figure}[H]%[!ht]
+\begin {center}
+\includegraphics[width=0.38\textwidth]{analysis/output/OPA-differentiator.pdf}
+\caption{Didascalia}
+\label{fig:OPA}
+\end {center}
+\end{figure}
 %%%%%%%%%%FINE SECONDO GIORNO%%%%%%%%%%%%%%%
 %%%%%%%%%%INIZIO TERZO GIORNO%%%%%%%%%%%%%%%
 
@@ -429,7 +441,15 @@ Per prima cosa si è proceduto a registrare l'impulso il condizione di saturazio
 \end{figure}
 
 \subsection{Valutazione del guadagno e del tempo di carica caratteristico}
-In questa fase, più delicata, si vuole invece valutare il guadagno di ciascuna cella e calcolare il tempo caratteristico di carica, dipendente dalla resistenza totale della cella e dalla capacità parassita, che compongono una rete RC. Per raggiungere questo obiettivo si vuole visualizzare una sovrapposizione di impulsi dovuti dall'attivazione di esattamente 1, 2, 3, ... N celle e poter calcolare la differenza in tensione tra i picchi di questi impulsi. Configuriamo allora il generatore il modo da produrre impulsi di bassissima intensità (stesse impostazioni di prima, ma V = 0.000 mV) in modo che ciascun impulso produca un numero esiguo di fotoni che provocherà l'accensione di poche celle, secondo un modello poissoniano e impostiamo correttamente la persistenza delle tracce sull'oscilloscopio. Si ottengono così i grafici nelle figure \ref{fig:staircase_1mm} e \ref{fig:staircase_3mm} per i due SiPM. A partire da tali tracce sono stati ricavati i valori di tensione di picco per ciascun impulso corrispondente ad un determinato numero di celle con metodi numerici.
+In questa fase, più delicata, si vuole invece valutare il guadagno di ciascuna cella e calcolare il tempo caratteristico di carica, dipendente dalla resistenza totale della cella e dalla capacità parassita, che compongono una rete RC. Per raggiungere questo obiettivo si vuole visualizzare una sovrapposizione di impulsi dovuti dall'attivazione di esattamente 1, 2, 3, ... N celle e poter calcolare la differenza in tensione tra i picchi di questi impulsi. Si configura allora il generatore il modo da produrre impulsi di bassissima intensità (stesse impostazioni di prima, ma con $V_{pp}$ = 1.8 mV), si veda la figura \ref{fig:led}, in modo che ciascun impulso produca un numero esiguo di fotoni che provocherà l'accensione di poche celle, secondo un modello poissoniano e impostiamo correttamente la persistenza delle tracce sull'oscilloscopio. Si ottengono così i grafici nelle figure \ref{fig:staircase_1mm} e \ref{fig:staircase_3mm} per i due SiPM. A partire da tali tracce sono stati ricavati i valori di tensione di picco per ciascun impulso corrispondente ad un determinato numero di celle con metodi numerici, i dati sono riportati in appendice. Dopo aver calcolato le differenze tra ogni valore e il successivo, abbiamo provveduto ad effettuare una media e a calcolare l'incertezza stimandola con la semidispersione massima. Abbiamo così trovato come 'quanto' di tensione corrispondente ad una cella attivata $\DeltaV_{1mm}$ = (420 $\pm$ 40) $\mu V$ e  $\DeltaV_{3mm}$ = (249 $\pm$ 33) $\mu V$.
+
+\begin{figure}[H]%[!ht]
+\begin{center}
+\includegraphics[width=0.40\textwidth]{analysis/output/.pdf}
+\caption{Segnale prodotto dal SiPM 3x3 $mm^2$ in saturazione: in rosso la tensione all'anodo, il blu la tensione al catodo, il nero la differenza calcolata dall'oscilloscopio.}
+\label{fig:SiPM_sat_3mm}
+\end{center}
+\end{figure}
 
 \begin{figure*}[t]%[t]
 \centering
