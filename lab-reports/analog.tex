@@ -215,9 +215,18 @@ Descrizione
 Un amplificatore non invertente ha la peculiarità di dare in uscita un segnale proporzionale a quello d'ingresso e in fase con esso. Il segnale è applicato all'ingresso non invertente affinché il guadagno $A$ sia positivo. Infatti per l'equipotenzialità degli ingressi si ha: \[V_{-} = V_{+} = V_{i}\] \[V_{-} = \frac{R_1}{R_1+R_2}=V_{+}\] \[V_{o}=(1+\frac{R_2}{R_1}V_{+}\]
 da cui si ricava che $A=\frac{V_{o}}{V_i}=1+\frac{R_2}{R_1}$.
 \subsection{\textbf{Caratterizzazione}}
-Sono state selezionati diversi resistori in maniera tale da esaminare più casi di amplificazione. Nel primo caso $R_1=\Omega$ e $R_2=\Omega$ in maniera da tale da attendersi un guadagno di circa due volte. Si è proceduto con la presa dati della risposta in frequenza del circuito. I dati sono stati successivamente fittati attraverso l'utilizzo di una funzione di transfer caratterizzata da tre poli:
+Sono state selezionati diversi resistori in maniera tale da esaminare più casi di amplificazione. Nel primo caso $R_1=\Omega$ e $R_2=\Omega$ in maniera da tale da attendersi un guadagno di circa due, mentre secondariamente $R_1=\Omega$ e $R_2=\Omega$, quindi con un guadagno atteso di undici. Come previsto dalla teoria i valori di $V_{out}$ ottenuti rispecchiano ciò che è stato appena detto. Dalla \testit{Fig.} si nota infatti il comportamento del circuito comporta un segnale in uscita in fase con quello in entrata, ma amplificato dei valori sopracitati.
+\begin{figure}[H]%[!ht]
+\begin {center}
+\includegraphics[width=0.38\textwidth]{analysis/output/OPA-closed-loop-non-inv-G2-11.pdf}
+\caption{Didascalia}
+\label{fig:oscilloscope}
+\end {center}
+\end{figure}
+
+Si è proceduto con la presa dati della risposta in frequenza del circuito. I dati sono stati successivamente fittati attraverso l'utilizzo di una funzione di transfer caratterizzata da tre poli:
 \[H(s)=\frac{k}{(1+as)(1+bs)(1+cs)}\] 
-per poi estrarre il valore della $H.F.$
+per poi estrarre il valore della $H.F$
 
 \begin{figure}[H]%[!ht]
 \begin {center}
@@ -226,7 +235,7 @@ per poi estrarre il valore della $H.F.$
 \label{fig:oscilloscope}
 \end {center}
 \end{figure}
-\[H.F._{2} = 363806.38 Hz\]
+\[H.F_{2} = 363806.38 Hz\]
 Ripetendo il procedimento con $R_1=\Omega$ e $R_2=\Omega$, quindi con un guadagno atteso di undici si è ottenuto il grafico seguente
 \begin{figure}[H]%[!ht]
 \begin {center}
@@ -236,11 +245,11 @@ Ripetendo il procedimento con $R_1=\Omega$ e $R_2=\Omega$, quindi con un guadagn
 \end {center}
 \end{figure}
 
-\[H.F._{11} = 363806.38 Hz\]
+\[H.F_{11} = 363806.38 Hz\]
 
 Si è infine verificata la conservazione del prodotto 
 \[BAND WIDTH \dot GAIN\]
-ottenendo i valori $H.F._{2}\dot Gain_2 = 727612.75410076 Hz$ e $H.F._{11}\dot Gain_11 = 600850.4939452771 Hz$ (\textit{Fig.})
+ottenendo i valori \[H.F_{2}\times Gain_2 = 727612.75410076 Hz\]  \[H.F_{11}\times Gain_{11} = 600850.4939452771 Hz\] (\textit{Fig.})
 \begin{figure}[H]%[!ht]
 \begin {center}
 \includegraphics[width=0.38\textwidth]{analysis/output/OPA-bode_gain_comparison(mag).pdf}
@@ -298,7 +307,7 @@ In questa esperienza di laboratorio verrà analizzato il funzionamento di un \te
 \end {center}
 \end{figure}
 Come sottintende il nome, l'Op-Amp integratore è un operazionale che esegue l'operazione matematica dell'integrazione, facendo si che il circuito emetta una $V_{out}$ proporzionale all'integrale della $V_{in}$. In altre parole, facendo riferimento alla \textit{Fig.9}, l'ampiezza del segnale in uscita è determinato dal periodo di tempo in cui una tensione è presente in input, poiché la corrente attraverso il circuito di feedback carica o scarica il condensatore mentre il feedback negativo richiesto avviene attraverso il condensatore.
-Affinchè l'amplificatore non vada in saturazione alle basse frequenze è stato aggiunto in parallelo a $C$ un resistore $R_{2}$. Ciò fa si che a fequenze limitate, essendo il periodo della tensione in ingresso relativamente lungo, il condensatore si commporti come una impedenza infinita, determinando un guadagno $A_{v}=-R_{2}/R{1}$. In questa configurazione si parla infatti di \textit{integratore limitato}. 
+Affinché l'amplificatore non vada in saturazione alle basse frequenze è stato aggiunto in parallelo a $C$ un resistore $R_{2}$. Ciò fa si che a frequenze limitate, essendo il periodo della tensione in ingresso relativamente lungo, il condensatore si comporti come una impedenza infinita, determinando un guadagno $A_{v}=-R_{2}/R{1}$. In questa configurazione si parla infatti di \textit{integratore limitato}. 
 Un fattore importante è che il circuito si comporta effettivamente da integratore solo per frequenze superiori a quella di taglio, $f_{t}=\frac{1}{2 \pi C R_{1} }$, per cui buona norma per ottenere un circuito efficiente è quella di scegliere $R$ e $C$ in maniera consona ai propri obiettivi. 
 \subsection{\textbf{Caratterizzazione}}
 Inizialmente si sono scelte $R$ e $C$ con lo scopo di ottenere una frequenza di taglio non eccessivamente bassa per favorire lo studio della risposta in frequenza della fase successiva: \[f_{t} = \frac{1}{2 \pi R_{1} C}= 685.63 \pm 44.13 Hz\] 
@@ -319,7 +328,7 @@ Terminata la prima fase si è passati all'analisi della output del circuito in f
 \label{fig:oscilloscope}
 \end {center}
 \end{figure}
-Dalla forma funzionale ottenuta è poi stato estratto il valore della $H.F. = 418.28892698398096 Hz$ (serve trovare modo per estrarre errore per poi confrontarlo con frequenza di taglio).
+Dalla forma funzionale ottenuta è poi stato estratto il valore della $H.F = 418.28892698398096 Hz$ (serve trovare modo per estrarre errore per poi confrontarlo con frequenza di taglio).
 Infine facendo la regressione del fit è stato ricavato il valore di \textit{magnitude} relativo alla frequenza nulla, $A_{v}(0)=-0.317$ ed è stato confrontato col valore ricavato dall'espressione, derivata dalla letteratura, $A_{v} = 20log_{10}(-R_{2}/R{1}) = -0.142 \pm 0.397 $. La misura empirica risulta consistente con quella teorica ($Z=0.44$).
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Diagramma di Bode}
