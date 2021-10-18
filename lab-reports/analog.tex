@@ -406,7 +406,7 @@ I primi due canali dell'oscilloscopio sono collegati ai segnali $V_1$ e $V_2$ pr
 %%%%%%%%%%INIZIO QUARTO GIORNO%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Silicon photomultiplier} %Valerio
+\section{Silicon photomultipliers} %Valerio
 In questa esperienza di laboratorio studieremo qualitativamente il segnale prodotto da un fotomoltiplicatore al silicio illuminato da una sorgente LED. I fotomoltiplicatori al silicio sono fotorivelatori composti da una matrice di SPAD (Single Photon Avalanche Diode) connessi in serie a una resistenza di \textit{quenching} (spegnimento) e collegati in parallelo tra loro. Quando un singolo fotone colpisce il SiPM con una probabilità pari all'efficienza quantica si genera una valanga nello SPAD colpito che provoca un passaggio di corrente dovuto allo scaricamento della capacità di giunzione della cella che provoca una caduta di tensione al catodo (fronte di salita veloce del segnale), al termine della valanga la capacità torna a caricarsi dando origine ad un fronte di discesa più lento. I SiPM sono ampiamente utilizzati per osservare sorgenti di radiazione estremamente deboli o impulsive (anche a livello di singoli fotoni), per esempio nella lettura di rivelatori a scintillazione.
 
 \subsection{Circuito per la caratterizzazione del SiPM}
@@ -441,13 +441,13 @@ Per prima cosa si è proceduto a registrare l'impulso il condizione di saturazio
 \end{figure}
 
 \subsection{Valutazione del guadagno e del tempo di carica caratteristico}
-In questa fase, più delicata, si vuole invece valutare il guadagno di ciascuna cella e calcolare il tempo caratteristico di carica, dipendente dalla resistenza totale della cella e dalla capacità parassita, che compongono una rete RC. Per raggiungere questo obiettivo si vuole visualizzare una sovrapposizione di impulsi dovuti dall'attivazione di esattamente 1, 2, 3, ... N celle e poter calcolare la differenza in tensione tra i picchi di questi impulsi. Si configura allora il generatore il modo da produrre impulsi di bassissima intensità (stesse impostazioni di prima, ma con $V_{pp}$ = 1.8 mV), si veda la figura \ref{fig:led}, in modo che ciascun impulso produca un numero esiguo di fotoni che provocherà l'accensione di poche celle, secondo un modello poissoniano e impostiamo correttamente la persistenza delle tracce sull'oscilloscopio. Si ottengono così i grafici nelle figure \ref{fig:staircase_1mm} e \ref{fig:staircase_3mm} per i due SiPM. A partire da tali tracce sono stati ricavati i valori di tensione di picco per ciascun impulso corrispondente ad un determinato numero di celle con metodi numerici, i dati sono riportati in appendice. Dopo aver calcolato le differenze tra ogni valore e il successivo, abbiamo provveduto ad effettuare una media e a calcolare l'incertezza stimandola con la semidispersione massima. Abbiamo così trovato come 'quanto' di tensione corrispondente ad una cella attivata $\DeltaV_{1mm}$ = (420 $\pm$ 40) $\mu V$ e  $\DeltaV_{3mm}$ = (249 $\pm$ 33) $\mu V$.
+In questa fase, più delicata, si vuole invece valutare il guadagno di ciascuna cella e calcolare il tempo caratteristico di carica, dipendente dalla resistenza totale della cella e dalla capacità parassita, che compongono una rete RC. Per raggiungere questo obiettivo si vuole visualizzare una sovrapposizione di impulsi dovuti dall'attivazione di esattamente 1, 2, 3, ... N celle e poter calcolare la differenza in tensione tra i picchi di questi impulsi. Si configura allora il generatore il modo da produrre impulsi di bassissima intensità (stesse impostazioni di prima, ma con $V_{pp}$ = 1.8 mV), si veda la figura \ref{fig:ledp}, in modo che ciascun impulso produca un numero esiguo di fotoni che provocherà l'accensione di poche celle, secondo un modello poissoniano e impostiamo correttamente la persistenza delle tracce sull'oscilloscopio. Si ottengono così i grafici nelle figure \ref{fig:staircase_1mm} e \ref{fig:staircase_3mm} per i due SiPM. 
 
 \begin{figure}[H]%[!ht]
 \begin{center}
-\includegraphics[width=0.40\textwidth]{analysis/output/.pdf}
-\caption{Segnale prodotto dal SiPM 3x3 $mm^2$ in saturazione: in rosso la tensione all'anodo, il blu la tensione al catodo, il nero la differenza calcolata dall'oscilloscopio.}
-\label{fig:SiPM_sat_3mm}
+\includegraphics[width=0.40\textwidth]{analysis/output/SiPM_ledp.pdf}
+\caption{Segnale utilizzato per il pilotaggio del led con il SiPM 1x1 $mm^2$ per la misurazione del guadagno}
+\label{fig:ledp}
 \end{center}
 \end{figure}
 
@@ -469,8 +469,37 @@ In questa fase, più delicata, si vuole invece valutare il guadagno di ciascuna 
 \label{fig:staircase_3mm}
 \end{figure*}
 
+A partire da tali tracce sono stati ricavati i valori di tensione di picco per ciascun impulso corrispondente ad un determinato numero di celle con metodi numerici, i dati sono riportati in appendice. Dopo aver calcolato le differenze tra ogni valore e il successivo, si è provveduto ad effettuare una media e a calcolare l'incertezza stimandola con la semidispersione massima. Abbiamo così trovato come 'quanto' di tensione corrispondente ad una cella attivata $\Delta V_{1mm}$ = (210 $\pm$ 20) $\mu V$ e  $\Delta V_{3mm}$ = (125 $\pm$ 15) $\mu V$. (Questi valori sono già stati divisi per due, rispetto ai grafici, dal momento che provengono dalla somma dei canali.) Si è quindi potuta calcolare la quantità di carica immagazzinata in ciascuna cella $Q$, considerando la sua modellizzazione sopracitata come capacità ideale. Per un condensatore in un circuito con costante di tempo $\tau$ nella fase di scarica si ha che la carica totale immagazzinata è
+\begin{equation}
+    Q = \int_{0}^{\infty} i(t) dt = \int_{0}^{\infty} \frac{\Delta V}{Z} e^{-t/ \tau}  dt = \frac{\Delta V}{Z} \tau
+\end{equation}
+con Z = 50 $\Omega$. (Il calcolo dei valori di $\tau$ è descritto nel paragrafo seguente). Per trovare il guadagno si divide ora la carica Q per la carica elementare dell'elettrone, trovando così il fattore di moltiplicazione dovuto all'effetto valanga caratteristico dello SPAD. Il calcolo restituisce G_{1mm} = (2.93 $\pm$ 0.31)$\cdot 10^6$ e G_{3mm} = (2.90 $\pm$ 0.40)$\cdot 10^6$. I valori ottenuti risultano entrambi compatibili con quanto atteso sulla base del \textit{datasheet} del produttore AdvanSiD, che riporta per un overvolt di +4 ($V_{bias} = V_{breakdown} + 4$) G $\sim$ 3$\cdot10^6$. I pvalue del test Z di compatibilità sono infatti rispettivamente di 0.821 e 0.865 ampiamente superiori del livello di significatività standard del test $\alpha = 0.05$.
+
+\subsection{Calcolo della costante di tempo}
+Nel paragrafo precedente per poter calcolare la carica Q è stato fondamentale disporre della costante di tempo $\tau$ per i circuiti RC formati dalle resistenze di quenching e dalle capacità delle giunzioni degli SPAD (collegati in parallelo). Verrà ora discussa la tecnica adottata per il calcolo delle $\tau$. Secondo l'approssimazione totalmente ideale presentata, la costante di tempo non dipende dall'ampiezza degli impulsi, quindi per lavorare con un miglior rapporto segnale / rumore, si decide di lavorare sugli impulsi in saturazione (fig. \ref{fig:SiPM_sat_1mm} e \ref{fig:SiPM_sat_3mm}) descritti nei paragrafi precedenti. Gli impulsi sono stati ritagliati sull'asse temporale e poi sono stati interpolati con la legge di scarica del condensatore dopo aver aggiunto opportuni parametri aggiuntivi per considerare l'offset arbitrario degli assi e l'ampiezza dell'impulso non nota:
+\begin{equation}
+    V(t) = V_0 e^{-(t-t_0)/\tau} + V_{offset}
+\end{equation}
+Entrambi i fit hanno esito positivo, considerando un test $\chi^2$ sono sulla coda destra (pvalue $\sim$ 1) si ottengono infatti valori di $\chi^2 / NDF$ pari a 11.51  /  300 = 0.038 per il SiPM con area minore e $\chi^2 / NDF$ pari a 102.46 /  300 = 0.341 per quello con area maggiore. E' possibile finalmente estrarre il parametro di interesse (con la relativa incertezza, dalla matrice di covarianza) ottenendo $\tau_{1mm}$ = (1.11 $\pm$ 0.02)$\cdot 10^{-9}$ e $\tau_{3mm}$ = (1.88 $\pm$ 0.10)$\cdot 10^{-9}$. Le figure \ref{fig:fit1m} e \ref{fig:fit3m} mostrano l'esito delle interpolazioni. Nei calcoli si è adottata come incertezza sulle tensioni misurate con l'oscilloscopio 1/5 della larghezza delle divisioni verticali.
+
+\begin{figure}[H]%[!ht]
+\begin{center}
+\includegraphics[width=0.40\textwidth]{analysis/output/SiPM_fit_3mm.pdf}
+\caption{Interpolazione dell'impulso in saturazione del SiPM 1x1 $mm^2$ per estrapolare la costante di tempo caratteristica.}
+\label{fig:fit1m}
+\end{center}
+\end{figure}
+
+\begin{figure}[H]%[!ht]
+\begin{center}
+\includegraphics[width=0.40\textwidth]{analysis/output/SiPM_fit_1mm.pdf}
+\caption{Interpolazione dell'impulso in saturazione del SiPM 3x3 $mm^2$ per estrapolare la costante di tempo caratteristica.}
+\label{fig:fit3m}
+\end{center}
+\end{figure}
+
 \subsection{Discussione e considerazioni conclusive}
-Testo
+In conclusione, la metodologia sperimentale proposta è risultata adeguata per effettuare una misurazione indicativa del guadagno e della costante di tempo di fotomoltiplicatori al silicio. L'utilizzo dell'oscilloscopio con un segnale di trigger esterno prodotto dal generatore è risultato fondamentale, in quanto ha permesso di eliminare gran parte degli eventi dovuti al dark count che avrebbero disturbato la misura. Le acquisizioni qualitative sono risultate in accordo con quanto atteso, il SiPM da 3x3 $mm^2$ ha infatti mostrato una maggior sensibilità, una maggiore quantità di rumore e una costante di tempo più elevata a causa della capacità di un numero maggiore di celle in parallelo  rispetto a quello con area 1x1 $mm^2$. I valori ottenuti risultano ampiamente compatibili con i quanto riportato sul \textit{datasheet}, ma l'accuratezza potrebbe essere migliorabile con varie strategie. Innanzitutto si potrebbe cercare di ridurre ulteriormente gli impulsi di rumore isolando in modo più efficace il SiPM dalla luce ambientale, dopodiché si potrebbe calcolare la carica specifica associata a ciascuno SPAD integrando numericamente la forma d'onda dell'impulso oppure con un amplificatore di carica, eliminando la necessità di introdurre un'approssimazione di idealità con la legge (1). Questo metodo basato sulla misura diretta della carica potrebbe risultare più robusto rispetto a quello attuale basato sulla misura di tensioni. Il metodo di misura delle costanti di tempo basato sull'interpolazione è risultato molto più efficace rispetto all'uso di cursori, come confermato dai test Z di compatibilità con quanto riportato sul \textit{datasheet} e dai test di adattamento di $\chi^2$.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Linea di ritardo} %Federico
