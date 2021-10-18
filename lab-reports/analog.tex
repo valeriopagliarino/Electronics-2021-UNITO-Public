@@ -221,11 +221,35 @@ per poi estrarre il valore della $H.F.$
 
 \begin{figure}[H]%[!ht]
 \begin {center}
-\includegraphics[width=0.38\textwidth]{analysis/output/OPA}
+\includegraphics[width=0.38\textwidth]{analysis/output/OPA-bode_gain2(mag).pdf}
 \caption{Didascalia}
 \label{fig:oscilloscope}
 \end {center}
 \end{figure}
+\[H.F._{2} = 363806.38 Hz\]
+Ripetendo il procedimento con $R_1=\Omega$ e $R_2=\Omega$, quindi con un guadagno atteso di undici si è ottenuto il grafico seguente
+\begin{figure}[H]%[!ht]
+\begin {center}
+\includegraphics[width=0.38\textwidth]{analysis/output/OPA-bode_gain11(mag).pdf}
+\caption{Didascalia}
+\label{fig:oscilloscope}
+\end {center}
+\end{figure}
+
+\[H.F._{11} = 363806.38 Hz\]
+
+Si è infine verificata la conservazione del prodotto 
+\[BAND WIDTH \dot GAIN\]
+ottenendo i valori $H.F._{2}\dot Gain_2 = 727612.75410076 Hz$ e $H.F._{11}\dot Gain_11 = 600850.4939452771 Hz$ (\textit{Fig.})
+\begin{figure}[H]%[!ht]
+\begin {center}
+\includegraphics[width=0.38\textwidth]{analysis/output/OPA-bode_gain_comparison(mag).pdf}
+\caption{Didascalia}
+\label{fig:oscilloscope}
+\end {center}
+\end{figure}
+
+
 
 
 \subsection{Studio della risposta in frequenza}
