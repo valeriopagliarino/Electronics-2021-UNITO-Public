@@ -215,17 +215,50 @@ Descrizione
 Un amplificatore non invertente ha la peculiarità di dare in uscita un segnale proporzionale a quello d'ingresso e in fase con esso. Il segnale è applicato all'ingresso non invertente affinché il guadagno $A$ sia positivo. Infatti per l'equipotenzialità degli ingressi si ha: \[V_{-} = V_{+} = V_{i}\] \[V_{-} = \frac{R_1}{R_1+R_2}=V_{+}\] \[V_{o}=(1+\frac{R_2}{R_1}V_{+}\]
 da cui si ricava che $A=\frac{V_{o}}{V_i}=1+\frac{R_2}{R_1}$.
 \subsection{\textbf{Caratterizzazione}}
-Sono state selezionati diversi resistori in maniera tale da esaminare più casi di amplificazione. Nel primo caso $R_1=\Omega$ e $R_2=\Omega$ in maniera da tale da attendersi un guadagno di circa due volte. Si è proceduto con la presa dati della risposta in frequenza del circuito. I dati sono stati successivamente fittati attraverso l'utilizzo di una funzione di transfer caratterizzata da tre poli:
-\[H(s)=\frac{k}{(1+as)(1+bs)(1+cs)}\] 
-per poi estrarre il valore della $H.F.$
-
+Sono state selezionati diversi resistori in maniera tale da esaminare più casi di amplificazione. Nel primo caso $R_1=\Omega$ e $R_2=\Omega$ in maniera da tale da attendersi un guadagno di circa due, mentre secondariamente $R_1=\Omega$ e $R_2=\Omega$, quindi con un guadagno atteso di undici. Come previsto dalla teoria i valori di $V_{out}$ ottenuti rispecchiano ciò che è stato appena detto. Dalla \testit{Fig.} si nota infatti che la risposta del circuito comporta un segnale in uscita in fase con quello in entrata, ma amplificato dei valori sopracitati.
 \begin{figure}[H]%[!ht]
 \begin {center}
-\includegraphics[width=0.38\textwidth]{analysis/output/OPA}
+\includegraphics[width=0.38\textwidth]{analysis/output/OPA-closed-loop-non-inv-G2-11.pdf}
 \caption{Didascalia}
 \label{fig:oscilloscope}
 \end {center}
 \end{figure}
+Dai valori delle resistenze e dalla delle che regola il guadagno è possibile fare un confronto tra i valori attesi e quelli ottenuti empiricamente. (  )
+Si è proceduto con la presa dati della risposta in frequenza del circuito. I dati sono stati successivamente fittati attraverso l'utilizzo di una funzione di transfer caratterizzata da tre poli:
+\[H(s)=\frac{k}{(1+as)(1+bs)(1+cs)}\] 
+per poi estrarre il valore della $H.F$
+
+\begin{figure}[H]%[!ht]
+\begin {center}
+\includegraphics[width=0.38\textwidth]{analysis/output/OPA-bode_gain2(mag).pdf}
+\caption{Didascalia}
+\label{fig:oscilloscope}
+\end {center}
+\end{figure}
+\[H.F_{2} = 363806.38 Hz\]
+Ripetendo il procedimento con $R_1=\Omega$ e $R_2=\Omega$, quindi con un guadagno atteso di undici si è ottenuto il grafico seguente
+\begin{figure}[H]%[!ht]
+\begin {center}
+\includegraphics[width=0.38\textwidth]{analysis/output/OPA-bode_gain11(mag).pdf}
+\caption{Didascalia}
+\label{fig:oscilloscope}
+\end {center}
+\end{figure}
+
+\[H.F_{11} = 363806.38 Hz\]
+
+Si è infine verificata la conservazione del prodotto 
+\[BAND WIDTH \dot GAIN\]
+ottenendo i valori \[H.F_{2}\times Gain_2 = 727612.75410076 Hz\]  \[H.F_{11}\times Gain_{11} = 600850.4939452771 Hz\] (\textit{Fig.})
+\begin{figure}[H]%[!ht]
+\begin {center}
+\includegraphics[width=0.38\textwidth]{analysis/output/OPA-bode_gain_comparison(mag).pdf}
+\caption{Didascalia}
+\label{fig:oscilloscope}
+\end {center}
+\end{figure}
+
+
 
 
 \subsection{Studio della risposta in frequenza}
@@ -263,7 +296,6 @@ per poi estrarre il valore della $H.F.$
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Amplificatore integratore reale invertente} %Matteo
-\subsection{\textbf{Introduzione all'esperienza}}
 In questa esperienza di laboratorio verrà analizzato il funzionamento di un \textit{OPA integratore}, osservandone in primo luogo la risposta a diversi tipi di segnali, quali a gradino, rampa e sinusoidali, per poi studiarne il comportamento in funzione della variazione di frequenza della $V_{in}$.
 \subsection{\textbf{circuito}}
 \begin{figure}[H]%[!ht]
@@ -273,9 +305,13 @@ In questa esperienza di laboratorio verrà analizzato il funzionamento di un \te
 \label{fig:oscilloscope}
 \end {center}
 \end{figure}
-Come sottintende il nome, l'Op-Amp integratore è un operazionale che esegue l'operazione matematica dell'integrazione, facendo si che il circuito emetta una $V_{out}$ proporzionale all'integrale della $V_{in}$. In altre parole, facendo riferimento alla \textit{Fig.9}, l'ampiezza del segnale in uscita è determinato dal periodo di tempo in cui una tensione è presente in input, poiché la corrente attraverso il circuito di feedback carica o scarica il condensatore mentre il feedback negativo richiesto avviene attraverso il condensatore.
-Affinchè l'amplificatore non vada in saturazione alle basse frequenze è stato aggiunto in parallelo a $C$ un resistore $R_{2}$. Ciò fa si che a fequenze limitate, essendo il periodo della tensione in ingresso relativamente lungo, il condensatore si commporti come una impedenza infinita, determinando un guadagno $A_{v}=-R_{2}/R{1}$. In questa configurazione si parla infatti di \textit{integratore limitato}. 
-Un fattore importante è che il circuito si comporta effettivamente da integratore solo per frequenze superiori a quella di taglio, $f_{t}=\frac{1}{2 \pi C R_{1} }$, per cui buona norma per ottenere un circuito efficiente è quella di scegliere $R$ e $C$ in maniera consona ai propri obiettivi. 
+%Come sottintende il nome, l'Op-Amp integratore è un operazionale che esegue l'operazione matematica dell'integrazione, facendo si che il circuito emetta una $V_{out}$ proporzionale all'integrale della $V_{in}$. In altre parole, facendo riferimento alla \textit{Fig.9}, l'ampiezza del segnale in uscita è determinato dal periodo di tempo in cui una tensione è presente in input, poiché la corrente attraverso il circuito di feedback carica o scarica il condensatore mentre il feedback negativo richiesto avviene attraverso il condensatore.
+Mediante un amplificatore operazione è possibile realizzare un circuito integratore, cioè in grado di produrre in uscita un segnale proporzionale alla primitiva della forma d'onda in ingresso, inserendo una capacità nella rete di feedback tra l'ingresso invertente e l'uscita.
+Affinché l'amplificatore non vada in saturazione alle basse frequenze, viene aggiunto in parallelo a $C$ un resistore $R_{2}$ che fa si che in tale regime operativo il condensatore si comporti come una impedenza infinita, determinando un guadagno $A_{v}=-R_{2}/R{1}$. In questa configurazione è detta \textit{circuito integratore attivo limitato}. 
+%essendo il periodo della tensione in ingresso relativamente lungo,
+Una caratteristica importante è che il circuito si comporta effettivamente da integratore solo per frequenze superiori a quella di taglio, $f_{t}=\frac{1}{2 \pi C R_{1} }$, è quindi necessario scegliere $R$ e $C$ opportunamente, in relazione alla distribuzione spettrale del segnale da integrare. 
+%Questo apparirebbe chiaro se si osservasse il grafico di fase del diagramma di Bode associato: oltre la frequenza di taglio tutte le armoniche sinusoidali di Fourier vengono sfasate di un angolo tale da essere approssimabili come inverse di cosinusoidi (integrale). [CURIOSITA']
+%per cui buona norma per ottenere un circuito efficiente è quella di 
 \subsection{\textbf{Caratterizzazione}}
 Inizialmente si sono scelte $R$ e $C$ con lo scopo di ottenere una frequenza di taglio non eccessivamente bassa per favorire lo studio della risposta in frequenza della fase successiva: \[f_{t} = \frac{1}{2 \pi R_{1} C}= 685.63 \pm 44.13 Hz\] 
 
@@ -295,7 +331,7 @@ Terminata la prima fase si è passati all'analisi della output del circuito in f
 \label{fig:oscilloscope}
 \end {center}
 \end{figure}
-Dalla forma funzionale ottenuta è poi stato estratto il valore della $H.F. = 418.28892698398096 Hz$ (serve trovare modo per estrarre errore per poi confrontarlo con frequenza di taglio).
+Dalla forma funzionale ottenuta è poi stato estratto il valore della $H.F = 418.28892698398096 Hz$ (serve trovare modo per estrarre errore per poi confrontarlo con frequenza di taglio).
 Infine facendo la regressione del fit è stato ricavato il valore di \textit{magnitude} relativo alla frequenza nulla, $A_{v}(0)=-0.317$ ed è stato confrontato col valore ricavato dall'espressione, derivata dalla letteratura, $A_{v} = 20log_{10}(-R_{2}/R{1}) = -0.142 \pm 0.397 $. La misura empirica risulta consistente con quella teorica ($Z=0.44$).
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Diagramma di Bode}
@@ -303,7 +339,6 @@ Infine facendo la regressione del fit è stato ricavato il valore di \textit{mag
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Amplificatore derivatore} %Matteo
-
 \begin{figure}[H]%[!ht]
 \begin {center}
 \includegraphics[width=0.38\textwidth]{sch-simulations/output/OPA-deriv.pdf}
@@ -311,7 +346,17 @@ Infine facendo la regressione del fit è stato ricavato il valore di \textit{mag
 \label{fig:oscilloscope}
 \end {center}
 \end{figure}
-
+Il circuito di base dell'amplificatore differenziatore è l'esatto opposto di quello del circuito dell'OpAmp integratore sopracitato. In questo caso le posizioni del condensatore e del resistore sono state invertite affinché il condensatore $C$ sia collegato al terminale di ingresso dell'amplificatore invertente mentre il resistore, $R_1$ costituisca l'elemento di feedback negativo attraverso l'OpAmp. Questo circuito esegue l'operazione matematica di differenziazione cioè produce un'uscita di tensione proporzionale alla velocità di variazione della tensione di ingresso e alla corrente che scorre attraverso il condensatore. In altri termini la tensione di uscita è una versione scalata della derivata della tensione di ingresso. Il condensatore blocca qualsiasi contenuto \textit{DC}, consentendo  quindi il solo passaggio di segnali di tipo \textit{AC}, la cui frequenza dipende dalla velocità di variazione del segnale di ingresso. Alle basse frequenze la reattanza del condensatore è "Alta" con conseguente basso guadagno (R1/Xc) e bassa tensione di uscita, mentre per alte frequenze si avrà un gain nettamente maggiore e un segnale di output più intenso. Ciò è dovuto principalmente all'effetto di primo ordine, che determina la risposta in frequenza del circuito provocandone una risposta di secondo ordine che, alle alte frequenze, dà una tensione di uscita molto superiore a quella che ci si aspetterebbe. Per evitare ciò, il gain ad alta frequenza deve essere ridotto aggiungendo un resistore di feedback $R_f$,di resistenza ridotta,in serie al condensatore. 
+\subsection{\textbf{Valutazione della risposta}}
+Una volta assemblato il circuito si è proseguito analizzando qualitativamente il comportamento del OPA derivatore a segnali in input di diversa entità, verificando che l'output fosse all'incirca quello previsto.
+\section{Amplificatore derivatore} %Matteo
+\begin{figure}[H]%[!ht]
+\begin {center}
+\includegraphics[width=0.38\textwidth]{analysis/output/OPA-differentiator.pdf}
+\caption{Didascalia}
+\label{fig:OPA}
+\end {center}
+\end{figure}
 %%%%%%%%%%FINE SECONDO GIORNO%%%%%%%%%%%%%%%
 %%%%%%%%%%INIZIO TERZO GIORNO%%%%%%%%%%%%%%%
 
@@ -361,22 +406,22 @@ I primi due canali dell'oscilloscopio sono collegati ai segnali $V_1$ e $V_2$ pr
 %%%%%%%%%%INIZIO QUARTO GIORNO%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Silicon photomultiplier} %Valerio
+\section{Silicon photomultipliers} %Valerio
 In questa esperienza di laboratorio studieremo qualitativamente il segnale prodotto da un fotomoltiplicatore al silicio illuminato da una sorgente LED. I fotomoltiplicatori al silicio sono fotorivelatori composti da una matrice di SPAD (Single Photon Avalanche Diode) connessi in serie a una resistenza di \textit{quenching} (spegnimento) e collegati in parallelo tra loro. Quando un singolo fotone colpisce il SiPM con una probabilità pari all'efficienza quantica si genera una valanga nello SPAD colpito che provoca un passaggio di corrente dovuto allo scaricamento della capacità di giunzione della cella che provoca una caduta di tensione al catodo (fronte di salita veloce del segnale), al termine della valanga la capacità torna a caricarsi dando origine ad un fronte di discesa più lento. I SiPM sono ampiamente utilizzati per osservare sorgenti di radiazione estremamente deboli o impulsive (anche a livello di singoli fotoni), per esempio nella lettura di rivelatori a scintillazione.
 
 \subsection{Circuito per la caratterizzazione del SiPM}
-In laboratorio è stata effettuata una semplice caratterizzazione di due SiPM AdvanSiD NUV: ASD-NUV1S-P e ASD-NUV3S-P caratterizzati da un'efficienza di rilevazione del 43 \%, celle SPAD di dimensione 40x40 $\mu$m, costante di tempo di 70 ns, risposta spettrale tra 350 a 900 nm e guadagno atteso da datasheet di 3.6 $\cdot 10^6$. I due modelli si distinguono per la diversa dimensione della matrice: per il primo 1x1 $mm^2$ (625 celle), mentre per il secondo 3x3 $mm^2$ (5520 celle). Solitamente questi fotorivelatori sono letti in corrente utilizzando un amplificatore transimpedenza, nel nostro caso però si è scelto di impiegare un circuito più semplice, reso possibile dall'elevata sensibilità dell'oscilloscopio Rhode & Schwarz impiegato (fino a 1 mV/div). Il SiPM è stato alimentato con una tensione di polarizzazione di (00.00 $\pm$ 0.0) V (tensione di breakdown $\sim$ 26 V) utilizzando l'alimentatore stabilizzato da laboratorio attraverso tre resistenze di limitazione della corrente come illustrato nello schema seguente, con l'aggiunta di un condensatore di livellamento C1 per ridurre l'eventuale \textit{ripple} dell'alimentazione. Per minimizzare i disturbi esterni la tensione è stata portata dall'alimentatore al circuito mediante un cavo coassiale anziché due cavi di potenza con connettori "a banana". I segnali sono stati portati all'oscilloscopio mediante due condensatori di disaccoppiamento per isolare dalla tensione di \textit{biasing} e i canali sono stati sottratti (essendo tra di loro speculari); questo ha permesso di cancellare parzialmente il rumore dell'alimentazione e di aumentare il \textit{SNR}. Il SiPM è stato illuminato con un led rosso pilotato dal generatore \textit{Siglent SDG1010}.
+In laboratorio è stata effettuata una semplice caratterizzazione di due SiPM AdvanSiD NUV: ASD-NUV1S-P e ASD-NUV3S-P caratterizzati da un'efficienza di rilevazione del 43 \%, celle SPAD di dimensione 40x40 $\mu$m, costante di tempo di 70 ns, risposta spettrale tra 350 a 900 nm e guadagno atteso da datasheet di 3.6 $\cdot 10^6$. I due modelli si distinguono per la diversa dimensione della matrice: per il primo 1x1 $mm^2$ (625 celle), mentre per il secondo 3x3 $mm^2$ (5520 celle). Solitamente questi fotorivelatori sono letti in corrente utilizzando un amplificatore transimpedenza, nel nostro caso però si è scelto di impiegare un circuito più semplice, reso possibile dall'elevata sensibilità dell'oscilloscopio Rhode & Schwarz impiegato (fino a 1 mV/div). Il SiPM è stato alimentato con una tensione di polarizzazione di (30.31 $\pm$ 0.16) V ($\sim +4$ overvolt, tensione di breakdown $\sim$ 26 V) utilizzando l'alimentatore stabilizzato da laboratorio attraverso tre resistenze di limitazione della corrente come illustrato nello schema seguente, con l'aggiunta di un condensatore di livellamento C1 per ridurre l'eventuale \textit{ripple} dell'alimentazione. Per minimizzare i disturbi esterni la tensione è stata portata dall'alimentatore al circuito mediante un cavo coassiale anziché due cavi di potenza con connettori "a banana". I segnali sono stati portati all'oscilloscopio mediante due condensatori di disaccoppiamento per isolare dalla tensione di \textit{biasing} e i canali sono stati sottratti (essendo tra di loro speculari); questo ha permesso di cancellare parzialmente il rumore dell'alimentazione e di aumentare il \textit{SNR}. Il SiPM è stato illuminato con un led rosso pilotato dal generatore \textit{Siglent SDG1010}.
 
 \begin{figure}[H]%[!ht]
 \begin{center}
 \includegraphics[width=0.46\textwidth]{sch-simulations/output/SiPM.pdf}
-\caption{Schema del circuito elettrico per la caratterizzazione del SiPM. Valori per i componenti utilizzati misurati con il multimetro: R1 = (0.00 $\pm$ 0.00) $\Omega$), R2 = (0.00 $\pm$ 0.00) $\Omega$), R3 = (0.00 $\pm$ 0.00) $\Omega$), C1 = (0.00 $\pm$ 0.00) $nF$, C2 = (0.00 $\pm$ 0.00) $nF$, C3 = (0.00 $\pm$ 0.00) $nF$}
+\caption{Schema del circuito elettrico per la caratterizzazione del SiPM. Valori per i componenti utilizzati misurati con il multimetro: R1 = (506 $\pm$ 9) $\Omega$, R2 = (513 $\pm$ 9) $\Omega$, R3 = (969 $\pm$ 13) $\Omega$, C1 = (90.0 $\pm$ 7) $nF$, C2 = (97.9 $\pm$ 8) $nF$, C3 = (93.5 $\pm$ 7) $nF$}
 \label{fig:oscilloscope}
 \end{center}
 \end{figure}
 
 \subsection{Funzionamento in saturazione}
-Per prima cosa si è proceduto a registrare l'impulso il condizione di saturazione per entrambi i SiPM, cioè l'impulso in uscita prodotto quando tutte le celle vengono eccitate, (dove il numero di celle eccitate è proporzionale al numero di fotoni rivelati). Per studiare questo aspetto è stata aumentata l'ampiezza dell'impulso di pilotaggio del LED fino a 0.000 V (durata $\Delta$t = 16 ns, frequenza di ripetizione $f$ = 0.00 KHz) per il sensore 1x1 $mm^2$ e 0.000 V per il sensore 3x3 $mm^2$. I risultati sono presentati nei grafici in figura \ref{fig:SiPM_sat_1mm} e \ref{fig:SiPM_sat_3mm} rispettivamente. Notiamo come l'impulso del SiPM di dimensioni maggiori sia più prolungato, di ampiezza maggiore e più rumoroso, questi effetti sono conseguenza naturale di un numero maggiore di celle SPAD, in particolare la maggiore durata è dovuta ad una più elevata capacità parassita dovuta alla presenza di molte più celle in parallelo.
+Per prima cosa si è proceduto a registrare l'impulso il condizione di saturazione per entrambi i SiPM, cioè l'impulso in uscita prodotto quando tutte le celle vengono eccitate, (dove il numero di celle eccitate è proporzionale al numero di fotoni rivelati). Per studiare questo aspetto è stata aumentata l'ampiezza dell'impulso di pilotaggio del LED fino a 0.000 V (durata $\Delta$t = 16 ns, periodo di ripetizione $T$ = 200 ns) per il sensore 1x1 $mm^2$ e 0.000 V per il sensore 3x3 $mm^2$. I risultati sono presentati nei grafici in figura \ref{fig:SiPM_sat_1mm} e \ref{fig:SiPM_sat_3mm} rispettivamente. Notiamo come l'impulso del SiPM di dimensioni maggiori sia più prolungato, di ampiezza maggiore e più rumoroso, questi effetti sono conseguenza naturale di un numero maggiore di celle SPAD, in particolare la maggiore durata è dovuta ad una più elevata capacità parassita dovuta alla presenza di molte più celle in parallelo.
 
 
 \begin{figure}[H]%[!ht]
@@ -396,7 +441,15 @@ Per prima cosa si è proceduto a registrare l'impulso il condizione di saturazio
 \end{figure}
 
 \subsection{Valutazione del guadagno e del tempo di carica caratteristico}
-In questa fase, più delicata, si vuole invece valutare il guadagno di ciascuna cella e calcolare il tempo caratteristico di carica, dipendente dalla resistenza totale della cella e dalla capacità parassita, che compongono una rete RC. Per raggiungere questo obiettivo si vuole visualizzare una sovrapposizione di impulsi dovuti dall'attivazione di esattamente 1, 2, 3, ... N celle e poter calcolare la differenza in tensione tra i picchi di questi impulsi. Configuriamo allora il generatore il modo da produrre impulsi di bassissima intensità (stesse impostazioni di prima, ma V = 0.000 mV) in modo che ciascun impulso produca un numero esiguo di fotoni che provocherà l'accensione di poche celle, secondo un modello poissoniano e impostiamo correttamente la persistenza delle tracce sull'oscilloscopio. Si ottengono così i grafici nelle figure \ref{fig:staircase_1mm} e \ref{fig:staircase_3mm} per i due SiPM. A partire da tali tracce sono stati ricavati i valori di tensione di picco per ciascun impulso corrispondente ad un determinato numero di celle con metodi numerici.
+In questa fase, più delicata, si vuole invece valutare il guadagno di ciascuna cella e calcolare il tempo caratteristico di carica, dipendente dalla resistenza totale della cella e dalla capacità parassita, che compongono una rete RC. Per raggiungere questo obiettivo si vuole visualizzare una sovrapposizione di impulsi dovuti dall'attivazione di esattamente 1, 2, 3, ... N celle e poter calcolare la differenza in tensione tra i picchi di questi impulsi. Si configura allora il generatore il modo da produrre impulsi di bassissima intensità (stesse impostazioni di prima, ma con $V_{pp}$ = 1.8 mV), si veda la figura \ref{fig:ledp}, in modo che ciascun impulso produca un numero esiguo di fotoni che provocherà l'accensione di poche celle, secondo un modello poissoniano e impostiamo correttamente la persistenza delle tracce sull'oscilloscopio. Si ottengono così i grafici nelle figure \ref{fig:staircase_1mm} e \ref{fig:staircase_3mm} per i due SiPM. 
+
+\begin{figure}[H]%[!ht]
+\begin{center}
+\includegraphics[width=0.40\textwidth]{analysis/output/SiPM_ledp.pdf}
+\caption{Segnale utilizzato per il pilotaggio del led con il SiPM 1x1 $mm^2$ per la misurazione del guadagno}
+\label{fig:ledp}
+\end{center}
+\end{figure}
 
 \begin{figure*}[t]%[t]
 \centering
@@ -416,8 +469,37 @@ In questa fase, più delicata, si vuole invece valutare il guadagno di ciascuna 
 \label{fig:staircase_3mm}
 \end{figure*}
 
+A partire da tali tracce sono stati ricavati i valori di tensione di picco per ciascun impulso corrispondente ad un determinato numero di celle con metodi numerici, i dati sono riportati in appendice. Dopo aver calcolato le differenze tra ogni valore e il successivo, si è provveduto ad effettuare una media e a calcolare l'incertezza stimandola con la semidispersione massima. Abbiamo così trovato come 'quanto' di tensione corrispondente ad una cella attivata $\Delta V_{1mm}$ = (210 $\pm$ 20) $\mu V$ e  $\Delta V_{3mm}$ = (125 $\pm$ 15) $\mu V$. (Questi valori sono già stati divisi per due, rispetto ai grafici, dal momento che provengono dalla somma dei canali.) Si è quindi potuta calcolare la quantità di carica immagazzinata in ciascuna cella $Q$, considerando la sua modellizzazione sopracitata come capacità ideale. Per un condensatore in un circuito con costante di tempo $\tau$ si ha che la carica totale immagazzinata è
+\begin{equation}
+    Q = \int_{0}^{\infty} i(t) dt = \int_{0}^{\infty} \frac{\Delta V}{Z} e^{-t/ \tau}  dt = \frac{\Delta V}{Z} \tau
+\end{equation}
+con Z = 50 $\Omega$. (Il calcolo dei valori di $\tau$ è descritto nel paragrafo seguente). Per trovare il guadagno si divide ora la carica Q per la carica elementare dell'elettrone, trovando così il fattore di moltiplicazione dovuto all'effetto valanga caratteristico dello SPAD. Il calcolo restituisce G_{1mm} = (2.93 $\pm$ 0.31)$\cdot 10^6$ e G_{3mm} = (2.90 $\pm$ 0.40)$\cdot 10^6$. I valori ottenuti risultano entrambi compatibili con quanto atteso sulla base del \textit{datasheet} del produttore AdvanSiD, che riporta per un overvolt di +4 ($V_{bias} = V_{breakdown} + 4$) G $\sim$ 3$\cdot10^6$. I pvalue del test Z di compatibilità sono infatti rispettivamente di 0.821 e 0.865 ampiamente superiori del livello di significatività standard del test $\alpha = 0.05$.
+
+\subsection{Calcolo della costante di tempo}
+Nel paragrafo precedente per poter calcolare la carica Q è stato fondamentale disporre della costante di tempo $\tau$ per i circuiti RC formati dalle resistenze di quenching e dalle capacità delle giunzioni degli SPAD (collegati in parallelo). Verrà ora discussa la tecnica adottata per il calcolo delle $\tau$. Secondo l'approssimazione totalmente ideale presentata, la costante di tempo non dipende dall'ampiezza degli impulsi, quindi per lavorare con un miglior rapporto segnale / rumore, si decide di lavorare sugli impulsi in saturazione (fig. \ref{fig:SiPM_sat_1mm} e \ref{fig:SiPM_sat_3mm}) descritti nei paragrafi precedenti. Gli impulsi sono stati ritagliati sull'asse temporale e poi sono stati interpolati con la legge di scarica del condensatore dopo aver aggiunto opportuni parametri aggiuntivi per considerare l'offset arbitrario degli assi e l'ampiezza dell'impulso non nota:
+\begin{equation}
+    V(t) = V_0 e^{-(t-t_0)/\tau} + V_{offset}
+\end{equation}
+Entrambi i fit hanno esito positivo, considerando un test $\chi^2$ solo sulla coda destra (pvalue $\sim$ 1), si ottengono infatti valori di $\chi^2 / NDF$ pari a 11.51  /  300 = 0.038 per il SiPM con area minore e $\chi^2 / NDF$ pari a 102.46 /  300 = 0.341 per quello con area maggiore. E' possibile finalmente estrarre il parametro di interesse (con la relativa incertezza, dalla matrice di covarianza) ottenendo $\tau_{1mm}$ = (1.11 $\pm$ 0.02)$\cdot 10^{-9}$ e $\tau_{3mm}$ = (1.88 $\pm$ 0.10)$\cdot 10^{-9}$. Le figure \ref{fig:fit1m} e \ref{fig:fit3m} mostrano l'esito delle interpolazioni. Nei calcoli si è adottata come incertezza sulle tensioni misurate con l'oscilloscopio 1/5 della larghezza delle divisioni verticali.
+
+\begin{figure}[H]%[!ht]
+\begin{center}
+\includegraphics[width=0.40\textwidth]{analysis/output/SiPM_fit_3mm.pdf}
+\caption{Interpolazione dell'impulso in saturazione del SiPM 1x1 $mm^2$ per estrapolare la costante di tempo caratteristica.}
+\label{fig:fit1m}
+\end{center}
+\end{figure}
+
+\begin{figure}[H]%[!ht]
+\begin{center}
+\includegraphics[width=0.40\textwidth]{analysis/output/SiPM_fit_1mm.pdf}
+\caption{Interpolazione dell'impulso in saturazione del SiPM 3x3 $mm^2$ per estrapolare la costante di tempo caratteristica.}
+\label{fig:fit3m}
+\end{center}
+\end{figure}
+
 \subsection{Discussione e considerazioni conclusive}
-Testo
+In conclusione, la metodologia sperimentale proposta è risultata adeguata per effettuare una misurazione indicativa del guadagno e della costante di tempo di fotomoltiplicatori al silicio. L'utilizzo dell'oscilloscopio con un segnale di trigger esterno prodotto dal generatore è risultato fondamentale, in quanto ha permesso di eliminare gran parte degli eventi dovuti al dark count che avrebbero disturbato la misura. Le acquisizioni qualitative sono risultate in accordo con quanto atteso, il SiPM da 3x3 $mm^2$ ha infatti mostrato una maggior sensibilità, una maggiore quantità di rumore e una costante di tempo più elevata a causa della capacità di un numero maggiore di celle in parallelo  rispetto a quello con area 1x1 $mm^2$. I valori ottenuti risultano ampiamente compatibili con i quanto riportato sul \textit{datasheet}, ma l'accuratezza potrebbe essere migliorabile con varie strategie. Innanzitutto si potrebbe cercare di ridurre ulteriormente gli impulsi di rumore isolando in modo più efficace il SiPM dalla luce ambientale, dopodiché si potrebbe calcolare la carica specifica associata a ciascuno SPAD integrando numericamente la forma d'onda dell'impulso oppure con un amplificatore di carica, eliminando la necessità di introdurre un'approssimazione di idealità con la legge (1). Questo metodo basato sulla misura diretta della carica potrebbe risultare più robusto rispetto a quello attuale basato sulla misura di tensioni. Il metodo di misura delle costanti di tempo basato sull'interpolazione è risultato molto più efficace rispetto all'uso di cursori, come confermato dai test Z di compatibilità con quanto riportato sul \textit{datasheet} e dai test di adattamento di $\chi^2$.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Linea di ritardo} %Federico
