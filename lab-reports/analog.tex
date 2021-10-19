@@ -60,7 +60,7 @@
 % As a general rule, do not put math, special symbols or citations
 % in the abstract or keywords.
 \begin{abstract}  
-Oggi la ricerca in fisica in qualunque ambito è supportata in modo fondamentale dall'elettronica e dall'informatica che permettono l'acquisizione dei dati, la loro analisi e l'esecuzione di simulazioni; l'elettronica digitale ha rivoluzionato le tecniche di calcolo, ma l'elettronica analogica continua ad essere cruciale, poiché interviene nel processo di trasduzione dell'osservabile fisica in un segnale elettrico e nel condizionamento di quest'ultimo fino alla conversione in digitale ad opera di \textit{ADCs}, \textit{TDCs} o altri sistemi. Non stupisce allora il fatto che in molti sistemi di misura e rivelazione l'elettronica analogica rappresenti il vero limite alle prestazioni dell'apparato. In questa relazione di laboratorio verranno analizzati alcuni circuiti analogici di rilievo per la strumentazione fisica: dopo una breve introduzione agli strumenti e lo studio qualitativo di un raddrizzatore a singola semionda realizzato con diodo al silicio, si prenderanno in esame alcune applicazioni degli amplificatori operazionali. Dapprima si verificherà il funzionamento in configurazione ad anello aperto come discriminatore di soglia e verrà misurato lo \textit{slew rate}, dopodiché si passerà ad alcune configurazioni retroazionate che consentono l'amplificazione dei segnali con guadagno prefissato e il calcolo di operazioni matematiche tra segnali analogici come integrali, derivate, somme e differenze. Successivamente verrà realizzato mediante due amplificatori operazionali un comparatore con isteresi (trigger di Schmitt) in grado di discriminare un segnale a cui è stato sommato del rumore mediante il secondo stadio analogico. Si concluderà questa relazione con l'analisi di un semplice circuito di read-out per un fotomoltiplicatore al silicio (SiPM) che consentirà di calcolare il guadagno del sensore e con alcune verifiche delle leggi di propagazione dei segnali su linee coassiali.
+Oggi la ricerca in fisica in ogni ambito è supportata in modo fondamentale dall'elettronica e dall'informatica che permettono l'acquisizione dei dati, la loro analisi e l'esecuzione di simulazioni; l'elettronica digitale ha rivoluzionato le tecniche di calcolo, ma l'elettronica analogica continua ad essere cruciale, poiché interviene nel processo di trasduzione dell'osservabile fisica in un segnale elettrico e nel condizionamento di quest'ultimo fino alla conversione in digitale ad opera di \textit{ADCs}, \textit{TDCs} o altri sistemi. Non stupisce allora il fatto che in molti sistemi di misura e rivelazione l'elettronica analogica rappresenti il vero limite alle prestazioni dell'apparato. In questa relazione di laboratorio verranno analizzati alcuni circuiti analogici di rilievo per la strumentazione fisica: dopo una breve introduzione agli strumenti e lo studio qualitativo di un raddrizzatore a singola semionda realizzato con diodo al silicio, si prenderanno in esame alcune applicazioni degli amplificatori operazionali. Dapprima si verificherà il funzionamento in configurazione ad anello aperto come discriminatore di soglia e verrà misurato lo \textit{slew rate}, dopodiché si passerà ad alcune configurazioni retroazionate che consentono l'amplificazione dei segnali con guadagno prefissato e il calcolo di operazioni matematiche tra segnali analogici come integrali, derivate, somme e differenze. Successivamente verrà realizzato mediante due amplificatori operazionali un comparatore con isteresi (trigger di Schmitt) in grado di discriminare un segnale a cui è stato sommato del rumore mediante il secondo stadio analogico. Si concluderà questa relazione con l'analisi di un semplice circuito di read-out per un fotomoltiplicatore al silicio (SiPM) che consentirà di calcolare il guadagno del sensore e con alcune verifiche delle leggi di propagazione dei segnali su linee coassiali.
 %Concluso, da rileggere
 \end{abstract}
 
@@ -77,16 +77,16 @@ Segue oltre una brevissima dei principali strumenti di misura e genearatori util
   \includegraphics[width=0.18\textwidth]{lab-reports/Schematics-and-graphics/TEK Osc.png}
 \end{figure}
 
-La maggior parte delle misure di tensione e tempo è stata realizzata con un \textit{digital storage oscilloscope (DSO)} Tektronix 1104 con banda passante di 70 MHz, frequenza di campionamento massima di 1 GSa/s che consente fino a 5 ns/div di risoluzione temporale, 4 canali e 2.5K punti di memoria per finestra di acquisizione, risoluzione verticale di 8 bit e sensibilità fino a 10 mV/div.
+La maggior parte delle misure di tensione e tempo è stata realizzata con un \textit{digital storage oscilloscope (DSO)} Tektronix 1104 con banda passante di 70 MHz, frequenza di campionamento massima di 1 GSa/s che consente fino a 5 ns/div di risoluzione temporale, 4 canali e 2.5K punti di memoria per finestra di acquisizione, risoluzione verticale di 8 bit e sensibilità fino a 10 mV/div. \cite{A}
 
-\subsection{\textbf{Oscilloscopio Rhode & Schwartz}}
+\subsection{\textbf{Oscilloscopio Rhode \& Schwartz}}
 
 \begin{figure}[h!]
   \centering
   \includegraphics[width=0.18\textwidth]{lab-reports/Schematics-and-graphics/RS Osc.png}
 \end{figure}
 
-Per visualizzare il segnale in uscita dal fotomoltiplicatore al silicio è stata invece utilizzato un oscilloscopio di fascia più alta Rhode & Schwarz RTB2004 dotato di un ADC a 10 bit con banda passante di 70 MHz e frequenza di campionamento massima di 2.5 GSa/s che consente raggiungere una risoluzione temporale di 1 ns/div. Quest'ultima caratteristica, unita alla sensibilità fino a 1 mV/div, ha permesso di visualizzare correttamente i segnali molto deboli e veloci prodotti dal sensore quando viene eccitata una singola cella.
+Per visualizzare il segnale in uscita dal fotomoltiplicatore al silicio è stata invece utilizzato un oscilloscopio di fascia più alta Rhode & Schwarz RTB2004 dotato di un ADC a 10 bit con banda passante di 70 MHz e frequenza di campionamento massima di 2.5 GSa/s che consente raggiungere una risoluzione temporale di 1 ns/div. Quest'ultima caratteristica, unita alla sensibilità fino a 1 mV/div, ha permesso di visualizzare correttamente i segnali molto deboli e veloci prodotti dal sensore quando viene eccitata una singola cella. \cite{B}
 
 \subsection{\textbf{Generatori di funzioni Rigol DG1022Z e Siglent SDG1010}}
 
@@ -100,7 +100,7 @@ Per visualizzare il segnale in uscita dal fotomoltiplicatore al silicio è stata
   \includegraphics[width=0.18\textwidth]{lab-reports/Schematics-and-graphics/SIGLENT Gen.png}
 \end{figure}
 
-Questi due generatori di segnali arbitrari basati sulla sintesi digitale diretta (DDS) sono stati impiegati per il pilotaggio dei circuiti. Il secondo dispositivo è stato impiegato per la generazione dell'impulso di tensione per l'alimentazione del led nell'esperienza di caratterizzazione del SiPM, mentre il primo apparecchio per tutte le altre misure. Il generatore \textit{Rigol} ha una banda passante massima di 25 MHz, una frequenza di campionamento del DAC di 100 MSa/s e una risoluzione verticale di 14 bit. Il generatore \textit{Siglent}, invece, ha una banda passante di 10 MHz, una frequenza di campionamento del DAC di 125 MSa/s, una risoluzione verticale anch'esso di 14 bit e supporta la generazione di impulsi mediante la velocità "burst" con un fronte di salita / discesa minimo di 7 ns e una durata minima di 16 ns. Il generatore dispone di un'uscita di sincronismo in standard TTL con durata degli impulsi > 50 ns che abbiamo utilizzato per pilotare il trigger esterno dell'oscilloscopio Rhode & Schwarz.
+Questi due generatori di segnali arbitrari basati sulla sintesi digitale diretta (DDS) sono stati impiegati per il pilotaggio dei circuiti. Il secondo dispositivo è stato impiegato per la generazione dell'impulso di tensione per l'alimentazione del led nell'esperienza di caratterizzazione del SiPM, mentre il primo apparecchio per tutte le altre misure. Il generatore \textit{Rigol} ha una banda passante massima di 25 MHz, una frequenza di campionamento del DAC di 100 MSa/s e una risoluzione verticale di 14 bit. Il generatore \textit{Siglent}, invece, ha una banda passante di 10 MHz, una frequenza di campionamento del DAC di 125 MSa/s, una risoluzione verticale anch'esso di 14 bit e supporta la generazione di impulsi mediante la velocità "burst" con un fronte di salita / discesa minimo di 7 ns e una durata minima di 16 ns. Il generatore dispone di un'uscita di sincronismo in standard TTL con durata degli impulsi > 50 ns che abbiamo utilizzato per pilotare il trigger esterno dell'oscilloscopio Rhode & Schwarz. \cite{E} \cite{G}
 
 \subsection{\textbf{Generatore di impulsi veloci Keithley 3390}}
 
@@ -110,10 +110,10 @@ Questi due generatori di segnali arbitrari basati sulla sintesi digitale diretta
 \end{figure}
 
 
-Per lo studio della propagazione di segnali attraverso una linea di trasmissione coassiale è stato fondamentale disporre di un generatore di segnali in grado di produrre impulsi sufficientemente veloci, in relazione al tempo di propagazione lungo la linea, con fronti più ripidi possibile. Per questo motivo è stato impiegato un generatore di segnali arbitrari Keithley 3390, anch'esso basato sulla tecnologia della sintesi digitale diretta, che dispone di una banda passante analogica di 50 MHz, una durata minima degli impulsi di 20 ns e un fronte di salita minimo di 10 ns.
+Per lo studio della propagazione di segnali attraverso una linea di trasmissione coassiale è stato fondamentale disporre di un generatore di segnali in grado di produrre impulsi sufficientemente veloci, in relazione al tempo di propagazione lungo la linea, con fronti più ripidi possibile. Per questo motivo è stato impiegato un generatore di segnali arbitrari Keithley 3390, anch'esso basato sulla tecnologia della sintesi digitale diretta, che dispone di una banda passante analogica di 50 MHz, una durata minima degli impulsi di 20 ns e un fronte di salita minimo di 10 ns. \cite{F}
 
 \subsection{\textbf{Multimetro digitale Meterman 35XP e alimentatore da banco duale GW-Instek GPS-4303}}
-Il corredo di strumentazione è stato completato con multimetro digitale Meterman 35XP utilizzato per misurare tensioni, resistenze e capacità, soprattutto in fase montaggio e verifica dei circuiti e da un generatore di tensione GW-Instek GPS-4303 con 4 canali a tensione e corrente variabile utilizzabili per fornire alimentazione duale all'amplificatore operazionale impiegato. Il multimetro ha una risoluzione di 3-3/4 cifre, un'accuratezza nelle misure di tensione DC di 0.5 \% della lettura + 1 * ultima cifra fino a 1KV e un'accuratezza nelle misure di resistenza di 1.0 \% della lettura + 4 * ultima cifra fino a 40 M$\Omega$. Per l'accuratezza nelle misure di capacità si rimanda al datasheet. L'alimentatore è invece in grado di fornire sui canali utilizzati fino a 30V / 5A.
+Il corredo di strumentazione è stato completato con multimetro digitale Meterman 35XP utilizzato per misurare tensioni, resistenze e capacità, soprattutto in fase montaggio e verifica dei circuiti e da un generatore di tensione GW-Instek GPS-4303 con 4 canali a tensione e corrente variabile utilizzabili per fornire alimentazione duale all'amplificatore operazionale impiegato. Il multimetro ha una risoluzione di 3-3/4 cifre, un'accuratezza nelle misure di tensione DC di 0.5 \% della lettura + 1 * ultima cifra fino a 1KV e un'accuratezza nelle misure di resistenza di 1.0 \% della lettura + 4 * ultima cifra fino a 40 M$\Omega$. Per l'accuratezza nelle misure di capacità si rimanda al datasheet. L'alimentatore è invece in grado di fornire sui canali utilizzati fino a 30V / 5A. \cite{C} \cite{D}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{\textbf{Ponte raddrizzatore a diodi a singola semionda}} %Matteo
@@ -159,10 +159,10 @@ Descrizione
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{\textbf{Introduzione all'amplificatore operazionale}}
-Passiamo ora allo studio una serie di circuiti notevoli di amplificazione, confronto ed esecuzione di operazioni matematiche sui segnali realizzati con amplificatori operazionali. Questi componenti sono altamente versatili e sono utilizzati in quasi tutti gli ambiti in cui è necessario il condizionamento di un segnale analogico. Sono modellizzabili come amplificatori differenziali (OPA) con impedenza in ingresso teoricamente infinita, impedenza di uscita teoricamente nulla, banda passante infinita e guadagno a circuito aperto teoricamente infinito. Nella realizzazione pratica è possibile raggiungere per queste grandezze valori molto grandi o molto piccoli grazie all'utilizzo di processi di fabbricazione integrati che consentono di realizzare su un singolo die circuiti analogici complessi multistadio (almeno stadio di ingresso differenziale, stadio di guadagno, stadio di uscita). Nelle esperienze che seguiranno verranno utilizzati OPA \textbf{LM741} prodotti dalla Texas Instruments con package DIP, dispositivi a basso costo alimentati in tensione duale $\pm$ 15 V con \textit{slew rate} tipico di 0.5 V/$\mu$s, larghezza di banda di 1.5 MHz e guadagno tipico per grandi segnali a T = 298 K di 50 V/mV.
+Passiamo ora allo studio una serie di circuiti notevoli di amplificazione, confronto ed esecuzione di operazioni matematiche sui segnali realizzati con amplificatori operazionali. Questi componenti sono altamente versatili e sono utilizzati in quasi tutti gli ambiti in cui è necessario il condizionamento di un segnale analogico. Sono modellizzabili come amplificatori differenziali (OPA) con impedenza in ingresso teoricamente infinita, impedenza di uscita teoricamente nulla, banda passante infinita e guadagno a circuito aperto teoricamente infinito. Nella realizzazione pratica è possibile raggiungere per queste grandezze valori molto grandi o molto piccoli grazie all'utilizzo di processi di fabbricazione integrati che consentono di realizzare su un singolo die circuiti analogici complessi multistadio (almeno stadio di ingresso differenziale, stadio di guadagno, stadio di uscita). Nelle esperienze che seguiranno verranno utilizzati OPA \textbf{LM741} prodotti dalla Texas Instruments con package DIP, dispositivi a basso costo alimentati in tensione duale $\pm$ 15 V con \textit{slew rate} tipico di 0.5 V/$\mu$s, larghezza di banda di 1.5 MHz e guadagno tipico per grandi segnali a T = 298 K di 50 V/mV. \cite{H}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{\textbf{Anello aperto invertente (zero-crossing detector)}} %Stefano
+\section{\textbf{Configurazione ad aperto invertente (zero-crossing detector)}} %Stefano
 Descrizione
 
 \begin{figure}[H]%[!ht]
@@ -175,7 +175,7 @@ Descrizione
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{\textbf{Anello aperto non invertente}} %Stefano
+\section{\textbf{Configurazione ad aperto non invertente}} %Stefano
 Descrizione
 
 \begin{figure}[H]%[!ht]
@@ -188,7 +188,7 @@ Descrizione
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{\textbf{Amplificatore reazionato invertente}} %Stefano
+\section{\textbf{Amplificatore retroazionato invertente}} %Stefano
 Descrizione
 
 \begin{figure}[H]%[!ht]
@@ -203,7 +203,7 @@ Descrizione
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{\textbf{Amplificatore reazionato non invertente}} %Matteo
+\section{\textbf{Amplificatore retroazionato non invertente}} %Matteo
 \subsection{\textbf{Introduzione all'esperienza}}
 \begin{figure}[H]%[!ht]
 \begin {center}
@@ -215,7 +215,7 @@ Descrizione
 Un amplificatore non invertente ha la peculiarità di dare in uscita un segnale proporzionale a quello d'ingresso e in fase con esso. Il segnale è applicato all'ingresso non invertente affinché il guadagno $A$ sia positivo. Infatti per l'equipotenzialità degli ingressi si ha: \[V_{-} = V_{+} = V_{i}\] \[V_{-} = \frac{R_1}{R_1+R_2}=V_{+}\] \[V_{o}=(1+\frac{R_2}{R_1}V_{+}\]
 da cui si ricava che $A=\frac{V_{o}}{V_i}=1+\frac{R_2}{R_1}$.
 \subsection{\textbf{Caratterizzazione}}
-Sono state selezionati diversi resistori in maniera tale da esaminare più casi di amplificazione. Nel primo caso $R_1=\Omega$ e $R_2=\Omega$ in maniera da tale da attendersi un guadagno di circa due, mentre secondariamente $R_1=\Omega$ e $R_2=\Omega$, quindi con un guadagno atteso di undici. Come previsto dalla teoria i valori di $V_{out}$ ottenuti rispecchiano ciò che è stato appena detto. Dalla \testit{Fig.} si nota infatti che la risposta del circuito comporta un segnale in uscita in fase con quello in entrata, ma amplificato dei valori sopracitati.
+Sono state selezionati diversi resistori in maniera tale da esaminare più casi di amplificazione. Nel primo caso $R_1=\Omega$ e $R_2=\Omega$ in maniera da tale da attendersi un guadagno di circa due, mentre secondariamente $R_1=\Omega$ e $R_2=\Omega$, quindi con un guadagno atteso di undici. Come previsto dalla teoria i valori di $V_{out}$ ottenuti rispecchiano ciò che è stato appena detto. Dalla \textit{Fig.} si nota infatti che la risposta del circuito comporta un segnale in uscita in fase con quello in entrata, ma amplificato dei valori sopracitati.
 \begin{figure}[H]%[!ht]
 \begin {center}
 \includegraphics[width=0.38\textwidth]{analysis/output/OPA-closed-loop-non-inv-G2-11.pdf}
@@ -285,7 +285,7 @@ Infine è stata effettuata la regressione lineare dei dati estratti dalla region
 \label{fig:OPA}
 \end {center}
 \end{figure}
-\[SR = 0.6858 \frac{V}{\mu s}\]
+$SR = 0.6858 \frac{V}{\mu s}$
 Il valore è consistente con la letteratura.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Discriminatore ad anello aperto con soglia arbitraria} %Stefano
@@ -313,7 +313,7 @@ Il valore è consistente con la letteratura.
 \end{figure}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Grafico di risposta}
+\subsection{Grafico di risposta}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -356,7 +356,7 @@ Terminata la prima fase si è passati all'analisi della output del circuito in f
 Dalla forma funzionale ottenuta è poi stato estratto il valore della $H.F = 418.28892698398096 Hz$ (serve trovare modo per estrarre errore per poi confrontarlo con frequenza di taglio).
 Infine facendo la regressione del fit è stato ricavato il valore di \textit{magnitude} relativo alla frequenza nulla, $A_{v}(0)=-0.317$ ed è stato confrontato col valore ricavato dall'espressione, derivata dalla letteratura, $A_{v} = 20log_{10}(-R_{2}/R{1}) = -0.142 \pm 0.397 $. La misura empirica risulta consistente con quella teorica ($Z=0.44$).
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Diagramma di Bode}
+\subsection{Diagramma di Bode}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -388,11 +388,12 @@ Si può dunque confermare che il funzionamento del circuito rispecchi la teoria.
 %%%%%%%%%%INIZIO TERZO GIORNO%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Mixer} %Federico
+\section{Mixer invertente} %Federico
 Sulla \textit{breadboard} è stato implementato il circuito in \textit{fig. 10}. In questa configurazione, l'amplificatore si comporta come circuito sommatore ed il segnale in uscita sarà proporzionale alla somma dei segnali in ingresso. L'OPA è collegato in configurazione invertente, dunque in uscita si otterrà la somma dei segnali cambiata di segno. Nello specifico: 
-\[V_{out} = - R  \sum_{n} \frac{V_n}{R_n} = - \sum_{n} V_n\] L'ultimo passaggio è possibile scegliendo tutti i valori delle resistenze uguali ($R = R_1 = R_2$)  
+\[V_{out} = - R  \sum_{n} \frac{V_n}{R_n} = - \sum_{n} V_n \tag{1} \] L'ultimo passaggio è possibile scegliendo tutti i valori delle resistenze uguali ($R = R_1 = R_2$). Nel nostro casi si ha: !inserire valori resistenza!
 
 I primi due canali dell'oscilloscopio sono collegati ai segnali $V_1$ e $V_2$ prodotti dal generatore di funzioni, mentre il terzo canale misura la tensione in uscita $V_{out}$.
+
 
 \begin{figure}[H]%[!ht]
 \begin {center}
@@ -401,6 +402,16 @@ I primi due canali dell'oscilloscopio sono collegati ai segnali $V_1$ e $V_2$ pr
 \label{fig:oscilloscope}
 \end {center}
 \end{figure}
+\subsection{Somma di forme d'onda sinusoidali}
+In un primo momento agli ingressi dell'amplificatore sono state mandate due sinusoidi in fase con ampiezza $V_+ = V_- = 0.5 V$. La somma dei due segnali risulta essere una nuova sinusoide di ampiezza $V_{out} = 1 V$ con segno opposto a quelle in ingresso (come da \textit{figura 21.})
+\begin{figure}[H]%[!ht]
+\begin {center}
+\includegraphics[width=0.38\textwidth]{analysis/output/OPA_mixer_sin0.pdf}
+\caption{Somma di sinusoidi identiche}
+\end {center}
+\end{figure}
+
+Sostituendo il segnale all'ingresso negativo con la sinusoide opposta, si ottiene all'uscita un segnale sostanzialmente nullo, frutto dalla somma di onde opposte di uguale ampiezza. Il leggero distaccamento dallo zero del segnale in uscita è causato dal fatto che $R_1$ e $R_2$ non sono esattamente identiche, dunque la formula \textit{(1)} non è una somma diretta ma è pesata sui valori delle resistenze collegate. \textit{(Fig. ??)  }
 
 \subsection{Modulazione e battimenti con ingressi sinusoidali}
 
@@ -429,7 +440,7 @@ I primi due canali dell'oscilloscopio sono collegati ai segnali $V_1$ e $V_2$ pr
 
 \subsection{Ciclo di isteresi al variare della frequenza} %Matteo
 Il \textit{Trigger di Schmitt} è un circuito elettronico che impone isteresi alla soglia di transizione ingresso-uscita con l'aiuto di un feedback positivo. L'isteresi fa si che vengano forniti due diversi livelli di tensione di soglia per il bordo ascendente e discendente. Essenzialmente, si tratta di un multivibratore bi-stabile e la sua uscita rimane in uno degli stati stabili indefinitamente. Affinché l'uscita cambi da uno stato stabile all'altro, il segnale di ingresso deve cambiare (o attivarsi) in modo appropriato. Questo funzionamento bistabile del trigger di Schmitt richiede un amplificatore con feedback positivo (o \textit{feedback rigenerativo}) con un guadagno in loop maggiore di uno. Quindi, il Trigger di Schmitt è anche noto come \textit{comparatore rigenerativo}.
-In particolare quando $V_{in}$ è leggermente superiore alla tensione di riferimento, $V_{ref}$, la $V_{out}$ diventa $-V_sat$ e nel caso in cui sia inferiore diventerà invecete $V_{sat}$. La tensione di input a cui avviene il cambio può essere controllato attraverso i valori di $R_1$ e $R_2$.
+In particolare quando $V_{in}$ è leggermente superiore alla tensione di riferimento, $V_{ref}$, la $V_{out}$ diventa $-V_{sat}$ e nel caso in cui sia inferiore diventerà invece $V_{sat}$. La tensione di input a cui avviene il cambio può essere controllato attraverso i valori di $R_1$ e $R_2$.
 \[V_{ref} = \frac{V_{sat}R_2}{R_1+R_2}\]
 Si definisce $V_{UT}$ la tensione di soglia superiore e $V_{LT}$ quella inferiore. $V_{sat}$ e $V_{ref}$ sono i punti dove la funzione di trasferimento caratteristica incrocia gli assi relativi a $V_{out}$ e $V_{in}$.
 \begin{figure}[H]%[!ht]
@@ -452,11 +463,11 @@ Si ricorda che l'isteresi previene il trigger dall'oscillare quando un input che
 %%%%%%%%%%INIZIO QUARTO GIORNO%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Silicon photomultipliers} %Valerio
+\section{Silicon photomultipliers (SiPMs)} %Valerio
 In questa esperienza di laboratorio studieremo qualitativamente il segnale prodotto da un fotomoltiplicatore al silicio illuminato da una sorgente LED. I fotomoltiplicatori al silicio sono fotorivelatori composti da una matrice di SPAD (Single Photon Avalanche Diode) connessi in serie a una resistenza di \textit{quenching} (spegnimento) e collegati in parallelo tra loro. Quando un singolo fotone colpisce il SiPM con una probabilità pari all'efficienza quantica si genera una valanga nello SPAD colpito che provoca un passaggio di corrente dovuto allo scaricamento della capacità di giunzione della cella che provoca una caduta di tensione al catodo (fronte di salita veloce del segnale), al termine della valanga la capacità torna a caricarsi dando origine ad un fronte di discesa più lento. I SiPM sono ampiamente utilizzati per osservare sorgenti di radiazione estremamente deboli o impulsive (anche a livello di singoli fotoni), per esempio nella lettura di rivelatori a scintillazione.
 
 \subsection{Circuito per la caratterizzazione del SiPM}
-In laboratorio è stata effettuata una semplice caratterizzazione di due SiPM AdvanSiD NUV: ASD-NUV1S-P e ASD-NUV3S-P caratterizzati da un'efficienza di rilevazione del 43 \%, celle SPAD di dimensione 40x40 $\mu$m, costante di tempo di 70 ns, risposta spettrale tra 350 a 900 nm e guadagno atteso da datasheet di 3.6 $\cdot 10^6$. I due modelli si distinguono per la diversa dimensione della matrice: per il primo 1x1 $mm^2$ (625 celle), mentre per il secondo 3x3 $mm^2$ (5520 celle). Solitamente questi fotorivelatori sono letti in corrente utilizzando un amplificatore transimpedenza, nel nostro caso però si è scelto di impiegare un circuito più semplice, reso possibile dall'elevata sensibilità dell'oscilloscopio Rhode & Schwarz impiegato (fino a 1 mV/div). Il SiPM è stato alimentato con una tensione di polarizzazione di (30.31 $\pm$ 0.16) V ($\sim +4$ overvolt, tensione di breakdown $\sim$ 26 V) utilizzando l'alimentatore stabilizzato da laboratorio attraverso tre resistenze di limitazione della corrente come illustrato nello schema seguente, con l'aggiunta di un condensatore di livellamento C1 per ridurre l'eventuale \textit{ripple} dell'alimentazione. Per minimizzare i disturbi esterni la tensione è stata portata dall'alimentatore al circuito mediante un cavo coassiale anziché due cavi di potenza con connettori "a banana". I segnali sono stati portati all'oscilloscopio mediante due condensatori di disaccoppiamento per isolare dalla tensione di \textit{biasing} e i canali sono stati sottratti (essendo tra di loro speculari); questo ha permesso di cancellare parzialmente il rumore dell'alimentazione e di aumentare il \textit{SNR}. Il SiPM è stato illuminato con un led rosso pilotato dal generatore \textit{Siglent SDG1010}.
+In laboratorio è stata effettuata una semplice caratterizzazione di due SiPM AdvanSiD NUV: ASD-NUV1S-P e ASD-NUV3S-P \cite{I} caratterizzati da un'efficienza di rilevazione del 43 \%, celle SPAD di dimensione 40x40 $\mu$m, costante di tempo di 70 ns, risposta spettrale tra 350 a 900 nm e guadagno atteso da datasheet di 3.6 $\cdot 10^6$. I due modelli si distinguono per la diversa dimensione della matrice: per il primo 1x1 $mm^2$ (625 celle), mentre per il secondo 3x3 $mm^2$ (5520 celle). Solitamente questi fotorivelatori sono letti in corrente utilizzando un amplificatore transimpedenza, nel nostro caso però si è scelto di impiegare un circuito più semplice, reso possibile dall'elevata sensibilità dell'oscilloscopio Rhode & Schwarz impiegato (fino a 1 mV/div). Il SiPM è stato alimentato con una tensione di polarizzazione di (30.31 $\pm$ 0.16) V ($\sim +4$ overvolt, tensione di breakdown $\sim$ 26 V) utilizzando l'alimentatore stabilizzato da laboratorio attraverso tre resistenze di limitazione della corrente come illustrato nello schema seguente, con l'aggiunta di un condensatore di livellamento C1 per ridurre l'eventuale \textit{ripple} dell'alimentazione. Per minimizzare i disturbi esterni la tensione è stata portata dall'alimentatore al circuito mediante un cavo coassiale anziché due cavi di potenza con connettori "a banana". I segnali sono stati portati all'oscilloscopio mediante due condensatori di disaccoppiamento per isolare dalla tensione di \textit{biasing} e i canali sono stati sottratti (essendo tra di loro speculari); questo ha permesso di cancellare parzialmente il rumore dell'alimentazione e di aumentare il \textit{SNR}. Il SiPM è stato illuminato con un led rosso pilotato dal generatore \textit{Siglent SDG1010}.
 
 \begin{figure}[H]%[!ht]
 \begin{center}
@@ -526,7 +537,7 @@ Nel paragrafo precedente per poter calcolare la carica Q è stato fondamentale d
 \begin{equation}
     V(t) = V_0 e^{-(t-t_0)/\tau} + V_{offset}
 \end{equation}
-Entrambi i fit hanno esito positivo, considerando un test $\chi^2$ solo sulla coda destra (pvalue $\sim$ 1), si ottengono infatti valori di $\chi^2 / NDF$ pari a 11.51  /  300 = 0.038 per il SiPM con area minore e $\chi^2 / NDF$ pari a 102.46 /  300 = 0.341 per quello con area maggiore. E' possibile finalmente estrarre il parametro di interesse (con la relativa incertezza, dalla matrice di covarianza) ottenendo $\tau_{1mm}$ = (1.11 $\pm$ 0.02)$\cdot 10^{-9}$ e $\tau_{3mm}$ = (1.88 $\pm$ 0.10)$\cdot 10^{-9}$. Le figure \ref{fig:fit1m} e \ref{fig:fit3m} mostrano l'esito delle interpolazioni. Nei calcoli si è adottata come incertezza sulle tensioni misurate con l'oscilloscopio 1/5 della larghezza delle divisioni verticali.
+Entrambi i fit hanno esito positivo, considerando un test $\chi^2$ solo sulla coda destra (pvalue $\sim$ 1), si ottengono infatti valori di $\chi^2 / NDF$ pari a 11.51  /  300 = 0.038 per il SiPM con area minore e $\chi^2 / NDF$ pari a 102.46 /  300 = 0.341 per quello con area maggiore. E' possibile finalmente estrarre il parametro di interesse (con la relativa incertezza, dalla matrice di covarianza) ottenendo $\tau_{1mm}$ = (1.11 $\pm$ 0.02)$\cdot 10^{-9}$ s e $\tau_{3mm}$ = (1.88 $\pm$ 0.10)$\cdot 10^{-9}$ s. Le figure \ref{fig:fit1m} e \ref{fig:fit3m} mostrano l'esito delle interpolazioni. Nei calcoli si è adottata come incertezza sulle tensioni misurate con l'oscilloscopio 1/5 della larghezza delle divisioni verticali.
 
 \begin{figure}[H]%[!ht]
 \begin{center}
@@ -549,8 +560,6 @@ In conclusione, la metodologia sperimentale proposta è risultata adeguata per e
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Linea di ritardo} %Federico
-
-\section{Silicon photomultiplier} %Valerio
 
 \begin{figure}[H]%[!ht]
 \begin {center}
@@ -579,12 +588,13 @@ In conclusione, la metodologia sperimentale proposta è risultata adeguata per e
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Indice}
+\tableofcontents
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Riferimenti}
 \printbibliography
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Indice}
-\tableofcontents
 
 
 \end{document}
