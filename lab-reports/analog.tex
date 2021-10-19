@@ -125,17 +125,17 @@ tipo \textit{p}. In questa configurazione la regione di svuotamento si ridurrà 
 \begin {center}
 \includegraphics[width=0.38\textwidth]{sch-simulations/output/Diode-rectifier.pdf}
 \caption{Didascalia}
-\label{fig:oscilloscope}
+\label{fig:diode-rectifier}
 \end {center}
 \end{figure}
-La trattazione successiva riguarda i raddrizzatori a singola semi-onda ed in particolare l'implementazione del circuito in \texit{Fig. 1}, realizzato tramite un unico diodo più un condensatore di filtraggio. In tale configurazione durante la fase di crescita del segnale in ingresso $V_{in}$ il condensatore agisce da accumulatore permettendo alla $V_{out}$ di copiare la tensione in entrata. Nel secondo quarto di periodo, il diodo passa in interdizione a causa del condensatore che si scarica lentamente rispetto alla variazione dell'ingresso. Infine durante la fase di OFF del diodo l'usicta è determinata unicamente dalla scarica del condensatore sulla resistenza.
+La trattazione successiva riguarda i raddrizzatori a singola semi-onda ed in particolare l'implementazione del circuito in \ref{fig:diode-rectifier}, realizzato tramite un unico diodo più un condensatore di filtraggio. In tale configurazione durante la fase di crescita del segnale in ingresso $V_{in}$ il condensatore agisce da accumulatore permettendo alla $V_{out}$ di copiare la tensione in entrata. Nel secondo quarto di periodo, il diodo passa in interdizione a causa del condensatore che si scarica lentamente rispetto alla variazione dell'ingresso. Infine durante la fase di OFF del diodo l'usicta è determinata unicamente dalla scarica del condensatore sulla resistenza.
 Quindi in regime di funzionamento il diodo rimane acceso per un periodo $\Delta T$ in cui avviene la fase di carica e la tensione di uscita passa dal suo valore minimo al suo valore massimo. Un raddrizzatore ben funzionante fa si che la \textit{tensione di ripple} sia la minore possibile e ciò è strettamente correlato al valore della costante di tempo $\tau$.
-Analizzando il funzionamento del circuito in assenza del condensatore di livellamento invece si avrà in uscita un segnale costituito solamente dalla semi-onda positiva, nel caso di \textit{polarizzazione diretta}, oppure della semi-onda negativa in \textit{polarizzazione inversa} come viene evidenziato dalla \texit{Fig. 2}.
+Analizzando il funzionamento del circuito in assenza del condensatore di livellamento invece si avrà in uscita un segnale costituito solamente dalla semi-onda positiva, nel caso di \textit{polarizzazione diretta}, oppure della semi-onda negativa in \textit{polarizzazione inversa} come viene evidenziato dalla \ref{fig:half-wave}.
 \begin{figure}[H]%[!ht]
 \begin {center}
 \includegraphics[width=0.38\textwidth]{analysis/output/half-wave-rectifier.pdf}
 \caption{Didascalia}
-\label{fig:oscilloscope}
+\label{fig:half-wave}
 \end {center}
 \end{figure}
 \[\Delta V = 0.64 V \] 
@@ -209,18 +209,18 @@ Descrizione
 \begin {center}
 \includegraphics[width=0.38\textwidth]{sch-simulations/output/OPA-closed-loop-non-inverting.pdf}
 \caption{Didascalia}
-\label{fig:oscilloscope}
+\label{fig:loop-non-inv}
 \end {center}
 \end{figure}
 Un amplificatore non invertente ha la peculiarità di dare in uscita un segnale proporzionale a quello d'ingresso e in fase con esso. Il segnale è applicato all'ingresso non invertente affinché il guadagno $A$ sia positivo. Infatti per l'equipotenzialità degli ingressi si ha: \[V_{-} = V_{+} = V_{i}\] \[V_{-} = \frac{R_1}{R_1+R_2}=V_{+}\] \[V_{o}=(1+\frac{R_2}{R_1}V_{+}\]
 da cui si ricava che $A=\frac{V_{o}}{V_i}=1+\frac{R_2}{R_1}$.
 \subsection{\textbf{Caratterizzazione}}
-Sono state selezionati diversi resistori in maniera tale da esaminare più casi di amplificazione. Nel primo caso $R_1=\Omega$ e $R_2=\Omega$ in maniera da tale da attendersi un guadagno di circa due, mentre secondariamente $R_1=\Omega$ e $R_2=\Omega$, quindi con un guadagno atteso di undici. Come previsto dalla teoria i valori di $V_{out}$ ottenuti rispecchiano ciò che è stato appena detto. Dalla \textit{Fig.} si nota infatti che la risposta del circuito comporta un segnale in uscita in fase con quello in entrata, ma amplificato dei valori sopracitati.
+Sono state selezionati diversi resistori in maniera tale da esaminare più casi di amplificazione. Nel primo caso $R_1=\Omega$ e $R_2=\Omega$ in maniera da tale da attendersi un guadagno di circa due, mentre secondariamente $R_1=\Omega$ e $R_2=\Omega$, quindi con un guadagno atteso di undici. Come previsto dalla teoria i valori di $V_{out}$ ottenuti rispecchiano ciò che è stato appena detto. Dalla \ref{fig:g2-11} si nota infatti che la risposta del circuito comporta un segnale in uscita in fase con quello in entrata, ma amplificato dei valori sopracitati.
 \begin{figure}[H]%[!ht]
 \begin {center}
 \includegraphics[width=0.38\textwidth]{analysis/output/OPA-closed-loop-non-inv-G2-11.pdf}
 \caption{Didascalia}
-\label{fig:oscilloscope}
+\label{fig:g2-11}
 \end {center}
 \end{figure}
 Dai valori delle resistenze e dalla delle che regola il guadagno è possibile fare un confronto tra i valori attesi e quelli ottenuti empiricamente. (  )
@@ -232,7 +232,7 @@ per poi estrarre il valore della $H.F$
 \begin {center}
 \includegraphics[width=0.38\textwidth]{analysis/output/OPA-bode_gain2(mag).pdf}
 \caption{Didascalia}
-\label{fig:oscilloscope}
+\label{fig:gain2}
 \end {center}
 \end{figure}
 \[H.F_{2} = 363806.38 Hz\]
@@ -241,7 +241,7 @@ Ripetendo il procedimento con $R_1=\Omega$ e $R_2=\Omega$, quindi con un guadagn
 \begin {center}
 \includegraphics[width=0.38\textwidth]{analysis/output/OPA-bode_gain11(mag).pdf}
 \caption{Didascalia}
-\label{fig:oscilloscope}
+\label{fig:gain11}
 \end {center}
 \end{figure}
 
@@ -249,12 +249,12 @@ Ripetendo il procedimento con $R_1=\Omega$ e $R_2=\Omega$, quindi con un guadagn
 
 Si è infine verificata la conservazione del prodotto 
 \[BAND WIDTH \dot GAIN\]
-ottenendo i valori \[H.F_{2}\times Gain_2 = 727612.75410076 Hz\]  \[H.F_{11}\times Gain_{11} = 600850.4939452771 Hz\] (\textit{Fig.})
+ottenendo i valori \[H.F_{2}\times Gain_2 = 727612.75410076 Hz\]  \[H.F_{11}\times Gain_{11} = 600850.4939452771 Hz\] (\ref{fig:gain-compare})
 \begin{figure}[H]%[!ht]
 \begin {center}
 \includegraphics[width=0.38\textwidth]{analysis/output/OPA-bode_gain_comparison(mag).pdf}
 \caption{Didascalia}
-\label{fig:oscilloscope}
+\label{fig:gain-compare}
 \end {center}
 \end{figure}
 
@@ -274,7 +274,7 @@ Per l'analisi di tale fenomeno si è osservata la risposta del circuito a freque
 \begin {center}
 \includegraphics[width=0.38\textwidth]{analysis/output/OPA-open-loop-slew-rate.pdf}
 \caption{Didascalia}
-\label{fig:OPA}
+\label{fig:slew-rate-table}
 \end {center}
 \end{figure}
 Infine è stata effettuata la regressione lineare dei dati estratti dalla regione di commutazione dell'OPA in corrispondenza di $f = 100 kHz$ 
@@ -282,7 +282,7 @@ Infine è stata effettuata la regressione lineare dei dati estratti dalla region
 \begin {center}
 \includegraphics[width=0.38\textwidth]{analysis/output/OPA-slew-rate-fit.pdf}
 \caption{Didascalia}
-\label{fig:OPA}
+\label{fig:slew-rate-fit}
 \end {center}
 \end{figure}
 $SR = 0.6858 \frac{V}{\mu s}$
@@ -324,10 +324,10 @@ In questa esperienza di laboratorio verrà analizzato il funzionamento di un \te
 \begin {center}
 \includegraphics[width=0.38\textwidth]{sch-simulations/output/OPA-integratore.pdf}
 \caption{Didascalia}
-\label{fig:oscilloscope}
+\label{fig:OPA-integ}
 \end {center}
 \end{figure}
-%Come sottintende il nome, l'Op-Amp integratore è un operazionale che esegue l'operazione matematica dell'integrazione, facendo si che il circuito emetta una $V_{out}$ proporzionale all'integrale della $V_{in}$. In altre parole, facendo riferimento alla \textit{Fig.9}, l'ampiezza del segnale in uscita è determinato dal periodo di tempo in cui una tensione è presente in input, poiché la corrente attraverso il circuito di feedback carica o scarica il condensatore mentre il feedback negativo richiesto avviene attraverso il condensatore.
+%Come sottintende il nome, l'Op-Amp integratore è un operazionale che esegue l'operazione matematica dell'integrazione, facendo si che il circuito emetta una $V_{out}$ proporzionale all'integrale della $V_{in}$. In altre parole, facendo riferimento alla \ref{fig:OPA-integ}, l'ampiezza del segnale in uscita è determinato dal periodo di tempo in cui una tensione è presente in input, poiché la corrente attraverso il circuito di feedback carica o scarica il condensatore mentre il feedback negativo richiesto avviene attraverso il condensatore.
 Mediante un amplificatore operazione è possibile realizzare un circuito integratore, cioè in grado di produrre in uscita un segnale proporzionale alla primitiva della forma d'onda in ingresso, inserendo una capacità nella rete di feedback tra l'ingresso invertente e l'uscita.
 Affinché l'amplificatore non vada in saturazione alle basse frequenze, viene aggiunto in parallelo a $C$ un resistore $R_{2}$ che fa si che in tale regime operativo il condensatore si comporti come una impedenza infinita, determinando un guadagno $A_{v}=-R_{2}/R{1}$. In questa configurazione è detta \textit{circuito integratore attivo limitato}. 
 %essendo il periodo della tensione in ingresso relativamente lungo,
@@ -341,16 +341,16 @@ Inizialmente si sono scelte $R$ e $C$ con lo scopo di ottenere una frequenza di 
 \begin {center}
 \includegraphics[width=0.38\textwidth]{analysis/output/OPA-integ-with-res.pdf}
 \caption{Didascalia}
-\label{fig:oscilloscope}
+\label{fig:OPA-integ-res}
 \end {center}
 \end{figure}
-Impostando una frequenza, $f=valore_da _controllare$, si è proceduto con l'osservazione della risposta del circuito, \textit{Fig. 10}. Come atteso la $V_{out}$ risulta essere molto vicina all'integrale del segnale in ingresso. In particolare si nota l'affinità con l'integrale calcolato numericamente rappresentato dalla linea rossa tratteggiata.
+Impostando una frequenza, $f=valore_da _controllare$, si è proceduto con l'osservazione della risposta del circuito, \ref{fig:OPA-integ-res}. Come atteso la $V_{out}$ risulta essere molto vicina all'integrale del segnale in ingresso. In particolare si nota l'affinità con l'integrale calcolato numericamente rappresentato dalla linea rossa tratteggiata.
 Terminata la prima fase si è passati all'analisi della output del circuito in funzione della frequenza. I dati sono stati graficati e fittati in primo luogo con la forma funzionale di un filtro passa basso e poi in seguito attraverso la trasformata di Laplace della funzione di transfer: \[H(s)=k/(as+1)^2\] con polo doppio in corrispondenza di $f=685 Hz$ valore pienamente compatibile con la frequenza di taglio.
 \begin{figure}[H]%[!ht]
 \begin {center}
 \includegraphics[width=0.38\textwidth]{analysis/output/OPA-integrator_bode(mag).pdf}
 \caption{Didascalia}
-\label{fig:oscilloscope}
+\label{fig:integ-bode}
 \end {center}
 \end{figure}
 Dalla forma funzionale ottenuta è poi stato estratto il valore della $H.F = 418.28892698398096 Hz$ (serve trovare modo per estrarre errore per poi confrontarlo con frequenza di taglio).
@@ -365,7 +365,7 @@ Infine facendo la regressione del fit è stato ricavato il valore di \textit{mag
 \begin {center}
 \includegraphics[width=0.38\textwidth]{sch-simulations/output/OPA-deriv.pdf}
 \caption{Didascalia}
-\label{fig:oscilloscope}
+\label{fig:OPA-deriv}
 \end {center}
 \end{figure}
 Il circuito di base dell'amplificatore differenziatore è l'esatto opposto di quello del circuito dell'OpAmp integratore sopracitato. In questo caso le posizioni del condensatore e del resistore sono state invertite affinché il condensatore $C$ sia collegato al terminale di ingresso dell'amplificatore invertente mentre il resistore, $R_1$ costituisca l'elemento di feedback negativo attraverso l'OpAmp. Questo circuito esegue l'operazione matematica di differenziazione cioè produce un'uscita di tensione proporzionale alla velocità di variazione della tensione di ingresso e alla corrente che scorre attraverso il condensatore. In altri termini la tensione di uscita è una versione scalata della derivata della tensione di ingresso. Il condensatore blocca qualsiasi contenuto \textit{DC}, consentendo  quindi il solo passaggio di segnali di tipo \textit{AC}, la cui frequenza dipende dalla velocità di variazione del segnale di ingresso. Alle basse frequenze la reattanza del condensatore è "Alta" con conseguente basso guadagno (R1/Xc) e bassa tensione di uscita, mentre per alte frequenze si avrà un gain nettamente maggiore e un segnale di output più intenso. Ciò è dovuto principalmente all'effetto di primo ordine, che determina la risposta in frequenza del circuito provocandone una risposta di secondo ordine che, alle alte frequenze, dà una tensione di uscita molto superiore a quella che ci si aspetterebbe. Per evitare ciò, il gain ad alta frequenza deve essere ridotto aggiungendo un resistore di feedback $R_f$,di resistenza ridotta,in serie al condensatore. 
@@ -376,10 +376,10 @@ Una volta assemblato il circuito si è proseguito analizzando qualitativamente i
 \begin {center}
 \includegraphics[width=0.38\textwidth]{analysis/output/OPA-differentiator.pdf}
 \caption{Didascalia}
-\label{fig:OPA}
+\label{fig:derivatore}
 \end {center}
 \end{figure}
-Dalla \textit{Fig. }, in cui le scale dei voltaggi sono diverse fra input e output col fine di ottimizzarne la comprensibilità visiva, si vede come il segnale in uscita sia effettivamente paragonabile con la derivata della $V_{in}$. In particolare ricavando la sfasamento tra le due onde secondo la legge:
+Dalla \ref{fig:derivatore}, in cui le scale dei voltaggi sono diverse fra input e output col fine di ottimizzarne la comprensibilità visiva, si vede come il segnale in uscita sia effettivamente paragonabile con la derivata della $V_{in}$. In particolare ricavando la sfasamento tra le due onde secondo la legge:
 \[\theta = \frac{360}{T}\Delta t\]
 in cui $T$ è il periodo dell'onda e $\Delta t$ è lo sfasamento calcolato tra i due picchi di input e output. Si ricava $\theta = 87.22792607802886 °$.
 
@@ -389,8 +389,8 @@ Si può dunque confermare che il funzionamento del circuito rispecchi la teoria.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Mixer invertente} %Federico
-Sulla \textit{breadboard} è stato implementato il circuito in \textit{fig. 10}. In questa configurazione, l'amplificatore si comporta come circuito sommatore ed il segnale in uscita sarà proporzionale alla somma dei segnali in ingresso. L'OPA è collegato in configurazione invertente, dunque in uscita si otterrà la somma dei segnali cambiata di segno. Nello specifico: 
-\[V_{out} = - R  \sum_{n} \frac{V_n}{R_n} = - \sum_{n} V_n \tag{1} \] L'ultimo passaggio è possibile scegliendo tutti i valori delle resistenze uguali ($R = R_1 = R_2$). Nel nostro casi si ha: !inserire valori resistenza!
+Sulla \textit{breadboard} è stato implementato il circuito in \textit{fig. \ref{fig:OPA-mixer}}. In questa configurazione, l'amplificatore si comporta come circuito sommatore ed il segnale in uscita sarà proporzionale alla somma dei segnali in ingresso. L'OPA è collegato in configurazione invertente, dunque in uscita si otterrà la somma dei segnali cambiata di segno. Nello specifico: 
+\[V_{out} = - R  \sum_{n} \frac{V_n}{R_n} = - \sum_{n} V_n \tag{1} \] L'ultimo passaggio è possibile scegliendo tutti i valori delle resistenze uguali ($R = R_1 = R_2$). Nel nostro caso si ha: \textbf{!inserire valori resistenza!}
 
 I primi due canali dell'oscilloscopio sono collegati ai segnali $V_1$ e $V_2$ prodotti dal generatore di funzioni, mentre il terzo canale misura la tensione in uscita $V_{out}$.
 
@@ -399,34 +399,79 @@ I primi due canali dell'oscilloscopio sono collegati ai segnali $V_1$ e $V_2$ pr
 \begin {center}
 \includegraphics[width=0.38\textwidth]{sch-simulations/output/OPA-mixer.pdf}
 \caption{Configurazione invertente del circuito sommatore}
-\label{fig:oscilloscope}
+\label{fig:OPA-mixer}
 \end {center}
 \end{figure}
 \subsection{Somma di forme d'onda sinusoidali}
-In un primo momento agli ingressi dell'amplificatore sono state mandate due sinusoidi in fase con ampiezza $V_+ = V_- = 0.5 V$. La somma dei due segnali risulta essere una nuova sinusoide di ampiezza $V_{out} = 1 V$ con segno opposto a quelle in ingresso (come da \textit{figura 21.})
+In un primo momento agli ingressi dell'amplificatore sono state mandate due sinusoidi in fase con ampiezza $V_+ = V_- = 0.5 V$. La somma dei due segnali risulta essere una nuova sinusoide di ampiezza $V_{out} = 1 V$ con segno opposto a quelle in ingresso (come da \textit{fig. \ref{fig:Mixer1}})
+Lo stesso effetto si ha per sinusoidi con ampiezze diverse ($V_+ = 0.5, V_- = 0.25 V$) in \textit{figura \ref{fig:Mixer3} }. La tensione in uscita risulta effettivamente avere ampiezza pari alla somma delle ampiezze delle onde in ingresso.
+
 \begin{figure}[H]%[!ht]
 \begin {center}
 \includegraphics[width=0.38\textwidth]{analysis/output/OPA_mixer_sin0.pdf}
 \caption{Somma di sinusoidi identiche}
+\label{fig:Mixer1}
 \end {center}
 \end{figure}
 
-Sostituendo il segnale all'ingresso negativo con la sinusoide opposta, si ottiene all'uscita un segnale sostanzialmente nullo, frutto dalla somma di onde opposte di uguale ampiezza. Il leggero distaccamento dallo zero del segnale in uscita è causato dal fatto che $R_1$ e $R_2$ non sono esattamente identiche, dunque la formula \textit{(1)} non è una somma diretta ma è pesata sui valori delle resistenze collegate. \textit{(Fig. ??)  }
+\begin{figure}[H]%[!ht]
+\begin {center}
+\includegraphics[width=0.38\textwidth]{analysis/output/OPA_mixer_sin3.pdf}
+\caption{Somma di sinusoidi con ampiezze diverse}
+\label{fig:Mixer3}
+\end {center}
+\end{figure}
 
-\subsection{Modulazione e battimenti con ingressi sinusoidali}
+Sostituendo il segnale all'ingresso negativo con la sinusoide opposta, si ottiene all'uscita un segnale sostanzialmente nullo, frutto dalla somma di onde opposte di uguale ampiezza. \ref{fig:Mixer2} Il leggero distaccamento dallo zero del segnale in uscita è causato dal fatto che $R_1$ e $R_2$ non sono esattamente identiche, dunque la formula (1) non è una somma diretta ma è pesata sui valori delle resistenze collegate. Questa configurazione coincide con quella dell'amplificatore di differenze di segnali quando in ingresso riceve due sinusoidi identiche. (Vedi paragrafo...)
 
+\begin{figure}[H]%[!ht]
+\begin {center}
+\includegraphics[width=0.38\textwidth]{analysis/output/OPA_mixer_sin2.pdf}
+\caption{Somma di sinusoide e sua opposta}
+\label{fig:Mixer2}
+\end {center}
+\end{figure}
 
+\subsection{Formazione di battimenti}
+Mandando ai due ingressi sinusoidi con frequenza diversa \textbf{(valori di f???)}, l'amplificatore genera una sovrapposizione di onde sfasate che possiederà una frequenza di battimento. La tensione in uscita non avrà quindi un ampiezza costante, ma essa pulserà in modo periodico con una frequenza propria, detta \textit{di battimento}, visualizzabile in \textit{figura \ref{fig:beats}}.
+
+\begin{figure}[H]%[!ht]
+\begin {center}
+\includegraphics[width=0.38\textwidth]{analysis/output/OPA_mixer_beats.pdf}
+\caption{Formazione dei battimenti}
+\label{fig:beats}
+\end {center}
+\end{figure}
+
+Lo studio qualitativo dei risultati ottenuti nelle diverse configurazioni ha permesso di verificare la corretta implementazione del circuito sommatore. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Amplificatore di differenze} %Federico
+\section{Amplificatore di differenze invertente} %Federico
+
+Un operazionale è in grado di comportarsi anche come amplificatore di differenze di funzioni d'onda, configurazione in cui il segnale di uscita è proporzionale alla differenza dei segnali in ingresso. Perciò è stato implementato il circuito in \textit{figura  \ref{fig:differenze}}, per il quale vale la seguente relazione: 
+\[V_{out} =\frac{V_2 - V_1}{K} \quad con \quad K = \frac{R_1}{R_2}=\frac{R_3}{R_4} \tag{2} \] 
+Scegliendo le resistenze con valori identici ($R_1 = R_2 = R_3 =R_4 $) si otterrà quindi la differenza pura dei segnali all'uscita dell'amplificatore cambiata di segno, poiché l'amplificatore è collegato in configurazione invertente.
+
 \begin{figure}[H]%[!ht]
 \begin {center}
 \includegraphics[width=0.38\textwidth]{sch-simulations/output/OPA-difference-amp.pdf}
-\caption{Didascalia}
-\label{fig:oscilloscope}
+\caption{Circuito amplificatore di differenze invertente}
+\label{fig:differenze}
 \end {center}
 \end{figure}
 
+\subsubsection{Differenze di onde sinusoidali}
+Per verificare il corretto funzionamento di questa configurazione sono state mandate agli ingressi due sinusoidi identiche in fase (ampiezza $0.5 V$). 
+
+\begin{figure}[H]%[!ht]
+\begin {center}
+\includegraphics[width=0.38\textwidth]{analysis/output/OPA_diff_sin2.pdf}
+\caption{Circuito amplificatore di differenze invertente}
+\label{fig:diff2}
+\end {center}
+\end{figure}
+
+Il grafico mostra che in uscita si registra una tensione praticamente nulla. Nuovamente il lieve distacco dallo zero è da imputare alle piccole differenze in valore delle resistenze.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Trigger di Schmitt} %Federico
 
