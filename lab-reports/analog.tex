@@ -126,12 +126,12 @@ tipo \textit{p}. In questa configurazione la regione di svuotamento si ridurrà 
 \begin{figure}[H]%[!ht]
 \begin{center}
 \includegraphics[width=0.38\textwidth]{sch-simulations/output/Diode-rectifier.pdf}
-\caption{Schema del circuito elettrico per la caratterizzazione del SiPM. Valori per i componenti utilizzati misurati con il multimetro: R1 = ( $MANCA-DATO\pm$ ) $\Omega$, C1 = ($MANCA-DATO\pm$ ) $nF$}
+\caption{Schema del circuito elettrico per la caratterizzazione del diodo al Silicio.}
 \label{fig:diode-rectifier}
 \end{center}
 \end{figure}
 \subsection{\textbf{Componentistica e circuito}}
-La trattazione successiva riguarda i raddrizzatori a singola semi-onda ed in particolare l'implementazione del circuito in \textit{Fig. \ref{fig:diode-rectifier}}, realizzato tramite un unico diodo più un condensatore di filtraggio. In tale configurazione durante la fase di crescita del segnale in ingresso $V_{in}$ il condensatore agisce da accumulatore permettendo alla $V_{out}$ di copiare la tensione in entrata. Nel secondo quarto di periodo, il diodo passa in interdizione a causa del condensatore che si scarica lentamente rispetto alla variazione dell'ingresso. Infine durante la fase di OFF del diodo l'usicta è determinata unicamente dalla scarica del condensatore sulla resistenza.
+La trattazione successiva riguarda i raddrizzatori a singola semi-onda ed in particolare l'implementazione del circuito in \textit{Fig. \ref{fig:diode-rectifier}}, realizzato tramite un unico diodo più un condensatore di filtraggio. In tale configurazione durante la fase di crescita del segnale in ingresso $V_{in}$ il condensatore agisce da accumulatore permettendo alla $V_{out}$ di copiare la tensione in entrata. Nel secondo quarto di periodo, il diodo passa in interdizione a causa del condensatore che si scarica lentamente rispetto alla variazione dell'ingresso. Infine durante la fase di interdizione del diodo l'uscita è determinata unicamente dalla scarica del condensatore sulla resistenza.
 Quindi in regime di funzionamento il diodo rimane acceso per un periodo $\Delta T$ in cui avviene la fase di carica e la tensione di uscita passa dal suo valore minimo al suo valore massimo. Un raddrizzatore ben funzionante fa si che la \textit{tensione di ripple} sia la minore possibile e ciò è strettamente correlato al valore della costante di tempo $\tau$.
 Analizzando il funzionamento del circuito in assenza del condensatore di livellamento invece si avrà in uscita un segnale costituito solamente dalla semi-onda positiva, nel caso di \textit{polarizzazione diretta}, oppure della semi-onda negativa in \textit{polarizzazione inversa}.
 
@@ -155,21 +155,10 @@ Passiamo ora allo studio una serie di circuiti notevoli di amplificazione, confr
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{\textbf{Configurazione ad anello aperto invertente (zero-crossing detector)}} %Stefano
-Descrizione
 
-La prima analisi effettuata con l'amplificatore operazionale è stata in configurazione invertente ad anello aperto. Lo scopo era verificare che fin da piccoli valori di segna
+La prima analisi effettuata con l'amplificatore operazionale è stata in configurazione invertente ad anello aperto. Lo scopo era verificare che fin da piccoli valori di segnale in ingresso, non inserendo alcun feedback, l'amplificazione ad anello aperto è sufficiente a raggiungere la zona di saturazione dell'amplificatore, ottenendo in uscita un valore prossimo alla tensione di alimentazione fornita.
 Questo comportamento dell'amplificatore rende possibile il suo utilizzo come \textit{zero crossing detector}, cioé rivelatore di passaggio di un segnale.
-Di seguito si descrive il calcolo del punto di zero crossing: il valore di segnale in ingresso per cui si raggiunge la saturazione.
-
-\begin{figure}[h]%[!ht]
-\begin {center}
-\includegraphics[width=0.38\textwidth]{sch-simulations/output/opa-open-loop-inverting.pdf}
-\caption{opa: configurazione invertente ad anello aperto}
-\label{fig:oscilloscope}
-\end {center}
-\end{figure}
-
-Come segnale in ingresso si è scelto di generare un'onda sinusoidale di ampiezza $500 mV$ e frequenza di $1kHz$. In uscita ci si aspettava un alternarsi di saturazioni dell'a
+Di seguito si descrive il calcolo del punto di zero crossing: il valore di segnale in ingresso a partire dal quale si raggiunge la saturazione.
 
 \begin{figure}[h]%[!ht]
 \begin {center}
@@ -179,7 +168,7 @@ Come segnale in ingresso si è scelto di generare un'onda sinusoidale di ampiezz
 \end {center}
 \end{figure}
 
-Nella prima immagine si apprezzano l'intensità dell'amplificazione e l'inversione del segnale.
+Come segnale in ingresso si è scelto di generare un'onda sinusoidale di ampiezza $500 mV$ e frequenza di $1kHz$. In uscita ci si aspettava un alternarsi di saturazioni dell'amplificatore, a alterno invertito ($ \approx 15 V$ per sinusoide negativa, $\approx -15 V$ per sinusoide positiva).
 
 \begin{figure}[h]%[!ht]
 \begin {center}
@@ -189,10 +178,13 @@ Nella prima immagine si apprezzano l'intensità dell'amplificazione e l'inversio
 \end {center}
 \end{figure}
 
+Nella prima immagine si apprezzano l'intensità dell'amplificazione e l'inversione del segnale.
+
 Nella seconda immagine si cambia scala per il segnale di ingresso.
 
 Il segnale in uscita è compreso tra $-14.0 \pm 0.5 V $  e $14.6 \pm 0.5 V$.
-Si sceglie dunque di considerare in saturazione l'amplificatore per valori superiori a $14.1 V$ o inferiori a $-13.5 V$. Il segnale è infatti soggetto a inevitabili oscillazi
+Si sceglie dunque di considerare in saturazione l'amplificatore per valori superiori a $14.1 V$ o inferiori a $-13.5 V$. Il segnale è infatti soggetto a inevitabili
+oscillazioni, e si sono dunque valutate le distribuzioni dei segnali a questi livelli riscontrando questi valori come estremi.
 
 Di seguito i valori per cui vengono superate le soglie nei vari intervalli temporali:
 
@@ -204,42 +196,52 @@ Di seguito i valori per cui vengono superate le soglie nei vari intervalli tempo
 0.60 \textless t \textless 1.10   & 14.1  & -0.048  \hline
 \end{tabular}
 
-
 Effettuando una media tra i due valori per la soglia alta si ottiene: $V_{zc} = -0.05 \pm 0.02 V$
 Effettuando una media tra i due valori per la soglia bassa si ottiene: $V_{zc} = 0.03 \pm 0.02 V$
 
-I valori ottenuti sono in linea con le aspettative. Il loro ordine di grandezza è lo stesso dell'errore a loro associato e pertanto sono compatibili con un valore nullo di te
+I valori ottenuti sono in linea con le aspettative. Il loro ordine di grandezza è lo stesso dell'errore a loro associato e pertanto sono compatibili con un valore nullo di
+tensione.
 
 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{\textbf{Configurazione ad aperto non invertente}} %Stefano
-Descrizione
+
+Rispetto alla precedente configurazione il segnale in ingresso è inserito nell'ingresso non invertente dell'amplificatore operazionale.
+Ci si attende dunque un comportamento analogo al precedente ma con amplificazione positiva.
 
 \begin{figure}[H]%[!ht]
 \begin {center}
-\includegraphics[width=0.38\textwidth]{sch-simulations/output/OPA-open-loop-non-inverting.pdf}
-\caption{Didascalia}
+\includegraphics[width=0.38\textwidth]{/output//OPA-open-loop-non-inv-zero-crossing-z2.pdf}
+\caption{OPA: configurazione non invertente ad anello aperto}
 \label{fig:oscilloscope}
 \end {center}
 \end{figure}
+
+Come si può notare dall'immagine l'amplificazione non inverte il segno del segnale in ingresso, e rispecchia i valori di $V_{zc}$ della configurazione invertente.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{\textbf{Amplificatore retroazionato invertente}} %Stefano
-Descrizione
+
+La configurazione ad anello aperto fin ora trattata non offre la possibilità di utilizzare l'amplificatore operazionale in modo ottimale al di là dell'uso come discriminatore. Al fine di limitare l'amplificazione e migliorare il controllo del dispositivo, si utilizza una controreazione.
+Il caso in esame consiste nella controreazione costituita da una resistenza $R_f$ (feedback) che riporta parte della corrente in uscita nuovamente nell'ingresso invertente dell'amplificatore, dove è collegato anche il segnale.
 
 \begin{figure}[H]%[!ht]
 \begin {center}
 \includegraphics[width=0.38\textwidth]{sch-simulations/output/OPA-closed-loop-inverting.pdf}
-\caption{Didascalia}
+\caption{Amplificatore reazionato invertente: $R_2$ è la resistenza di feedback}
 \label{fig:oscilloscope}
 \end {center}
 \end{figure}
 
-\subsection{Studio della risposta in frequenza}
+Il comportamento atteso da tale configurazione prevede che il guadagno sia pari a $A_{vf} = -\frac{R_f}{R}$. 
+Ci si propone di studiare l'andamento in frequenza dell'amplificazione in due diversi casi: guadagno teorico pari a $-1$ e guadagno teorico pari a $-10$.
 
+Per il primo caso si utilizzano due resistori $R_f = 1.00 \pm 0.01 k\Omega $ e $R = 0.99 \pm 0.01 k\Omega$, con guadagno teorico pari a $A_{vf} = -1.00 \pm 0.02 $ Per il secondo caso si utilizzano due resistori $R_f = 9.8 \pm 0.1 k\Omega $ e $R = 0.99 \pm 0.01 k\Omega$, con guadagno teorico pari a $A_{vf} = -9.8 \pm 0.2$
+
+Come segnale in ingresso si è scelta un'onda di tipo sinusoidale, con ampiezza di $100 mV$.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{\textbf{Amplificatore retroazionato non invertente}} %Matteo
@@ -344,6 +346,44 @@ Il valore è consistente con la letteratura.
 
 Nelle configurazioni ad anello aperto esaminate finora, l'ingresso non utilizzato dal segnale è stato collegato a massa, di conseguenza si è sempre osservato che il discriminatore commutava in prossimità dei punti di zero-crossing. E' tuttavia possibile variare in modo arbitrario la soglia di commutazione del circuito collegandolo ad un generatore in grado di fornire una tensione continua rispetto alla massa di riferimento. Nella figura \ref{fig:biased_scope} è presentata un'acquisizione effettuata con l'oscilloscopio in cui un segnale sinusoidale in ingresso di ampiezza attesa $V_{pp}$ = 5.00 V viene amplificato da un circuito ad anello aperto non invertente mentre l'ingresso invertente (si veda lo schema \ref{fig:biased}) è collegato ad un'uscita variabile del generatore impostata a tensione $V_2$ = $V_{th}$ = 2.1 V. 
 
+\begin{figure}[H]%[!ht]
+\begin {center}
+\includegraphics[width=0.38\textwidth]{sch-simulations/output/OPA-biased.pdf}
+\caption{Amplificatore ad anello aperto: discriminatore con soglia a $V = 2.1 V$}
+\label{fig:oscilloscope}
+\end {center}
+\end{figure}
+
+La configurazione ad anello aperto dell'amplificatore può essere utile anche per discriminare segnali in ingresso rispetto ad una soglia arbitraria.
+Per ottenere un tale dispositivo occorre sfruttare entrambi gli ingressi di segnale dell'amplificatore. Trattandosi infatti di un amplificatore differenziale, si otterrà in
+uscita un segnale pari alla differenza tra i segnali in entrata. In particolare si otterrà $V_{out} = V_{-} - V_{+}$ dove $V_{-}$ è il segnale all'ingresso invertente, $V_{+
+}$ al non invertente.
+Non trattandosi di un circuito reazionato, l'amplificazione sarà pari all'amplificazione di open loop, e tale da mandare in saturazione l'amplificatore per piccole
+\textit{differenze} di segnale come verificato precedentemente.
+
+Nel caso in esame la soglia è stata posta a $V_{soglia} = 2.1 V$, nell'ingresso invertente.
+Il segnale è stato dunque inserito nell'ingresso non invertente. Ci si aspetta dunque un'amplificazione non invertente.
+
+\begin{figure}[H]%[!ht]
+\begin {center}
+\includegraphics[width=0.38\textwidth]{analysis/output/OPA-open-loop-biased_threshold.pdf}
+\caption{Amplificatore ad anello aperto: discriminatore con soglia a $V = 2.1 V$}
+\label{fig:oscilloscope}
+\end {center}
+\end{figure}
+
+
+Dal confronto tra l'immagine !TODO! e l'immagine si può notare come in questo caso la soglia non si trovi a livello di $0 V$, e questo risulti in zone di saturazione e
+saturazione inversa non simmetriche: di seguito la durata degli intervalli di saturazione e il numero di dati oltre la soglia per intervallo.
+
+\begin{tabular}{|c|c|c|c|}
+\hline
+base tempi $t  \pm 0.05 [ms]$ & $\Delta t \pm 0.07 ms$ & soglia $\pm 0.5 [V]$ & numero di dati \\ \hline
+-0.80 \textless t \textless -0.60 & 0.20 & 14.1  & 126 \\ \hline
+-0.60 \textless t \textless 0. 20 & 0.80 & -13.5 & 763 \\ \hline
+0.20 \textless t \textless 0.40   & 0.20 & 14.1  & 130 \\ \hline
+0.40 \textless t \textless 1.20   & 0.80 & -13.5 & 766 \\ \hline
+\end{tabular}
 
 \begin{figure}[H]%[!ht]
 \begin{center}
@@ -368,13 +408,111 @@ Nelle configurazioni ad anello aperto esaminate finora, l'ingresso non utilizzat
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Amplificatore logaritmico} %Stefano
 
+Un amplificatore operazionale, se inserito in un circuito che usa un diodo come feedback, amplifica il segnale in ingresso secondo la legge:
+$V_0 = - \eta \cdot V_T \cdot ln( \frac{v_s}{R \cdot I_0} )$
+
+con $V_T = \frac{k_{b} \cdot T}{q}$
+
+Ci si propone di verificare la legge, inserendo un diodo al silicio ($\eta = 2$) come retroazione nel circuito, e un resistore $R = 2.00 \pm 0.02 k\Omega  $, e inviando
+segnali in tensione continua all'ingresso invertente. Inoltre, si intende ricavare sperimentalmente il valore dei parametri $V_T$ e $I_0$.
+
 \begin{figure}[H]%[!ht]
 \begin {center}
 \includegraphics[width=0.38\textwidth]{sch-simulations/output/OPA-log.pdf}
-\caption{Didascalia}
+\caption{Circuito per integratore logaritmico. D1 è un diodo al silicio}
 \label{fig:oscilloscope}
 \end {center}
 \end{figure}
+
+Avendo inserito un diodo al silicio la legge può essere riscritta come $V_0 = 2 \cdot V_T \cdot ln(R \cdot I_0) - 2 \cdot V_T \cdot ln(v_s)$
+
+La prima misurazione ha lo scopo di inviare in ingresso un segnale $V_{in} = 1V$ per ottenere  $V_0 = 2 \cdot V_T \cdot ln(R \cdot I_0)$, valore costante indipendente dal
+segnale.
+
+Si sono ricavati i seguenti dati:
+
+\begin{tabular}{|c|c|}
+\hline
+$V_{in} \pm 0.006 $ [V] & $V_{out} \pm 0.002 [V]$   \\ \hline
+1.065 & -0.578 \\ \hline
+0.887 & -0.569 \\ \hline
+1.099 & -0.578 \\ \hline
+0.986 & -0.573 \\ \hline
+1.068 & -0.577 \\ \hline
+0.966 & -0.572 \\ \hline
+\end{tabular}
+
+La media dei valori di $V_out$ è pari a $V_{out} = -0.575 \pm 0.001 V$
+
+Si procede dunque allo studio del comportamento dell'amplificatore per valori variabili di tensione in ingresso.
+
+Si sono misurati i seguenti valori:
+
+\begin{tabular}{|c|c|}
+\hline
+\multicolumn{1}{|c|}{$V_{in}$ {[}V{]}} & \multicolumn{1}{c|}{$V_{out}$ {[}V{]}} \\ \hline
+0.568 $\pm$ 0.004                      & -0.548 $\pm$ 0.002                     \\ \hline
+0.880 $\pm$ 0.005                      & -0.564 $\pm$ 0.002                     \\ \hline
+1.099 $\pm$ 0.006                      & -0.577 $\pm$ 0.002                     \\ \hline
+1.377 $\pm$ 0.008                      & -0.586 $\pm$ 0.002                     \\ \hline
+1.642 $\pm$ 0.009                      & -0.596 $\pm$ 0.002                     \\ \hline
+2.05 $\pm$ 0.01                        & -0.605 $\pm$ 0.002                     \\ \hline
+2.50 $\pm$ 0.02                        & -0.613 $\pm$ 0.002                     \\ \hline
+3.04 $\pm$ 0.02                        & -0.62 $\pm$ 0.002                      \\ \hline
+3.66 $\pm$ 0.02                        & -0.627 $\pm$ 0.002                     \\ \hline
+4.08 $\pm$ 0.03                        & -0.63 $\pm$ 0.007                      \\ \hline
+4.62 $\pm$ 0.03                        & -0.635 $\pm$ 0.007                     \\ \hline
+5.12 $\pm$ 0.04                        & -0.638 $\pm$ 0.007                     \\ \hline
+5.64 $\pm$ 0.04                        & -0.641 $\pm$ 0.007                     \\ \hline
+6.24 $\pm$ 0.04                        & -0.645 $\pm$ 0.007                     \\ \hline
+7.02 $\pm$ 0.05                        & -0.648 $\pm$ 0.007                     \\ \hline
+7.76 $\pm$ 0.05                        & -0.649 $\pm$ 0.007                     \\ \hline
+8.48 $\pm$ 0.05                        & -0.652 $\pm$ 0.007                     \\ \hline
+9.31 $\pm$ 0.06                        & -0.653 $\pm$ 0.007                     \\ \hline
+10.09 $\pm$ 0.06                       & -0.657 $\pm$ 0.007                     \\ \hline
+12.31 $\pm$ 0.07                       & -0.659 $\pm$ 0.007                     \\ \hline
+\end{tabular}
+
+\begin{figure}[H]%[!ht]
+\begin {center}
+\includegraphics[width=0.38\textwidth]{analysis/output/fit_log_vout_vin.pdf}
+\caption{Circuito per integratore logaritmico. D1 è il diodo al silicio, R1 il resistore}
+\label{fig:oscilloscope}
+\end {center}
+\end{figure}
+
+Si effettua una regressione tra i valori sperimentali e la funzione teorica $-k - 2 \cdot V_T \cdot ln(v_s)"$, con $k = -0.575 \pm 0.001 V$ pari alla costante
+precedentemente calcolata.
+
+Il ${\Chi}^2$ pari a $5.219$ con 15 gradi di libertà conferma che la funzione teorica descrive con ottima approssimazione i dati misurati.
+La stima del parametro restituisce $V_T = 20.0 \pm 0.7 mV$.
+
+Con valore teorico a temperatura assoluta $T = 300K$ pari a $26 mV$ il test di compatibilità di Gauss risulta in $Z = -8.637$ evidenziando la presenza di un errore nella
+stima.
+
+È ragionevole supporre che la temperatura ambiente del laboratorio fosse inferiore a $300 K$, ma non si possiede una misura utile a calcolare un valore atteso più corretto.
+Si pensa dunque che ci possa essere un errore sistematico nella presa dati. In particolare la scelta della tensione $V_in$ potrebbe non essere stata ottimale. Un tale valore
+fa sì che gli ultimi dati misurati siano influenzati dallo slew rate !TODO!. Tale ipotesi è confermata da una successiva analisi:
+
+\begin{figure}[H]%[!ht]
+\begin {center}
+\includegraphics[width=0.38\textwidth]{analysis/output/OPA-log-fitted.pdf}
+\caption{Sovrapposizione del grafico x-y e della regressione con funzione teorica}
+\label{fig:oscilloscope}
+\end {center}
+\end{figure}
+
+Si è analizzato l'amplificatore logaritimico tramite la funzione X-Y dell'oscilloscopio, con persistenza infinita dei dati e inviando all'ingresso una funzione sinusoidale [!
+TENSIONE!]. L'immagine rappresenta la sovrapposizione tra la regressione con funzione logaritimica e il grafico x-y. Si nota che i dati per tensioni basse si avvicinano
+all'estremo basso della distribuzione, mentre per tensioni alte si avvicinano all'estremo alto della distribuzione. Questo può significare che le condizioni durante la
+misurazione siano cambiate al crescere della temperatura, introducendo un errore
+
+L'ultimo parametro che si intende calcolare è la tensione di saturazione inversa del diodo.
+A partire dall'equivalenza $V_0 = 2 \cdot V_T \cdot ln(R \cdot I_0)$ per $v_s = 1$, è possibile sostituire il valore ottenuto di $V_T = 20.0 \pm 0.7 mV$, ottenendo
+$I_0 = \frac{e^{\frac{k}{2 \cdot V_T}}}{R} = 3 \pm 1 \cdot 10^{-10} A$
+
+Il valore ha un ordine di grandezza compatibile con la corrente di saturazione inversa tipica dei diodi, ma si segnala un grande errore relativo ($33 \% $) dovuto alla
+propagazione degli errori su 3 parametri.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Grafico di risposta}
@@ -589,7 +727,7 @@ Anche per l'amplificazione di differenze, lo studio qualitativo dei risultati ha
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Trigger di Schmitt} 
 
-Il \textit{Trigger di Schmitt} è un circuito elettronico che impone isteresi alla soglia di transizione ingresso-uscita con l'aiuto di un feedback positivo. L'isteresi fa si che vengano forniti due diversi livelli di tensione di soglia per il bordo ascendente e discendente. Essenzialmente, si tratta di un multivibratore bi-stabile e la sua uscita rimane in uno degli stati stabili indefinitamente. Affinché l'uscita cambi da uno stato stabile all'altro, il segnale di ingresso deve cambiare (o attivarsi) in modo appropriato. Questo funzionamento bistabile del trigger di Schmitt richiede un amplificatore con feedback positivo (o \textit{feedback rigenerativo}) con un guadagno in loop maggiore di uno. Quindi, il Trigger di Schmitt è anche noto come \textit{comparatore rigenerativo}.
+Il \textit{Trigger di Schmitt} è un circuito elettronico che impone isteresi alla soglia di transizione ingresso-uscita con l'aiuto di un feedback positivo. L'isteresi fa si che vengano forniti due diversi livelli di tensione di soglia per il fronte di salita e di discesa. Essenzialmente, si tratta di un multivibratore bistabile e la sua uscita rimane in uno degli stati stabili indefinitamente. Affinché l'uscita cambi da uno stato stabile all'altro, il segnale di ingresso deve cambiare (o attivarsi) in modo appropriato. Questo funzionamento bistabile del trigger di Schmitt richiede un amplificatore con feedback positivo (o \textit{feedback rigenerativo}) con un guadagno in loop maggiore di uno. Quindi, il Trigger di Schmitt è anche noto come \textit{comparatore rigenerativo}.
 In particolare quando $V_{in}$ è leggermente superiore alla tensione di riferimento, $V_{ref}$, la $V_{out}$ diventa $-V_{sat}$ e nel caso in cui sia inferiore diventerà invece $V_{sat}$. La tensione di input a cui avviene il cambio può essere controllato attraverso i valori di $R_1$ e $R_2$.
 \[V_{ref} = \frac{V_{sat}R_2}{R_1+R_2}\]
 Si definisce $V_{UT}$ la tensione di soglia superiore e $V_{LT}$ quella inferiore. $V_{sat}$ e $V_{ref}$ sono i punti dove la funzione di trasferimento caratteristica incrocia gli assi relativi a $V_{out}$ e $V_{in}$.
@@ -667,7 +805,7 @@ In laboratorio è stata effettuata una semplice caratterizzazione di due SiPM Ad
 \end{figure}
 
 \subsection{Funzionamento in saturazione}
-Per prima cosa si è proceduto a registrare l'impulso il condizione di saturazione per entrambi i SiPM, cioè l'impulso in uscita prodotto quando tutte le celle vengono eccitate, (dove il numero di celle eccitate è proporzionale al numero di fotoni rivelati). Per studiare questo aspetto è stata aumentata l'ampiezza dell'impulso di pilotaggio del LED fino a 0.000 V (durata $\Delta$t = 16 ns, periodo di ripetizione $T$ = 200 ns) per il sensore 1x1 $mm^2$ e 0.000 V per il sensore 3x3 $mm^2$. I risultati sono presentati nei grafici in figura \ref{fig:SiPM_sat_1mm} e \ref{fig:SiPM_sat_3mm} rispettivamente. Notiamo come l'impulso del SiPM di dimensioni maggiori sia più prolungato, di ampiezza maggiore e più rumoroso, questi effetti sono conseguenza naturale di un numero maggiore di celle SPAD, in particolare la maggiore durata è dovuta ad una più elevata capacità parassita dovuta alla presenza di molte più celle in parallelo.
+Per prima cosa si è proceduto a registrare l'impulso il condizione di saturazione per entrambi i SiPM, cioè l'impulso in uscita prodotto quando tutte le celle vengono eccitate, (dove il numero di celle eccitate è proporzionale al numero di fotoni rivelati). Per studiare questo aspetto è stata aumentata l'ampiezza dell'impulso di pilotaggio del LED fino a 5.200 V (durata $\Delta$t = 16 ns, periodo di ripetizione $T$ = 200 ns), i risultati sono presentati nei grafici in figura \ref{fig:SiPM_sat_1mm} e \ref{fig:SiPM_sat_3mm} rispettivamente. Notiamo come l'impulso del SiPM di dimensioni maggiori sia più prolungato, di ampiezza maggiore e più rumoroso, questi effetti sono conseguenza naturale di un numero maggiore di celle SPAD, in particolare la maggiore durata è dovuta ad una più elevata capacità parassita dovuta alla presenza di molte più celle in parallelo.
 
 
 \begin{figure}[H]%[!ht]
@@ -715,11 +853,11 @@ In questa fase, più delicata, si vuole invece valutare il guadagno di ciascuna 
 \label{fig:staircase_3mm}
 \end{figure*}
 
-A partire da tali tracce sono stati ricavati i valori di tensione di picco per ciascun impulso corrispondente ad un determinato numero di celle con metodi numerici, i dati sono riportati in appendice. Dopo aver calcolato le differenze tra ogni valore e il successivo, si è provveduto ad effettuare una media e a calcolare l'incertezza stimandola con la semidispersione massima. Abbiamo così trovato come 'quanto' di tensione corrispondente ad una cella attivata $\Delta V_{1mm}$ = (210 $\pm$ 20) $\mu V$ e  $\Delta V_{3mm}$ = (125 $\pm$ 15) $\mu V$. (Questi valori sono già stati divisi per due, rispetto ai grafici, dal momento che provengono dalla somma dei canali.) Si è quindi potuta calcolare la quantità di carica immagazzinata in ciascuna cella $Q$, considerando la sua modellizzazione sopracitata come capacità ideale. Per un condensatore in un circuito con costante di tempo $\tau$ si ha che la carica totale immagazzinata è
+A partire da tali tracce sono stati ricavati i valori di tensione di picco per ciascun impulso corrispondente ad un determinato numero di celle con metodi numerici, i dati sono riportati in appendice. Dopo aver calcolato le differenze tra ogni valore e il successivo, si è provveduto ad effettuare una media e a calcolare l'incertezza stimandola con la semidispersione massima. Abbiamo così trovato come 'quanto' di tensione corrispondente ad una cella attivata $\Delta V_{1mm}$ = (0.21 $\pm$ 0.02) $mV$ e  $\Delta V_{3mm}$ = (0.125 $\pm$ 0.015) $mV$. (Questi valori sono già stati divisi per due, rispetto ai grafici, dal momento che provengono dalla somma dei canali.) Si è quindi potuta calcolare la quantità di carica immagazzinata in ciascuna cella $Q$, considerando la sua modellizzazione sopracitata come capacità ideale. Per un condensatore in un circuito con costante di tempo $\tau$ si ha che la carica totale immagazzinata è
 \begin{equation}
     Q = \int_{0}^{\infty} i(t) dt = \int_{0}^{\infty} \frac{\Delta V}{Z} e^{-t/ \tau}  dt = \frac{\Delta V}{Z} \tau
 \end{equation}
-con Z = 50 $\Omega$. (Il calcolo dei valori di $\tau$ è descritto nel paragrafo seguente). Per trovare il guadagno si divide ora la carica Q per la carica elementare dell'elettrone, trovando così il fattore di moltiplicazione dovuto all'effetto valanga caratteristico dello SPAD. Il calcolo restituisce G_{1mm} = (2.93 $\pm$ 0.31)$\cdot 10^6$ e G_{3mm} = (2.90 $\pm$ 0.40)$\cdot 10^6$. I valori ottenuti risultano entrambi compatibili con quanto atteso sulla base del \textit{datasheet} del produttore AdvanSiD, che riporta per un overvolt di +4 ($V_{bias} = V_{breakdown} + 4$) G $\sim$ 3$\cdot10^6$. I pvalue del test Z di compatibilità sono infatti rispettivamente di 0.821 e 0.865 ampiamente superiori del livello di significatività standard del test $\alpha = 0.05$.
+con Z = 50 $\Omega$. (Il calcolo dei valori di $\tau$ è descritto nel paragrafo seguente). Per trovare il guadagno si divide ora la carica Q per la carica elementare dell'elettrone, trovando così il fattore di moltiplicazione dovuto all'effetto valanga caratteristico dello SPAD. Il calcolo restituisce G_{1mm} = (2.9 $\pm$ 0.3)$\cdot 10^6$ e G_{3mm} = (2.9 $\pm$ 0.4)$\cdot 10^6$. I valori ottenuti risultano entrambi compatibili con quanto atteso sulla base del \textit{datasheet} del produttore AdvanSiD, che riporta per un overvolt di +4 ($V_{bias} = V_{breakdown} + 4$) G $\sim$ 3$\cdot10^6$. I pvalue del test Z di compatibilità con tale riferimento sono infatti rispettivamente di 0.821 e 0.865, ampiamente superiori del livello di significatività standard del test $\alpha = 0.05$.
 
 \subsection{Calcolo della costante di tempo}
 Nel paragrafo precedente per poter calcolare la carica Q è stato fondamentale disporre della costante di tempo $\tau$ per i circuiti RC formati dalle resistenze di quenching e dalle capacità delle giunzioni degli SPAD (collegati in parallelo). Verrà ora discussa la tecnica adottata per il calcolo delle $\tau$. Secondo l'approssimazione totalmente ideale presentata, la costante di tempo non dipende dall'ampiezza degli impulsi, quindi per lavorare con un miglior rapporto segnale / rumore, si decide di lavorare sugli impulsi in saturazione (fig. \ref{fig:SiPM_sat_1mm} e \ref{fig:SiPM_sat_3mm}) descritti nei paragrafi precedenti. Gli impulsi sono stati ritagliati sull'asse temporale e poi sono stati interpolati con la legge di scarica del condensatore dopo aver aggiunto opportuni parametri aggiuntivi per considerare l'offset arbitrario degli assi e l'ampiezza dell'impulso non nota:
@@ -754,16 +892,22 @@ Un segnale che si propaga lungo un cavo coassiale subisce un'attenuazione dovuta
 Considerando un tratto infinitesimo $\delta x$ del cavo (\textit{fig. \ref{fig:coassiale}) }, si può impostare un sistema di due equazioni differenziali del tipo:
 
 
-\[\begin{cases}
+\begin{equation}
+    \begin{cases}
   \frac{dV}{dx} = -Z_1 I \\
   \frac{dI}{dx} = -V Y_2 
-\end{cases} \tag{1} \]
+\end{cases} 
+\end{equation}
 
 Definendo $\gamma = (Z_1 Y_2)^{1/2}$ (costante della propagazione della linea) e $Z_c = (Z_1 Z_2)^{1/2}$ (impedenza caratteristica) ed integrando si ottiene:
-\[ V(x) = Ae^{-\gamma x} + Be^{\gamma x} \tag{2}\]
-\[ I(x) = (1/Z_c)(Ae^{-\gamma x} + Be^{\gamma x}) \tag{3}\]
+ \begin{equation}
+     V(x) = Ae^{-\gamma x} + Be^{\gamma x}
+ \end{equation}
+ \begin{equation}
+     I(x) = (1/Z_c)(Ae^{-\gamma x} + Be^{\gamma x}) 
+ \end{equation}
 Le espressioni ricavate dipendono solo da $x$ e non dal tempo. 
-Quello che si osserva è che il segnale si compone di due onde: un'onda diretta, che si attenua con l'aumentare delle $x$ e un'onda riflessa che sembrerebbe aumentare in ampiezza al crescere delle $x$ (fisicamente impossibile) e che dunque viaggia in senso opposto.
+Quello che si osserva è che il segnale è la risultante di un'onda diretta, che si attenua con l'aumentare delle $x$ e un'onda riflessa che pare aumentare in ampiezza al crescere delle $x$ e che dunque viaggia in senso opposto.
 
 \begin{figure}[H]%[!ht]
 \begin {center}
@@ -793,7 +937,7 @@ I valori tipici per un cavo coassiale tipo RG-58 e RG-174 sono $Z_c = 50 \Omega 
 
 
 \subsection{Setup sperimentale e misura del tempo di volo  di un impulso singolo}
-E' stato fornito un cavo coassiale di lunghezza totale $L$ incognita, suddiviso in una parte lunga $L/2$ e due parti lunghe $L/4$. Ad uno dei capi è stato collegato il generatore di segnali Keithley 3390. I canali dell'oscilloscopio sono stati collegati in modo alternato all'ingresso, al primo quarto, a metà e all'uscita del cavo. (fig. \ref{fig:linea di ritardo}). 
+E' stato fornito un cavo coassiale di lunghezza totale $L$ incognita, suddiviso in una parte lunga $L/2$ e due parti lunghe $L/4$. Ad uno dei capi è stato collegato il generatore di segnali Keithley 3390. I canali dell'oscilloscopio sono stati collegati all'ingresso e alternativamente al primo quarto, a metà e all'uscita del cavo. (fig. \ref{fig:linea di ritardo}). Il cavo (RG-58) era intestato con connettori BNC.
 La linea poteva essere chiusa alternativamente con una resistenza di valore pari all'impedenza caratteristica, cioè $50 \Omega$, con un cortocircuito o poteva essere lasciata aperta.
 
 \begin{figure}[H]%[!ht]
@@ -804,10 +948,7 @@ La linea poteva essere chiusa alternativamente con una resistenza di valore pari
 \end {center}
 \end{figure}
 
-
 Per verificare qualitativamente il comportamento della linea nei tre casi descritti, per ognuna delle terminazioni possibili e effettuare una prima stima della lunghezza L della linea è stato inviato un treno di impulsi di durata pari a 20 ns, con fronti di salita e di discesa larghi 5 ns e frequenza di ripetizione in questo caso pari a $1 kHz$. Il segnale veniva acquisito sui canali 1 e 2 dell'oscilloscopio rispettivamente all'inizio e alla fine della linea di lunghezza L incognita. \textit{(fig. \ref{fig:singolo impulso})}.
-
-
 
 
 \begin{itemize}
@@ -817,19 +958,19 @@ Per verificare qualitativamente il comportamento della linea nei tre casi descri
 \end{itemize}
  
 
-Nel caso a circuito aperto, è possibile stimare la lunghezza $L$ del cavo, misurando il tempo di andata e ritorno dell'impulso: sapendo che il segnale si propaga a velocità $v_f = 5 \ ns$. Il valore $\Delta t / {v_f}$ corrisponderà al doppio della distanza percorsa dal segnale. 
+Nel caso a circuito aperto, è possibile stimare la lunghezza $L$ del cavo, misurando il tempo di andata e ritorno dell'impulso: sapendo che il segnale si propaga a velocità $v_f = 5 \ ns$. Il valore $\Delta t / {v_f}$ corrisponde infatti al doppio della distanza percorsa dal segnale. 
 Estrapolando dal grafico del segnale in ingresso i valori per i due massimi relativi che corrispondono alla partenza e al ritorno dell'impulso, si calcola $\Delta t$. Si ottiene quindi: 
-$L = 27.69 \pm 0.50)$. (Errore stimato tenendo conto sia della risoluzione temporale dell'oscilloscopio, sia dell'imprecisione di posizionamento dei cursori dovuta a forme differenti dei fronti di salita).
+$L = 27.7 \pm 0.5)$. (Errore stimato tenendo conto sia della risoluzione temporale dell'oscilloscopio, sia dell'imprecisione di posizionamento dei cursori dovuta a forme differenti dei fronti di salita).
 
 
 
-\subsection{Repetition rate}
-E' possibile effettuare una misura più raffinata della lunghezza del cavo inviando, anziché un singolo impulso, una ripetizione di impulsi ad un intervallo costante, pari al periodo uguale di andata-ritorno dell'impulso, partendo dalla stima ottenuta con la tecnica a tempo di volo. Nella configurazione con l'uscita in cortocircuito, l'onda riflessa - opposta a quella incidente - annullerà quest'ultima in prossimità del generatore, portando ad una tensione risultante sul canale 1 dell'oscilloscopio minima. Questa condizione si realizza con un periodo di ripetizione pari a $\tau = (267.2 \pm 0.1)$ $ns$, con questo metodo si è ottenuto un valore di lunghezza pari a $ L = $ $(27.63 \pm 0.12)$ $m $. La condizione di minimo dell'impulso risultante qui descritta è stata ottenuta minimizzando il valore $V_{pp}$ e in figura \ref{fig: ripetizione di impulsi} è possibile osservare quanto acquisito con l'oscilloscopio.
+\subsection{Periodo di ripetizione}
+E' possibile effettuare una misura più raffinata della lunghezza del cavo inviando, anziché un singolo impulso, una ripetizione di impulsi ad un intervallo costante, pari al periodo di andata-ritorno dell'impulso, partendo dalla stima ottenuta con la tecnica a tempo di volo. Nella configurazione con l'uscita in cortocircuito, l'onda riflessa - opposta a quella incidente - annullerà quest'ultima in prossimità del generatore, portando ad una tensione risultante sul canale 1 dell'oscilloscopio minima. Questa condizione si realizza con un periodo di ripetizione pari a $\tau = (267.20 \pm 0.10)$ $ns$, con questo metodo si è ottenuto un valore di lunghezza pari a $ L = $ $(27.63 \pm 0.12)$ $m $. La condizione di minimo dell'impulso risultante qui descritta è stata ottenuta minimizzando il valore $V_{pp}$ e in figura \ref{fig: ripetizione di impulsi} è possibile osservare quanto acquisito con l'oscilloscopio.
 
 \begin{figure}[H]%[!ht]
 \begin{center}
 \includegraphics[width=0.5\textwidth]{analysis/output/Delay_line_repetition.pdf}
-\caption{Linea di ritardo, condizione di minimo in cui l'impulso di ritorno si somma in controfase con quello in partenza dando origine ad una risultante minima (in nero).}
+\caption{Linea di ritardo, condizione di minimo in cui l'impulso di ritorno si somma in opposizione di fase con quello in partenza dando origine ad una risultante minima (in nero).}
 \label{fig: ripetizione di impulsi}
 \end{center}
 \end{figure}
@@ -874,12 +1015,12 @@ La misura ottenuta con il secondo metodo risulta essere ampiamente compatibile c
 \subsection{Formazione di onde stazionarie}
 
 Se al posto di un impulso si invia sulla linea un segnale sinusoidale con lunghezza d'onda pari a quella della linea oppure pari al suo doppio (o altre armoniche) si generano delle onde stazionarie risultanti dall'interferenza dell'onda incidente con quella riflessa. 
-In un onda stazionaria le posizioni di ventri (interferenza costruttiva) e nodi (interferenza distruttiva) sono costanti nel tempo e il tipo di armonica che si formerà dipende da come viene terminata la linea.
+In un'onda stazionaria le posizioni dei ventri (interferenza costruttiva) e dei nodi (interferenza distruttiva) sono costanti nel tempo e il tipo di armonica che si formerà dipende da come viene terminata la linea.
 
 
 
 Prendiamo ora in esame i grafici in \textit{(figg. \ref{fig: "onde staz 2L} e \ref{fig: onde staz L})} che mostrano l'andamento teorico di fronti d'onda di onde stazionarie nelle tre possibili configurazioni della linea.
-La linea con terminazione a circuito aperto si comporta come una cavità risonante ad estremità aperte; quella a terminazione con cortocircuito come una cavità risonante ad estremità chiuse. Nel caso di linea adattata non essendoci onda riflessa non si generano onde stazionarie. Nei due grafici si distingue anche il comportamento nel caso di lunghezza d'onda pari a $L$ e $2L$: ciò che cambia è il numero di ventri e nodi che si formano in quanto si forma un'armonica di ordine superiore. I risultati sono presentati nelle figure \ref{fig: delayline 2L} e \ref{fig: delayline L}. In particolare per il caso $\lambda$ = 2L osserviamo che, come atteso:
+La linea con terminazione a circuito aperto si comporta come una cavità risonante ad estremità aperte; quella a terminazione con cortocircuito come una cavità risonante ad estremità chiuse. Nel caso di linea adattata non essendoci onda riflessa non si generano onde stazionarie. Nei due grafici si distingue anche il comportamento nel caso di lunghezza d'onda pari a $L$ e $2L$: ciò che cambia è il numero di ventri e nodi che si formano in quanto si forma un'armonica di ordine differente. I risultati sono presentati nelle figure \ref{fig: delayline 2L} e \ref{fig: delayline L}. In particolare per il caso $\lambda$ = 2L osserviamo che, come atteso:
 \begin{itemize}
     \item Con circuito aperto: il fronte d'onda ha un nodo (V=0) a $L/2$ e ventri (massimi e minimi) in $0 \ e\ L$, mentre a $L/4$ l'ampiezza è attenuata 
     \item Con cortocircuito sull'uscita: il fronte d'onda ha nodi a $0\ e\ L$ e un ventre in $L/2$, mentre a $L/4$ l'ampiezza è attenuata
