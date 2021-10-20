@@ -227,7 +227,10 @@ Dalla \textit{Fig. \ref{fig:g2-11}} si nota infatti che la risposta del circuito
  I valori di $V_{out}$ misurati con l'oscilloscopio sono risultati in accordo con la teoria.
 
 L'accordo tra il guadagno atteso e quello misurato sperimentalmente con l'oscilloscopio è confermato da un \textit{Test t} che riporta i seguenti valori per le variabili statistiche $t_2 = 0.54$ e $t_{11} = 1.02$ con p-values di [AGGIUNGERE], superiori al livello di significatività adottato pari al 5 \%.
-Si è ora interessati a valutare la risposta in frequenza del circuito di amplificazione sotto esame, vengono quindi acquisiti i valori picco-picco dell'ingresso e dell'uscita con i cursori dell'oscilloscopio e i punti sul piano guadagno-frequenza vengono interpolati con una opportuna funzione di trasferimento del circuito:
+
+\subsection{Studio della risposta in frequenza}
+
+Si è ora interessati a valutare la risposta in frequenza del circuito di amplificazione sotto esame, vengono quindi acquisiti i valori picco-picco dell'ingresso e dell'uscita con i cursori dell'oscilloscopio e i punti sul piano \textit{guadagno-frequenza} vengono interpolati con una opportuna funzione di trasferimento del circuito:
 \[H(s)=\frac{k}{(1+as)}\] 
 in cui $k$ rappresenta il guadagno e $a = \frac{1}{f_H}$ ed $f_H$ sta per la frequenza di taglio superiore.
 \begin{figure}[H]%[!ht]
@@ -260,14 +263,13 @@ ottenendo i valori \[f_{H_{2}} \times A_2 = (5.918 \pm  0.818) MHz\]  \[f_{H_{11
 \end {center}
 \end{figure}
 
-\subsection{Studio della risposta in frequenza}
 
 \subsection{Slew rate}
 In un amplificatore operazionale reale la velocità di variazione della tensione di uscita non può superare un valore limite detto \textit{slew-rate} anche detta velocità di risposta:
 \[SR = (\frac{dV_{out}}{dt})_{max}\]
 i cui valori tipici sono dell'ordine dei $\frac{V}{\mu s}$.
 Questa limitazione è dovuta a fenomeni non lineari quali la saturazione dello stadio di ingresso dell'amplificatore operazionale e non è in relazione con la larghezza di banda finita dell'OPA. 
-Per analizzare tale fenomeno si è osservata la risposta del circuito quando il segnale in ingresso da amplificare veniva gradualmente aumentato di frequenza, con valori di tensione picco-picco elevati. Raggiunta la frequenza di 100 kHz si è potuto osservare come i fronti di salita e discesa in uscita dall'OPA in configurazione ad anello aperto nel punto in cui è attesa la massima variazione fossero approssimabili con una retta con coefficiente angolare corrispondente allo slew-rate. E' quindi stato possibile valutare quantitativamente questa caratteristica, confrontandola con quanto espresso sul datasheet del produttore, mediante una regressione lineare.
+Per analizzare tale fenomeno si è osservata la risposta del circuito all'aumento progressivo della frequenza del segnale in ingresso da amplificare, con valori di tensione picco-picco elevati. Raggiunta la frequenza di 100 kHz si è potuto osservare come i fronti di salita e discesa in uscita dall'OPA in configurazione ad anello aperto nel punto in cui è attesa la massima variazione fossero approssimabili con una retta con coefficiente angolare corrispondente allo slew-rate. E' quindi stato possibile valutare quantitativamente questa caratteristica, confrontandola con quanto espresso sul datasheet del produttore, mediante una regressione lineare.
 \begin{figure}[H]%[!ht]
 \begin {center}
 \includegraphics[width=0.38\textwidth]{analysis/output/OPA-open-loop-slew-rate.pdf}
@@ -326,6 +328,14 @@ Nelle configurazioni ad anello aperto esaminate finora, l'ingresso non utilizzat
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Grafico di risposta}
 
+\begin{figure}[H]%[!ht]
+\begin {center}
+\includegraphics[width=0.55\textwidth]{analysis/output/OPA-log-fitted.pdf}
+\caption{Didascalia}
+\label{fig:OPA-integ-res}
+\end {center}
+\end{figure}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Amplificatore integratore reale invertente} %Matteo
@@ -349,7 +359,7 @@ Inizialmente si sono scelte $R$ e $C$ con lo scopo di ottenere una frequenza di 
 
 \begin{figure}[H]%[!ht]
 \begin {center}
-\includegraphics[width=0.38\textwidth]{analysis/output/OPA-integ-with-res.pdf}
+\includegraphics[width=0.50\textwidth]{analysis/output/OPA-integ-with-res.pdf}
 \caption{Didascalia}
 \label{fig:OPA-integ-res}
 \end {center}
@@ -384,7 +394,7 @@ Una volta assemblato il circuito si è proseguito analizzando qualitativamente i
 \section{Amplificatore derivatore} %Matteo
 \begin{figure}[H]%[!ht]
 \begin {center}
-\includegraphics[width=0.38\textwidth]{analysis/output/OPA-differentiator.pdf}
+\includegraphics[width=0.50\textwidth]{analysis/output/OPA-differentiator.pdf}
 \caption{Didascalia}
 \label{fig:derivatore}
 \end {center}
@@ -430,7 +440,7 @@ Lo stesso effetto si ha per sinusoidi con ampiezze diverse ($V_+ = 0.5, V_- = 0.
 \begin{figure}[H]%[!ht]
 \begin {center}
 \includegraphics[width=0.38\textwidth]{analysis/output/OPA_mixer_sin3.pdf}
-\caption{Somma di sinusoidi con ampiezze diverse}
+\caption{Somma di sinusoidi in fase con mixer non invertente}
 \label{fig:Mixer3}
 \end {center}
 \end{figure}
@@ -440,7 +450,7 @@ Sostituendo il segnale all'ingresso negativo con la sinusoide opposta, si ottien
 \begin{figure}[H]%[!ht]
 \begin {center}
 \includegraphics[width=0.38\textwidth]{analysis/output/OPA_mixer_sin2.pdf}
-\caption{Somma di sinusoide e sua opposta}
+\caption{Somma di una funzione sinusoidale con la sua opposta}
 \label{fig:Mixer2}
 \end {center}
 \end{figure}
@@ -451,7 +461,7 @@ Mandando ai due ingressi sinusoidi con frequenza diversa $f_1 = 1\ kHz, \ f_2 = 
 \begin{figure}[H]%[!ht]
 \begin {center}
 \includegraphics[width=0.42\textwidth]{analysis/output/OPA_mixer_beats.pdf}
-\caption{Formazione dei battimenti}
+\caption{Somma di sinusoidi identiche, ma con frequenze che differiscono di una quantità $\Delta f$ = 10 Hz, con $f_2 = f_1 + \Delta_f$ e $f_1$ = Hz  danno origine a battimenti di frequenza $f_b$ = Hz}
 \label{fig:beats}
 \end {center}
 \end{figure}
@@ -479,7 +489,7 @@ Per verificare il corretto funzionamento di questa configurazione sono state man
 \begin{figure}[H]%[!ht]
 \begin {center}
 \includegraphics[width=0.38\textwidth]{analysis/output/OPA_diff_sin2.pdf}
-\caption{Circuito amplificatore di differenze invertente}
+\caption{Sottrazione di sinusoidi identiche}
 \label{fig:diff2}
 \end {center}
 \end{figure}
@@ -491,7 +501,7 @@ Applicando poi una sinusoide a media nulla al primo canale e una sinusoide a med
 \begin{figure}[H]%[!ht]
 \begin {center}
 \includegraphics[width=0.38\textwidth]{analysis/output/OPA_diff_sin3.pdf}
-\caption{Sinusoide a media nulla e sinusoide con offset}
+\caption{Sottrazione da una funzione sinusoidale con offset di una componente DC di ampiezza pari all'offet, con risultato pari ad una sinusoide con media nulla}
 \label{fig:diff3}
 \end {center}
 \end{figure}
@@ -502,16 +512,16 @@ e la differenza tra un'onda quadra e una rampa entrambe di ampiezza massima $V=0
 
 \begin{figure}[H]%[!ht]
 \begin {center}
-\includegraphics[width=0.38\textwidth]{analysis/output/OPA_diff_square.pdf}
-\caption{Onde quadre con ampiezze diverse}
+\includegraphics[width=0.45\textwidth]{analysis/output/OPA_diff_square.pdf}
+\caption{Sottrazione da un'onda quadra di ampiezza $2A$ di un'onda quadra con ampiezza $A$}
 \label{fig:diff_square}
 \end {center}
 \end{figure}
 
 \begin{figure}[H]%[!ht]
 \begin {center}
-\includegraphics[width=0.38\textwidth]{analysis/output/OPA_diff_squareramp.pdf}
-\caption{Differenza di onde quadra e rampa}
+\includegraphics[width=0.45\textwidth]{analysis/output/OPA_diff_squareramp.pdf}
+\caption{Differenza tra un'onda quadra e una rampa}
 \label{fig:diff_squareramp}
 \end {center}
 \end{figure}
@@ -529,18 +539,18 @@ Si definisce $V_{UT}$ la tensione di soglia superiore e $V_{LT}$ quella inferior
 Con l'utilizzo di un secondo amplificatore operazionale è stato implementato il circuito in \textit{figura \ref{fig:schmitt-trigger}}. Un primo OpAmp è collegato in configurazione di mixer. La sua uscita è collegata a uno degli ingressi del secondo OpAmp in configurazione di \textit{trigger di Schmitt}. 
 
 \begin{figure}[H]%[!ht]
-\begin {center}
-\includegraphics[width=0.48\textwidth]{sch-simulations/output/OPA-mixer-trigger.pdf}
+\begin{center}
+\includegraphics[width=0.45\textwidth]{sch-simulations/output/OPA-mixer-trigger.pdf}
 \caption{Trigger di Schmitt}
 \label{fig:schmitt-trigger}
-\end {center}
+\end{center}
 \end{figure}
 
 \subsection{Ciclo di isteresi al variare della frequenza} %Matteo
 
 \begin{figure}[H]%[!ht]
 \begin {center}
-\includegraphics[width=0.38\textwidth]{analysis/output/OPA-trigger-histeresis.pdf}
+\includegraphics[width=0.50\textwidth]{analysis/output/OPA-trigger-histeresis.pdf}
 \caption{Didascalia}
 \label{fig:trigger-hyst}
 \end {center}
@@ -550,7 +560,7 @@ Osservando la risposta a $100 Hz$ si vede come effettivamente i valori empirici 
 Si ricorda che l'isteresi previene il trigger dall'oscillare quando un input che varia a bassa frequenza si trova vicina al \textit{threshold voltage}. Aumentando la frequenza ci si aspetta perciò una minore efficacia del comparatore come visibile qua di seguito
 \begin{figure}[H]%[!ht]
 \begin {center}
-\includegraphics[width=0.38\textwidth]{analysis/output/OPA-trigger-histeresis-table.pdf}
+\includegraphics[trim = {50pt 0 0 0}, width=0.55\textwidth]{analysis/output/OPA-trigger-histeresis-table.pdf}
 \caption{Didascalia}
 \label{fig:hyst-table}
 \end {center}
