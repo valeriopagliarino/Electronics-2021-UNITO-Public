@@ -119,42 +119,32 @@ Il corredo di strumentazione è stato completato con multimetro digitale Meterma
 \section{\textbf{Ponte raddrizzatore a diodi a singola semionda}} %Matteo
 \subsection{\textbf{Introduzione all'esperienza}}
 In molteplici applicazioni si ha la necessità di convertire tensioni alternate in tensioni continue (AC/DC). Uno dei modi più immediati per ottenere tale risultato è quello di sfruttare raddrizzatori non controllati, quali raddrizzatori a singola/doppia semi-onda, a ponte monofase/trifase o esafase.
-I diodi a giunzione p-n sono dei componenti elettronici passivi non lineari, il cui funzionamento è regolato dalla struttura cristallina delle due giunzioni, le quali saranno rispettivamente di tipo \textit{n} (drogati con atomi pentavalenti, che comporta un eccesso di elettroni) e di tipo \textit{p} (eccesso di lacune). Nei pressi del punto di contatto tra le due si formerà una \textit{regione di svuotamento}, grazie alla combinazione tra elettroni e lacune, che creerà una barriera di potenziale. I diodi presentano dunque due possibilità di impiego. Una delle quali è la \textit{polarizzazione diretta}, in cui il polo positivo del generatore è collegato al terminale di
+I diodi a giunzione p-n sono dei componenti elettronici passivi non lineari, il cui funzionamento è regolato dalla struttura cristallina delle due giunzioni, le quali saranno rispettivamente di tipo \textit{n} (drogati con atomi pentavalenti,il che comporta un eccesso di elettroni) e di tipo \textit{p} (eccesso di lacune). Nei pressi del punto di contatto tra le due si formerà una \textit{regione di svuotamento}, grazie alla combinazione tra elettroni e lacune, che creerà una barriera di potenziale. I diodi presentano dunque due possibilità di impiego. Una delle quali è la \textit{polarizzazione diretta}, in cui il polo positivo del generatore è collegato al terminale di
 tipo \textit{p}. In questa configurazione la regione di svuotamento si ridurrà fino a permettere il passaggio di corrente. La forma funzionale della corrente in funzione della tensione sarà descritta dalla \textit{funzione di Shockley}: \[I_{D} = I_{0}(e^{V/\eta V_T}-1)\] dove $I_{0}$ rappresenta la corrente di saturazione inversa, il termine $V_{T}$ è il potenziale di Einstein, dipendente dalla temperatura e $\eta$ è il fattore di idealità dipendente dal materiale costituente del diodo.
 \begin{figure}[H]%[!ht]
-\begin {center}
+\begin{center}
 \includegraphics[width=0.38\textwidth]{sch-simulations/output/Diode-rectifier.pdf}
-\caption{Didascalia}
+\caption{Schema del circuito elettrico per la caratterizzazione del SiPM. Valori per i componenti utilizzati misurati con il multimetro: R1 = ( $\pm$ ) $\Omega$, C1 = ($\pm$ ) $nF$}
 \label{fig:diode-rectifier}
-\end {center}
+\end{center}
 \end{figure}
+\subsection{\textbf{Componentistica e circuito}}
 La trattazione successiva riguarda i raddrizzatori a singola semi-onda ed in particolare l'implementazione del circuito in \ref{fig:diode-rectifier}, realizzato tramite un unico diodo più un condensatore di filtraggio. In tale configurazione durante la fase di crescita del segnale in ingresso $V_{in}$ il condensatore agisce da accumulatore permettendo alla $V_{out}$ di copiare la tensione in entrata. Nel secondo quarto di periodo, il diodo passa in interdizione a causa del condensatore che si scarica lentamente rispetto alla variazione dell'ingresso. Infine durante la fase di OFF del diodo l'usicta è determinata unicamente dalla scarica del condensatore sulla resistenza.
 Quindi in regime di funzionamento il diodo rimane acceso per un periodo $\Delta T$ in cui avviene la fase di carica e la tensione di uscita passa dal suo valore minimo al suo valore massimo. Un raddrizzatore ben funzionante fa si che la \textit{tensione di ripple} sia la minore possibile e ciò è strettamente correlato al valore della costante di tempo $\tau$.
-Analizzando il funzionamento del circuito in assenza del condensatore di livellamento invece si avrà in uscita un segnale costituito solamente dalla semi-onda positiva, nel caso di \textit{polarizzazione diretta}, oppure della semi-onda negativa in \textit{polarizzazione inversa} come viene evidenziato dalla \ref{fig:half-wave}.
+Analizzando il funzionamento del circuito in assenza del condensatore di livellamento invece si avrà in uscita un segnale costituito solamente dalla semi-onda positiva, nel caso di \textit{polarizzazione diretta}, oppure della semi-onda negativa in \textit{polarizzazione inversa}.
+
+\subsection{\texxtbf{Caratterizzazione}}
 \begin{figure}[H]%[!ht]
 \begin {center}
 \includegraphics[width=0.38\textwidth]{analysis/output/half-wave-rectifier.pdf}
-\caption{Didascalia}
+\caption{Grafico del segnale processato da un raddrizzatore a singola semi-onda con diodo al silicio}
 \label{fig:half-wave}
 \end {center}
 \end{figure}
-\[\Delta V = 0.64 V \] 
-Ricordando che in letteratura il valore della \textit{tensione di soglia} per i diodi al Silicio è pari a $V_{\gamma}=0.6V$ e considerando possibili impurità del diodo in questione si evince un totale accordo col dato empirico. Tale supposizione è sostenuta dal risultato del \textit{Test di Gauss} ($Z = 0.071$).
-
-
-
-
-\subsection{\textbf{Introduzione all'esperienza}}
-Descrizione
-
-\subsection{\textbf{Componentistica e circuito}}
-Descrizione
-
-\subsection{\textbf{Caratterizzazione}}
-Descrizione
-
+\[\Delta V = [0.64 \pm 0.05] V\] 
+Come viene evidenziato dalla \textit{Fig. \ref{fig:half-wave}} il comportamento del circuito in assenza di un condensatore di filtraggio segue esattamente l'aspettativa teorica. Ricordando che in letteratura il valore della \textit{tensione di soglia} per i diodi al Silicio è pari a $V_{\gamma}=0.6V$ e considerando possibili impurità del diodo in questione si evince un totale accordo col dato empirico. Tale supposizione è sostenuta dal risultato del \textit{Test di Gauss} ($Z = 0.56$).
 \subsection{\textbf{Discussione dei risultati}}
-Descrizione
+In conclusione l'analisi qualitativa del comportamento del diodo presenta una totale consistenza con la teoria come sottolineato dal grafico presentato.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -208,58 +198,67 @@ Descrizione
 \begin{figure}[H]%[!ht]
 \begin {center}
 \includegraphics[width=0.38\textwidth]{sch-simulations/output/OPA-closed-loop-non-inverting.pdf}
-\caption{Didascalia}
+\caption{Schema del circuito elettrico per la caratterizzazione dell'OPA retroazionato non invertente. Valori per i componenti utilizzati misurati con il multimetro: R1 = ( $987 \pm 50$ ) $\Omega$ , R2 = ( $990 \pm 50$ ) $\Omega$}
 \label{fig:loop-non-inv}
 \end {center}
 \end{figure}
-Un amplificatore non invertente ha la peculiarità di dare in uscita un segnale proporzionale a quello d'ingresso e in fase con esso. Il segnale è applicato all'ingresso non invertente affinché il guadagno $A$ sia positivo. Infatti per l'equipotenzialità degli ingressi si ha: \[V_{-} = V_{+} = V_{i}\] \[V_{-} = \frac{R_1}{R_1+R_2}=V_{+}\] \[V_{o}=(1+\frac{R_2}{R_1}V_{+}\]
+Un amplificatore non invertente ha la peculiarità di dare in uscita un segnale proporzionale a quello d'ingresso e in fase con esso. Il segnale è applicato all'ingresso non invertente affinché il guadagno $A$ sia positivo. Infatti per l'equipotenzialità degli ingressi si ha: \[V_{-} = V_{+} = V_{i}\] \[V_{-} = \frac{R_1}{R_1+R_2}=V_{+}\] \[V_{o}=(1+\frac{R_2}{R_1}V_{+})\]
 da cui si ricava che $A=\frac{V_{o}}{V_i}=1+\frac{R_2}{R_1}$.
 \subsection{\textbf{Caratterizzazione}}
-Sono state selezionati diversi resistori in maniera tale da esaminare più casi di amplificazione. Nel primo caso $R_1=\Omega$ e $R_2=\Omega$ in maniera da tale da attendersi un guadagno di circa due, mentre secondariamente $R_1=\Omega$ e $R_2=\Omega$, quindi con un guadagno atteso di undici. Come previsto dalla teoria i valori di $V_{out}$ ottenuti rispecchiano ciò che è stato appena detto. Dalla \ref{fig:g2-11} si nota infatti che la risposta del circuito comporta un segnale in uscita in fase con quello in entrata, ma amplificato dei valori sopracitati.
+In laboratorio sono stati impiegati diversi resistori nella rete di feedback per ottenere valori differenti del guadagno. Nel primo caso sono stati scelti componenti con valori
+$R1 =$ ( $987 \pm 50$ ) $\Omega$ e $R1 =$ ( $990 \pm 50$ ) $\Omega$ 
+per ottenere un guadagno atteso 
+$A_2 = 1 + \frac{R_2}{R_1} =2.003 +- 0.072$, 
+mentre successivamente è stato sostituito il resistore di feedback con 
+$R3 =$ ( $9.7 \pm 1.4$ ) $k\Omega$, ottenendo $A_{11} = 10.828 +- 0.516 $.
 \begin{figure}[H]%[!ht]
 \begin {center}
 \includegraphics[width=0.38\textwidth]{analysis/output/OPA-closed-loop-non-inv-G2-11.pdf}
-\caption{Didascalia}
+\caption{Amplificatore operazionale in configurazione ad anello chiuso non invertente}
 \label{fig:g2-11}
 \end {center}
 \end{figure}
-Dai valori delle resistenze e dalla delle che regola il guadagno è possibile fare un confronto tra i valori attesi e quelli ottenuti empiricamente. (  )
-Si è proceduto con la presa dati della risposta in frequenza del circuito. I dati sono stati successivamente fittati attraverso l'utilizzo di una funzione di transfer caratterizzata da tre poli:
-\[H(s)=\frac{k}{(1+as)(1+bs)(1+cs)}\] 
-per poi estrarre il valore della $H.F$
+\[V_i = (0.276 \pm 0.002) V\]
+\[V_2 = (0.54 \pm 0.01(3)) V\]
+\[V_11 = (2.8 \pm 0.1(1)) V\]
+Dalla \textit{Fig. \ref{fig:g2-11}} si nota infatti che la risposta del circuito comporta un segnale in uscita in fase con quello in entrata, con le amplificazioni:
+\[A_{2_c} = 1.96 \pm 0.05\]
+\[A_{11_c} = 10.14 \pm 0.42\]
+ I valori di $V_{out}$ misurati con l'oscilloscopio sono risultati in accordo con la teoria.
 
+L'accordo tra il guadagno atteso e quello misurato sperimentalmente con l'oscilloscopio è confermato da un \textit{Test t} che riporta i seguenti valori per le variabili statistiche $t_2 = 0.54$ e $t_{11} = 1.02$ con p-values di [AGGIUNGERE], superiori al livello di significatività adottato pari al 5 \%.
+Si è ora interessati a valutare la risposta in frequenza del circuito di amplificazione sotto esame, vengono quindi acquisiti i valori picco-picco dell'ingresso e dell'uscita con i cursori dell'oscilloscopio e i punti sul piano guadagno-frequenza vengono interpolati con una opportuna funzione di trasferimento del circuito:
+\[H(s)=\frac{k}{(1+as)}\] 
+in cui $k$ rappresenta il guadagno e $a = \frac{1}{f_H}$ ed $f_H$ sta per la frequenza di taglio superiore.
 \begin{figure}[H]%[!ht]
 \begin {center}
 \includegraphics[width=0.38\textwidth]{analysis/output/OPA-bode_gain2(mag).pdf}
-\caption{Didascalia}
+\caption{Diagramma di Bode relativo al circuito con l'utilizzo di $R_1$ ed $R_2$ }
 \label{fig:gain2}
 \end {center}
 \end{figure}
-\[H.F_{2} = 363806.38 Hz\]
-Ripetendo il procedimento con $R_1=\Omega$ e $R_2=\Omega$, quindi con un guadagno atteso di undici si è ottenuto il grafico seguente
+\[k_2 = 1.005 \pm 0.108\] 
+\[f_{H_2} = [ 0.590 \pm 0.035 ]MHz\]
+
 \begin{figure}[H]%[!ht]
 \begin {center}
 \includegraphics[width=0.38\textwidth]{analysis/output/OPA-bode_gain11(mag).pdf}
-\caption{Didascalia}
+\caption{Diagramma di Bode relativo al circuito con l'utilizzo di $R_1$ ed $R_3$ }
 \label{fig:gain11}
 \end {center}
 \end{figure}
-
-\[H.F_{11} = 363806.38 Hz\]
-
-Si è infine verificata la conservazione del prodotto 
-\[BAND WIDTH \dot GAIN\]
-ottenendo i valori \[H.F_{2}\times Gain_2 = 727612.75410076 Hz\]  \[H.F_{11}\times Gain_{11} = 600850.4939452771 Hz\] (\ref{fig:gain-compare})
+\[k_11 = 9.728 \pm 0.626\] 
+\[f_{H_{11}} = [ 83.5 \pm 4.5 ]kHz\]
+Partendo da tali dati è stato possibile osservare la conservazione del prodotto 
+\[BAND WIDTH \times GAIN\]
+ottenendo i valori \[f_{H_{2}} \times A_2 = (5.918 \pm  0.818) MHz\]  \[f_{H_{11}} \times A_{11} = (8.206 \pm 0.650) MHz\] ,(\ref{fig:gain-compare}), compatibili entro le loro incertezze con un livello di significatività del 95\% (\textit{Test Student = 2.18}).
 \begin{figure}[H]%[!ht]
 \begin {center}
 \includegraphics[width=0.38\textwidth]{analysis/output/OPA-bode_gain_comparison(mag).pdf}
-\caption{Didascalia}
+\caption{Diagrammi di Bode delle due configurazioni a confronto}
 \label{fig:gain-compare}
 \end {center}
 \end{figure}
-
-
-
 
 \subsection{Studio della risposta in frequenza}
 
@@ -267,9 +266,8 @@ ottenendo i valori \[H.F_{2}\times Gain_2 = 727612.75410076 Hz\]  \[H.F_{11}\tim
 In un amplificatore operazionale reale la velocità di variazione della tensione di uscita non può superare un valore limite detto \textit{slew-rate} anche detta velocità di risposta:
 \[SR = (\frac{dV_{out}}{dt})_{max}\]
 i cui valori tipici sono dell'ordine dei $\frac{V}{\mu s}$.
-Questa limitazione è dovuta a fenomeni non lineari quali la saturazione dello stadio di ingresso dell'amplificatore operazionale e non è in relazione 
-con la larghezza di banda finita dell'OPA. 
-Per l'analisi di tale fenomeno si è osservata la risposta del circuito a frequenze diverse
+Questa limitazione è dovuta a fenomeni non lineari quali la saturazione dello stadio di ingresso dell'amplificatore operazionale e non è in relazione con la larghezza di banda finita dell'OPA. 
+Per analizzare tale fenomeno si è osservata la risposta del circuito quando il segnale in ingresso da amplificare veniva gradualmente aumentato di frequenza, con valori di tensione picco-picco elevati. Raggiunta la frequenza di 100 kHz si è potuto osservare come i fronti di salita e discesa in uscita dall'OPA in configurazione ad anello aperto nel punto in cui è attesa la massima variazione fossero approssimabili con una retta con coefficiente angolare corrispondente allo slew-rate. E' quindi stato possibile valutare quantitativamente questa caratteristica, confrontandola con quanto espresso sul datasheet del produttore, mediante una regressione lineare.
 \begin{figure}[H]%[!ht]
 \begin {center}
 \includegraphics[width=0.38\textwidth]{analysis/output/OPA-open-loop-slew-rate.pdf}
@@ -277,7 +275,8 @@ Per l'analisi di tale fenomeno si è osservata la risposta del circuito a freque
 \label{fig:slew-rate-table}
 \end {center}
 \end{figure}
-Infine è stata effettuata la regressione lineare dei dati estratti dalla regione di commutazione dell'OPA in corrispondenza di $f = 100 kHz$ 
+
+
 \begin{figure}[H]%[!ht]
 \begin {center}
 \includegraphics[width=0.38\textwidth]{analysis/output/OPA-slew-rate-fit.pdf}
@@ -290,12 +289,24 @@ Il valore è consistente con la letteratura.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Discriminatore ad anello aperto con soglia arbitraria} %Stefano
 
+Nelle configurazioni ad anello aperto esaminate finora, l'ingresso non utilizzato dal segnale è stato collegato a massa, di conseguenza si è sempre osservato che il discriminatore commutava in prossimità dei punti di zero-crossing. E' tuttavia possibile variare in modo arbitrario la soglia di commutazione del circuito collegandolo ad un generatore in grado di fornire una tensione continua rispetto alla massa di riferimento. Nella figura \ref{fig:biased_scope} è presentata un'acquisizione effettuata con l'oscilloscopio in cui un segnale sinusoidale in ingresso di ampiezza attesa $V_{pp}$ = 5.00 V viene amplificato da un circuito ad anello aperto non invertente mentre l'ingresso invertente (si veda lo schema \ref{fig:biased}) è collegato ad un'uscita variabile del generatore impostata a tensione $V_2$ = $V_{th}$ = 2.1 V. 
+
+
 \begin{figure}[H]%[!ht]
-\begin {center}
+\begin{center}
+\includegraphics[width=0.38\textwidth]{analysis/output/OPA-open-loop-biased_threshold.pdf}
+\caption{Didascalia}
+\label{fig:biased_scope}
+\end{center}
+\end{figure}
+
+
+\begin{figure}[H]%[!ht]
+\begin{center}
 \includegraphics[width=0.38\textwidth]{sch-simulations/output/OPA-biased.pdf}
 \caption{Didascalia}
-\label{fig:oscilloscope}
-\end {center}
+\label{fig:biased}
+\end{center}
 \end{figure}
 
 %%%%%%%%%%FINE PRIMO GIORNO%%%%%%%%%%%%%%%
@@ -318,7 +329,7 @@ Il valore è consistente con la letteratura.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Amplificatore integratore reale invertente} %Matteo
-In questa esperienza di laboratorio verrà analizzato il funzionamento di un \textit{OPA integratore}, osservandone in primo luogo la risposta a diversi tipi di segnali, quali a gradino, rampa e sinusoidali, per poi studiarne il comportamento in funzione della variazione di frequenza della $V_{in}$.
+In questa esperienza di laboratorio verrà analizzato il funzionamento di un circuito integratore attivo realizzato mediante un amplificatore operazionale, osservandone in primo luogo la risposta a diversi tipi di segnali, quali a gradino, rampa e sinusoidali, per poi studiarne il comportamento in funzione della variazione di frequenza della $V_{in}$.
 \subsection{\textbf{circuito}}
 \begin{figure}[H]%[!ht]
 \begin {center}
@@ -331,11 +342,10 @@ In questa esperienza di laboratorio verrà analizzato il funzionamento di un \te
 Mediante un amplificatore operazione è possibile realizzare un circuito integratore, cioè in grado di produrre in uscita un segnale proporzionale alla primitiva della forma d'onda in ingresso, inserendo una capacità nella rete di feedback tra l'ingresso invertente e l'uscita.
 Affinché l'amplificatore non vada in saturazione alle basse frequenze, viene aggiunto in parallelo a $C$ un resistore $R_{2}$ che fa si che in tale regime operativo il condensatore si comporti come una impedenza infinita, determinando un guadagno $A_{v}=-R_{2}/R{1}$. In questa configurazione è detta \textit{circuito integratore attivo limitato}. 
 %essendo il periodo della tensione in ingresso relativamente lungo,
-Una caratteristica importante è che il circuito si comporta effettivamente da integratore solo per frequenze superiori a quella di taglio, $f_{t}=\frac{1}{2 \pi C R_{1} }$, è quindi necessario scegliere $R$ e $C$ opportunamente, in relazione alla distribuzione spettrale del segnale da integrare. 
-%Questo apparirebbe chiaro se si osservasse il grafico di fase del diagramma di Bode associato: oltre la frequenza di taglio tutte le armoniche sinusoidali di Fourier vengono sfasate di un angolo tale da essere approssimabili come inverse di cosinusoidi (integrale). [CURIOSITA']
+Una caratteristica importante è che il circuito si comporta effettivamente da integratore solo per frequenze superiori a quella di taglio, $f_{t}=\frac{1}{2 \pi C R_{1} }$, è quindi necessario scegliere $R$ e $C$ opportunamente, in relazione alla distribuzione spettrale del segnale da integrare. Questo è giustificabile osservando il grafico di fase del diagramma di Bode associato: oltre la frequenza di taglio tutte le armoniche sinusoidali di Fourier vengono sfasate di un angolo tale da essere approssimabili come inverse di cosinusoidi, cioè integrali delle sinusoidi di partenza.
 %per cui buona norma per ottenere un circuito efficiente è quella di 
 \subsection{\textbf{Caratterizzazione}}
-Inizialmente si sono scelte $R$ e $C$ con lo scopo di ottenere una frequenza di taglio non eccessivamente bassa per favorire lo studio della risposta in frequenza della fase successiva: \[f_{t} = \frac{1}{2 \pi R_{1} C}= 685.63 \pm 44.13 Hz\] 
+Inizialmente si sono scelte $R$ e $C$ con lo scopo di ottenere una frequenza di taglio non eccessivamente bassa per favorire lo studio della risposta in frequenza della fase successiva: \[f_{t} = \frac{1}{2 \pi R_{1} C}= 685.63 \pm 44.13 Hz\] (SCRIVERE I VALORI CON ERRORE DI R E C!!)
 
 \begin{figure}[H]%[!ht]
 \begin {center}
@@ -344,8 +354,8 @@ Inizialmente si sono scelte $R$ e $C$ con lo scopo di ottenere una frequenza di 
 \label{fig:OPA-integ-res}
 \end {center}
 \end{figure}
-Impostando una frequenza, $f=valore_da _controllare$, si è proceduto con l'osservazione della risposta del circuito, \ref{fig:OPA-integ-res}. Come atteso la $V_{out}$ risulta essere molto vicina all'integrale del segnale in ingresso. In particolare si nota l'affinità con l'integrale calcolato numericamente rappresentato dalla linea rossa tratteggiata.
-Terminata la prima fase si è passati all'analisi della output del circuito in funzione della frequenza. I dati sono stati graficati e fittati in primo luogo con la forma funzionale di un filtro passa basso e poi in seguito attraverso la trasformata di Laplace della funzione di transfer: \[H(s)=k/(as+1)^2\] con polo doppio in corrispondenza di $f=685 Hz$ valore pienamente compatibile con la frequenza di taglio.
+Impostando una frequenza, $f=valore_da _controllare$, si è proceduto con l'osservazione della risposta del circuito, \ref{fig:OPA-integ-res}. Come atteso la $V_{out}$ risulta essere molto vicina all'integrale del segnale in ingresso. In particolare si nota la compatibilità con l'integrale calcolato numericamente rappresentato dalla linea rossa tratteggiata, a meno di un termine lineare dovuto all'offset dell'integrando.
+Terminata la prima fase si è passati all'analisi della output del circuito in funzione della frequenza. I dati sono stati presentati su un grafico e interpolati in primo luogo con la forma funzionale di un filtro passa basso e poi in seguito con la trasformata di Laplace della funzione di trasferimento attesa, che risulta essere: \[H(s)=k/(as+1)^2\]. Il fit ha restituito sul piano S un polo doppio in corrispondenza di $f=685 Hz$ valore pienamente compatibile con la frequenza di taglio osservata in laboratorio.
 \begin{figure}[H]%[!ht]
 \begin {center}
 \includegraphics[width=0.38\textwidth]{analysis/output/OPA-integrator_bode(mag).pdf}
@@ -358,7 +368,7 @@ Infine facendo la regressione del fit è stato ricavato il valore di \textit{mag
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Diagramma di Bode}
 
-
+integrazione riduce rumore AGGIUNGERE
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Amplificatore derivatore} %Matteo
 \begin{figure}[H]%[!ht]
@@ -368,9 +378,9 @@ Infine facendo la regressione del fit è stato ricavato il valore di \textit{mag
 \label{fig:OPA-deriv}
 \end {center}
 \end{figure}
-Il circuito di base dell'amplificatore differenziatore è l'esatto opposto di quello del circuito dell'OpAmp integratore sopracitato. In questo caso le posizioni del condensatore e del resistore sono state invertite affinché il condensatore $C$ sia collegato al terminale di ingresso dell'amplificatore invertente mentre il resistore, $R_1$ costituisca l'elemento di feedback negativo attraverso l'OpAmp. Questo circuito esegue l'operazione matematica di differenziazione cioè produce un'uscita di tensione proporzionale alla velocità di variazione della tensione di ingresso e alla corrente che scorre attraverso il condensatore. In altri termini la tensione di uscita è una versione scalata della derivata della tensione di ingresso. Il condensatore blocca qualsiasi contenuto \textit{DC}, consentendo  quindi il solo passaggio di segnali di tipo \textit{AC}, la cui frequenza dipende dalla velocità di variazione del segnale di ingresso. Alle basse frequenze la reattanza del condensatore è "Alta" con conseguente basso guadagno (R1/Xc) e bassa tensione di uscita, mentre per alte frequenze si avrà un gain nettamente maggiore e un segnale di output più intenso. Ciò è dovuto principalmente all'effetto di primo ordine, che determina la risposta in frequenza del circuito provocandone una risposta di secondo ordine che, alle alte frequenze, dà una tensione di uscita molto superiore a quella che ci si aspetterebbe. Per evitare ciò, il gain ad alta frequenza deve essere ridotto aggiungendo un resistore di feedback $R_f$,di resistenza ridotta,in serie al condensatore. 
+Rispetto al circuito integratore presentato sopra, nel caso del circuito derivatore le posizioni del condensatore e del resistore sono state invertite affinché il condensatore $C$ sia collegato al terminale di ingresso dell'amplificatore invertente mentre il resistore, $R_1$ costituisca l'elemento di feedback negativo attraverso. Questo circuito esegue l'operazione matematica di differenziazione cioè produce un'uscita di tensione proporzionale alla velocità di variazione della tensione di ingresso e alla corrente che scorre attraverso il condensatore. Si noti che il condensatore blocca qualsiasi contenuto \textit{DC} della tensione in ingresso, consentendo  quindi il solo passaggio di segnali di tipo \textit{AC}, la cui frequenza dipende dalla velocità di variazione del segnale di ingresso. Alle basse frequenze la reattanza del condensatore è "Alta" con conseguente basso guadagno (R1/Xc) e bassa tensione di uscita, mentre per alte frequenze si avrà un gain nettamente maggiore e un segnale di output più intenso. Ciò è dovuto principalmente all'effetto di primo ordine, che determina la risposta in frequenza del circuito provocandone una risposta di secondo ordine che, alle alte frequenze, dà una tensione di uscita molto superiore a quella che ci si aspetterebbe. Per evitare ciò, il gain ad alta frequenza deve essere ridotto aggiungendo un resistore di feedback $R_f$,di resistenza ridotta,in serie al condensatore. 
 \subsection{\textbf{Valutazione della risposta}}
-Una volta assemblato il circuito si è proseguito analizzando qualitativamente il comportamento del OPA derivatore a segnali in input di diversa entità, verificando che l'output fosse all'incirca quello previsto.
+Una volta assemblato il circuito si è proseguito analizzando qualitativamente il comportamento a segnali in input di diversa forma d'onda, verificando che l'output fosse in accordo con quello previsto.
 \section{Amplificatore derivatore} %Matteo
 \begin{figure}[H]%[!ht]
 \begin {center}
@@ -384,13 +394,16 @@ Dalla \ref{fig:derivatore}, in cui le scale dei voltaggi sono diverse fra input 
 in cui $T$ è il periodo dell'onda e $\Delta t$ è lo sfasamento calcolato tra i due picchi di input e output. Si ricava $\theta = 87.22792607802886 °$.
 
 Si può dunque confermare che il funzionamento del circuito rispecchi la teoria. Ovviamente è necessario tener conto del fatto che la bontà della derivazione dipenda strettamente dalla frequenza del segnale in ingresso. Infatti se quest'ultima non fosse stata molto minore rispetto alla frequenza di taglio il circuito avrebbe agito da semplice amplificatore invertente.
+
+integrazione aumenta rumore AGGIUNGERE
+
 %%%%%%%%%%FINE SECONDO GIORNO%%%%%%%%%%%%%%%
 %%%%%%%%%%INIZIO TERZO GIORNO%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Mixer invertente} %Federico
 Sulla \textit{breadboard} è stato implementato il circuito in \textit{fig. \ref{fig:OPA-mixer}}. In questa configurazione, l'amplificatore si comporta come circuito sommatore ed il segnale in uscita sarà proporzionale alla somma dei segnali in ingresso. L'OPA è collegato in configurazione invertente, dunque in uscita si otterrà la somma dei segnali cambiata di segno. Nello specifico: 
-\[V_{out} = - R  \sum_{n} \frac{V_n}{R_n} = - \sum_{n} V_n \tag{1} \] L'ultimo passaggio è possibile scegliendo tutti i valori delle resistenze uguali ($R = R_1 = R_2$). Nel nostro caso si ha: \textbf{!inserire valori resistenza!}
+\[V_{out} = - R  \sum_{n} \frac{V_n}{R_n} = - \sum_{n} V_n \tag{1} \] L'ultimo passaggio è possibile scegliendo tutti i valori delle resistenze uguali ($R = R_1 = R_2$). Nel nostro caso si ha: $R_1 =9.81\ k\Omega, \ R_2 = 9.95\ k\Omega ,\ R_3 = 9.89\ k\Omega$.
 
 I primi due canali dell'oscilloscopio sono collegati ai segnali $V_1$ e $V_2$ prodotti dal generatore di funzioni, mentre il terzo canale misura la tensione in uscita $V_{out}$.
 
@@ -422,7 +435,7 @@ Lo stesso effetto si ha per sinusoidi con ampiezze diverse ($V_+ = 0.5, V_- = 0.
 \end {center}
 \end{figure}
 
-Sostituendo il segnale all'ingresso negativo con la sinusoide opposta, si ottiene all'uscita un segnale sostanzialmente nullo, frutto dalla somma di onde opposte di uguale ampiezza. \ref{fig:Mixer2} Il leggero distaccamento dallo zero del segnale in uscita è causato dal fatto che $R_1$ e $R_2$ non sono esattamente identiche, dunque la formula (1) non è una somma diretta ma è pesata sui valori delle resistenze collegate. Questa configurazione coincide con quella dell'amplificatore di differenze di segnali quando in ingresso riceve due sinusoidi identiche. (Vedi paragrafo...)
+Sostituendo il segnale all'ingresso negativo con la sinusoide opposta, si ottiene all'uscita un segnale sostanzialmente nullo, frutto dalla somma di onde opposte di uguale ampiezza. \ref{fig:Mixer2} Il leggero distaccamento dallo zero del segnale in uscita è causato dal fatto che $R_1$ e $R_2$ non sono esattamente identiche, dunque la formula (1) non è una somma diretta ma è pesata sui valori delle resistenze collegate. Questa configurazione coincide con quella dell'amplificatore di differenze di segnali quando in ingresso riceve due sinusoidi identiche. (Vedi paragrafo \ref{par:differenze})
 
 \begin{figure}[H]%[!ht]
 \begin {center}
@@ -433,11 +446,11 @@ Sostituendo il segnale all'ingresso negativo con la sinusoide opposta, si ottien
 \end{figure}
 
 \subsection{Formazione di battimenti}
-Mandando ai due ingressi sinusoidi con frequenza diversa \textbf{(valori di f???)}, l'amplificatore genera una sovrapposizione di onde sfasate che possiederà una frequenza di battimento. La tensione in uscita non avrà quindi un ampiezza costante, ma essa pulserà in modo periodico con una frequenza propria, detta \textit{di battimento}, visualizzabile in \textit{figura \ref{fig:beats}}.
+Mandando ai due ingressi sinusoidi con frequenza diversa $f_1 = 1\ kHz, \ f_2 = 1.1\ kHz$ e uguale ampiezza $1 \V$, l'amplificatore genera una sovrapposizione di onde sfasate che possiederà una frequenza di battimento. La tensione in uscita non avrà quindi un ampiezza costante, ma essa pulserà in modo periodico con una frequenza propria, detta \textit{di battimento}, visualizzabile in \textit{figura \ref{fig:beats}}.
 
 \begin{figure}[H]%[!ht]
 \begin {center}
-\includegraphics[width=0.38\textwidth]{analysis/output/OPA_mixer_beats.pdf}
+\includegraphics[width=0.42\textwidth]{analysis/output/OPA_mixer_beats.pdf}
 \caption{Formazione dei battimenti}
 \label{fig:beats}
 \end {center}
@@ -446,7 +459,7 @@ Mandando ai due ingressi sinusoidi con frequenza diversa \textbf{(valori di f???
 Lo studio qualitativo dei risultati ottenuti nelle diverse configurazioni ha permesso di verificare la corretta implementazione del circuito sommatore. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Amplificatore di differenze invertente} %Federico
+\section{Amplificatore di differenze invertente \label{par:differenze}} %Federico
 
 Un operazionale è in grado di comportarsi anche come amplificatore di differenze di funzioni d'onda, configurazione in cui il segnale di uscita è proporzionale alla differenza dei segnali in ingresso. Perciò è stato implementato il circuito in \textit{figura  \ref{fig:differenze}}, per il quale vale la seguente relazione: 
 \[V_{out} =\frac{V_2 - V_1}{K} \quad con \quad K = \frac{R_1}{R_2}=\frac{R_3}{R_4} \tag{2} \] 
@@ -455,12 +468,12 @@ Scegliendo le resistenze con valori identici ($R_1 = R_2 = R_3 =R_4 $) si otterr
 \begin{figure}[H]%[!ht]
 \begin {center}
 \includegraphics[width=0.38\textwidth]{sch-simulations/output/OPA-difference-amp.pdf}
-\caption{Circuito amplificatore di differenze invertente}
+\caption{Circuito amplificatore di differenze invertente. Sono stati usati i seguenti valori di resistenze: $R_1 =9.81\ k\Omega, \ R_2 = 9.95\ k\Omega ,\ R_3 = 9.89\ k\Omega \ e \ R_4 = 9.83 k\Omega  $  }
 \label{fig:differenze}
 \end {center}
 \end{figure}
 
-\subsubsection{Differenze di onde sinusoidali}
+\subsection{Differenze di onde sinusoidali}
 Per verificare il corretto funzionamento di questa configurazione sono state mandate agli ingressi due sinusoidi identiche in fase (ampiezza $0.5 V$). 
 
 \begin{figure}[H]%[!ht]
@@ -472,36 +485,74 @@ Per verificare il corretto funzionamento di questa configurazione sono state man
 \end{figure}
 
 Il grafico mostra che in uscita si registra una tensione praticamente nulla. Nuovamente il lieve distacco dallo zero è da imputare alle piccole differenze in valore delle resistenze.
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Trigger di Schmitt} %Federico
+
+Applicando poi una sinusoide a media nulla al primo canale e una sinusoide a media $-0.2 V$ al secondo, con ampiezza uguale alla prima, all'uscita si può visualizzare l'offset in tensione \textit{(fig. \ref{fig:diff3})}. 
 
 \begin{figure}[H]%[!ht]
 \begin {center}
-\includegraphics[width=0.48\textwidth]{sch-simulations/output/OPA-mixer-trigger.pdf}
-\caption{Didascalia}
-\label{fig:oscilloscope}
+\includegraphics[width=0.38\textwidth]{analysis/output/OPA_diff_sin3.pdf}
+\caption{Sinusoide a media nulla e sinusoide con offset}
+\label{fig:diff3}
 \end {center}
 \end{figure}
 
-\subsection{Ciclo di isteresi al variare della frequenza} %Matteo
+\subsection{Ulteriori differenze di onde}
+Nei grafici che seguono è possibile visualizzare la differenza di onde quadre con ampiezze diverse ($V_{+,max} = 0.5 \quad e \quad V_{-,max} = 0.25V$) in \textit{fig. \ref{fig:diff_square}}
+e la differenza tra un'onda quadra e una rampa entrambe di ampiezza massima $V=0.5V$ in \textit{fig. \ref{fig:diff_squareramp}}.
+
+\begin{figure}[H]%[!ht]
+\begin {center}
+\includegraphics[width=0.38\textwidth]{analysis/output/OPA_diff_square.pdf}
+\caption{Onde quadre con ampiezze diverse}
+\label{fig:diff_square}
+\end {center}
+\end{figure}
+
+\begin{figure}[H]%[!ht]
+\begin {center}
+\includegraphics[width=0.38\textwidth]{analysis/output/OPA_diff_squareramp.pdf}
+\caption{Differenza di onde quadra e rampa}
+\label{fig:diff_squareramp}
+\end {center}
+\end{figure}
+
+Anche per l'amplificazione di differenze, lo studio qualitativo dei risultati ha confermato la corretta implementazione e funzionamento del circuito; in ogni situazione presentata il comportamento in uscita dell'amplificatore ha rispecchiato il comportamento atteso.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Trigger di Schmitt} 
+
 Il \textit{Trigger di Schmitt} è un circuito elettronico che impone isteresi alla soglia di transizione ingresso-uscita con l'aiuto di un feedback positivo. L'isteresi fa si che vengano forniti due diversi livelli di tensione di soglia per il bordo ascendente e discendente. Essenzialmente, si tratta di un multivibratore bi-stabile e la sua uscita rimane in uno degli stati stabili indefinitamente. Affinché l'uscita cambi da uno stato stabile all'altro, il segnale di ingresso deve cambiare (o attivarsi) in modo appropriato. Questo funzionamento bistabile del trigger di Schmitt richiede un amplificatore con feedback positivo (o \textit{feedback rigenerativo}) con un guadagno in loop maggiore di uno. Quindi, il Trigger di Schmitt è anche noto come \textit{comparatore rigenerativo}.
 In particolare quando $V_{in}$ è leggermente superiore alla tensione di riferimento, $V_{ref}$, la $V_{out}$ diventa $-V_{sat}$ e nel caso in cui sia inferiore diventerà invece $V_{sat}$. La tensione di input a cui avviene il cambio può essere controllato attraverso i valori di $R_1$ e $R_2$.
 \[V_{ref} = \frac{V_{sat}R_2}{R_1+R_2}\]
 Si definisce $V_{UT}$ la tensione di soglia superiore e $V_{LT}$ quella inferiore. $V_{sat}$ e $V_{ref}$ sono i punti dove la funzione di trasferimento caratteristica incrocia gli assi relativi a $V_{out}$ e $V_{in}$.
+
+Con l'utilizzo di un secondo amplificatore operazionale è stato implementato il circuito in \textit{figura \ref{fig:schmitt-trigger}}. Un primo OpAmp è collegato in configurazione di mixer. La sua uscita è collegata a uno degli ingressi del secondo OpAmp in configurazione di \textit{trigger di Schmitt}. 
+
+\begin{figure}[H]%[!ht]
+\begin {center}
+\includegraphics[width=0.48\textwidth]{sch-simulations/output/OPA-mixer-trigger.pdf}
+\caption{Trigger di Schmitt}
+\label{fig:schmitt-trigger}
+\end {center}
+\end{figure}
+
+\subsection{Ciclo di isteresi al variare della frequenza} %Matteo
+
 \begin{figure}[H]%[!ht]
 \begin {center}
 \includegraphics[width=0.38\textwidth]{analysis/output/OPA-trigger-histeresis.pdf}
 \caption{Didascalia}
-\label{fig:OPA}
+\label{fig:trigger-hyst}
 \end {center}
 \end{figure}
+\[\Delta V  = 14.424 +- 0.036  V \]
 Osservando la risposta a $100 Hz$ si vede come effettivamente i valori empirici di $V_{sat}$ e $V_{ref}$ rispettino le leggi sopracitate.
 Si ricorda che l'isteresi previene il trigger dall'oscillare quando un input che varia a bassa frequenza si trova vicina al \textit{threshold voltage}. Aumentando la frequenza ci si aspetta perciò una minore efficacia del comparatore come visibile qua di seguito
 \begin{figure}[H]%[!ht]
 \begin {center}
 \includegraphics[width=0.38\textwidth]{analysis/output/OPA-trigger-histeresis-table.pdf}
 \caption{Didascalia}
-\label{fig:OPA}
+\label{fig:hyst-table}
 \end {center}
 \end{figure}
 %%%%%%%%%%FINE TERZO GIORNO%%%%%%%%%%%%%%%%%%
@@ -556,7 +607,7 @@ In questa fase, più delicata, si vuole invece valutare il guadagno di ciascuna 
 \begin{figure*}[t]%[t]
 \centering
 \begin{center}
-\includegraphics[width=1.05\textwidth]{analysis/output/SiPM_1mm_gain_staircase.pdf}
+\includegraphics[trim = {100pt 0 0 0}, width=1.15\textwidth]{analysis/output/SiPM_1mm_gain_staircase.pdf}
 \end{center}
 \caption{A destra l'istantanea catturata dallo schermo dell'oscilloscopio, a sinistra le tracce estratte numericamente sovrapposte con i cursori orizzontali corrispondenti alle tensioni di picco per l'attivazione di N celle. Il gradiente di colore rappresenta invece la densità di tracce. SiPM 1x1 $mm^2$}
 \label{fig:staircase_1mm}
@@ -565,7 +616,7 @@ In questa fase, più delicata, si vuole invece valutare il guadagno di ciascuna 
 \begin{figure*}[t]%[t]
 \centering
 \begin{center}
-\includegraphics[width=1.05\textwidth]{analysis/output/SiPM_3mm_gain_staircase.pdf}
+\includegraphics[trim = {100pt 0 0 0}, width=1.15\textwidth]{analysis/output/SiPM_3mm_gain_staircase.pdf}
 \end{center}
 \caption{Come nella figura precedente, ma questa volta per il SiPM di dimensioni 3x3 $mm^2$}
 \label{fig:staircase_3mm}
@@ -586,7 +637,7 @@ Entrambi i fit hanno esito positivo, considerando un test $\chi^2$ solo sulla co
 
 \begin{figure}[H]%[!ht]
 \begin{center}
-\includegraphics[width=0.40\textwidth]{analysis/output/SiPM_fit_3mm.pdf}
+\includegraphics[width=0.38\textwidth]{analysis/output/SiPM_fit_3mm.pdf}
 \caption{Interpolazione dell'impulso in saturazione del SiPM 1x1 $mm^2$ per estrapolare la costante di tempo caratteristica.}
 \label{fig:fit1m}
 \end{center}
@@ -594,7 +645,7 @@ Entrambi i fit hanno esito positivo, considerando un test $\chi^2$ solo sulla co
 
 \begin{figure}[H]%[!ht]
 \begin{center}
-\includegraphics[width=0.40\textwidth]{analysis/output/SiPM_fit_1mm.pdf}
+\includegraphics[width=0.38\textwidth]{analysis/output/SiPM_fit_1mm.pdf}
 \caption{Interpolazione dell'impulso in saturazione del SiPM 3x3 $mm^2$ per estrapolare la costante di tempo caratteristica.}
 \label{fig:fit3m}
 \end{center}
@@ -606,24 +657,150 @@ In conclusione, la metodologia sperimentale proposta è risultata adeguata per e
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Linea di ritardo} %Federico
 
+Un segnale che si propaga lungo un cavo coassiale subisce un'attenuazione dovuta alla resistività del materiale del conduttore e la sua velocità di propagazione dipende dalle induttanze e dalle capacità caratteristiche dei conduttori che costituiscono la linea. Ciò produce, nei cavi reali, un'impedenza caratteristica della linea $Z_c$, dipendente esclusivamente dal materiale di cui è composto il cavo e dalla sua geometria.
+Considerando un tratto infinitesimo $\delta x$ del cavo (\textit{fig. \ref{fig:coassiale}) }, si può impostare un sistema di due equazioni differenziali del tipo:
+
+
+\[\begin{cases}
+  \frac{dV}{dx} = -Z_1 I \\
+  \frac{dI}{dx} = -V Y_2 
+\end{cases} \tag{1} \]
+
+Definendo $\gamma = (Z_1 Y_2)^{1/2}$ (costante della propagazione della linea) e $Z_c = (Z_1 Z_2)^{1/2}$ (impedenza caratteristica) ed integrando si ottiene:
+\[ V(x) = Ae^{-\gamma x} + Be^{\gamma x} \tag{2}\]
+\[ I(x) = (1/Z_c)(Ae^{-\gamma x} + Be^{\gamma x}) \tag{3}\]
+Le espressioni ricavate dipendono solo da $x$ e non dal tempo. 
+Quello che si osserva è che il segnale si compone di due onde: un'onda diretta, che si attenua con l'aumentare delle $x$ e un'onda riflessa che sembrerebbe aumentare in ampiezza al crescere delle $x$ (fisicamente impossibile) e che dunque viaggia in senso opposto.
+
 \begin{figure}[H]%[!ht]
 \begin {center}
-\includegraphics[width=0.38\textwidth]{sch-simulations/output/Transmission line.pdf}
-\caption{Didascalia}
-\label{fig:oscilloscope}
+\includegraphics[width=0.38\textwidth]{analysis/output/cavo coassiale.png}
+\caption{Tratto $\delta x$ cavo assiale}
+\label{fig:coassiale}
 \end {center}
 \end{figure}
 
-\subsection{Tempo di volo impulso singolo}
+Supponiamo ora di chiudere la linea con un'impedenza di carico $Z_L$, si potranno configurare tre possibili situazioni: 
+\begin{itemize}
+    \item $Z_L = 0$ (cortocircuito): il segnale riflesso ha la stessa ampiezza di quello incidente ed è capovolto
+    \item $Z_L = \infty$ (circuito aperto): il segnale riflesso torna al generatore con ampiezza doppia rispetto a quello trasmesso
+    \item $Z_L = Z_c$ (linea adattata): non c'è segnale riflesso, il segnale incidente si attenua all'infinito.
+\end{itemize}
 
-\subsection{Repetition rate e frequenza di accordatura}
+I valori tipici per un cavo coassiale tipo RG-58 e RG-174 sono $Z_c = 50 \Omega \ $ con ritardo di propagazione per metro $  \ 1/v_f = 5 \ ns/m $.
+
+\begin{figure*}[h]%[t]
+\centering
+\begin{center}
+\includegraphics[trim = {150pt 0 0 0}, width=1.1\textwidth]{analysis/output/Delay_line_pulse.pdf}
+\caption{Linea di ritardo, misure a tempo di volo con singolo impulso}
+\label{fig:singolo impulso}
+\end{center}
+\end{figure*}
+
+
+\subsection{Setup sperimentale e misura del tempo di volo  di un impulso singolo}
+E' stato fornito un cavo coassiale di lunghezza totale $L$ incognita, suddiviso in una parte lunga $L/2$ e due parti lunghe $L/4$. Ad uno dei capi è stato collegato il generatore di segnali Keithley 3390. I canali dell'oscilloscopio sono stati collegati in modo alternato all'ingresso, al primo quarto, a metà e all'uscita del cavo. (fig. \ref{fig:linea di ritardo}). 
+La linea poteva essere chiusa alternativamente con una resistenza di valore pari all'impedenza caratteristica, cioè $50 \Omega$, con un cortocircuito o poteva essere lasciata aperta.
+
+\begin{figure}[H]%[!ht]
+\begin {center}
+\includegraphics[width=0.38\textwidth]{sch-simulations/output/Transmission line.pdf}
+\caption{Schema circuitale per testare la linea di ritardo. R1A è l'eventuale resistenza di terminazione.}
+\label{fig:linea di ritardo}
+\end {center}
+\end{figure}
+
+
+Per verificare qualitativamente il comportamento della linea nei tre casi descritti, per ognuna delle terminazioni possibili e effettuare una prima stima della lunghezza L della linea è stato inviato un treno di impulsi di durata pari a 20 ns, con fronti di salita e di discesa larghi 5 ns e frequenza di ripetizione in questo caso pari a $1 kHz$. Il segnale veniva acquisito sui canali 1 e 2 dell'oscilloscopio rispettivamente all'inizio e alla fine della linea di lunghezza L incognita. \textit{(fig. \ref{fig:singolo impulso})}.
+
+
+
+
+\begin{itemize}
+    \item Nel primo caso - terminazione in corto circuito - il segnale riflesso è capovolto rispetto al segnale incidente, dunque all'uscita l'oscilloscopio registra una tensione molto piccola (prossima a 0), mentre si osserva un impulso capovolto che si propaga verso l'ingresso;
+    \item Nel secondo caso - terminazione con circuito aperto - sull'uscita di osserva un segnale di ampiezza circa uguale a quella originale, solamente attenuato dalla resistività dei conduttori (dipendente a sua volta dalla frequenza), mentre si osserva all'ingresso un impulso di ritorno di altezza doppia rispetto a quello originale.
+    \item Il terzo caso si ottiene installando alla terminazione della linea un carico resistivo di $50 \Omega$, pari all'impedenza caratteristica, il quale fa si che il segnale non venga riflesso e la linea di comporti per il generatore come se fosse di lunghezza infinita.
+\end{itemize}
+ 
+
+Nel caso a circuito aperto, è possibile stimare la lunghezza $L$ del cavo, misurando il tempo di andata e ritorno dell'impulso: sapendo che il segnale si propaga a velocità $v_f = 5 \ ns$. Il valore $\Delta t / {v_f}$ corrisponderà al doppio della distanza percorsa dal segnale. 
+Estrapolando dal grafico del segnale in ingresso i valori per i due massimi relativi che corrispondono alla partenza e al ritorno dell'impulso, si calcola $\Delta t$. Si ottiene quindi: 
+$L = 27.69 \pm 0.50)$. (Errore stimato tenendo conto sia della risoluzione temporale dell'oscilloscopio, sia dell'imprecisione di posizionamento dei cursori dovuta a forme differenti dei fronti di salita).
+
+
+
+\subsection{Repetition rate}
+E' possibile effettuare una misura più raffinata della lunghezza del cavo inviando, anziché un singolo impulso, una ripetizione di impulsi ad un intervallo costante, pari al periodo uguale di andata-ritorno dell'impulso, partendo dalla stima ottenuta con la tecnica a tempo di volo. Nella configurazione con l'uscita in cortocircuito, l'onda riflessa - opposta a quella incidente - annullerà quest'ultima in prossimità del generatore, portando ad una tensione risultante sul canale 1 dell'oscilloscopio minima. Questa condizione si realizza con un periodo di ripetizione pari a $\tau = (267.2 \pm 0.1)$ $ns$, con questo metodo si è ottenuto un valore di lunghezza pari a $ L = $ $(27.63 \pm 0.12)$ $m $. La condizione di minimo dell'impulso risultante qui descritta è stata ottenuta minimizzando il valore $V_{pp}$ e in figura \ref{fig: ripetizione di impulsi} è possibile osservare quanto acquisito con l'oscilloscopio.
+
+\begin{figure}[H]%[!ht]
+\begin{center}
+\includegraphics[width=0.5\textwidth]{analysis/output/Delay_line_repetition.pdf}
+\caption{Linea di ritardo, condizione di minimo in cui l'impulso di ritorno si somma in controfase con quello in partenza dando origine ad una risultante minima (in nero).}
+\label{fig: ripetizione di impulsi}
+\end{center}
+\end{figure}
+
+Come si nota il segnale risultante è minimizzato, ma non è del tutto trascurabile, cioè dovuto a fenomeni di attenuazione dipendente dalla frequenza e dispersione all'interno della linea di trasmissione che deformano leggermente gli impulsi durante il trasporto.
+La misura ottenuta con il secondo metodo risulta essere ampiamente compatibile con quella ottenuta a tempo di volo. Un test Z di Gauss riporta un p-value $\sim 1$.
+
+
+\begin{figure*}[h]%[t]
+\centering
+\begin{center}
+\includegraphics[trim = {200pt 0 0 0}, width=1.1\textwidth]{analysis/output/Delay_line_standingWave2L.pdf}
+\caption{Onde stazionarie $\lambda = 2L$}
+\label{fig: "onde staz 2L}
+\end{center}
+\end{figure*}
+
+\begin{figure*}[h]%[t]
+\centering
+\begin{center}
+\includegraphics[trim = {200pt 0 0 0}, width=1.1\textwidth]{analysis/output/Delay_line_standingWaveL.pdf}
+\caption{Onde stazionarie con lunghezza d'onda $\lambda = L$}
+\label{fig: onde staz L}
+\end{center}
+\end{figure*}
+
+
+\begin{figure*}[h]%[t]
+\includegraphics[trim = {200pt 0 0 0}, clip, width=1.1\textwidth]{analysis/output/Delay_line_lambda2L.pdf}
+\caption{Onde stazionarie con lunghezza d'onda $\lambda = 2L$}
+\label{fig: delayline 2L}
+
+\end{figure*}
+
+\begin{figure*}[h]%[t]
+\includegraphics[trim = {200pt 0 0 0}, clip, width=1.1\textwidth]{analysis/output/Delay_line_lambdaL.pdf}
+\caption{Onde stazionarie $\lambda = L$}
+\label{fig: delayline L}
+\end{figure*}
+
 
 \subsection{Formazione di onde stazionarie}
 
-\subsection{Armoniche 2L}
+Se al posto di un impulso si invia sulla linea un segnale sinusoidale con lunghezza d'onda pari a quella della linea oppure pari al suo doppio (o altre armoniche) si generano delle onde stazionarie risultanti dall'interferenza dell'onda incidente con quella riflessa. 
+In un onda stazionaria le posizioni di ventri (interferenza costruttiva) e nodi (interferenza distruttiva) sono costanti nel tempo e il tipo di armonica che si formerà dipende da come viene terminata la linea.
 
-\subsection{Armoniche L}
 
+
+Prendiamo ora in esame i grafici in \textit{(figg. \ref{fig: "onde staz 2L} e \ref{fig: onde staz L})} che mostrano l'andamento teorico di fronti d'onda di onde stazionarie nelle tre possibili configurazioni della linea.
+La linea con terminazione a circuito aperto si comporta come una cavità risonante ad estremità aperte; quella a terminazione con cortocircuito come una cavità risonante ad estremità chiuse. Nel caso di linea adattata non essendoci onda riflessa non si generano onde stazionarie. Nei due grafici si distingue anche il comportamento nel caso di lunghezza d'onda pari a $L$ e $2L$: ciò che cambia è il numero di ventri e nodi che si formano in quanto si forma un'armonica di ordine superiore. I risultati sono presentati nelle figure \ref{fig: delayline 2L} e \ref{fig: delayline L}. In particolare per il caso $\lambda$ = 2L osserviamo che, come atteso:
+\begin{itemize}
+    \item Con circuito aperto: il fronte d'onda ha un nodo (V=0) a $L/2$ e ventri (massimi e minimi) in $0 \ e\ L$, mentre a $L/4$ l'ampiezza è attenuata 
+    \item Con cortocircuito sull'uscita: il fronte d'onda ha nodi a $0\ e\ L$ e un ventre in $L/2$, mentre a $L/4$ l'ampiezza è attenuata
+    \item Con linea adattata: non c'è onda riflessa, l'onda si propaga senza interferenze.
+\end{itemize}
+Invece con $\lambda$ = L :
+\begin{itemize}
+    \item Con circuito aperto: Si ottengono massimi su ingresso, uscita e a L/2, in questo caso in controfase, e minimo a L/4
+    \item Con cortocircuito sull'uscita: Si ottengono minimi sull'ingresso, sull'uscita e un massimo a L/4
+    \item Con linea adattata: non c'è onda riflessa, l'onda si propaga senza interferenze.
+\end{itemize}
+
+
+\clearpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Conclusioni generali} %Tutti quanti
 
