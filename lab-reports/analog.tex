@@ -10,6 +10,8 @@
 
 \documentclass[journal]{IEEEtran}
 
+\usepackage[italian]{babel}
+
 % *** CITATION PACKAGES ***
 \usepackage[style=ieee]{biblatex} 
 \bibliography{analog.bib}    %your file created using JabRef
@@ -124,12 +126,12 @@ tipo \textit{p}. In questa configurazione la regione di svuotamento si ridurrà 
 \begin{figure}[H]%[!ht]
 \begin{center}
 \includegraphics[width=0.38\textwidth]{sch-simulations/output/Diode-rectifier.pdf}
-\caption{Schema del circuito elettrico per la caratterizzazione del SiPM. Valori per i componenti utilizzati misurati con il multimetro: R1 = ( $\pm$ ) $\Omega$, C1 = ($\pm$ ) $nF$}
+\caption{Schema del circuito elettrico per la caratterizzazione del SiPM. Valori per i componenti utilizzati misurati con il multimetro: R1 = ( $MANCA-DATO\pm$ ) $\Omega$, C1 = ($MANCA-DATO\pm$ ) $nF$}
 \label{fig:diode-rectifier}
 \end{center}
 \end{figure}
 \subsection{\textbf{Componentistica e circuito}}
-La trattazione successiva riguarda i raddrizzatori a singola semi-onda ed in particolare l'implementazione del circuito in \ref{fig:diode-rectifier}, realizzato tramite un unico diodo più un condensatore di filtraggio. In tale configurazione durante la fase di crescita del segnale in ingresso $V_{in}$ il condensatore agisce da accumulatore permettendo alla $V_{out}$ di copiare la tensione in entrata. Nel secondo quarto di periodo, il diodo passa in interdizione a causa del condensatore che si scarica lentamente rispetto alla variazione dell'ingresso. Infine durante la fase di OFF del diodo l'usicta è determinata unicamente dalla scarica del condensatore sulla resistenza.
+La trattazione successiva riguarda i raddrizzatori a singola semi-onda ed in particolare l'implementazione del circuito in \textit{Fig. \ref{fig:diode-rectifier}}, realizzato tramite un unico diodo più un condensatore di filtraggio. In tale configurazione durante la fase di crescita del segnale in ingresso $V_{in}$ il condensatore agisce da accumulatore permettendo alla $V_{out}$ di copiare la tensione in entrata. Nel secondo quarto di periodo, il diodo passa in interdizione a causa del condensatore che si scarica lentamente rispetto alla variazione dell'ingresso. Infine durante la fase di OFF del diodo l'usicta è determinata unicamente dalla scarica del condensatore sulla resistenza.
 Quindi in regime di funzionamento il diodo rimane acceso per un periodo $\Delta T$ in cui avviene la fase di carica e la tensione di uscita passa dal suo valore minimo al suo valore massimo. Un raddrizzatore ben funzionante fa si che la \textit{tensione di ripple} sia la minore possibile e ciò è strettamente correlato al valore della costante di tempo $\tau$.
 Analizzando il funzionamento del circuito in assenza del condensatore di livellamento invece si avrà in uscita un segnale costituito solamente dalla semi-onda positiva, nel caso di \textit{polarizzazione diretta}, oppure della semi-onda negativa in \textit{polarizzazione inversa}.
 
@@ -250,11 +252,11 @@ in cui $k$ rappresenta il guadagno e $a = \frac{1}{f_H}$ ed $f_H$ sta per la fre
 \label{fig:gain11}
 \end {center}
 \end{figure}
-\[k_11 = 9.728 \pm 0.626\] 
+\[k_{11} = 9.728 \pm 0.626\] 
 \[f_{H_{11}} = [ 83.5 \pm 4.5 ]kHz\]
 Partendo da tali dati è stato possibile osservare la conservazione del prodotto 
 \[BAND WIDTH \times GAIN\]
-ottenendo i valori \[f_{H_{2}} \times A_2 = (5.918 \pm  0.818) MHz\]  \[f_{H_{11}} \times A_{11} = (8.206 \pm 0.650) MHz\] ,(\ref{fig:gain-compare}), compatibili entro le loro incertezze con un livello di significatività del 95\% (\textit{Test Student = 2.18}).
+ottenendo i valori \[f_{H_{2}} \times A_2 = (5.918 \pm  0.818) MHz\]  \[f_{H_{11}} \times A_{11} = (8.206 \pm 0.650) MHz\] compatibili entro le loro incertezze con un livello di significatività del 95\% (\textit{Test Student = 2.18}).
 \begin{figure}[H]%[!ht]
 \begin {center}
 \includegraphics[width=0.38\textwidth]{analysis/output/OPA-bode_gain_comparison(mag).pdf}
@@ -262,7 +264,7 @@ ottenendo i valori \[f_{H_{2}} \times A_2 = (5.918 \pm  0.818) MHz\]  \[f_{H_{11
 \label{fig:gain-compare}
 \end {center}
 \end{figure}
-
+In \textit{Fig.\ref{fig:gain-compare}} è infine possibile osservare qualitativamente il confronto delle caratteristiche dei due circuiti.
 
 \subsection{Slew rate}
 In un amplificatore operazionale reale la velocità di variazione della tensione di uscita non può superare un valore limite detto \textit{slew-rate} anche detta velocità di risposta:
@@ -282,7 +284,7 @@ Per analizzare tale fenomeno si è osservata la risposta del circuito all'aument
 \begin{figure}[H]%[!ht]
 \begin {center}
 \includegraphics[width=0.38\textwidth]{analysis/output/OPA-slew-rate-fit.pdf}
-\caption{Regressione lineare effettuata suk fronte di salita del segnale di output a 100 kHz, riferimento alla \textit{}}
+\caption{Regressione lineare effettuata suk fronte di salita del segnale di output a 100 kHz, riferimento alla \textit{Fig. \ref{fig:slew-rate-table}}}
 \label{fig:slew-rate-fit}
 \end {center}
 \end{figure}
@@ -340,11 +342,11 @@ Nelle configurazioni ad anello aperto esaminate finora, l'ingresso non utilizzat
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Amplificatore integratore reale invertente} %Matteo
 In questa esperienza di laboratorio verrà analizzato il funzionamento di un circuito integratore attivo realizzato mediante un amplificatore operazionale, osservandone in primo luogo la risposta a diversi tipi di segnali, quali a gradino, rampa e sinusoidali, per poi studiarne il comportamento in funzione della variazione di frequenza della $V_{in}$.
-\subsection{\textbf{circuito}}
+\subsection{\textbf{Circuito}}
 \begin{figure}[H]%[!ht]
 \begin {center}
 \includegraphics[width=0.38\textwidth]{sch-simulations/output/OPA-integratore.pdf}
-\caption{Didascalia}
+\caption{Schema  del  circuito  elettrico  per  la  caratterizzazione  dell’OPA integratore.  Valori  per  i  componenti  utilizzati  misurati  con il multimetro: $R_1 =$ $(9.920 \pm 0.139)$ $k\Omega$, $R_2 =$ $(9.850 \pm 0.138)$ $k\Omega$, $C_1 =$ $(23.4 \pm 1.5)$ $\nano F$}
 \label{fig:OPA-integ}
 \end {center}
 \end{figure}
@@ -355,25 +357,26 @@ Affinché l'amplificatore non vada in saturazione alle basse frequenze, viene ag
 Una caratteristica importante è che il circuito si comporta effettivamente da integratore solo per frequenze superiori a quella di taglio, $f_{t}=\frac{1}{2 \pi C R_{1} }$, è quindi necessario scegliere $R$ e $C$ opportunamente, in relazione alla distribuzione spettrale del segnale da integrare. Questo è giustificabile osservando il grafico di fase del diagramma di Bode associato: oltre la frequenza di taglio tutte le armoniche sinusoidali di Fourier vengono sfasate di un angolo tale da essere approssimabili come inverse di cosinusoidi, cioè integrali delle sinusoidi di partenza.
 %per cui buona norma per ottenere un circuito efficiente è quella di 
 \subsection{\textbf{Caratterizzazione}}
-Inizialmente si sono scelte $R$ e $C$ con lo scopo di ottenere una frequenza di taglio non eccessivamente bassa per favorire lo studio della risposta in frequenza della fase successiva: \[f_{t} = \frac{1}{2 \pi R_{1} C}= 685.63 \pm 44.13 Hz\] (SCRIVERE I VALORI CON ERRORE DI R E C!!)
+Inizialmente si sono scelte $R =$$(9.920 \pm 0.139)$$k\Omega$ e $C=$$(23.4 \pm 1.5)$$\nano F$ con lo scopo di ottenere una frequenza di taglio non eccessivamente bassa per favorire lo studio della risposta in frequenza della fase successiva: \[f_{t} = \frac{1}{2 \pi R_{1} C}= 685.63 \pm 44.13 Hz\].
 
 \begin{figure}[H]%[!ht]
 \begin {center}
 \includegraphics[width=0.50\textwidth]{analysis/output/OPA-integ-with-res.pdf}
-\caption{Didascalia}
+\caption{Risposta del circuito integratore attivo a diverse forme d'onda in ingresso. Partendo dall'alto gradino, onda quadra, sinusoide e treno di impulsi}
 \label{fig:OPA-integ-res}
 \end {center}
 \end{figure}
-Impostando una frequenza, $f=valore_da _controllare$, si è proceduto con l'osservazione della risposta del circuito, \ref{fig:OPA-integ-res}. Come atteso la $V_{out}$ risulta essere molto vicina all'integrale del segnale in ingresso. In particolare si nota la compatibilità con l'integrale calcolato numericamente rappresentato dalla linea rossa tratteggiata, a meno di un termine lineare dovuto all'offset dell'integrando.
+Impostando una frequenza, $f= MANCA-DATO$, si è proceduto con l'osservazione della risposta del circuito, \ref{fig:OPA-integ-res}. Come atteso la $V_{out}$ risulta essere molto vicina all'integrale del segnale in ingresso. In particolare si nota la compatibilità con l'integrale calcolato numericamente rappresentato dalla linea rossa tratteggiata, a meno di un termine lineare dovuto all'offset dell'integrando.
 Terminata la prima fase si è passati all'analisi della output del circuito in funzione della frequenza. I dati sono stati presentati su un grafico e interpolati in primo luogo con la forma funzionale di un filtro passa basso e poi in seguito con la trasformata di Laplace della funzione di trasferimento attesa, che risulta essere: \[H(s)=k/(as+1)^2\]. Il fit ha restituito sul piano S un polo doppio in corrispondenza di $f=685 Hz$ valore pienamente compatibile con la frequenza di taglio osservata in laboratorio.
 \begin{figure}[H]%[!ht]
 \begin {center}
 \includegraphics[width=0.38\textwidth]{analysis/output/OPA-integrator_bode(mag).pdf}
-\caption{Didascalia}
+\caption{Diagramma di Bode del circuito integratore}
 \label{fig:integ-bode}
 \end {center}
 \end{figure}
-Dalla forma funzionale ottenuta è poi stato estratto il valore della $H.F = 418.28892698398096 Hz$ (serve trovare modo per estrarre errore per poi confrontarlo con frequenza di taglio).
+\[f_H = (0.75 \pm 0.01) kHz\]
+Dalla forma funzionale ottenuta è poi stato estratto il valore della $f_H$.
 Infine facendo la regressione del fit è stato ricavato il valore di \textit{magnitude} relativo alla frequenza nulla, $A_{v}(0)=-0.317$ ed è stato confrontato col valore ricavato dall'espressione, derivata dalla letteratura, $A_{v} = 20log_{10}(-R_{2}/R{1}) = -0.142 \pm 0.397 $. La misura empirica risulta consistente con quella teorica ($Z=0.44$).
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Diagramma di Bode}
@@ -541,20 +544,41 @@ Con l'utilizzo di un secondo amplificatore operazionale è stato implementato il
 \begin{figure}[H]%[!ht]
 \begin{center}
 \includegraphics[width=0.45\textwidth]{sch-simulations/output/OPA-mixer-trigger.pdf}
-\caption{Trigger di Schmitt}
+\caption{Schema elettrico utilizzato per la caratterizzazione del trigger di Schmitt con l'obiettivo di mostrare le capacità di immunità al rumore. Il circuito di dotato di due stadi operazionali, il primo con funzione di sommatore produce un segnale rumoroso sommando un noise ad alta frequenza ad un segnale sinusoidale, il secondo costituisce il trigger vero e proprio.} %VALORI DEI COMPONENTI!!!
 \label{fig:schmitt-trigger}
 \end{center}
 \end{figure}
 
-\subsection{Ciclo di isteresi al variare della frequenza} %Matteo
 
 \begin{figure}[H]%[!ht]
 \begin {center}
-\includegraphics[width=0.50\textwidth]{analysis/output/OPA-trigger-histeresis.pdf}
-\caption{Didascalia}
+\includegraphics[width=0.50\textwidth]{analysis/output/OPA-trigger-histeresis-overlapped.pdf}
+\caption{Rappresentazione dei cicli di isteresi del trigger di Schmitt al variare della frequenza della sinusoide fornita in ingresso. Si osserva chiaramente che ad alta frequenza la velocità di commutazione del circuito diventa insufficiente. Questo parametro dipende dallo slew rate dell'amplificatore operazionale utilizzato.}
 \label{fig:trigger-hyst}
 \end {center}
 \end{figure}
+
+\begin{figure}[H]%[!ht]
+\begin {center}
+\includegraphics[width=0.50\textwidth]{analysis/output/trigger1.pdf}
+\caption{}
+\label{fig:trigger-hyst}
+\end {center}
+\end{figure}
+
+%QUI MANCA IL GRAFICO AD ANELLO APERTO PER IL CONFRONTO, PER FAR VEDERE CHE E' SOGGETTO AL RUMORE. SU QUESTO AGLIETTA HA INSISTITO PARECCHIO!
+%Il problema è che nessuno lo ha esportato quel plot da Python!
+%Adesso vado a farlo...
+
+\begin{figure}[H]%[!ht]
+\begin {center}
+\includegraphics[width=0.50\textwidth]{analysis/output/trigger2.pdf}
+\caption{}
+\label{fig:trigger-hyst}
+\end {center}
+\end{figure}
+
+
 \[\Delta V  = 14.424 +- 0.036  V \]
 Osservando la risposta a $100 Hz$ si vede come effettivamente i valori empirici di $V_{sat}$ e $V_{ref}$ rispettino le leggi sopracitate.
 Si ricorda che l'isteresi previene il trigger dall'oscillare quando un input che varia a bassa frequenza si trova vicina al \textit{threshold voltage}. Aumentando la frequenza ci si aspetta perciò una minore efficacia del comparatore come visibile qua di seguito
@@ -813,18 +837,47 @@ Invece con $\lambda$ = L :
 \clearpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Conclusioni generali} %Tutti quanti
+In questa breve relazione di laboratorio sono stati caratterizzati alcuni circuiti nell'ambito dell'elettronica analogica che ricoprono particolare importanza nella ricerca in fisica. I risultati ottenuti sono risultati globalmente in accordo con la teoria, come è stato possibile verificare qualitativamente attraverso i grafici, oppure in alcuni casi quantitativamente mediante test statistici di compatibilità tra i valori ottenuti in laboratorio e quanto predetto dai modelli utilizzati. Le metodologie impiegate sono risultate adeguate, in particolare è sempre risultato possibile raggiungere nelle misure un rapporto segnale / rumore sufficiente per poter mettere in luce le caratteristiche desiderate del circuito sotto esame. La breadboard, infatti, nel range di frequenze utilizzato (0 - 1 MHz) non ha mostrato attenuazioni o capacità parassite problematiche. Da questo punto di vista l'esperienza più delicata è risultata la caratterizzazione del SiPM, per cui si rimanda all'apposito paragrafo di discussione. \\
 
+Particolarmente rilevante è risultata la possibilità di esportare le tracce in formati numerici (CSV) dall'oscilloscopio per poter procedere all'analisi con metodologie "offline" che hanno garantito maggior precisione (per esempio grazie ad algoritmi di ricerca dei fronti di salita e discesa) rispetto all'uso dei cursori dell'oscilloscopio (posizionamento soprattutto visivo). Questo soprattutto nella misurazione degli intervalli tra impulsi nell'esperienza della linea di ritardo, oppure per la misurazione delle tensioni durante la caratterizzazione del SiPM.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Appendice}
+%INSERIRE:
+% 1. Tabella presa dati per ciascun bode plot
+% 2. Tabella presa dati 
 
+\begin{table}[H]
+    \centering
+    \title{Scala valori di tensione accensione singoli SPAD del SiPM}
+    \begin{tabular}{c|c}
+    SiPM 1x1 $mm^2$ ($\mu V$)     &  SiPM 3x3 $mm^2$ ($\mu V$) \\
+    \hline \\
+         -40.31028 & 100.1666\\ 
+         431.64327 & 348.9166\\ 
+         881.15074 & 581.0833\\ 
+         1281.2498 & 829.8333\\ 
+         1695.9772 & 1062.000\\ 
+         2080.3026 & 1335.625\\ 
+         2481.5272 & 1600.958\\ 
+                   & 1816.541\\ 
+                   & 2048.708\\ 
+                   & 2272.583\\ 
+                   & 2513.041\\ 
+                   & 2786.666\\ 
+                   & 3068.583\\ 
+                   & 3342.208\\
+                
+    \end{tabular}
+    \vspace{5 mm}
+    \caption{Scala valori di tensione accensione singoli SPAD del SiPM}
+    \label{tab:SiPMscale}
+\end{table}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Indice}
 \tableofcontents
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Riferimenti}
 \printbibliography
 
 
