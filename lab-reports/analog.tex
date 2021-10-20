@@ -81,7 +81,7 @@ Segue oltre una brevissima dei principali strumenti di misura e genearatori util
 
 La maggior parte delle misure di tensione e tempo è stata realizzata con un \textit{digital storage oscilloscope (DSO)} Tektronix 1104 con banda passante di 70 MHz, frequenza di campionamento massima di 1 GSa/s che consente fino a 5 ns/div di risoluzione temporale, 4 canali e 2.5K punti di memoria per finestra di acquisizione, risoluzione verticale di 8 bit e sensibilità fino a 10 mV/div. \cite{A}
 
-\subsection{\textbf{Oscilloscopio Rhode \& Schwartz}}
+\subsection{\textbf{Oscilloscopio Rhode \& Schwartz RTB2004}}
 
 \begin{figure}[h!]
   \centering
@@ -138,12 +138,12 @@ Analizzando il funzionamento del circuito in assenza del condensatore di livella
 \subsection{\texxtbf{Caratterizzazione}}
 \begin{figure}[H]%[!ht]
 \begin {center}
-\includegraphics[width=0.38\textwidth]{analysis/output/half-wave-rectifier.pdf}
+\includegraphics[width=0.50\textwidth]{analysis/output/half-wave-rectifier.pdf}
 \caption{Grafico del segnale processato da un raddrizzatore a singola semi-onda con diodo al silicio}
 \label{fig:half-wave}
 \end {center}
 \end{figure}
-\[\Delta V = [0.64 \pm 0.05] V\] 
+\[\Delta V = (0.64 \pm 0.05) V\] 
 Come viene evidenziato dalla \textit{Fig. \ref{fig:half-wave}} il comportamento del circuito in assenza di un condensatore di filtraggio segue esattamente l'aspettativa teorica. Ricordando che in letteratura il valore della \textit{tensione di soglia} per i diodi al Silicio è pari a $V_{\gamma}=0.6V$ e considerando possibili impurità del diodo in questione si evince un totale accordo col dato empirico. Tale supposizione è sostenuta dal risultato del \textit{Test di Gauss} ($Z = 0.56$).
 \subsection{\textbf{Discussione dei risultati}}
 In conclusione l'analisi qualitativa del comportamento del diodo presenta una totale consistenza con la teoria come sottolineato dal grafico presentato.
@@ -154,16 +154,63 @@ In conclusione l'analisi qualitativa del comportamento del diodo presenta una to
 Passiamo ora allo studio una serie di circuiti notevoli di amplificazione, confronto ed esecuzione di operazioni matematiche sui segnali realizzati con amplificatori operazionali. Questi componenti sono altamente versatili e sono utilizzati in quasi tutti gli ambiti in cui è necessario il condizionamento di un segnale analogico. Sono modellizzabili come amplificatori differenziali (OPA) con impedenza in ingresso teoricamente infinita, impedenza di uscita teoricamente nulla, banda passante infinita e guadagno a circuito aperto teoricamente infinito. Nella realizzazione pratica è possibile raggiungere per queste grandezze valori molto grandi o molto piccoli grazie all'utilizzo di processi di fabbricazione integrati che consentono di realizzare su un singolo die circuiti analogici complessi multistadio (almeno stadio di ingresso differenziale, stadio di guadagno, stadio di uscita). Nelle esperienze che seguiranno verranno utilizzati OPA \textbf{LM741} prodotti dalla Texas Instruments con package DIP, dispositivi a basso costo alimentati in tensione duale $\pm$ 15 V con \textit{slew rate} tipico di 0.5 V/$\mu$s, larghezza di banda di 1.5 MHz e guadagno tipico per grandi segnali a T = 298 K di 50 V/mV. \cite{H}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{\textbf{Configurazione ad aperto invertente (zero-crossing detector)}} %Stefano
+\section{\textbf{Configurazione ad anello aperto invertente (zero-crossing detector)}} %Stefano
 Descrizione
 
-\begin{figure}[H]%[!ht]
+La prima analisi effettuata con l'amplificatore operazionale è stata in configurazione invertente ad anello aperto. Lo scopo era verificare che fin da piccoli valori di segna
+Questo comportamento dell'amplificatore rende possibile il suo utilizzo come \textit{zero crossing detector}, cioé rivelatore di passaggio di un segnale.
+Di seguito si descrive il calcolo del punto di zero crossing: il valore di segnale in ingresso per cui si raggiunge la saturazione.
+
+\begin{figure}[h]%[!ht]
 \begin {center}
-\includegraphics[width=0.38\textwidth]{sch-simulations/output/OPA-open-loop-inverting.pdf}
-\caption{Didascalia}
+\includegraphics[width=0.38\textwidth]{sch-simulations/output/opa-open-loop-inverting.pdf}
+\caption{opa: configurazione invertente ad anello aperto}
 \label{fig:oscilloscope}
 \end {center}
 \end{figure}
+
+Come segnale in ingresso si è scelto di generare un'onda sinusoidale di ampiezza $500 mV$ e frequenza di $1kHz$. In uscita ci si aspettava un alternarsi di saturazioni dell'a
+
+\begin{figure}[h]%[!ht]
+\begin {center}
+\includegraphics[width=0.38\textwidth]{analysis/output/opa-open-loop-inv-zero-crossing.pdf}
+\caption{opa: configurazione invertente ad anello aperto}
+\label{fig:oscilloscope}
+\end {center}
+\end{figure}
+
+Nella prima immagine si apprezzano l'intensità dell'amplificazione e l'inversione del segnale.
+
+\begin{figure}[h]%[!ht]
+\begin {center}
+\includegraphics[width=0.38\textwidth]{analysis/output/opa-open-loop-inv-zero-crossing-z2.pdf}
+\caption{opa: configurazione invertente ad anello aperto}
+\label{fig:oscilloscope}
+\end {center}
+\end{figure}
+
+Nella seconda immagine si cambia scala per il segnale di ingresso.
+
+Il segnale in uscita è compreso tra $-14.0 \pm 0.5 V $  e $14.6 \pm 0.5 V$.
+Si sceglie dunque di considerare in saturazione l'amplificatore per valori superiori a $14.1 V$ o inferiori a $-13.5 V$. Il segnale è infatti soggetto a inevitabili oscillazi
+
+Di seguito i valori per cui vengono superate le soglie nei vari intervalli temporali:
+
+\begin{tabular}{|c|c|c|}
+    t $\pm$ 0.05 {[}ms{]} & soglia in uscita $\pm 0.5$ {[}V{]} & $V_{in}$ $\pm 0.02$ {[}V{]} \\ \hline
+-0.90 \textless t \textless -0.40 & -13.5 & 0.024  \\ \hline
+-0.40 \textless t \textless 0.10  & 14.1  & -0.048 \\ \hline
+0.10 \textless t \textless 0.60   & -13.5 & 0.032  \\ \hline
+0.60 \textless t \textless 1.10   & 14.1  & -0.048  \hline
+\end{tabular}
+
+
+Effettuando una media tra i due valori per la soglia alta si ottiene: $V_{zc} = -0.05 \pm 0.02 V$
+Effettuando una media tra i due valori per la soglia bassa si ottiene: $V_{zc} = 0.03 \pm 0.02 V$
+
+I valori ottenuti sono in linea con le aspettative. Il loro ordine di grandezza è lo stesso dell'errore a loro associato e pertanto sono compatibili con un valore nullo di te
+
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -199,7 +246,7 @@ Descrizione
 \subsection{\textbf{Introduzione all'esperienza}}
 \begin{figure}[H]%[!ht]
 \begin {center}
-\includegraphics[width=0.38\textwidth]{sch-simulations/output/OPA-closed-loop-non-inverting.pdf}
+\includegraphics[width=0.50\textwidth]{sch-simulations/output/OPA-closed-loop-non-inverting.pdf}
 \caption{Schema del circuito elettrico per la caratterizzazione dell'OPA retroazionato non invertente. Valori per i componenti utilizzati misurati con il multimetro: R1 = ( $987 \pm 50$ ) $\Omega$ , R2 = ( $990 \pm 50$ ) $\Omega$}
 \label{fig:loop-non-inv}
 \end {center}
@@ -215,7 +262,7 @@ mentre successivamente è stato sostituito il resistore di feedback con
 $R3 =$ ( $9.7 \pm 1.4$ ) $k\Omega$, ottenendo $A_{11} = 10.828 +- 0.516 $.
 \begin{figure}[H]%[!ht]
 \begin {center}
-\includegraphics[width=0.38\textwidth]{analysis/output/OPA-closed-loop-non-inv-G2-11.pdf}
+\includegraphics[width=0.48\textwidth]{analysis/output/OPA-closed-loop-non-inv-G2-11.pdf}
 \caption{Amplificatore operazionale in configurazione ad anello chiuso non invertente}
 \label{fig:g2-11}
 \end {center}
@@ -237,7 +284,7 @@ Si è ora interessati a valutare la risposta in frequenza del circuito di amplif
 in cui $k$ rappresenta il guadagno e $a = \frac{1}{f_H}$ ed $f_H$ sta per la frequenza di taglio superiore.
 \begin{figure}[H]%[!ht]
 \begin {center}
-\includegraphics[width=0.38\textwidth]{analysis/output/OPA-bode_gain2(mag).pdf}
+\includegraphics[width=0.50\textwidth]{analysis/output/OPA-bode_gain2(mag).pdf}
 \caption{Diagramma di Bode relativo al circuito con l'utilizzo di $R_1$ ed $R_2$ }
 \label{fig:gain2}
 \end {center}
@@ -247,7 +294,7 @@ in cui $k$ rappresenta il guadagno e $a = \frac{1}{f_H}$ ed $f_H$ sta per la fre
 
 \begin{figure}[H]%[!ht]
 \begin {center}
-\includegraphics[width=0.38\textwidth]{analysis/output/OPA-bode_gain11(mag).pdf}
+\includegraphics[width=0.50\textwidth]{analysis/output/OPA-bode_gain11(mag).pdf}
 \caption{Diagramma di Bode relativo al circuito con l'utilizzo di $R_1$ ed $R_3$ }
 \label{fig:gain11}
 \end {center}
@@ -259,7 +306,7 @@ Partendo da tali dati è stato possibile osservare la conservazione del prodotto
 ottenendo i valori \[f_{H_{2}} \times A_2 = (5.918 \pm  0.818) MHz\]  \[f_{H_{11}} \times A_{11} = (8.206 \pm 0.650) MHz\] compatibili entro le loro incertezze con un livello di significatività del 95\% (\textit{Test Student = 2.18}).
 \begin{figure}[H]%[!ht]
 \begin {center}
-\includegraphics[width=0.38\textwidth]{analysis/output/OPA-bode_gain_comparison(mag).pdf}
+\includegraphics[width=0.45\textwidth]{analysis/output/OPA-bode_gain_comparison(mag).pdf}
 \caption{Diagrammi di Bode delle due configurazioni a confronto}
 \label{fig:gain-compare}
 \end {center}
@@ -267,14 +314,16 @@ ottenendo i valori \[f_{H_{2}} \times A_2 = (5.918 \pm  0.818) MHz\]  \[f_{H_{11
 In \textit{Fig.\ref{fig:gain-compare}} è infine possibile osservare qualitativamente il confronto delle caratteristiche dei due circuiti.
 
 \subsection{Slew rate}
-In un amplificatore operazionale reale la velocità di variazione della tensione di uscita non può superare un valore limite detto \textit{slew-rate} anche detta velocità di risposta:
-\[SR = (\frac{dV_{out}}{dt})_{max}\]
+In un amplificatore operazionale reale la velocità di variazione della tensione di uscita non può superare un valore limite detto \textit{slew-rate} o velocità di risposta:
+\begin{equation}
+    SR = (\frac{dV_{out}}{dt})_{max}
+\end{equation}
 i cui valori tipici sono dell'ordine dei $\frac{V}{\mu s}$.
 Questa limitazione è dovuta a fenomeni non lineari quali la saturazione dello stadio di ingresso dell'amplificatore operazionale e non è in relazione con la larghezza di banda finita dell'OPA. 
 Per analizzare tale fenomeno si è osservata la risposta del circuito all'aumento progressivo della frequenza del segnale in ingresso da amplificare, con valori di tensione picco-picco elevati. Raggiunta la frequenza di 100 kHz si è potuto osservare come i fronti di salita e discesa in uscita dall'OPA in configurazione ad anello aperto nel punto in cui è attesa la massima variazione fossero approssimabili con una retta con coefficiente angolare corrispondente allo slew-rate. E' quindi stato possibile valutare quantitativamente questa caratteristica, confrontandola con quanto espresso sul datasheet del produttore, mediante una regressione lineare.
 \begin{figure}[H]%[!ht]
 \begin {center}
-\includegraphics[width=0.38\textwidth]{analysis/output/OPA-open-loop-slew-rate.pdf}
+\includegraphics[width=0.50\textwidth]{analysis/output/OPA-open-loop-slew-rate.pdf}
 \caption{Amplificazione ad anello aperto al variare della frequenza,  dall'alto f = 100, 50, 10, 5 kHz}
 \label{fig:slew-rate-table}
 \end {center}
@@ -283,8 +332,8 @@ Per analizzare tale fenomeno si è osservata la risposta del circuito all'aument
 
 \begin{figure}[H]%[!ht]
 \begin {center}
-\includegraphics[width=0.38\textwidth]{analysis/output/OPA-slew-rate-fit.pdf}
-\caption{Regressione lineare effettuata suk fronte di salita del segnale di output a 100 kHz, riferimento alla \textit{Fig. \ref{fig:slew-rate-table}}}
+\includegraphics[width=0.45\textwidth]{analysis/output/OPA-slew-rate-fit.pdf}
+\caption{Regressione lineare effettuata sul fronte di salita del segnale di output a 100 kHz, riferimento alla \textit{Fig. \ref{fig:slew-rate-table}}}
 \label{fig:slew-rate-fit}
 \end {center}
 \end{figure}
@@ -298,7 +347,7 @@ Nelle configurazioni ad anello aperto esaminate finora, l'ingresso non utilizzat
 
 \begin{figure}[H]%[!ht]
 \begin{center}
-\includegraphics[width=0.38\textwidth]{analysis/output/OPA-open-loop-biased_threshold.pdf}
+\includegraphics[width=0.50\textwidth]{analysis/output/OPA-open-loop-biased_threshold.pdf}
 \caption{Didascalia}
 \label{fig:biased_scope}
 \end{center}
@@ -332,8 +381,8 @@ Nelle configurazioni ad anello aperto esaminate finora, l'ingresso non utilizzat
 
 \begin{figure}[H]%[!ht]
 \begin {center}
-\includegraphics[width=0.55\textwidth]{analysis/output/OPA-log-fitted.pdf}
-\caption{Didascalia}
+\includegraphics[trim = {100px 0 0 0}, width=0.58\textwidth]{analysis/output/OPA-log-fitted.pdf}
+\caption{Caratteristica ingresso-uscita in DC dell'amplificatore logaritmico, in nero i valori misurati con il multimetro, in blu il fit con modello logaritmico, in azzurro la stessa misura effettuata utilizzando l'oscilloscopio in modalità XY}
 \label{fig:OPA-integ-res}
 \end {center}
 \end{figure}
@@ -367,19 +416,25 @@ Inizialmente si sono scelte $R =$$(9.920 \pm 0.139)$$k\Omega$ e $C=$$(23.4 \pm 1
 \end {center}
 \end{figure}
 Impostando una frequenza, $f= MANCA-DATO$, si è proceduto con l'osservazione della risposta del circuito, \ref{fig:OPA-integ-res}. Come atteso la $V_{out}$ risulta essere molto vicina all'integrale del segnale in ingresso. In particolare si nota la compatibilità con l'integrale calcolato numericamente rappresentato dalla linea rossa tratteggiata, a meno di un termine lineare dovuto all'offset dell'integrando.
-Terminata la prima fase si è passati all'analisi della output del circuito in funzione della frequenza. I dati sono stati presentati su un grafico e interpolati in primo luogo con la forma funzionale di un filtro passa basso e poi in seguito con la trasformata di Laplace della funzione di trasferimento attesa, che risulta essere: \[H(s)=k/(as+1)^2\]. Il fit ha restituito sul piano S un polo doppio in corrispondenza di $f=685 Hz$ valore pienamente compatibile con la frequenza di taglio osservata in laboratorio.
+\subsection{\textbf{Studio della risposta in frequenza}}
+
+Terminata la prima fase si è passati all'analisi della output del circuito in funzione della frequenza. I dati sono stati presentati su un grafico e interpolati in primo luogo con la forma funzionale di un filtro passa basso e poi in seguito con la funzione di trasferimento attesa, che risulta essere: 
+\[H(s) = -\frac{\frac{R_2}{R_1}}{1 + s(2 \pi C R_2)} = -\frac{\frac{R_2}{R_1}}{1 + \frac{s}{f_t}}\]
+Dalla forma funzionale si nota che il comportamento del circuito si discosta da quello di un integratore reale all'abbassarsi del valore di $R_2$, per questa ragione si è scelto un resistore con resistenza compatibile a quella di $R_1$.
+
 \begin{figure}[H]%[!ht]
 \begin {center}
-\includegraphics[width=0.38\textwidth]{analysis/output/OPA-integrator_bode(mag).pdf}
+\includegraphics[width=0.50\textwidth]{analysis/output/OPA-integrator_bode(mag).pdf}
 \caption{Diagramma di Bode del circuito integratore}
 \label{fig:integ-bode}
 \end {center}
 \end{figure}
 \[f_H = (0.75 \pm 0.01) kHz\]
-Dalla forma funzionale ottenuta è poi stato estratto il valore della $f_H$.
-Infine facendo la regressione del fit è stato ricavato il valore di \textit{magnitude} relativo alla frequenza nulla, $A_{v}(0)=-0.317$ ed è stato confrontato col valore ricavato dall'espressione, derivata dalla letteratura, $A_{v} = 20log_{10}(-R_{2}/R{1}) = -0.142 \pm 0.397 $. La misura empirica risulta consistente con quella teorica ($Z=0.44$).
+\[A_v(0) = (1.001 \pm 0.003)\]
+con $f_H$ polo della funzione di transfer e $A_v(0)$ il valore di \textit{magnitude} alla frequenza nulla, estratto dalla regressione del fit.
+Dal confronto di $A_v(0)$ con il gain della $H(s)$ e tra $f_H$ ed $f_t$ si evince un'ottima consistenza entro un livello di significatività del 5\% in entrambi i casi ($t_{Gain} = 0.39 $, $t_{Freq} = 1.45 $) .
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Diagramma di Bode}
+\subsection{\textbf{Considerazioni finali}}
 
 integrazione riduce rumore AGGIUNGERE
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -434,7 +489,7 @@ Lo stesso effetto si ha per sinusoidi con ampiezze diverse ($V_+ = 0.5, V_- = 0.
 
 \begin{figure}[H]%[!ht]
 \begin {center}
-\includegraphics[width=0.38\textwidth]{analysis/output/OPA_mixer_sin0.pdf}
+\includegraphics[width=0.50\textwidth]{analysis/output/OPA_mixer_sin0.pdf}
 \caption{Somma di sinusoidi identiche}
 \label{fig:Mixer1}
 \end {center}
@@ -452,7 +507,7 @@ Sostituendo il segnale all'ingresso negativo con la sinusoide opposta, si ottien
 
 \begin{figure}[H]%[!ht]
 \begin {center}
-\includegraphics[width=0.38\textwidth]{analysis/output/OPA_mixer_sin2.pdf}
+\includegraphics[width=0.50\textwidth]{analysis/output/OPA_mixer_sin2.pdf}
 \caption{Somma di una funzione sinusoidale con la sua opposta}
 \label{fig:Mixer2}
 \end {center}
@@ -491,7 +546,7 @@ Per verificare il corretto funzionamento di questa configurazione sono state man
 
 \begin{figure}[H]%[!ht]
 \begin {center}
-\includegraphics[width=0.38\textwidth]{analysis/output/OPA_diff_sin2.pdf}
+\includegraphics[width=0.50\textwidth]{analysis/output/OPA_diff_sin2.pdf}
 \caption{Sottrazione di sinusoidi identiche}
 \label{fig:diff2}
 \end {center}
@@ -503,7 +558,7 @@ Applicando poi una sinusoide a media nulla al primo canale e una sinusoide a med
 
 \begin{figure}[H]%[!ht]
 \begin {center}
-\includegraphics[width=0.38\textwidth]{analysis/output/OPA_diff_sin3.pdf}
+\includegraphics[width=0.50\textwidth]{analysis/output/OPA_diff_sin3.pdf}
 \caption{Sottrazione da una funzione sinusoidale con offset di una componente DC di ampiezza pari all'offet, con risultato pari ad una sinusoide con media nulla}
 \label{fig:diff3}
 \end {center}
@@ -561,20 +616,24 @@ Con l'utilizzo di un secondo amplificatore operazionale è stato implementato il
 \begin{figure}[H]%[!ht]
 \begin {center}
 \includegraphics[width=0.50\textwidth]{analysis/output/trigger1.pdf}
-\caption{}
-\label{fig:trigger-hyst}
+\caption{Trigger di Schmitt (con isteresi) a cui viene fornito in ingresso un segnale sinusoidale con rumore trascurabile}
+\label{fig:trigger-clean}
 \end {center}
 \end{figure}
 
-%QUI MANCA IL GRAFICO AD ANELLO APERTO PER IL CONFRONTO, PER FAR VEDERE CHE E' SOGGETTO AL RUMORE. SU QUESTO AGLIETTA HA INSISTITO PARECCHIO!
-%Il problema è che nessuno lo ha esportato quel plot da Python!
-%Adesso vado a farlo...
+\begin{figure}[H]%[!ht]
+\begin {center}
+\includegraphics[width=0.50\textwidth]{analysis/output/noisy-open-ring.pdf}
+\caption{Discriminatore ad anello aperto (senza isteresi) a cui viene fornito in ingresso un segnale sinusoidale con rumore, si nota una commutazione indesiderata dovuta allo zero-crossing del rumore (soglia = 0)}
+\label{fig:trigger-noisy}
+\end {center}
+\end{figure}
 
 \begin{figure}[H]%[!ht]
 \begin {center}
 \includegraphics[width=0.50\textwidth]{analysis/output/trigger2.pdf}
-\caption{}
-\label{fig:trigger-hyst}
+\caption{Trigger di Schmitt (con isteresi) a cui viene fornito in ingresso un segnale sinusoidale con rumore, si nota che a differenza del discriminatore ad anello aperto, questo circuito non effettua commutazioni indesiderate sullo zero-crossing del rumore (centraggio della finestra = 0)}
+\label{fig:trigger-ok}
 \end {center}
 \end{figure}
 
@@ -667,7 +726,7 @@ Nel paragrafo precedente per poter calcolare la carica Q è stato fondamentale d
 \begin{equation}
     V(t) = V_0 e^{-(t-t_0)/\tau} + V_{offset}
 \end{equation}
-Entrambi i fit hanno esito positivo, considerando un test $\chi^2$ solo sulla coda destra (pvalue $\sim$ 1), si ottengono infatti valori di $\chi^2 / NDF$ pari a 11.51  /  300 = 0.038 per il SiPM con area minore e $\chi^2 / NDF$ pari a 102.46 /  300 = 0.341 per quello con area maggiore. E' possibile finalmente estrarre il parametro di interesse (con la relativa incertezza, dalla matrice di covarianza) ottenendo $\tau_{1mm}$ = (1.11 $\pm$ 0.02)$\cdot 10^{-9}$ s e $\tau_{3mm}$ = (1.88 $\pm$ 0.10)$\cdot 10^{-9}$ s. Le figure \ref{fig:fit1m} e \ref{fig:fit3m} mostrano l'esito delle interpolazioni. Nei calcoli si è adottata come incertezza sulle tensioni misurate con l'oscilloscopio 1/5 della larghezza delle divisioni verticali.
+Entrambi i fit hanno esito positivo, considerando un test $\chi^2$ solo sulla coda destra (pvalue $\sim$ 1), si ottengono infatti valori di $\chi^2 / NDF$ pari a 11.51  /  300 = 0.038 per il SiPM con area minore e $\chi^2 / NDF$ pari a 102.46 /  300 = 0.341 per quello con area maggiore. E' possibile finalmente estrarre il parametro di interesse (con la relativa incertezza, dalla matrice di covarianza) ottenendo $\tau_{1mm}$ = (1.11 $\pm$ 0.02)$\cdot 10^{-7}$ s e $\tau_{3mm}$ = (1.88 $\pm$ 0.10)$\cdot 10^{-7}$ s. Le figure \ref{fig:fit1m} e \ref{fig:fit3m} mostrano l'esito delle interpolazioni. Nei calcoli si è adottata come incertezza sulle tensioni misurate con l'oscilloscopio 1/5 della larghezza delle divisioni verticali.
 
 \begin{figure}[H]%[!ht]
 \begin{center}
@@ -800,14 +859,14 @@ La misura ottenuta con il secondo metodo risulta essere ampiamente compatibile c
 
 \begin{figure*}[h]%[t]
 \includegraphics[trim = {200pt 0 0 0}, clip, width=1.1\textwidth]{analysis/output/Delay_line_lambda2L.pdf}
-\caption{Onde stazionarie con lunghezza d'onda $\lambda = 2L$}
+\caption{Onde stazionarie nella linea di trasmissione con lunghezza d'onda $\lambda = 2L$}
 \label{fig: delayline 2L}
 
 \end{figure*}
 
 \begin{figure*}[h]%[t]
 \includegraphics[trim = {200pt 0 0 0}, clip, width=1.1\textwidth]{analysis/output/Delay_line_lambdaL.pdf}
-\caption{Onde stazionarie $\lambda = L$}
+\caption{Onde stazionarie nella linea di trasmissione con lunghezza d'onda $\lambda = L$}
 \label{fig: delayline L}
 \end{figure*}
 
