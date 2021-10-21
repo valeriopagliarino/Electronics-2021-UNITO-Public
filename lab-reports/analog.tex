@@ -156,6 +156,14 @@ Passiamo ora allo studio una serie di circuiti notevoli di amplificazione, confr
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{\textbf{Configurazione ad anello aperto invertente (zero-crossing detector)}} %Stefano
 
+\begin{figure}[h]%[!ht]
+\begin {center}
+\includegraphics[width=0.38\textwidth]{sch-simulations/output/opa-open-loop-inverting.pdf}
+\caption{Configurazione ad anello aperto invertente. Si nota l'assenza di controreazione}
+\label{fig:circ_open_loop_inv}
+\end {center}
+\end{figure}
+
 La prima analisi effettuata con l'amplificatore operazionale è stata in configurazione invertente ad anello aperto. Lo scopo era verificare che fin da piccoli valori di segnale in ingresso, non inserendo alcun feedback, l'amplificazione ad anello aperto è sufficiente a raggiungere la zona di saturazione dell'amplificatore, ottenendo in uscita un valore prossimo alla tensione di alimentazione fornita.
 Questo comportamento dell'amplificatore rende possibile il suo utilizzo come \textit{zero crossing detector}, cioé rivelatore di passaggio di un segnale.
 Di seguito si descrive il calcolo del punto di zero crossing: il valore di segnale in ingresso a partire dal quale si raggiunge la saturazione.
@@ -164,7 +172,7 @@ Di seguito si descrive il calcolo del punto di zero crossing: il valore di segna
 \begin {center}
 \includegraphics[width=0.38\textwidth]{analysis/output/opa-open-loop-inv-zero-crossing.pdf}
 \caption{Nell'immagine si apprezzano l'intensità dell'amplificazione e l'inversione del segnale}
-\label{fig:oscilloscope}
+\label{fig:open_loop_inv_zc_1}
 \end {center}
 \end{figure}
 
@@ -174,7 +182,7 @@ Come segnale in ingresso si è scelto di generare un'onda sinusoidale di ampiezz
 \begin {center}
 \includegraphics[width=0.40\textwidth]{analysis/output/opa-open-loop-inv-zero-crossing-z2.pdf}
 \caption{In rosso sono segnati i livelli di saturazione, in nero i punti di zero crossing. La scala del segnale di ingresso è stata ingrandita ed è riportata sulla sinistra}
-\label{fig:oscilloscope}
+\label{fig:open_loop_inv_zc_2}
 \end {center}
 \end{figure}
 
@@ -204,7 +212,7 @@ tensione.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{\textbf{Configurazione ad aperto non invertente}} %Stefano
+\section{\textbf{Configurazione ad anello aperto non invertente}} %Stefano
 
 Rispetto alla precedente configurazione il segnale in ingresso è inserito nell'ingresso non invertente dell'amplificatore operazionale.
 Ci si attende dunque un comportamento analogo al precedente ma con amplificazione positiva.
@@ -213,10 +221,51 @@ Ci si attende dunque un comportamento analogo al precedente ma con amplificazion
 \begin {center}
 \includegraphics[width=0.38\textwidth]{analysis/output/OPA-open-loop-non-inv-zero-crossing-z2.pdf}
 \caption{Nell'immagine si apprezza la concordanza di segno tra segnale in ingresso e segnale in uscita. In rosso è riportato il livello di zero crossing della configurazione invertente per dimostrare qualitativamente che il livello di l'amplificazione rimane costante}
-\label{fig:oscilloscope}
+\label{fig:open_loop_non_inv_zc}
 \end {center}
 \end{figure}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Configurazione ad anello aperto con soglia arbitraria} %Stefano
+
+\begin{figure}[H]%[!ht]
+\begin {center}
+\includegraphics[width=0.38\textwidth]{sch-simulations/output/OPA-biased.pdf}
+\caption{Amplificatore ad anello aperto: discriminatore con soglia a $V = 2.1 V$}
+\label{fig:circ_open_loop_biased}
+\end {center}
+\end{figure}
+
+La configurazione ad anello aperto dell'amplificatore può essere utile anche per discriminare segnali in ingresso rispetto ad una soglia arbitraria, diversa da $0$.
+Per ottenere un tale dispositivo occorre sfruttare entrambi gli ingressi di segnale dell'amplificatore, anziché collegarne uno a massa. Trattandosi infatti di un amplificatore differenziale, si otterrà in
+uscita un segnale pari alla differenza tra i segnali in entrata. In particolare si otterrà $V_{out} = V_{-} - V_{+}$ dove $V_{-}$ è il segnale all'ingresso invertente, $V_{+
+}$ al non invertente.
+Non trattandosi di un circuito reazionato, l'amplificazione sarà pari all'amplificazione di open loop, e tale da mandare in saturazione l'amplificatore per piccole
+\textit{differenze} di segnale come verificato precedentemente.
+
+Nel caso in esame la soglia è stata posta a $V_{soglia} = 2.1 V$, nell'ingresso invertente.
+Un segnale sinusoidale di ampiezza attesa $V_{pp} = 5.00 V$ è stato inserito nell'ingresso non invertente. Ci si aspetta dunque un'amplificazione non invertente.
+
+\begin{figure}[H]%[!ht]
+\begin {center}
+\includegraphics[width=0.38\textwidth]{analysis/output/OPA-open-loop-biased_threshold.pdf}
+\caption{Amplificatore ad anello aperto: discriminatore con soglia a $V = 2.1 V$}
+\label{fig:biased_cross}
+\end {center}
+\end{figure}
+
+
+Dal confronto tra l'immagine \ref{fig:biased_cross} e l'immagine \ref{fig:open_loop_non_inv_zc} si può notare come in questo caso la soglia non si trovi a livello di $0 V$, e questo risulti in zone di saturazione e
+saturazione inversa non simmetriche: di seguito la durata degli intervalli di saturazione e il numero di dati oltre la soglia per intervallo.
+
+\begin{tabular}{|c|c|c|c|}
+\hline
+$t  \pm 0.05 \ ms$ & $\Delta t \pm 0.07 \ ms$ & soglia $\pm 0.5 \ V$ & punti \\ \hline
+-0.80 \textless t \textless -0.60 & 0.20 & 14.1  & 126 \\ \hline
+-0.60 \textless t \textless 0. 20 & 0.80 & -13.5 & 763 \\ \hline
+0.20 \textless t \textless 0.40   & 0.20 & 14.1  & 130 \\ \hline
+0.40 \textless t \textless 1.20   & 0.80 & -13.5 & 766 \\ \hline
+\end{tabular}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{\textbf{Amplificatore retroazionato invertente}} %Stefano
@@ -228,7 +277,7 @@ Il caso in esame consiste nella controreazione costituita da una resistenza $R_f
 \begin {center}
 \includegraphics[width=0.38\textwidth]{sch-simulations/output/OPA-closed-loop-inverting.pdf}
 \caption{Amplificatore reazionato invertente: $R_2$ è la resistenza di feedback}
-\label{fig:oscilloscope}
+\label{fig:circ_closed_loop_inv}
 \end {center}
 \end{figure}
 
@@ -240,6 +289,7 @@ Per il primo caso si utilizzano due resistori $R_f = 1.00 \pm 0.01 k\Omega $ e $
 Come segnale in ingresso si è scelta un'onda di tipo sinusoidale, con ampiezza di $100 mV$.
 
 !TODO!
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{\textbf{Amplificatore retroazionato non invertente}} %Matteo
@@ -313,49 +363,7 @@ Per analizzare tale fenomeno si è osservata la risposta del circuito all'aument
 Il valore è consistente con la letteratura.
 \subsection{\textbf{Discussione e considerazioni conclusive}}
 In conclusione il circuito ha dimostrato di operare esattamente come previsto, processando un segnale in output in fase con quello in input e amplificato di un valore consistente con quello calcolato per via teorica. La funzione di di transfer usata si è dimostrata perfettamente in linea con la presa dati, a conferma di ciò la controverifica fatta con i valori di fase e il loro andamento similare a quello del diagramma di fase. Infine lo slew rate estratto dalla regressione è in accordo con l'ordine di grandezza dei valori relativi ad operazionali di questo genere. 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Discriminatore ad anello aperto con soglia arbitraria} %Stefano
 
-Nelle configurazioni ad anello aperto esaminate finora, l'ingresso non utilizzato dal segnale è stato collegato a massa, di conseguenza si è sempre osservato che il discriminatore commutava in prossimità dei punti di zero-crossing. E' tuttavia possibile variare in modo arbitrario la soglia di commutazione del circuito collegandolo ad un generatore in grado di fornire una tensione continua rispetto alla massa di riferimento. Nella figura \ref{fig:biased_scope} è presentata un'acquisizione effettuata con l'oscilloscopio in cui un segnale sinusoidale in ingresso di ampiezza attesa $V_{pp}$ = 5.00 V viene amplificato da un circuito ad anello aperto non invertente mentre l'ingresso invertente (si veda lo schema \ref{fig:biased}) è collegato ad un'uscita variabile del generatore impostata a tensione $V_2$ = $V_{th} = 2.1 V$. 
-
-\begin{figure}[H]%[!ht]
-\begin {center}
-\includegraphics[width=0.38\textwidth]{sch-simulations/output/OPA-biased.pdf}
-\caption{Amplificatore ad anello aperto: discriminatore con soglia a $V = 2.1 V$}
-\label{fig:oscilloscope}
-\end {center}
-\end{figure}
-
-La configurazione ad anello aperto dell'amplificatore può essere utile anche per discriminare segnali in ingresso rispetto ad una soglia arbitraria.
-Per ottenere un tale dispositivo occorre sfruttare entrambi gli ingressi di segnale dell'amplificatore. Trattandosi infatti di un amplificatore differenziale, si otterrà in
-uscita un segnale pari alla differenza tra i segnali in entrata. In particolare si otterrà $V_{out} = V_{-} - V_{+}$ dove $V_{-}$ è il segnale all'ingresso invertente, $V_{+
-}$ al non invertente.
-Non trattandosi di un circuito reazionato, l'amplificazione sarà pari all'amplificazione di open loop, e tale da mandare in saturazione l'amplificatore per piccole
-\textit{differenze} di segnale come verificato precedentemente.
-
-Nel caso in esame la soglia è stata posta a $V_{soglia} = 2.1 V$, nell'ingresso invertente.
-Il segnale è stato dunque inserito nell'ingresso non invertente. Ci si aspetta dunque un'amplificazione non invertente.
-
-\begin{figure}[H]%[!ht]
-\begin {center}
-\includegraphics[width=0.38\textwidth]{analysis/output/OPA-open-loop-biased_threshold.pdf}
-\caption{Amplificatore ad anello aperto: discriminatore con soglia a $V = 2.1 V$}
-\label{fig:oscilloscope}
-\end {center}
-\end{figure}
-
-
-Dal confronto tra l'immagine !TODO! e l'immagine si può notare come in questo caso la soglia non si trovi a livello di $0 V$, e questo risulti in zone di saturazione e
-saturazione inversa non simmetriche: di seguito la durata degli intervalli di saturazione e il numero di dati oltre la soglia per intervallo.
-
-\begin{tabular}{|c|c|c|c|}
-\hline
-$t  \pm 0.05 \ ms$ & $\Delta t \pm 0.07 \ ms$ & soglia $\pm 0.5 \ V$ & punti \\ \hline
--0.80 \textless t \textless -0.60 & 0.20 & 14.1  & 126 \\ \hline
--0.60 \textless t \textless 0. 20 & 0.80 & -13.5 & 763 \\ \hline
-0.20 \textless t \textless 0.40   & 0.20 & 14.1  & 130 \\ \hline
-0.40 \textless t \textless 1.20   & 0.80 & -13.5 & 766 \\ \hline
-\end{tabular}
 
 
 %%%%%%%%%%FINE PRIMO GIORNO%%%%%%%%%%%%%%%
@@ -378,7 +386,7 @@ Ci si propone di verificare la legge, inserendo un diodo al silicio ($\eta = 2$)
 \begin {center}
 \includegraphics[width=0.38\textwidth]{sch-simulations/output/OPA-log.pdf}
 \caption{Circuito per integratore logaritmico. D1 è un diodo al silicio che costituisce la retroazione}
-\label{fig:oscilloscope}
+\label{fig:circ_log_ampl}
 \end {center}
 \end{figure}
 
@@ -440,7 +448,7 @@ Si sono misurati i seguenti valori:
 \begin {center}
 \includegraphics[width=0.58\textwidth]{analysis/output/fit_log_vout_vin.pdf}
 \caption{}
-\label{fig:oscilloscope}
+\label{fig:log_ampl_fit}
 \end {center}
 \end{figure}
 
@@ -479,7 +487,7 @@ propagazione degli errori su 3 parametri.
 \begin {center}
 \includegraphics[trim = {100px 0 0 0}, width=0.58\textwidth]{analysis/output/OPA-log-fitted.pdf}
 \caption{Caratteristica ingresso-uscita in DC dell'amplificatore logaritmico, in nero i valori misurati con il multimetro, in blu il fit con modello logaritmico, in azzurro la stessa misura effettuata utilizzando l'oscilloscopio in modalità XY}
-\label{fig:OPA-integ-res}
+\label{fig:log_ampl_fit_xy}
 \end {center}
 \end{figure}
 
@@ -701,10 +709,11 @@ Con l'utilizzo di un secondo amplificatore operazionale è stato implementato il
 \end{center}
 \end{figure}
  
-Inizialmente è stato fornito al \textit{trigger di Schmitt} un segnale sinusoidale con rumore trascurabile (\textit{"segnale pulito" $V_{LT} = (7.42)$}. In uscita dal trigger si osserva il comportamento tipico in modalità invertente (\textit{Fig.\ref{fig:trigger-clean}}): 
-quando il segnale supera la tensione $V_{LT} = (-7.4 \pm 0.1) \ V $ l'uscita scatta a $ + V_{sat}$ e ci rimane fino a quando il segnale non supera \pm 0.12) \ V ) facendo scattare l'uscita alla tensione $- V_{sat}$. Tipicamente un circuito di questo tipo è utilizzato, ad esempio, per trasformare un segnale sinusoidale in un onda quadra.
+Inizialmente è stato fornito al \textit{trigger di Schmitt} un segnale sinusoidale con rumore trascurabile (\textit{"segnale pulito")} $V_{LT} = (7.42)$. In uscita dal trigger si osserva il comportamento tipico in modalità invertente (\textit{Fig.\ref{fig:trigger-clean}}): 
+quando il segnale supera la tensione $V_{LT} = (-7.4 \pm 0.1) \ V $ l'uscita scatta a $ + V_{sat}$ e ci rimane fino a quando il segnale non supera $V_{LT} = (7.6 \pm 0.1) \ V  $ facendo scattare l'uscita alla tensione $- V_{sat}$. Tipicamente un circuito di questo tipo è utilizzato, ad esempio, per trasformare un segnale sinusoidale in un onda quadra.
 Nel circuito implementato la tensione di saturazione, riferita a massa è:
-\[\Delta V  = 14.424 \pm 0.036  V \]
+\[ +V_{sat}  = 14.6 \pm 0.1  V \]
+\[ -V_{sat}  = -14.0 \pm 0.1  V \]
 
 \begin{figure}[H]%[!ht]
 \begin {center}
@@ -747,7 +756,7 @@ Si ricorda che l'isteresi previene il trigger dall'oscillare quando un input che
 \label{fig:hyst-table}
 \end {center}
 \end{figure}
-
+\[\Delta V  = V_{LT}-V_{UT} = (14.424 \pm 0.036)  V \]
 \begin{figure}[H]%[!ht]
 \begin {center}
 \includegraphics[width=0.50\textwidth]{analysis/output/OPA-trigger-histeresis-overlapped.pdf}
@@ -755,6 +764,7 @@ Si ricorda che l'isteresi previene il trigger dall'oscillare quando un input che
 \label{fig:trigger-hyst}
 \end {center}
 \end{figure}
+
 %%%%%%%%%%FINE TERZO GIORNO%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%INIZIO QUARTO GIORNO%%%%%%%%%%%%%%%
 
