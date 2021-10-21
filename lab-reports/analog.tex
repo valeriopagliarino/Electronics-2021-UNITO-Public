@@ -135,7 +135,7 @@ La trattazione successiva riguarda i raddrizzatori a singola semi-onda ed in par
 Quindi in regime di funzionamento il diodo rimane acceso per un periodo $\Delta T$ in cui avviene la fase di carica e la tensione di uscita passa dal suo valore minimo al suo valore massimo. Un raddrizzatore ben funzionante fa si che la \textit{tensione di ripple} sia la minore possibile e ciò è strettamente correlato al valore della costante di tempo $\tau$.
 Analizzando il funzionamento del circuito in assenza del condensatore di livellamento invece si avrà in uscita un segnale costituito solamente dalla semi-onda positiva, nel caso di \textit{polarizzazione diretta}, oppure della semi-onda negativa in \textit{polarizzazione inversa}.
 
-\subsection{\texxtbf{Caratterizzazione}}
+\subsection{\textbf{Caratterizzazione}}
 \begin{figure}[H]%[!ht]
 \begin {center}
 \includegraphics[width=0.50\textwidth]{analysis/output/half-wave-rectifier.pdf}
@@ -304,7 +304,7 @@ Come segnale in ingresso si è scelta un'onda di tipo sinusoidale, con ampiezza 
 Un amplificatore non invertente ha la peculiarità di dare in uscita un segnale proporzionale a quello d'ingresso e in fase con esso. Il segnale è applicato all'ingresso non invertente affinché il guadagno $A$ sia positivo. Infatti per l'equipotenzialità degli ingressi si ha: \[V_{-} = V_{+} = V_{i}\] \[V_{-} = \frac{R_1}{R_1+R_2}=V_{+}\] \[V_{o}=(1+\frac{R_2}{R_1}V_{+})\]
 da cui si ricava che $A=\frac{V_{o}}{V_i}=1+\frac{R_2}{R_1}$.
 \subsection{\textbf{Caratterizzazione}}
-In laboratorio si è considerata la configurazione citata in \textit{Fig.\ref{fig:loop-non-inv}} con l'obiettivo di ottenere un guadagno pari a due.
+In laboratorio si è considerata la configurazione citata in \textit{Fig.\ref{fig:loop-non-inv}} con l'obiettivo di ottenere un guadagno pari a due. Sono riportati i dati nella \textit{tabella \ref{tab:opa-non-inv}}.
 In dettaglio sfruttando ala legge sopracitata
 \[A_2 = 1 + \frac{R_2}{R_1} =2.003 \pm 0.072\]
 \begin{figure}[H]%[!ht]
@@ -322,7 +322,7 @@ I valori di $V_{out}$ misurati con l'oscilloscopio sono risultati in accordo con
 L'accordo tra il guadagno atteso e quello misurato sperimentalmente con l'oscilloscopio è confermato da un \textit{Test t} che riporta il seguente valore per la variabile statistica $t_2 = 0.54$ , superiore al livello di significatività adottato pari al 5 \%.
 \subsection{Studio della risposta in frequenza}
 
-Si è ora interessati a valutare la risposta in frequenza del circuito di amplificazione sotto esame, vengono quindi acquisiti i valori picco-picco dell'ingresso e dell'uscita con i cursori dell'oscilloscopio e i punti sul piano \textit{guadagno-frequenza} vengono interpolati con una opportuna funzione di trasferimento del circuito:
+Si è ora interessati a valutare la risposta in frequenza del circuito di amplificazione sotto esame, vengono quindi acquisiti i valori picco-picco dell'ingresso e dell'uscita con i cursori dell'oscilloscopio (tabella in appendice) e i punti sul piano \textit{guadagno-frequenza} vengono interpolati con una opportuna funzione di trasferimento del circuito:
 \[H(s)=\frac{k}{(1+as)}\] 
 in cui $k$ rappresenta il guadagno e $a = \frac{1}{f_H}$ con $f_H$ la frequenza di taglio.
 \begin{figure}[H]%[!ht]
@@ -485,7 +485,7 @@ propagazione degli errori su 3 parametri.
 
 \begin{figure}[H]%[!ht]
 \begin {center}
-\includegraphics[trim = {100px 0 0 0}, width=0.58\textwidth]{analysis/output/OPA-log-fitted.pdf}
+\includegraphics[trim = {100px 0 0 0}, width=0.48\textwidth]{analysis/output/OPA-log-fitted.pdf}
 \caption{Caratteristica ingresso-uscita in DC dell'amplificatore logaritmico, in nero i valori misurati con il multimetro, in blu il fit con modello logaritmico, in azzurro la stessa misura effettuata utilizzando l'oscilloscopio in modalità XY}
 \label{fig:log_ampl_fit_xy}
 \end {center}
@@ -617,7 +617,14 @@ Sostituendo il segnale all'ingresso negativo con la sinusoide opposta, si ottien
 \label{fig:Mixer2}
 \end {center}
 \end{figure}
-
+ Si è infine svolta la verifica della linearità dell'amplificazione del canale non invertente effettuando una regressione lineare sullo scatter dei dati estratti in visualizzazione $X-Y$ mettendo a confronto $Ch_1$ e $Ch_2$.
+ \begin{figure}[H]%[!ht]
+\begin {center}
+\includegraphics[width=0.50\textwidth]{analysis/output/OPA_mixer_sin2.pdf}
+\caption{}
+\label{fig:lin-non-inv}
+\end {center}
+\end{figure}
 \subsection{Formazione di battimenti}
 Mandando ai due ingressi sinusoidi con frequenza diversa $f_1 = 1\ kHz, \ f_2 = 1.1\ kHz$ e uguale ampiezza $1 \ V$, l'amplificatore genera una sovrapposizione di onde sfasate che possiederà una frequenza di battimento. La tensione in uscita non avrà quindi un ampiezza costante, ma essa pulserà in modo periodico con una frequenza propria, detta \textit{di battimento}, visualizzabile in \textit{figura \ref{fig:beats}}.
 
@@ -710,7 +717,7 @@ Con l'utilizzo di un secondo amplificatore operazionale è stato implementato il
 \end{figure}
  
 Inizialmente è stato fornito al \textit{trigger di Schmitt} un segnale sinusoidale con rumore trascurabile (\textit{"segnale pulito")} $V_{LT} = (7.42)$. In uscita dal trigger si osserva il comportamento tipico in modalità invertente (\textit{Fig.\ref{fig:trigger-clean}}): 
-quando il segnale supera la tensione $V_{LT} = (-7.4 \pm 0.1) \ V $ l'uscita scatta a $ + V_{sat}$ e ci rimane fino a quando il segnale non supera $V_{LT} = (7.6 \pm 0.1) \ V  $ facendo scattare l'uscita alla tensione $- V_{sat}$. Tipicamente un circuito di questo tipo è utilizzato, ad esempio, per trasformare un segnale sinusoidale in un onda quadra.
+quando il segnale supera la tensione $V_{LT} = (-7.4 \pm 0.1) \ V $ l'uscita scatta a $ + V_{sat}$ e ci rimane fino a quando il segnale non supera $V_{UT} = (7.6 \pm 0.1) \ V  $ facendo scattare l'uscita alla tensione $- V_{sat}$. Tipicamente un circuito di questo tipo è utilizzato, ad esempio, per trasformare un segnale sinusoidale in un onda quadra.
 Nel circuito implementato la tensione di saturazione, riferita a massa è:
 \[ +V_{sat}  = 14.6 \pm 0.1  V \]
 \[ -V_{sat}  = -14.0 \pm 0.1  V \]
@@ -756,7 +763,9 @@ Si ricorda che l'isteresi previene il trigger dall'oscillare quando un input che
 \label{fig:hyst-table}
 \end {center}
 \end{figure}
-\[\Delta V  = V_{LT}-V_{UT} = (14.424 \pm 0.036)  V \]
+\[\Delta V_t  = V_{LT}-V_{UT} = (14.424 \pm 0.036)  V \]
+\[\Delta V_{sat}  = V_{sat_+}-V_{sat_{-}} = (28.283 \pm 0.101(1))  V \]
+
 \begin{figure}[H]%[!ht]
 \begin {center}
 \includegraphics[width=0.50\textwidth]{analysis/output/OPA-trigger-histeresis-overlapped.pdf}
@@ -764,7 +773,7 @@ Si ricorda che l'isteresi previene il trigger dall'oscillare quando un input che
 \label{fig:trigger-hyst}
 \end {center}
 \end{figure}
-
+Dai due grafici si osserva chiaramente che ad alta frequenza la velocità di commutazione del circuito diventa insufficiente. Questo effetto è frutto dello slew rate dell'amplificatore operazionale utilizzato.
 %%%%%%%%%%FINE TERZO GIORNO%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%INIZIO QUARTO GIORNO%%%%%%%%%%%%%%%
 
@@ -1025,6 +1034,74 @@ Particolarmente rilevante è risultata la possibilità di esportare le tracce in
 %INSERIRE:
 % 1. Tabella presa dati per ciascun bode plot
 % 2. Tabella presa dati 
+
+\begin{table}[H]
+\centering
+    
+\begin{tabular}{c|c|c}
+\multicolumn{1}{c|}{$V_{in}$ {[}V{]}} & \multicolumn{1}{|c|}{$V_{out}$ {[}V{]}} & \multicolumn{1}{c}{$f$ {[}Hz{]}}\\ 
+\hline  \\
+64.0 $\pm$  4.0 & 114.0 $\pm$ 4.0 & 1.0 $\pm$ 0.001        \\ 
+61.6 $\pm$ 4.0  & 116.0 $\pm$ 4.0 & 10.0 $\pm$ 0.01        \\ 
+61.1 $\pm$ 4.0  & 121.0 $\pm$ 4.0 & 100.0 $\pm$ 0.1        \\ 
+60.8 $\pm$ 4.0  & 119.0 $\pm$ 4.0 & 1000.0 $\pm$ 1.0       \\ 
+60.8 $\pm$ 4.0  & 119.0 $\pm$ 4.0 & 5000.0 $\pm$ 5.0       \\ 
+56.8 $\pm$ 4.0  & 112.0 $\pm$ 4.0 & 13000.0 $\pm$ 13.0     \\ 
+61.6 $\pm$ 4.0  & 119.0 $\pm$ 4.0 & 50000.0 $\pm$ 50.0     \\ 
+55.2 $\pm$ 4.0  & 104.0 $\pm$ 4.0 & 100000.0 $\pm$ 100.0   \\ 
+57.6 $\pm$ 4.0  & 106.0 $\pm$ 4.0 & 200000.0 $\pm$ 200.0   \\ 
+52.8 $\pm$ 4.0  & 90.4 $\pm$ 4.0  & 350000.0 $\pm$ 350.0   \\ 
+54.4 $\pm$ 4.0  & 81.6 $\pm$ 4.0  & 500000.0 $\pm$ 500.0   \\ 
+56.8 $\pm$ 4.0  & 77.6 $\pm$ 4.0  & 600000.0 $\pm$ 600.0   \\ 
+54.4 $\pm$ 4.0  & 67.2 $\pm$ 4.0  & 750000.0 $\pm$ 750.0   \\ 
+55.2 $\pm$ 4.0  & 54.4 $\pm$ 4.0  & 1000000.0 $\pm$ 1000.0 \\ 
+55.2 $\pm$ 4.0  & 33.6 $\pm$ 4.0  & 1700000.0 $\pm$ 1700.0 \\ 
+56.8 $\pm$ 4.0  & 21.6 $\pm$ 4.0  & 2500000.0 $\pm$ 2500.0 \\ 
+56.8 $\pm$ 4.0  & 15.2 $\pm$ 4.0  & 3300000.0 $\pm$ 3300.0 \\ 
+57.6 $\pm$ 4.0  & 8.8 $\pm$ 4.0   & 5000000.0 $\pm$ 5000.0 \\ 
+\end{tabular}
+\vspace{5 mm}
+\caption{Scala valori di tensione in input e output relativi a frequenze progressive relative all'OPA non invertente}
+\label{tab:opa-non-inv}
+\end{table}
+
+\begin{table}[H]
+\centering
+    
+\begin{tabular}{c|c|c}
+\multicolumn{1}{c|}{$V_{in}$ {[}V{]}} & \multicolumn{1}{|c|}{$V_{out}$ {[}V{]}} & \multicolumn{1}{c}{$f$ {[}Hz{]}}\\ 
+\hline  \\
+80.8 $\pm$ 4.0 & 79.2 $\pm$ 4.0 & 100.0 $\pm$ 0.1      \\
+81.6 $\pm$ 4.0 & 78.4 $\pm$ 4.0 & 150.0 $\pm$ 0.15     \\
+80.8 $\pm$ 4.0 & 77.6 $\pm$ 4.0 & 200.0 $\pm$ 0.2      \\
+80.8 $\pm$ 4.0 & 74.4 $\pm$ 4.0 & 300.0 $\pm$ 0.3      \\
+80.8 $\pm$ 4.0 & 69.6 $\pm$ 4.0 & 400.0 $\pm$ 0.4      \\
+80.8 $\pm$ 4.0 & 68.0 $\pm$ 4.0 & 450.0 $\pm$ 0.45     \\
+80.8 $\pm$ 4.0 & 64.8 $\pm$ 4.0 & 500.0 $\pm$ 0.5      \\
+80.8 $\pm$ 4.0 & 56.8 $\pm$ 4.0 & 700.0 $\pm$ 0.7      \\
+80.8 $\pm$ 4.0 & 47.2 $\pm$ 4.0 & 1000.0 $\pm$ 1.0     \\
+80.8 $\pm$ 4.0 & 41.6 $\pm$ 4.0 & 1200.0 $\pm$ 1.2     \\
+80.8 $\pm$ 4.0 & 35.2 $\pm$ 4.0 & 1500.0 $\pm$ 1.5     \\
+80.0 $\pm$ 4.0 & 28.0 $\pm$ 4.0 & 2000.0 $\pm$ 2.0     \\
+80.0 $\pm$ 4.0 & 23.2 $\pm$ 4.0 & 2500.0 $\pm$ 2.5     \\
+80.0 $\pm$ 4.0 & 19.2 $\pm$ 4.0 & 3000.0 $\pm$ 3.0     \\
+80.0 $\pm$ 4.0 & 16.8 $\pm$ 4.0 & 3500.0 $\pm$ 3.5     \\
+80.0 $\pm$ 4.0 & 15.2 $\pm$ 4.0 & 4000.0 $\pm$ 4.0     \\
+80.0 $\pm$ 4.0 & 12.0 $\pm$ 4.0 & 5000.0 $\pm$ 5.0     \\
+80.0 $\pm$ 4.0 & 11.2 $\pm$ 4.0 & 5500.0 $\pm$ 5.5     \\
+80.0 $\pm$ 4.0 & 10.4 $\pm$ 4.0 & 6000.0 $\pm$ 6.0     \\
+80.8 $\pm$ 4.0 & 8.8 $\pm$ 4.0  & 7000.0 $\pm$ 7.0     \\
+80.8 $\pm$ 4.0 & 7.2 $\pm$ 4.0  & 10000.0 $\pm$ 10.0   \\
+80.8 $\pm$ 4.0 & 5.6 $\pm$ 4.0  & 14000.0 $\pm$ 14.0   \\
+80.8 $\pm$ 4.0 & 4.0 $\pm$ 4.0  & 20000.0 $\pm$ 20.0   \\
+80.0 $\pm$ 4.0 & 2.4 $\pm$ 4.0  & 50000.0 $\pm$ 50.0   \\
+80.8 $\pm$ 4.0 & 1.6 $\pm$ 4.0  & 100000.0 $\pm$ 100.0
+\end{tabular}
+\vspace{5 mm}
+\caption{Scala valori di tensione in input e output relativi a frequenze progressive relative all'OPA integratore}
+\label{tab:opa-non-inv}
+\end{table}
+
 
 \begin{table}[H]
     \centering
