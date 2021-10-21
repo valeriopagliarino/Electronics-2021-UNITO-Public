@@ -88,7 +88,7 @@ La maggior parte delle misure di tensione e tempo è stata realizzata con un \te
   \includegraphics[width=0.18\textwidth]{lab-reports/Schematics-and-graphics/RS Osc.png}
 \end{figure}
 
-Per visualizzare il segnale in uscita dal fotomoltiplicatore al silicio è stata invece utilizzato un oscilloscopio di fascia più alta Rhode & Schwarz RTB2004 dotato di un ADC a 10 bit con banda passante di 70 MHz e frequenza di campionamento massima di 2.5 GSa/s che consente raggiungere una risoluzione temporale di 1 ns/div. Quest'ultima caratteristica, unita alla sensibilità fino a 1 mV/div, ha permesso di visualizzare correttamente i segnali molto deboli e veloci prodotti dal sensore quando viene eccitata una singola cella. \cite{B}
+Per visualizzare il segnale in uscita dal fotomoltiplicatore al silicio è stata invece utilizzato un oscilloscopio di fascia più alta, quale il Rhode & Schwarz RTB2004 dotato di un ADC a 10 bit con banda passante di 70 MHz e frequenza di campionamento massima di 2.5 GSa/s che consente raggiungere una risoluzione temporale di 1 ns/div. Quest'ultima caratteristica, unita alla sensibilità fino a 1 mV/div, ha permesso di visualizzare correttamente i segnali molto deboli e veloci prodotti dal sensore quando viene eccitata una singola cella. \cite{B}
 
 \subsection{\textbf{Generatori di funzioni Rigol DG1022Z e Siglent SDG1010}}
 
@@ -288,7 +288,23 @@ Per il primo caso si utilizzano due resistori $R_f = 1.00 \pm 0.01 k\Omega $ e $
 
 Come segnale in ingresso si è scelta un'onda di tipo sinusoidale, con ampiezza di $100 mV$.
 
-!TODO!
+\begin{figure}[H]%[!ht]
+\begin {center}
+\includegraphics[width=0.38\textwidth]{analysis/output/OPA-bode_gain1(mag).pdf}
+\caption{Amplificatore reazionato invertente: guadagno in funzione della frequenza}
+\label{fig:closed_loop_inv_gain_1}
+\end {center}
+\end{figure}
+
+
+
+\begin{figure}[H]%[!ht]
+\begin {center}
+\includegraphics[width=0.38\textwidth]{analysis/output/OPA-bode_gain10(mag).pdf}
+\caption{Amplificatore reazionato invertente: guadagno in funzione della frequenza}
+\label{fig:closed_loop_inv_gain_10}
+\end {center}
+\end{figure}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -620,11 +636,14 @@ Sostituendo il segnale all'ingresso negativo con la sinusoide opposta, si ottien
  Si è infine svolta la verifica della linearità dell'amplificazione del canale non invertente effettuando una regressione lineare sullo scatter dei dati estratti in visualizzazione $X-Y$ mettendo a confronto $Ch_1$ e $Ch_2$.
  \begin{figure}[H]%[!ht]
 \begin {center}
-\includegraphics[width=0.50\textwidth]{analysis/output/OPA-linfit-.pdf}
-\caption{}
+\includegraphics[width=0.50\textwidth]{analysis/output/OPA-linfit-non-inv.pdf}
+\caption{Regressione lineare ($y$ = $ax$ +$b$) del canale non invertente in modalita $X-Y$ dell'oscilloscopio ($Ch_in-Ch-out$)}
 \label{fig:lin-non-inv}
 \end {center}
 \end{figure}
+\[a = 0.9970 \pm 0.0031(4) \]
+\[b = (-0.0097 \pm 0.0009) V \]
+Effettuando un test di compatibilità tra il coefficiente angolare $a$ ed il suo valore atteso $a_e = 1$ si può affermare che i due dati  siano effettivamente consistenti con un livello di significatività superiore al 5\% ($Z=0.99$).
 \subsection{Formazione di battimenti}
 Mandando ai due ingressi sinusoidi con frequenza diversa $f_1 = 1\ kHz, \ f_2 = 1.1\ kHz$ e uguale ampiezza $1 \ V$, l'amplificatore genera una sovrapposizione di onde sfasate che possiederà una frequenza di battimento. La tensione in uscita non avrà quindi un ampiezza costante, ma essa pulserà in modo periodico con una frequenza propria, detta \textit{di battimento}, visualizzabile in \textit{figura \ref{fig:beats}}.
 
@@ -695,7 +714,18 @@ e la differenza tra un'onda quadra e una rampa entrambe di ampiezza massima $V=0
 \label{fig:diff_squareramp}
 \end {center}
 \end{figure}
-
+Con la medesima procedura adoperata nel caso del mixer si è effettuta la verifica della linearità dell'amplificazione del canale invertente effettuando una regressione lineare sullo scatter dei dati in modalità $X-Y$ di $Ch_1$ e $Ch_2$.
+In questo caso dato che la curva positiva sarà rappresentata dall'ingresso in sottrazione, mentre quella positiva dall'ingresso non in sottrazione ci si aspetta un valore negativo di coefficiente angolare $a_e = -1$
+ \begin{figure}[H]%[!ht]
+\begin {center}
+\includegraphics[width=0.50\textwidth]{analysis/output/OPA-linfit-inv.pdf}
+\caption{Regressione lineare ($y$ = $ax$ +$b$) del canale invertente in modalità $X-Y$ dell'oscilloscopio ($Ch_in-Ch-out$)}
+\label{fig:lin-inv}
+\end {center}
+\end{figure}
+\[a = -1.0069 \pm 0.0036 \]
+\[b = (0.0101\pm 0.0011) V \]
+Ancora una volta $a$ risulta essere consistente con il valore atteso a conferma della teoria ($Z=1.91$).
 Anche per l'amplificazione di differenze, lo studio qualitativo dei risultati ha confermato la corretta implementazione e funzionamento del circuito; in ogni situazione presentata il comportamento in uscita dell'amplificatore ha rispecchiato il comportamento atteso.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -716,8 +746,8 @@ Con l'utilizzo di un secondo amplificatore operazionale è stato implementato il
 \end{center}
 \end{figure}
  
-Inizialmente è stato fornito al \textit{trigger di Schmitt} un segnale sinusoidale con rumore trascurabile (\textit{"segnale pulito")} $V_{LT} = (7.42)$. In uscita dal trigger si osserva il comportamento tipico in modalità invertente (\textit{Fig.\ref{fig:trigger-clean}}): 
-quando il segnale supera la tensione $V_{LT} = (-7.4 \pm 0.1) \ V $ l'uscita scatta a $ + V_{sat}$ e ci rimane fino a quando il segnale non supera $V_{UT} = (7.6 \pm 0.1) \ V  $ facendo scattare l'uscita alla tensione $- V_{sat}$. Tipicamente un circuito di questo tipo è utilizzato, ad esempio, per trasformare un segnale sinusoidale in un onda quadra.
+Inizialmente è stato fornito al \textit{trigger di Schmitt} un segnale sinusoidale con rumore trascurabile (\textit{"segnale pulito")}. In uscita dal trigger si osserva il comportamento tipico in modalità invertente (\textit{Fig.\ref{fig:trigger-clean}}): 
+quando il segnale supera la tensione $V_{LT} $ l'uscita scatta a $ + V_{sat}$ e ci rimane fino a quando il segnale non supera $V_{UT} $ facendo scattare l'uscita alla tensione $- V_{sat}$. Tipicamente un circuito di questo tipo è utilizzato, ad esempio, per trasformare un segnale sinusoidale in un onda quadra.
 Nel circuito implementato la tensione di saturazione, riferita a massa è:
 \[ +V_{sat}  = 14.6 \pm 0.1  V \]
 \[ -V_{sat}  = -14.0 \pm 0.1  V \]
