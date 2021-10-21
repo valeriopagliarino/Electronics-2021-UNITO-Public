@@ -517,7 +517,7 @@ Inizialmente si sono scelte $R =$$(9.920 \pm 0.103)$$k\Omega$ e $C=$$(23.4 \pm 1
 \label{fig:OPA-integ-res}
 \end {center}
 \end{figure}
-Impostando una frequenza, $f= MANCA-DATO$, si è proceduto con l'osservazione della risposta del circuito, \textit{Fig. \ref{fig:OPA-integ-res}}. Come atteso la $V_{out}$ risulta essere molto vicina all'integrale del segnale in ingresso. In particolare si nota la compatibilità con l'integrale calcolato numericamente rappresentato dalla linea rossa tratteggiata, a meno di un termine lineare dovuto all'offset dell'integrando.
+Impostando una frequenza, $f= 5 kHz$, si è proceduto con l'osservazione della risposta del circuito, \textit{Fig. \ref{fig:OPA-integ-res}}. Come atteso la $V_{out}$ risulta essere molto vicina all'integrale del segnale in ingresso. In particolare si nota la compatibilità con l'integrale calcolato numericamente rappresentato dalla linea rossa tratteggiata, a meno di un termine lineare dovuto all'offset dell'integrando.
 \subsection{\textbf{Studio della risposta in frequenza}}
 
 Terminata la prima fase si è passati all'analisi dell'output del circuito in funzione della frequenza. I dati sono stati presentati su un grafico e interpolati in primo luogo con la forma funzionale di un filtro passa basso e poi in seguito con la funzione di trasferimento attesa, che risulta essere: 
@@ -537,35 +537,37 @@ con $f_H$ polo della funzione di transfer e $A_v(0)$ il valore di \textit{magnit
 Dal confronto di $A_v(0)$ con il gain della $H(s)$ e tra $f_H$ ed $f_t$ si evince un'ottima consistenza entro un livello di significatività del 5\% in entrambi i casi ($t_{Gain} = 0.39 $, $t_{Freq} = 1.45 $) .
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{\textbf{Considerazioni finali}}
+Il circuito si dimostra conforme a quanto espresso, infatti i segnali di output risultano essere ben approssimabili agli integrali numerici delle onde in ingresso. E' importante sottolineare il fatto che il circuito integratore tenda a ridurre il rumore del segnale in ingresso, come si evince della \textit{Fig. \ref{fig:OPA-integ-res}}, comportamento opposto a quello di un OPA derivatore. Un ulteriore fatto che merita di essere sottolineato è il valore di \textit{plateau} del diagramma di Bode relativo alla fase \textit{Fig. \ref{fig:integ-bode}}, si nota infatti che per frequenze elevate quest'ultimo si stabilizzi sul valore di $-90 \deg$ a conferma di una vera e propria integrazione del segnale in input.   
 
-integrazione riduce rumore AGGIUNGERE
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Amplificatore derivatore} %Matteo
+\section{Amplificatore derivatore reale} %Matteo
+\subsection{\textbf{Circuito}}
 \begin{figure}[H]%[!ht]
 \begin {center}
 \includegraphics[width=0.38\textwidth]{sch-simulations/output/OPA-deriv.pdf}
-\caption{Didascalia}
+\caption{Schema  del  circuito  elettrico  per  la  caratterizzazione  dell’OPA derivatore.  Valori  per  i  componenti  utilizzati  misurati  con  il  multimetro: R1= $(9.920 \pm 0.103)$ $k\Omega$, R2= $(9.850 \pm 0.102)$ $k\Omega$, C1= $(23.4 \pm 1.2)$ $\nano F$}
 \label{fig:OPA-deriv}
 \end {center}
 \end{figure}
-Rispetto al circuito integratore presentato sopra, nel caso del circuito derivatore le posizioni del condensatore e del resistore sono state invertite affinché il condensatore $C$ sia collegato al terminale di ingresso dell'amplificatore invertente mentre il resistore, $R_1$ costituisca l'elemento di feedback negativo attraverso. Questo circuito esegue l'operazione matematica di differenziazione cioè produce un'uscita di tensione proporzionale alla velocità di variazione della tensione di ingresso e alla corrente che scorre attraverso il condensatore. Si noti che il condensatore blocca qualsiasi contenuto \textit{DC} della tensione in ingresso, consentendo  quindi il solo passaggio di segnali di tipo \textit{AC}, la cui frequenza dipende dalla velocità di variazione del segnale di ingresso. Alle basse frequenze la reattanza del condensatore è "Alta" con conseguente basso guadagno (R1/Xc) e bassa tensione di uscita, mentre per alte frequenze si avrà un gain nettamente maggiore e un segnale di output più intenso. Ciò è dovuto principalmente all'effetto di primo ordine, che determina la risposta in frequenza del circuito provocandone una risposta di secondo ordine che, alle alte frequenze, dà una tensione di uscita molto superiore a quella che ci si aspetterebbe. Per evitare ciò, il gain ad alta frequenza deve essere ridotto aggiungendo un resistore di feedback $R_f$,di resistenza ridotta,in serie al condensatore. 
+Rispetto al circuito integratore presentato sopra, nel caso del circuito derivatore le posizioni del condensatore e del resistore sono state invertite affinché il condensatore $C$ sia collegato al terminale di ingresso dell'amplificatore invertente mentre il resistore $R_1$ costituisca l'elemento di feedback negativo. Questo circuito esegue l'operazione matematica di differenziazione, cioè produce un'uscita di tensione proporzionale alla velocità di variazione della tensione di ingresso e alla corrente che scorre attraverso il condensatore. Si noti che il condensatore blocca qualsiasi contenuto \textit{DC} della tensione in ingresso, consentendo  quindi il solo passaggio di segnali di tipo \textit{AC}, la cui frequenza dipende dalla velocità di variazione del segnale di input. Alle basse frequenze la reattanza del condensatore è "Alta" con conseguente basso guadagno ($\frac{R_1}{X_C}$) e bassa tensione di uscita, mentre per alte frequenze si avrà un gain nettamente maggiore e un segnale di output più intenso. Ciò è dovuto principalmente all'effetto di primo ordine, che determina la risposta in frequenza del circuito provocandone una risposta di secondo ordine che, alle alte frequenze, dà una tensione di uscita molto superiore a quella che ci si aspetterebbe. Per evitare ciò, il gain ad alta frequenza deve essere ridotto aggiungendo in serie al condensatore un resistore di feedback $R_f$ di resistenza ridotta. 
+
 \subsection{\textbf{Valutazione della risposta}}
 Una volta assemblato il circuito si è proseguito analizzando qualitativamente il comportamento a segnali in input di diversa forma d'onda, verificando che l'output fosse in accordo con quello previsto.
-\section{Amplificatore derivatore} %Matteo
+
 \begin{figure}[H]%[!ht]
 \begin {center}
 \includegraphics[width=0.50\textwidth]{analysis/output/OPA-differentiator.pdf}
-\caption{Didascalia}
+\caption{Risposta del circuito derivatore reale a diverse forme d’onda in ingresso. Partendo dall’alto gradino, onda quadra, onda a dente di sega e sinusoide}
 \label{fig:derivatore}
 \end {center}
 \end{figure}
-Dalla \ref{fig:derivatore}, in cui le scale dei voltaggi sono diverse fra input e output col fine di ottimizzarne la comprensibilità visiva, si vede come il segnale in uscita sia effettivamente paragonabile con la derivata della $V_{in}$. In particolare ricavando la sfasamento tra le due onde secondo la legge:
+Dalla \textit{Fig. \ref{fig:derivatore}}, in cui le scale dei voltaggi sono diverse fra input e output col fine di ottimizzarne la comprensibilità visiva, si vede come il segnale in uscita sia effettivamente paragonabile con la derivata della $V_{in}$. In particolare ricavando la sfasamento tra le due onde secondo la legge:
 \[\theta = \frac{360}{T}\Delta t\]
-in cui $T$ è il periodo dell'onda e $\Delta t$ è lo sfasamento calcolato tra i due picchi di input e output. Si ricava $\theta = 87.22792607802886 °$.
+in cui $T$ è il periodo dell'onda e $\Delta t$ è lo sfasamento calcolato tra i due picchi di input e output. Si ricava $\theta = 87.23 \deg$.
 
 Si può dunque confermare che il funzionamento del circuito rispecchi la teoria. Ovviamente è necessario tener conto del fatto che la bontà della derivazione dipenda strettamente dalla frequenza del segnale in ingresso. Infatti se quest'ultima non fosse stata molto minore rispetto alla frequenza di taglio il circuito avrebbe agito da semplice amplificatore invertente.
-
-integrazione aumenta rumore AGGIUNGERE
+\subsection{\textbf{Conclusioni}}
+Il circuito del derivatore reale raggiunge le aspettative per quanto riguarda l'elaborazione del segnale di input. Infatti facendo riferimento alla \textit{Fig. \ref{fig:derivatore}} nel caso dell'onda quadra l'output assume la forma di una delta di Dirac, con la rampa si ottiene un'onda quadra e dalla sinusoide in ingresso si ottiene una cosinusoide. Infine è importante osservare come l'ampiezza dell'output sia fortemente soppressa rispetto all'input,ma che nonostante ciò si abbia un rumore più evidente.
 
 %%%%%%%%%%FINE SECONDO GIORNO%%%%%%%%%%%%%%%
 %%%%%%%%%%INIZIO TERZO GIORNO%%%%%%%%%%%%%%%
@@ -573,7 +575,7 @@ integrazione aumenta rumore AGGIUNGERE
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Mixer invertente} %Federico
 Sulla \textit{breadboard} è stato implementato il circuito in \textit{fig. \ref{fig:OPA-mixer}}. In questa configurazione, l'amplificatore si comporta come circuito sommatore ed il segnale in uscita sarà proporzionale alla somma dei segnali in ingresso. L'OPA è collegato in configurazione invertente, dunque in uscita si otterrà la somma dei segnali cambiata di segno. Nello specifico: 
-\[V_{out} = - R  \sum_{n} \frac{V_n}{R_n} = - \sum_{n} V_n \tag{1} \] L'ultimo passaggio è possibile scegliendo tutti i valori delle resistenze uguali ($R = R_1 = R_2$). Nel nostro caso si ha: $R_1 =9.81\ k\Omega, \ R_2 = 9.95\ k\Omega ,\ R_3 = 9.89\ k\Omega$.
+\[V_{out} = - R  \sum_{n} \frac{V_n}{R_n} = - \sum_{n} V_n \tag{1} \] L'ultimo passaggio è possibile scegliendo tutti i valori delle resistenze uguali ($R = R_1 = R_2$). Nel nostro caso si ha: $R_1 =(9.81 \pm 0.13) \ k\Omega, \ R_2 = (9.95 \pm 0.13) \ k\Omega ,\ R_3 = (9.89 \pm 0.13) \ k\Omega$.
 
 I primi due canali dell'oscilloscopio sono collegati ai segnali $V_1$ e $V_2$ prodotti dal generatore di funzioni, mentre il terzo canale misura la tensione in uscita $V_{out}$.
 
@@ -581,11 +583,11 @@ I primi due canali dell'oscilloscopio sono collegati ai segnali $V_1$ e $V_2$ pr
 \begin{figure}[H]%[!ht]
 \begin {center}
 \includegraphics[width=0.38\textwidth]{sch-simulations/output/OPA-mixer.pdf}
-\caption{Configurazione invertente del circuito sommatore}
+\caption{Schema  del  circuito  elettrico  per  la  caratterizzazione  della configurazione invertente del circuito sommatore. Valori per i componenti utilizzati misurati con il multimetro: R1= $(9.81 \pm 0.101)$ $k\Omega$, R2= $(9.95 \pm 0.104)$ $k\Omega$, R3= $(9.89 \pm 0.103)$ $k\Omega$}
 \label{fig:OPA-mixer}
 \end {center}
 \end{figure}
-\subsection{Somma di forme d'onda sinusoidali}
+\subsection{\textbf{Somma di forme d'onda sinusoidali}}
 In un primo momento agli ingressi dell'amplificatore sono state mandate due sinusoidi in fase con ampiezza $V_+ = V_- = 0.5 V$. La somma dei due segnali risulta essere una nuova sinusoide di ampiezza $V_{out} = 1 V$ con segno opposto a quelle in ingresso (come da \textit{fig. \ref{fig:Mixer1}})
 Lo stesso effetto si ha per sinusoidi con ampiezze diverse ($V_+ = 0.5, V_- = 0.25 V$) in \textit{figura \ref{fig:Mixer3} }. La tensione in uscita risulta effettivamente avere ampiezza pari alla somma delle ampiezze delle onde in ingresso.
 
@@ -616,7 +618,7 @@ Sostituendo il segnale all'ingresso negativo con la sinusoide opposta, si ottien
 \end{figure}
 
 \subsection{Formazione di battimenti}
-Mandando ai due ingressi sinusoidi con frequenza diversa $f_1 = 1\ kHz, \ f_2 = 1.1\ kHz$ e uguale ampiezza $1 \V$, l'amplificatore genera una sovrapposizione di onde sfasate che possiederà una frequenza di battimento. La tensione in uscita non avrà quindi un ampiezza costante, ma essa pulserà in modo periodico con una frequenza propria, detta \textit{di battimento}, visualizzabile in \textit{figura \ref{fig:beats}}.
+Mandando ai due ingressi sinusoidi con frequenza diversa $f_1 = 1\ kHz, \ f_2 = 1.1\ kHz$ e uguale ampiezza $1 \ V$, l'amplificatore genera una sovrapposizione di onde sfasate che possiederà una frequenza di battimento. La tensione in uscita non avrà quindi un ampiezza costante, ma essa pulserà in modo periodico con una frequenza propria, detta \textit{di battimento}, visualizzabile in \textit{figura \ref{fig:beats}}.
 
 \begin{figure}[H]%[!ht]
 \begin {center}
@@ -638,7 +640,7 @@ Scegliendo le resistenze con valori identici ($R_1 = R_2 = R_3 =R_4 $) si otterr
 \begin{figure}[H]%[!ht]
 \begin {center}
 \includegraphics[width=0.38\textwidth]{sch-simulations/output/OPA-difference-amp.pdf}
-\caption{Circuito amplificatore di differenze invertente. Sono stati usati i seguenti valori di resistenze: $R_1 =9.81\ k\Omega, \ R_2 = 9.95\ k\Omega ,\ R_3 = 9.89\ k\Omega \ e \ R_4 = 9.83 k\Omega  $  }
+\caption{Circuito amplificatore di differenze invertente. Sono stati usati i seguenti valori di resistenze: $R_1 =(9.81 \pm 0.13) \ k\Omega, \ R_2 = (9.95 \pm 0.13) \ k\Omega ,\ R_3 = (9.89 \pm 0.13) \ k\Omega \ e \ R_4 = (9.83 \pm 0.13) k\Omega  $  }
 \label{fig:differenze}
 \end {center}
 \end{figure}
@@ -692,44 +694,45 @@ Anche per l'amplificazione di differenze, lo studio qualitativo dei risultati ha
 \section{Trigger di Schmitt} 
 
 Il \textit{Trigger di Schmitt} è un circuito elettronico che impone isteresi alla soglia di transizione ingresso-uscita con l'aiuto di un feedback positivo. L'isteresi fa si che vengano forniti due diversi livelli di tensione di soglia per il fronte di salita e di discesa. Essenzialmente, si tratta di un multivibratore bistabile e la sua uscita rimane in uno degli stati stabili indefinitamente. Affinché l'uscita cambi da uno stato stabile all'altro, il segnale di ingresso deve cambiare (o attivarsi) in modo appropriato. Questo funzionamento bistabile del trigger di Schmitt richiede un amplificatore con feedback positivo (o \textit{feedback rigenerativo}) con un guadagno in loop maggiore di uno. Quindi, il Trigger di Schmitt è anche noto come \textit{comparatore rigenerativo}.
-In particolare quando $V_{in}$ è leggermente superiore alla tensione di riferimento, $V_{ref}$, la $V_{out}$ diventa $-V_{sat}$ e nel caso in cui sia inferiore diventerà invece $V_{sat}$. La tensione di input a cui avviene il cambio può essere controllato attraverso i valori di $R_1$ e $R_2$.
+In particolare quando $V_{in}$ è leggermente superiore alla tensione di riferimento, $V_{ref}$, la $V_{out}$ diventa $-V_{sat}$ e nel caso in cui sia inferiore diventerà invece $V_{sat}$. La tensione di input a cui avviene il cambio può essere controllata attraverso i valori di $R_1$ e $R_2$.
 \[V_{ref} = \frac{V_{sat}R_2}{R_1+R_2}\]
 Si definisce $V_{UT}$ la tensione di soglia superiore e $V_{LT}$ quella inferiore. $V_{sat}$ e $V_{ref}$ sono i punti dove la funzione di trasferimento caratteristica incrocia gli assi relativi a $V_{out}$ e $V_{in}$.
 
-Con l'utilizzo di un secondo amplificatore operazionale è stato implementato il circuito in \textit{figura \ref{fig:schmitt-trigger}}. Un primo OpAmp è collegato in configurazione di mixer. La sua uscita è collegata a uno degli ingressi del secondo OpAmp in configurazione di \textit{trigger di Schmitt}. 
+Con l'utilizzo di un secondo amplificatore operazionale è stato implementato il circuito in \textit{Fig. \ref{fig:schmitt-trigger}}. Un primo OpAmp è collegato in configurazione di mixer. La sua uscita è collegata a uno degli ingressi del secondo OpAmp in configurazione di \textit{trigger di Schmitt}. 
 
 \begin{figure}[H]%[!ht]
 \begin{center}
 \includegraphics[width=0.45\textwidth]{sch-simulations/output/OPA-mixer-trigger.pdf}
-\caption{Schema elettrico utilizzato per la caratterizzazione del trigger di Schmitt con l'obiettivo di mostrare le capacità di immunità al rumore. Il circuito di dotato di due stadi operazionali, il primo con funzione di sommatore produce un segnale rumoroso sommando un noise ad alta frequenza ad un segnale sinusoidale, il secondo costituisce il trigger vero e proprio.} %VALORI DEI COMPONENTI!!!
+\caption{Schema elettrico utilizzato per la caratterizzazione del trigger di Schmitt con l'obiettivo di mostrare le capacità di immunità al rumore. Il circuito di dotato di due stadi operazionali, il primo con funzione di sommatore produce un segnale rumoroso sommando un noise ad alta frequenza ad un segnale sinusoidale, il secondo costituisce il trigger vero e proprio. Sono stati usati i seguenti valori di resistenza: } 
 \label{fig:schmitt-trigger}
 \end{center}
 \end{figure}
-
-
-\begin{figure}[H]%[!ht]
-\begin {center}
-\includegraphics[width=0.50\textwidth]{analysis/output/OPA-trigger-histeresis-overlapped.pdf}
-\caption{Rappresentazione dei cicli di isteresi del trigger di Schmitt al variare della frequenza della sinusoide fornita in ingresso. Si osserva chiaramente che ad alta frequenza la velocità di commutazione del circuito diventa insufficiente. Questo parametro dipende dallo slew rate dell'amplificatore operazionale utilizzato.}
-\label{fig:trigger-hyst}
-\end {center}
-\end{figure}
+ 
+Inizialmente è stato fornito al \textit{trigger di Schmitt} un segnale sinusoidale con rumore trascurabile (\textit{"segnale pua $V_{LT} = (7.42 \lito")$}. In uscita dal trigger si osserva il comportamento tipico in modalità invertente (\textit{Fig.\ref{fig:trigger-clean}}): 
+quando il segnale supera la tensione $V_{LT} = (-7.42 \pm 0.12) \ V $ l'uscita scatta a $ + V_{sat}$ e ci rimane fino a quando il segnale non supera \pm 0.12) \ V ) facendo scattare l'uscita alla tensione $- V_{sat}$. Tipicamente un circuito di questo tipo è utilizzato, ad esempio, per trasformare un segnale sinusoidale in un onda quadra.
+Nel circuito implementato la tensione di saturazione, riferita a massa è:
+\[\Delta V  = 14.424 \pm 0.036  V \]
 
 \begin{figure}[H]%[!ht]
 \begin {center}
-\includegraphics[width=0.50\textwidth]{analysis/output/trigger1.pdf}
+\includegraphics[width=0.50\textwidth]{analysis/output/trigger-pulito.pdf}
 \caption{Trigger di Schmitt (con isteresi) a cui viene fornito in ingresso un segnale sinusoidale con rumore trascurabile}
 \label{fig:trigger-clean}
 \end {center}
 \end{figure}
 
+Successivamente è stato inviato in ingresso al trigger un segnale sinusoidale sommato - tramite l'amplificatore mixer presente nel circuito - ad un rumore ad alta frequenza (\textit{segnale rumoroso}). E' stato studiato il comportamento del trigger in due configurazioni: anello aperto e anello chiuso.
+
+Nel primo caso \textit{il trigger di Schmitt} si comporta come un qualunque comparatore ad anello aperto: in presenza di un segnale disturbato, in corrispondenza della soglia, non si ha più una commutazione netta dell'uscita, ma una serie di commutazioni dovute ai ripetuti superamenti di soglia del rumore. Ciò è ben visualizzabile in \textit{figura \ref{fig:trigger-noisy}}, dove si ha una commutazione indesiderata in corrispondenza del punto in cui il rumore supera la soglia ($0 \ V)$ in due istanti consecutivi. 
 \begin{figure}[H]%[!ht]
 \begin {center}
 \includegraphics[width=0.50\textwidth]{analysis/output/noisy-open-ring.pdf}
-\caption{Discriminatore ad anello aperto (senza isteresi) a cui viene fornito in ingresso un segnale sinusoidale con rumore, si nota una commutazione indesiderata dovuta allo zero-crossing del rumore (soglia = 0)}
+\caption{Discriminatore ad anello aperto (senza isteresi) a cui viene fornito in ingresso un segnale sinusoidale con rumore, si nota una commutazione indesiderata dovuta allo zero-crossing del rumore (soglia = 0 $V$)}
 \label{fig:trigger-noisy}
 \end {center}
 \end{figure}
+La retroazione positiva introdotta nella configurazione ad anello chiuso, rimedia a questo problema introducendo due soglie diverse, a seconda che la tensione di uscita valga $+V_{sat}$ o $-V_{sat}$. L'effetto che si ottiene è che anche in presenza di rumore la commutazione è "protetta" dalla banda compresa tra la due tensioni di soglia: affinché avvenga uno scatto, la tensione deve andare al di sopra della soglia alta o al di sotto della soglia bassa.
+
 
 \begin{figure}[H]%[!ht]
 \begin {center}
@@ -740,14 +743,22 @@ Con l'utilizzo di un secondo amplificatore operazionale è stato implementato il
 \end{figure}
 
 
-\[\Delta V  = 14.424 +- 0.036  V \]
+\subsection{\textbf{Analisi della risposta in frequenza}}
 Osservando la risposta a $100 Hz$ si vede come effettivamente i valori empirici di $V_{sat}$ e $V_{ref}$ rispettino le leggi sopracitate.
-Si ricorda che l'isteresi previene il trigger dall'oscillare quando un input che varia a bassa frequenza si trova vicina al \textit{threshold voltage}. Aumentando la frequenza ci si aspetta perciò una minore efficacia del comparatore come visibile qua di seguito
+Si ricorda che l'isteresi previene il trigger dall'oscillare quando un input che varia a bassa frequenza si trova vicina al \textit{threshold voltage}. Aumentando la frequenza ci si aspetta perciò una minore efficacia del comparatore come visibile qua di seguito (in \textit{figg. \ref{fig:hyst-table} e \ref{fig:trigger-hyst}} vi sono gli stessi dati in due diverse rappresentazioni, affiancati o sovrapposti).
 \begin{figure}[H]%[!ht]
 \begin {center}
-\includegraphics[trim = {50pt 0 0 0}, width=0.55\textwidth]{analysis/output/OPA-trigger-histeresis-table.pdf}
-\caption{Didascalia}
+\includegraphics[trim = {30pt 0 0 0}, width=0.50\textwidth]{analysis/output/OPA-trigger-histeresis-table.pdf}
+\caption{Rappresentazione dei cicli di isteresi del trigger di Schmitt al variare della frequenza della sinusoide fornita in ingresso. Si osserva chiaramente che ad alta frequenza la velocità di commutazione del circuito diventa insufficiente. Questo parametro dipende dallo slew rate dell'amplificatore operazionale utilizzato }
 \label{fig:hyst-table}
+\end {center}
+\end{figure}
+
+\begin{figure}[H]%[!ht]
+\begin {center}
+\includegraphics[width=0.50\textwidth]{analysis/output/OPA-trigger-histeresis-overlapped.pdf}
+\caption{Sovrapposizione dei grafici rappresentanti i cicli di isteresi a diverse frequenze}
+\label{fig:trigger-hyst}
 \end {center}
 \end{figure}
 %%%%%%%%%%FINE TERZO GIORNO%%%%%%%%%%%%%%%%%%
