@@ -261,7 +261,40 @@ Come segnale in ingresso si è scelta un'onda di tipo sinusoidale, con ampiezza 
 Un amplificatore non invertente ha la peculiarità di dare in uscita un segnale proporzionale a quello d'ingresso e in fase con esso. Il segnale è applicato all'ingresso non invertente affinché il guadagno $A$ sia positivo. Infatti per l'equipotenzialità degli ingressi si ha: \[V_{-} = V_{+} = V_{i}\] \[V_{-} = \frac{R_1}{R_1+R_2}=V_{+}\] \[V_{o}=(1+\frac{R_2}{R_1}V_{+})\]
 da cui si ricava che $A=\frac{V_{o}}{V_i}=1+\frac{R_2}{R_1}$.
 \subsection{\textbf{Caratterizzazione}}
-In laboratorio sono stati impiegati diversi resistori nella rete di feedback per ottenere valori differenti del guadagno. Nel primo caso sono stati scelti componenti con valori
+In laboratorio si è considerata la configurazione citata in \textit{Fig.\ref{fig:loop-non-inv}} con l'obiettivo di ottenere un guadagno pari a due.
+In dettaglio sfruttando ala legge sopracitata
+\[A_2 = 1 + \frac{R_2}{R_1} =2.003 +- 0.072\]
+\begin{figure}[H]%[!ht]
+\begin {center}
+\includegraphics[width=0.48\textwidth]{analysis/output/OPA-closed-loop-non-inv-G2-11.pdf}
+\caption{Amplificatore operazionale in configurazione ad anello chiuso non invertente(crva di colore blu)}
+\label{fig:g2-11}
+\end {center}
+\end{figure}
+\[V_i = (0.276 \pm 0.002) V\]
+\[V_2 = (0.54 \pm 0.01(3)) V\]
+Dalla \textit{Fig. \ref{fig:g2-11}} si nota infatti che la risposta del circuito comporta un segnale in uscita in fase con quello in entrata, con un guadagno:
+\[A_{2_c} = 1.96 \pm 0.05\]
+I valori di $V_{out}$ misurati con l'oscilloscopio sono risultati in accordo con la teoria.
+L'accordo tra il guadagno atteso e quello misurato sperimentalmente con l'oscilloscopio è confermato da un \textit{Test t} che riporta il seguente valore per la variabile statistica $t_2 = 0.54$ , superiore al livello di significatività adottato pari al 5 \%.
+\subsection{Studio della risposta in frequenza}
+
+Si è ora interessati a valutare la risposta in frequenza del circuito di amplificazione sotto esame, vengono quindi acquisiti i valori picco-picco dell'ingresso e dell'uscita con i cursori dell'oscilloscopio e i punti sul piano \textit{guadagno-frequenza} vengono interpolati con una opportuna funzione di trasferimento del circuito:
+\[H(s)=\frac{k}{(1+as)}\] 
+in cui $k$ rappresenta il guadagno e $a = \frac{1}{f_H}$ con $f_H$ la frequenza di taglio.
+\begin{figure}[H]%[!ht]
+\begin {center}
+\includegraphics[width=0.50\textwidth]{analysis/output/OPA-bode_gain2(mag+phase).pdf}
+\caption{Diagramma di Bode con OpAmp non invertente}
+\label{fig:gain2}
+\end {center}
+\end{figure}
+\[k_2 = 1.97 \pm 0.01\] 
+\[f_{H_2} = [ 0.50 \pm 0.03 ]MHz\]
+Nel grafico in \textit{Fig. \ref{fig:gain2}} 
+
+
+Nel primo caso sono stati scelti componenti con valori
 $R1 =$ ( $987 \pm 50$ ) $\Omega$ e $R1 =$ ( $990 \pm 50$ ) $\Omega$ 
 per ottenere un guadagno atteso 
 $A_2 = 1 + \frac{R_2}{R_1} =2.003 +- 0.072$, 
