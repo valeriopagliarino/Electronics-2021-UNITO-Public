@@ -263,7 +263,7 @@ da cui si ricava che $A=\frac{V_{o}}{V_i}=1+\frac{R_2}{R_1}$.
 \subsection{\textbf{Caratterizzazione}}
 In laboratorio si è considerata la configurazione citata in \textit{Fig.\ref{fig:loop-non-inv}} con l'obiettivo di ottenere un guadagno pari a due.
 In dettaglio sfruttando ala legge sopracitata
-\[A_2 = 1 + \frac{R_2}{R_1} =2.003 +- 0.072\]
+\[A_2 = 1 + \frac{R_2}{R_1} =2.003 \pm 0.072\]
 \begin{figure}[H]%[!ht]
 \begin {center}
 \includegraphics[width=0.48\textwidth]{analysis/output/OPA-closed-loop-non-inv-G2-11.pdf}
@@ -308,7 +308,6 @@ Per analizzare tale fenomeno si è osservata la risposta del circuito all'aument
 \label{fig:slew-rate-table}
 \end {center}
 \end{figure}
-\section{\textbf{Discussione e considerazioni conclusive}}
 
 \begin{figure}[H]%[!ht]
 \begin {center}
@@ -319,6 +318,8 @@ Per analizzare tale fenomeno si è osservata la risposta del circuito all'aument
 \end{figure}
 \[SR = 0.6858 \frac{V}{\mu s}\]
 Il valore è consistente con la letteratura.
+\subsection{\textbf{Discussione e considerazioni conclusive}}
+In conclusione il circuito ha dimostrato di operare esattamente come previsto, processando un segnale in output in fase con quello in input e amplificato di un valore consistente con quello calcolato per via teorica. La funzione di di transfer usata si è dimostrata perfettamente in linea con la presa dati, a conferma di ciò la controverifica fatta con i valori di fase e il loro andamento similare a quello del diagramma di fase. Infine lo slew rate estratto dalla regressione è in accordo con l'ordine di grandezza dei valori relativi ad operazionali di questo genere. 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Discriminatore ad anello aperto con soglia arbitraria} %Stefano
 
@@ -497,18 +498,17 @@ In questa esperienza di laboratorio verrà analizzato il funzionamento di un cir
 \begin{figure}[H]%[!ht]
 \begin {center}
 \includegraphics[width=0.38\textwidth]{sch-simulations/output/OPA-integratore.pdf}
-\caption{Schema  del  circuito  elettrico  per  la  caratterizzazione  dell’OPA integratore.  Valori  per  i  componenti  utilizzati  misurati  con il multimetro: $R_1 =$ $(9.920 \pm 0.139)$ $k\Omega$, $R_2 =$ $(9.850 \pm 0.138)$ $k\Omega$, $C_1 =$ $(23.4 \pm 1.5)$ $\nano F$}
+\caption{Schema  del  circuito  elettrico  per  la  caratterizzazione  dell’OPA integratore.  Valori  per  i  componenti  utilizzati  misurati  con il multimetro: $R_1 =$ $(9.920 \pm 0.103)$ $k\Omega$, $R_2 =$ $(9.850 \pm 0.102)$ $k\Omega$, $C_1 =$ $(23.4 \pm 1.2)$ $\nano F$}
 \label{fig:OPA-integ}
 \end {center}
 \end{figure}
 %Come sottintende il nome, l'Op-Amp integratore è un operazionale che esegue l'operazione matematica dell'integrazione, facendo si che il circuito emetta una $V_{out}$ proporzionale all'integrale della $V_{in}$. In altre parole, facendo riferimento alla \ref{fig:OPA-integ}, l'ampiezza del segnale in uscita è determinato dal periodo di tempo in cui una tensione è presente in input, poiché la corrente attraverso il circuito di feedback carica o scarica il condensatore mentre il feedback negativo richiesto avviene attraverso il condensatore.
 Mediante un amplificatore operazione è possibile realizzare un circuito integratore, cioè in grado di produrre in uscita un segnale proporzionale alla primitiva della forma d'onda in ingresso, inserendo una capacità nella rete di feedback tra l'ingresso invertente e l'uscita.
-Affinché l'amplificatore non vada in saturazione alle basse frequenze, viene aggiunto in parallelo a $C$ un resistore $R_{2}$ che fa si che in tale regime operativo il condensatore si comporti come una impedenza infinita, determinando un guadagno $A_{v}=-R_{2}/R{1}$. In questa configurazione è detta \textit{circuito integratore attivo limitato}. 
+Affinché l'amplificatore non vada in saturazione alle basse frequenze, viene aggiunto in parallelo a $C$ un resistore $R_{2}$ che fa si che in tale regime operativo il condensatore si comporti come una impedenza infinita, determinando un guadagno $A_{v}=-R_{2}/R{1}$. Questa configurazione è detta \textit{circuito integratore attivo limitato}. 
 %essendo il periodo della tensione in ingresso relativamente lungo,
 Una caratteristica importante è che il circuito si comporta effettivamente da integratore solo per frequenze superiori a quella di taglio, $f_{t}=\frac{1}{2 \pi C R_{1} }$, è quindi necessario scegliere $R$ e $C$ opportunamente, in relazione alla distribuzione spettrale del segnale da integrare. Questo è giustificabile osservando il grafico di fase del diagramma di Bode associato: oltre la frequenza di taglio tutte le armoniche sinusoidali di Fourier vengono sfasate di un angolo tale da essere approssimabili come inverse di cosinusoidi, cioè integrali delle sinusoidi di partenza.
-%per cui buona norma per ottenere un circuito efficiente è quella di 
 \subsection{\textbf{Caratterizzazione}}
-Inizialmente si sono scelte $R =$$(9.920 \pm 0.139)$$k\Omega$ e $C=$$(23.4 \pm 1.5)$$\nano F$ con lo scopo di ottenere una frequenza di taglio non eccessivamente bassa per favorire lo studio della risposta in frequenza della fase successiva: \[f_{t} = \frac{1}{2 \pi R_{1} C}= 685.63 \pm 44.13 Hz\].
+Inizialmente si sono scelte $R =$$(9.920 \pm 0.103)$$k\Omega$ e $C=$$(23.4 \pm 1.2)$$\nano F$ con lo scopo di ottenere una frequenza di taglio non eccessivamente bassa per favorire lo studio della risposta in frequenza della fase successiva: \[f_{t} = \frac{1}{2 \pi R_{1} C}= 685.63 \pm 35.88 Hz\].
 
 \begin{figure}[H]%[!ht]
 \begin {center}
