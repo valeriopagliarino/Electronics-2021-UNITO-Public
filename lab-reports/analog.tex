@@ -267,7 +267,7 @@ In dettaglio sfruttando ala legge sopracitata
 \begin{figure}[H]%[!ht]
 \begin {center}
 \includegraphics[width=0.48\textwidth]{analysis/output/OPA-closed-loop-non-inv-G2-11.pdf}
-\caption{Amplificatore operazionale in configurazione ad anello chiuso non invertente(crva di colore blu)}
+\caption{Amplificatore operazionale in configurazione ad anello chiuso non invertente (curva di colore blu)}
 \label{fig:g2-11}
 \end {center}
 \end{figure}
@@ -291,67 +291,7 @@ in cui $k$ rappresenta il guadagno e $a = \frac{1}{f_H}$ con $f_H$ la frequenza 
 \end{figure}
 \[k_2 = 1.97 \pm 0.01\] 
 \[f_{H_2} = [ 0.50 \pm 0.03 ]MHz\]
-Nel grafico in \textit{Fig. \ref{fig:gain2}} 
-
-
-Nel primo caso sono stati scelti componenti con valori
-$R1 =$ ( $987 \pm 50$ ) $\Omega$ e $R1 =$ ( $990 \pm 50$ ) $\Omega$ 
-per ottenere un guadagno atteso 
-$A_2 = 1 + \frac{R_2}{R_1} =2.003 +- 0.072$, 
-mentre successivamente è stato sostituito il resistore di feedback con 
-$R3 =$ ( $9.7 \pm 1.4$ ) $k\Omega$, ottenendo $A_{11} = 10.828 +- 0.516 $.
-\begin{figure}[H]%[!ht]
-\begin {center}
-\includegraphics[width=0.48\textwidth]{analysis/output/OPA-closed-loop-non-inv-G2-11.pdf}
-\caption{Amplificatore operazionale in configurazione ad anello chiuso non invertente}
-\label{fig:g2-11}
-\end {center}
-\end{figure}
-\[V_i = (0.276 \pm 0.002) V\]
-\[V_2 = (0.54 \pm 0.01(3)) V\]
-\[V_11 = (2.8 \pm 0.1(1)) V\]
-Dalla \textit{Fig. \ref{fig:g2-11}} si nota infatti che la risposta del circuito comporta un segnale in uscita in fase con quello in entrata, con le amplificazioni:
-\[A_{2_c} = 1.96 \pm 0.05\]
-\[A_{11_c} = 10.14 \pm 0.42\]
- I valori di $V_{out}$ misurati con l'oscilloscopio sono risultati in accordo con la teoria.
-
-L'accordo tra il guadagno atteso e quello misurato sperimentalmente con l'oscilloscopio è confermato da un \textit{Test t} che riporta i seguenti valori per le variabili statistiche $t_2 = 0.54$ e $t_{11} = 1.02$ con p-values di [AGGIUNGERE], superiori al livello di significatività adottato pari al 5 \%.
-
-\subsection{Studio della risposta in frequenza}
-
-Si è ora interessati a valutare la risposta in frequenza del circuito di amplificazione sotto esame, vengono quindi acquisiti i valori picco-picco dell'ingresso e dell'uscita con i cursori dell'oscilloscopio e i punti sul piano \textit{guadagno-frequenza} vengono interpolati con una opportuna funzione di trasferimento del circuito:
-\[H(s)=\frac{k}{(1+as)}\] 
-in cui $k$ rappresenta il guadagno e $a = \frac{1}{f_H}$ ed $f_H$ sta per la frequenza di taglio superiore.
-\begin{figure}[H]%[!ht]
-\begin {center}
-\includegraphics[width=0.50\textwidth]{analysis/output/OPA-bode_gain2(mag).pdf}
-\caption{Diagramma di Bode relativo al circuito con l'utilizzo di $R_1$ ed $R_2$ }
-\label{fig:gain2}
-\end {center}
-\end{figure}
-\[k_2 = 1.005 \pm 0.108\] 
-\[f_{H_2} = [ 0.590 \pm 0.035 ]MHz\]
-
-\begin{figure}[H]%[!ht]
-\begin {center}
-\includegraphics[width=0.50\textwidth]{analysis/output/OPA-bode_gain11(mag).pdf}
-\caption{Diagramma di Bode relativo al circuito con l'utilizzo di $R_1$ ed $R_3$ }
-\label{fig:gain11}
-\end {center}
-\end{figure}
-\[k_{11} = 9.728 \pm 0.626\] 
-\[f_{H_{11}} = [ 83.5 \pm 4.5 ]kHz\]
-Partendo da tali dati è stato possibile osservare la conservazione del prodotto 
-\[BAND WIDTH \times GAIN\]
-ottenendo i valori \[f_{H_{2}} \times A_2 = (5.918 \pm  0.818) MHz\]  \[f_{H_{11}} \times A_{11} = (8.206 \pm 0.650) MHz\] compatibili entro le loro incertezze con un livello di significatività del 95\% (\textit{Test Student = 2.18}).
-\begin{figure}[H]%[!ht]
-\begin {center}
-\includegraphics[width=0.45\textwidth]{analysis/output/OPA-bode_gain_comparison(mag).pdf}
-\caption{Diagrammi di Bode delle due configurazioni a confronto}
-\label{fig:gain-compare}
-\end {center}
-\end{figure}
-In \textit{Fig.\ref{fig:gain-compare}} è infine possibile osservare qualitativamente il confronto delle caratteristiche dei due circuiti.
+Nel grafico in \textit{Fig. \ref{fig:gain2}} è riportata in primo luogo il diagramma di Bode relativo all'ampiezza, ottenuto per mezzo della regressione di $H(s)$. In quest'ultimo la $f_H_2$ è stata ricavata dall'intersezione tra la curva di fit e una retta orizzontale con intercetta al valore della funzione per frequenza nulla sottratto di $3$ $dB$. Il diagramma di fase è stato ricavato dalla funzione di trasferimento e vi sono stati plottati i valori, acquisiti attraverso l'oscilloscopio della fase del segnale analizzato. 
 
 \subsection{Slew rate}
 In un amplificatore operazionale reale la velocità di variazione della tensione di uscita non può superare un valore limite detto \textit{slew-rate} o velocità di risposta:
@@ -368,7 +308,7 @@ Per analizzare tale fenomeno si è osservata la risposta del circuito all'aument
 \label{fig:slew-rate-table}
 \end {center}
 \end{figure}
-
+\section{\textbf{Discussione e considerazioni conclusive}}
 
 \begin{figure}[H]%[!ht]
 \begin {center}
@@ -377,7 +317,7 @@ Per analizzare tale fenomeno si è osservata la risposta del circuito all'aument
 \label{fig:slew-rate-fit}
 \end {center}
 \end{figure}
-$SR = 0.6858 \frac{V}{\mu s}$
+\[SR = 0.6858 \frac{V}{\mu s}\]
 Il valore è consistente con la letteratura.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Discriminatore ad anello aperto con soglia arbitraria} %Stefano
