@@ -254,7 +254,7 @@ Come segnale in ingresso si è scelta un'onda di tipo sinusoidale, con ampiezza 
 \begin{figure}[H]%[!ht]
 \begin {center}
 \includegraphics[width=0.50\textwidth]{sch-simulations/output/OPA-closed-loop-non-inverting.pdf}
-\caption{Schema del circuito elettrico per la caratterizzazione dell'OPA retroazionato non invertente. Valori per i componenti utilizzati misurati con il multimetro: R1 = ( $987 \pm 50$ ) $\Omega$ , R2 = ( $990 \pm 50$ ) $\Omega$}
+\caption{Schema del circuito elettrico per la caratterizzazione dell'OPA retroazionato non invertente. Valori per i componenti utilizzati misurati con il multimetro: R1 = ( $987 \pm 14$ ) $\Omega$ , R2 = ( $990 \pm 14$ ) $\Omega$}
 \label{fig:loop-non-inv}
 \end {center}
 \end{figure}
@@ -349,7 +349,7 @@ Il valore è consistente con la letteratura.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Discriminatore ad anello aperto con soglia arbitraria} %Stefano
 
-Nelle configurazioni ad anello aperto esaminate finora, l'ingresso non utilizzato dal segnale è stato collegato a massa, di conseguenza si è sempre osservato che il discriminatore commutava in prossimità dei punti di zero-crossing. E' tuttavia possibile variare in modo arbitrario la soglia di commutazione del circuito collegandolo ad un generatore in grado di fornire una tensione continua rispetto alla massa di riferimento. Nella figura \ref{fig:biased_scope} è presentata un'acquisizione effettuata con l'oscilloscopio in cui un segnale sinusoidale in ingresso di ampiezza attesa $V_{pp}$ = 5.00 V viene amplificato da un circuito ad anello aperto non invertente mentre l'ingresso invertente (si veda lo schema \ref{fig:biased}) è collegato ad un'uscita variabile del generatore impostata a tensione $V_2$ = $V_{th}$ = 2.1 V. 
+Nelle configurazioni ad anello aperto esaminate finora, l'ingresso non utilizzato dal segnale è stato collegato a massa, di conseguenza si è sempre osservato che il discriminatore commutava in prossimità dei punti di zero-crossing. E' tuttavia possibile variare in modo arbitrario la soglia di commutazione del circuito collegandolo ad un generatore in grado di fornire una tensione continua rispetto alla massa di riferimento. Nella figura \ref{fig:biased_scope} è presentata un'acquisizione effettuata con l'oscilloscopio in cui un segnale sinusoidale in ingresso di ampiezza attesa $V_{pp}$ = 5.00 V viene amplificato da un circuito ad anello aperto non invertente mentre l'ingresso invertente (si veda lo schema \ref{fig:biased}) è collegato ad un'uscita variabile del generatore impostata a tensione $V_2$ = $V_{th} = 2.1 V$. 
 
 \begin{figure}[H]%[!ht]
 \begin {center}
@@ -390,22 +390,6 @@ $t  \pm 0.05 \ ms$ & $\Delta t \pm 0.07 \ ms$ & soglia $\pm 0.5 \ V$ & punti \\ 
 0.40 \textless t \textless 1.20   & 0.80 & -13.5 & 766 \\ \hline
 \end{tabular}
 
-\begin{figure}[H]%[!ht]
-\begin{center}
-\includegraphics[width=0.50\textwidth]{analysis/output/OPA-open-loop-biased_threshold.pdf}
-\caption{Didascalia}
-\label{fig:biased_scope}
-\end{center}
-\end{figure}
-
-
-\begin{figure}[H]%[!ht]
-\begin{center}
-\includegraphics[width=0.38\textwidth]{sch-simulations/output/OPA-biased.pdf}
-\caption{Didascalia}
-\label{fig:biased}
-\end{center}
-\end{figure}
 
 %%%%%%%%%%FINE PRIMO GIORNO%%%%%%%%%%%%%%%
 %%%%%%%%%%INIZIO SECONDO GIORNO%%%%%%%%%%%
@@ -487,8 +471,8 @@ Si sono misurati i seguenti valori:
 
 \begin{figure}[H]%[!ht]
 \begin {center}
-\includegraphics[width=0.38\textwidth]{analysis/output/fit_log_vout_vin.pdf}
-\caption{Circuito per integratore logaritmico. D1 è il diodo al silicio, R1 il resistore}
+\includegraphics[width=0.58\textwidth]{analysis/output/fit_log_vout_vin.pdf}
+\caption{}
 \label{fig:oscilloscope}
 \end {center}
 \end{figure}
@@ -508,14 +492,6 @@ stima.
 È ragionevole supporre che la temperatura ambiente del laboratorio fosse inferiore a $300 K$, ma non si possiede una misura utile a calcolare un valore atteso più corretto.
 Si pensa dunque che ci possa essere un errore sistematico nella presa dati. In particolare la scelta della tensione $V_in$ potrebbe non essere stata ottimale. Un tale valore
 fa sì che gli ultimi dati misurati siano influenzati dallo slew rate !TODO!. Tale ipotesi è confermata da una successiva analisi:
-
-\begin{figure}[H]%[!ht]
-\begin {center}
-\includegraphics[width=0.38\textwidth]{analysis/output/OPA-log-fitted.pdf}
-\caption{Sovrapposizione del grafico x-y e della regressione con funzione teorica}
-\label{fig:oscilloscope}
-\end {center}
-\end{figure}
 
 Si è analizzato l'amplificatore logaritimico tramite la funzione X-Y dell'oscilloscopio, con persistenza infinita dei dati e inviando all'ingresso una funzione sinusoidale [!
 TENSIONE!]. L'immagine rappresenta la sovrapposizione tra la regressione con funzione logaritmica e il grafico x-y. Si nota che i dati per tensioni basse si avvicinano
