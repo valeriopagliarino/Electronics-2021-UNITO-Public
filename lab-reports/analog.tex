@@ -172,7 +172,7 @@ Come segnale in ingresso si è scelto di generare un'onda sinusoidale di ampiezz
 
 \begin{figure}[h]%[!ht]
 \begin {center}
-\includegraphics[width=0.38\textwidth]{analysis/output/opa-open-loop-inv-zero-crossing-z2.pdf}
+\includegraphics[width=0.40\textwidth]{analysis/output/opa-open-loop-inv-zero-crossing-z2.pdf}
 \caption{opa: configurazione invertente ad anello aperto}
 \label{fig:oscilloscope}
 \end {center}
@@ -188,12 +188,15 @@ oscillazioni, e si sono dunque valutate le distribuzioni dei segnali a questi li
 
 Di seguito i valori per cui vengono superate le soglie nei vari intervalli temporali:
 
+\newline
+
 \begin{tabular}{|c|c|c|}
-    t $\pm$ 0.05 {[}ms{]} & soglia in uscita $\pm 0.5$ {[}V{]} & $V_{in}$ $\pm 0.02$ {[}V{]} \\ \hline
+\hline
+    t $\pm$ 0.05 {[}ms{]} & $V_{soglia}$ $\pm 0.5$ {[}V{]} & $V_{in}$ $\pm 0.02$ {[}V{]} \\ \hline
 -0.90 \textless t \textless -0.40 & -13.5 & 0.024  \\ \hline
 -0.40 \textless t \textless 0.10  & 14.1  & -0.048 \\ \hline
 0.10 \textless t \textless 0.60   & -13.5 & 0.032  \\ \hline
-0.60 \textless t \textless 1.10   & 14.1  & -0.048  \hline
+0.60 \textless t \textless 1.10   & 14.1  & -0.048 \\  \hline
 \end{tabular}
 
 Effettuando una media tra i due valori per la soglia alta si ottiene: $V_{zc} = -0.05 \pm 0.02 V$
@@ -213,7 +216,7 @@ Ci si attende dunque un comportamento analogo al precedente ma con amplificazion
 
 \begin{figure}[H]%[!ht]
 \begin {center}
-\includegraphics[width=0.38\textwidth]{/output//OPA-open-loop-non-inv-zero-crossing-z2.pdf}
+\includegraphics[width=0.38\textwidth]{analysis/output/OPA-open-loop-non-inv-zero-crossing-z2.pdf}
 \caption{OPA: configurazione non invertente ad anello aperto}
 \label{fig:oscilloscope}
 \end {center}
@@ -242,6 +245,8 @@ Ci si propone di studiare l'andamento in frequenza dell'amplificazione in due di
 Per il primo caso si utilizzano due resistori $R_f = 1.00 \pm 0.01 k\Omega $ e $R = 0.99 \pm 0.01 k\Omega$, con guadagno teorico pari a $A_{vf} = -1.00 \pm 0.02 $ Per il secondo caso si utilizzano due resistori $R_f = 9.8 \pm 0.1 k\Omega $ e $R = 0.99 \pm 0.01 k\Omega$, con guadagno teorico pari a $A_{vf} = -9.8 \pm 0.2$
 
 Come segnale in ingresso si è scelta un'onda di tipo sinusoidale, con ampiezza di $100 mV$.
+
+!TODO!
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{\textbf{Amplificatore retroazionato non invertente}} %Matteo
@@ -378,7 +383,7 @@ saturazione inversa non simmetriche: di seguito la durata degli intervalli di sa
 
 \begin{tabular}{|c|c|c|c|}
 \hline
-base tempi $t  \pm 0.05 [ms]$ & $\Delta t \pm 0.07 ms$ & soglia $\pm 0.5 [V]$ & numero di dati \\ \hline
+$t  \pm 0.05 \ ms$ & $\Delta t \pm 0.07 \ ms$ & soglia $\pm 0.5 \ V$ & punti \\ \hline
 -0.80 \textless t \textless -0.60 & 0.20 & 14.1  & 126 \\ \hline
 -0.60 \textless t \textless 0. 20 & 0.80 & -13.5 & 763 \\ \hline
 0.20 \textless t \textless 0.40   & 0.20 & 14.1  & 130 \\ \hline
@@ -409,25 +414,30 @@ base tempi $t  \pm 0.05 [ms]$ & $\Delta t \pm 0.07 ms$ & soglia $\pm 0.5 [V]$ & 
 \section{Amplificatore logaritmico} %Stefano
 
 Un amplificatore operazionale, se inserito in un circuito che usa un diodo come feedback, amplifica il segnale in ingresso secondo la legge:
-$V_0 = - \eta \cdot V_T \cdot ln( \frac{v_s}{R \cdot I_0} )$
 
-con $V_T = \frac{k_{b} \cdot T}{q}$
+\begin{equation}
+V_0 = - \eta \cdot V_T \cdot ln( \frac{v_s}{R \cdot I_0} )
+\end{equation}
 
-Ci si propone di verificare la legge, inserendo un diodo al silicio ($\eta = 2$) come retroazione nel circuito, e un resistore $R = 2.00 \pm 0.02 k\Omega  $, e inviando
-segnali in tensione continua all'ingresso invertente. Inoltre, si intende ricavare sperimentalmente il valore dei parametri $V_T$ e $I_0$.
+con $V_T = \frac{k_{b} \cdot T}{q}$ \\
+
+Ci si propone di verificare la legge, inserendo un diodo al silicio ($\eta = 2$) come retroazione nel circuito, e un resistore $R = 2.00 \pm 0.02 \ k\Omega$, e inviando segnali in tensione continua all'ingresso invertente. Inoltre, si intende ricavare sperimentalmente il valore dei parametri $V_T$ e $I_0$.
 
 \begin{figure}[H]%[!ht]
 \begin {center}
 \includegraphics[width=0.38\textwidth]{sch-simulations/output/OPA-log.pdf}
-\caption{Circuito per integratore logaritmico. D1 è un diodo al silicio}
+\caption{Circuito per integratore logaritmico. D1 è un diodo al silicio che costituisce la retroazione}
 \label{fig:oscilloscope}
 \end {center}
 \end{figure}
 
-Avendo inserito un diodo al silicio la legge può essere riscritta come $V_0 = 2 \cdot V_T \cdot ln(R \cdot I_0) - 2 \cdot V_T \cdot ln(v_s)$
+Avendo inserito un diodo al silicio la legge può essere riscritta come 
 
-La prima misurazione ha lo scopo di inviare in ingresso un segnale $V_{in} = 1V$ per ottenere  $V_0 = 2 \cdot V_T \cdot ln(R \cdot I_0)$, valore costante indipendente dal
-segnale.
+\begin{equation}
+V_0 = 2 \cdot V_T \cdot ln(R \cdot I_0) - 2 \cdot V_T \cdot ln(v_s)
+\end{equation}
+
+La prima misurazione ha lo scopo di inviare in ingresso un segnale $V_{in} = 1V$ per ottenere  $V_0 = 2 \cdot V_T \cdot ln(R \cdot I_0)$, valore costante indipendente dal segnale.
 
 Si sono ricavati i seguenti dati:
 
@@ -442,7 +452,9 @@ $V_{in} \pm 0.006 $ [V] & $V_{out} \pm 0.002 [V]$   \\ \hline
 0.966 & -0.572 \\ \hline
 \end{tabular}
 
-La media dei valori di $V_out$ è pari a $V_{out} = -0.575 \pm 0.001 V$
+La media dei valori di $V_{out}$ è pari a 
+
+$V_{out} = -0.575 \pm 0.001 V$
 
 Si procede dunque allo studio del comportamento dell'amplificatore per valori variabili di tensione in ingresso.
 
@@ -451,26 +463,26 @@ Si sono misurati i seguenti valori:
 \begin{tabular}{|c|c|}
 \hline
 \multicolumn{1}{|c|}{$V_{in}$ {[}V{]}} & \multicolumn{1}{c|}{$V_{out}$ {[}V{]}} \\ \hline
-0.568 $\pm$ 0.004                      & -0.548 $\pm$ 0.002                     \\ \hline
-0.880 $\pm$ 0.005                      & -0.564 $\pm$ 0.002                     \\ \hline
-1.099 $\pm$ 0.006                      & -0.577 $\pm$ 0.002                     \\ \hline
-1.377 $\pm$ 0.008                      & -0.586 $\pm$ 0.002                     \\ \hline
-1.642 $\pm$ 0.009                      & -0.596 $\pm$ 0.002                     \\ \hline
-2.05 $\pm$ 0.01                        & -0.605 $\pm$ 0.002                     \\ \hline
-2.50 $\pm$ 0.02                        & -0.613 $\pm$ 0.002                     \\ \hline
-3.04 $\pm$ 0.02                        & -0.62 $\pm$ 0.002                      \\ \hline
-3.66 $\pm$ 0.02                        & -0.627 $\pm$ 0.002                     \\ \hline
-4.08 $\pm$ 0.03                        & -0.63 $\pm$ 0.007                      \\ \hline
-4.62 $\pm$ 0.03                        & -0.635 $\pm$ 0.007                     \\ \hline
-5.12 $\pm$ 0.04                        & -0.638 $\pm$ 0.007                     \\ \hline
-5.64 $\pm$ 0.04                        & -0.641 $\pm$ 0.007                     \\ \hline
-6.24 $\pm$ 0.04                        & -0.645 $\pm$ 0.007                     \\ \hline
-7.02 $\pm$ 0.05                        & -0.648 $\pm$ 0.007                     \\ \hline
-7.76 $\pm$ 0.05                        & -0.649 $\pm$ 0.007                     \\ \hline
-8.48 $\pm$ 0.05                        & -0.652 $\pm$ 0.007                     \\ \hline
-9.31 $\pm$ 0.06                        & -0.653 $\pm$ 0.007                     \\ \hline
-10.09 $\pm$ 0.06                       & -0.657 $\pm$ 0.007                     \\ \hline
-12.31 $\pm$ 0.07                       & -0.659 $\pm$ 0.007                     \\ \hline
+0.568 $\pm$ 0.004 & -0.548 $\pm$ 0.002  \\ \hline
+0.880 $\pm$ 0.005 & -0.564 $\pm$ 0.002 \\ \hline
+1.099 $\pm$ 0.006 & -0.577 $\pm$ 0.002 \\ \hline
+1.377 $\pm$ 0.008 & -0.586 $\pm$ 0.002 \\ \hline
+1.642 $\pm$ 0.009 & -0.596 $\pm$ 0.002 \\ \hline
+2.05 $\pm$ 0.01 & -0.605 $\pm$ 0.002 \\ \hline
+2.50 $\pm$ 0.02 & -0.613 $\pm$ 0.002 \\ \hline
+3.04 $\pm$ 0.02 & -0.62 $\pm$ 0.002 \\ \hline
+3.66 $\pm$ 0.02 & -0.627 $\pm$ 0.002 \\ \hline
+4.08 $\pm$ 0.03 & -0.63 $\pm$ 0.007 \\ \hline
+4.62 $\pm$ 0.03 & -0.635 $\pm$ 0.007 \\ \hline
+5.12 $\pm$ 0.04 & -0.638 $\pm$ 0.007 \\ \hline
+5.64 $\pm$ 0.04 & -0.641 $\pm$ 0.007 \\ \hline
+6.24 $\pm$ 0.04 & -0.645 $\pm$ 0.007 \\ \hline
+7.02 $\pm$ 0.05 & -0.648 $\pm$ 0.007 \\ \hline
+7.76 $\pm$ 0.05 & -0.649 $\pm$ 0.007 \\ \hline
+8.48 $\pm$ 0.05 & -0.652 $\pm$ 0.007 \\ \hline
+9.31 $\pm$ 0.06 & -0.653 $\pm$ 0.007 \\ \hline
+10.09 $\pm$ 0.06 & -0.657 $\pm$ 0.007 \\ \hline
+12.31 $\pm$ 0.07 & -0.659 $\pm$ 0.007 \\ \hline
 \end{tabular}
 
 \begin{figure}[H]%[!ht]
@@ -481,8 +493,11 @@ Si sono misurati i seguenti valori:
 \end {center}
 \end{figure}
 
-Si effettua una regressione tra i valori sperimentali e la funzione teorica $-k - 2 \cdot V_T \cdot ln(v_s)"$, con $k = -0.575 \pm 0.001 V$ pari alla costante
-precedentemente calcolata.
+Si effettua una regressione tra i valori sperimentali e la funzione teorica 
+\begin{equation}
+-k - 2 \cdot V_T \cdot ln(v_s)
+\end{equation}
+con $k = -0.575 \pm 0.001 V$ pari alla costante precedentemente calcolata.
 
 Il ${\Chi}^2$ pari a $5.219$ con 15 gradi di libertà conferma che la funzione teorica descrive con ottima approssimazione i dati misurati.
 La stima del parametro restituisce $V_T = 20.0 \pm 0.7 mV$.
@@ -503,7 +518,7 @@ fa sì che gli ultimi dati misurati siano influenzati dallo slew rate !TODO!. Ta
 \end{figure}
 
 Si è analizzato l'amplificatore logaritimico tramite la funzione X-Y dell'oscilloscopio, con persistenza infinita dei dati e inviando all'ingresso una funzione sinusoidale [!
-TENSIONE!]. L'immagine rappresenta la sovrapposizione tra la regressione con funzione logaritimica e il grafico x-y. Si nota che i dati per tensioni basse si avvicinano
+TENSIONE!]. L'immagine rappresenta la sovrapposizione tra la regressione con funzione logaritmica e il grafico x-y. Si nota che i dati per tensioni basse si avvicinano
 all'estremo basso della distribuzione, mentre per tensioni alte si avvicinano all'estremo alto della distribuzione. Questo può significare che le condizioni durante la
 misurazione siano cambiate al crescere della temperatura, introducendo un errore
 
