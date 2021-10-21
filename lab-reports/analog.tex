@@ -517,16 +517,16 @@ Inizialmente si sono scelte $R =$$(9.920 \pm 0.103)$$k\Omega$ e $C=$$(23.4 \pm 1
 \label{fig:OPA-integ-res}
 \end {center}
 \end{figure}
-Impostando una frequenza, $f= MANCA-DATO$, si è proceduto con l'osservazione della risposta del circuito, \ref{fig:OPA-integ-res}. Come atteso la $V_{out}$ risulta essere molto vicina all'integrale del segnale in ingresso. In particolare si nota la compatibilità con l'integrale calcolato numericamente rappresentato dalla linea rossa tratteggiata, a meno di un termine lineare dovuto all'offset dell'integrando.
+Impostando una frequenza, $f= MANCA-DATO$, si è proceduto con l'osservazione della risposta del circuito, \textit{Fig. \ref{fig:OPA-integ-res}}. Come atteso la $V_{out}$ risulta essere molto vicina all'integrale del segnale in ingresso. In particolare si nota la compatibilità con l'integrale calcolato numericamente rappresentato dalla linea rossa tratteggiata, a meno di un termine lineare dovuto all'offset dell'integrando.
 \subsection{\textbf{Studio della risposta in frequenza}}
 
-Terminata la prima fase si è passati all'analisi della output del circuito in funzione della frequenza. I dati sono stati presentati su un grafico e interpolati in primo luogo con la forma funzionale di un filtro passa basso e poi in seguito con la funzione di trasferimento attesa, che risulta essere: 
+Terminata la prima fase si è passati all'analisi dell'output del circuito in funzione della frequenza. I dati sono stati presentati su un grafico e interpolati in primo luogo con la forma funzionale di un filtro passa basso e poi in seguito con la funzione di trasferimento attesa, che risulta essere: 
 \[H(s) = -\frac{\frac{R_2}{R_1}}{1 + s(2 \pi C R_2)} = -\frac{\frac{R_2}{R_1}}{1 + \frac{s}{f_t}}\]
 Dalla forma funzionale si nota che il comportamento del circuito si discosta da quello di un integratore reale all'abbassarsi del valore di $R_2$, per questa ragione si è scelto un resistore con resistenza compatibile a quella di $R_1$.
 
 \begin{figure}[H]%[!ht]
 \begin {center}
-\includegraphics[width=0.50\textwidth]{analysis/output/OPA-integrator_bode(mag).pdf}
+\includegraphics[width=0.50\textwidth]{analysis/output/OPA-integrator_bode(mag+phase).pdf}
 \caption{Diagramma di Bode del circuito integratore}
 \label{fig:integ-bode}
 \end {center}
