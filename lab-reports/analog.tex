@@ -163,24 +163,21 @@ Di seguito si descrive il calcolo del punto di zero crossing: il valore di segna
 \begin{figure}[h]%[!ht]
 \begin {center}
 \includegraphics[width=0.38\textwidth]{analysis/output/opa-open-loop-inv-zero-crossing.pdf}
-\caption{opa: configurazione invertente ad anello aperto}
+\caption{Nell'immagine si apprezzano l'intensità dell'amplificazione e l'inversione del segnale}
 \label{fig:oscilloscope}
 \end {center}
 \end{figure}
 
-Come segnale in ingresso si è scelto di generare un'onda sinusoidale di ampiezza $500 mV$ e frequenza di $1kHz$. In uscita ci si aspettava un alternarsi di saturazioni dell'amplificatore, a alterno invertito ($ \approx 15 V$ per sinusoide negativa, $\approx -15 V$ per sinusoide positiva).
+Come segnale in ingresso si è scelto di generare un'onda sinusoidale di ampiezza $500 mV$ e frequenza di $1kHz$. In uscita ci si aspettava un alternarsi di saturazioni dell'amplificatore, a segno alterno ($ \approx 15 V$ per sinusoide negativa, $\approx -15 V$ per sinusoide positiva).
 
 \begin{figure}[h]%[!ht]
 \begin {center}
 \includegraphics[width=0.40\textwidth]{analysis/output/opa-open-loop-inv-zero-crossing-z2.pdf}
-\caption{opa: configurazione invertente ad anello aperto}
+\caption{In rosso sono segnati i livelli di saturazione, in nero i punti di zero crossing. La scala del segnale di ingresso è stata ingrandita ed è riportata sulla sinistra}
 \label{fig:oscilloscope}
 \end {center}
 \end{figure}
 
-Nella prima immagine si apprezzano l'intensità dell'amplificazione e l'inversione del segnale.
-
-Nella seconda immagine si cambia scala per il segnale di ingresso.
 
 Il segnale in uscita è compreso tra $-14.0 \pm 0.5 V $  e $14.6 \pm 0.5 V$.
 Si sceglie dunque di considerare in saturazione l'amplificatore per valori superiori a $14.1 V$ o inferiori a $-13.5 V$. Il segnale è infatti soggetto a inevitabili
@@ -206,8 +203,6 @@ I valori ottenuti sono in linea con le aspettative. Il loro ordine di grandezza 
 tensione.
 
 
-
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{\textbf{Configurazione ad aperto non invertente}} %Stefano
 
@@ -217,12 +212,10 @@ Ci si attende dunque un comportamento analogo al precedente ma con amplificazion
 \begin{figure}[H]%[!ht]
 \begin {center}
 \includegraphics[width=0.38\textwidth]{analysis/output/OPA-open-loop-non-inv-zero-crossing-z2.pdf}
-\caption{OPA: configurazione non invertente ad anello aperto}
+\caption{Nell'immagine si apprezza la concordanza di segno tra segnale in ingresso e segnale in uscita. In rosso è riportato il livello di zero crossing della configurazione invertente per dimostrare qualitativamente che il livello di l'amplificazione rimane costante}
 \label{fig:oscilloscope}
 \end {center}
 \end{figure}
-
-Come si può notare dall'immagine l'amplificazione non inverte il segno del segnale in ingresso, e rispecchia i valori di $V_{zc}$ della configurazione invertente.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -703,13 +696,13 @@ Con l'utilizzo di un secondo amplificatore operazionale è stato implementato il
 \begin{figure}[H]%[!ht]
 \begin{center}
 \includegraphics[width=0.45\textwidth]{sch-simulations/output/OPA-mixer-trigger.pdf}
-\caption{Schema elettrico utilizzato per la caratterizzazione del trigger di Schmitt con l'obiettivo di mostrare le capacità di immunità al rumore. Il circuito di dotato di due stadi operazionali, il primo con funzione di sommatore produce un segnale rumoroso sommando un noise ad alta frequenza ad un segnale sinusoidale, il secondo costituisce il trigger vero e proprio. Sono stati usati i seguenti valori di resistenza: } 
+\caption{Schema elettrico utilizzato per la caratterizzazione del trigger di Schmitt con l'obiettivo di mostrare le capacità di immunità al rumore. Il circuito di dotato di due stadi operazionali, il primo con funzione di sommatore produce un segnale rumoroso sommando un noise ad alta frequenza ad un segnale sinusoidale, il secondo costituisce il trigger vero e proprio. Sono stati usati i seguenti valori di resistenza: $R_1 =(9.81 \pm 0.13) \ k\Omega, \ R_2 = (9.90 \pm 0.13) \ k\Omega ,\ R_3 = (9.80 \pm 0.12) \ k\Omega \, \ R_4 = (9.82 \pm 0.13) \ k\Omega \ R = (9.83 \pm 0.13) \ k\Omega , \ R = (9.83 \pm 0.13 ) \ k\Omega $  } 
 \label{fig:schmitt-trigger}
 \end{center}
 \end{figure}
  
-Inizialmente è stato fornito al \textit{trigger di Schmitt} un segnale sinusoidale con rumore trascurabile (\textit{"segnale pua $V_{LT} = (7.42 \lito")$}. In uscita dal trigger si osserva il comportamento tipico in modalità invertente (\textit{Fig.\ref{fig:trigger-clean}}): 
-quando il segnale supera la tensione $V_{LT} = (-7.42 \pm 0.12) \ V $ l'uscita scatta a $ + V_{sat}$ e ci rimane fino a quando il segnale non supera \pm 0.12) \ V ) facendo scattare l'uscita alla tensione $- V_{sat}$. Tipicamente un circuito di questo tipo è utilizzato, ad esempio, per trasformare un segnale sinusoidale in un onda quadra.
+Inizialmente è stato fornito al \textit{trigger di Schmitt} un segnale sinusoidale con rumore trascurabile (\textit{"segnale pulito" $V_{LT} = (7.42)$}. In uscita dal trigger si osserva il comportamento tipico in modalità invertente (\textit{Fig.\ref{fig:trigger-clean}}): 
+quando il segnale supera la tensione $V_{LT} = (-7.4 \pm 0.1) \ V $ l'uscita scatta a $ + V_{sat}$ e ci rimane fino a quando il segnale non supera \pm 0.12) \ V ) facendo scattare l'uscita alla tensione $- V_{sat}$. Tipicamente un circuito di questo tipo è utilizzato, ad esempio, per trasformare un segnale sinusoidale in un onda quadra.
 Nel circuito implementato la tensione di saturazione, riferita a massa è:
 \[\Delta V  = 14.424 \pm 0.036  V \]
 
@@ -732,18 +725,19 @@ Nel primo caso \textit{il trigger di Schmitt} si comporta come un qualunque comp
 \end {center}
 \end{figure}
 La retroazione positiva introdotta nella configurazione ad anello chiuso, rimedia a questo problema introducendo due soglie diverse, a seconda che la tensione di uscita valga $+V_{sat}$ o $-V_{sat}$. L'effetto che si ottiene è che anche in presenza di rumore la commutazione è "protetta" dalla banda compresa tra la due tensioni di soglia: affinché avvenga uno scatto, la tensione deve andare al di sopra della soglia alta o al di sotto della soglia bassa.
-
+La stessa onda "rumorosa" inviata precedentemente al trigger, questa volta non genera più alcuna commutazione indesiderata (\textit{fig. \ref{fig:trigger-ok}}).
 
 \begin{figure}[H]%[!ht]
 \begin {center}
 \includegraphics[width=0.50\textwidth]{analysis/output/trigger2.pdf}
 \caption{Trigger di Schmitt (con isteresi) a cui viene fornito in ingresso un segnale sinusoidale con rumore, si nota che a differenza del discriminatore ad anello aperto, questo circuito non effettua commutazioni indesiderate sullo zero-crossing del rumore (centraggio della finestra = 0)}
 \label{fig:trigger-ok}
-\end {center}
-\end{figure}
 
+
+\end {center}
 
 \subsection{\textbf{Analisi della risposta in frequenza}}
+\end{figure}
 Osservando la risposta a $100 Hz$ si vede come effettivamente i valori empirici di $V_{sat}$ e $V_{ref}$ rispettino le leggi sopracitate.
 Si ricorda che l'isteresi previene il trigger dall'oscillare quando un input che varia a bassa frequenza si trova vicina al \textit{threshold voltage}. Aumentando la frequenza ci si aspetta perciò una minore efficacia del comparatore come visibile qua di seguito (in \textit{figg. \ref{fig:hyst-table} e \ref{fig:trigger-hyst}} vi sono gli stessi dati in due diverse rappresentazioni, affiancati o sovrapposti).
 \begin{figure}[H]%[!ht]
