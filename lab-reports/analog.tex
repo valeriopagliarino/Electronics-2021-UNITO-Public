@@ -537,7 +537,7 @@ Il $\chi^2$ pari a $5.219$ con 15 gradi di libertà conferma che la funzione teo
 La stima del parametro restituisce $V_T =$ $(20.0 \pm 0.7)$ mV, che considerando un valore atteso a temperatura assoluta $T = 300K$ pari a $26 mV$ risulta incompatibile, infatti il test Gauss riporta $Z = 8.637$ evidenziando la presenza di un errore nella stima.
 
 È ragionevole supporre che la temperatura ambiente del laboratorio fosse inferiore a $300 K$, ma non si possiede una misura utile a calcolare un valore atteso più corretto
-Si pensa dunque che ci possa essere un errore sistematico nella presa dati. 
+Si pensa dunque che ci possa essere un errore sistematico nella presa dati, o una sottostima degli errori sulle tensioni in uscita. 
 
 L'ultimo parametro che si intende calcolare è la tensione di saturazione inversa del diodo.
 A partire dall'equivalenza $V_0 = 2 \cdot V_T \cdot ln(R \cdot I_0)$  per $v_s = 1$, è possibile sostituire il valore ottenuto di $V_T = 20.0 \pm 0.7 mV$, ottenendo
@@ -558,7 +558,8 @@ Il valore ha un ordine di grandezza compatibile con la corrente di saturazione i
 \end{center}
 \end{figure}
 
-Utilizzando l'oscilloscopio in modalità x-y, con persistenza infinita dei dati, e inviando in ingresso un segnale sinusoidale alla frequenza di $1 Hz$, si ottiene una distribuzione di valori di $V_{out}$. Dalla sovrapposizione tra quest 
+Utilizzando l'oscilloscopio in modalità x-y, con persistenza infinita dei dati, e inviando in ingresso un segnale sinusoidale alla frequenza di $1 Hz$, si è ottenuta una distribuzione di valori di $V_{out}$. In figura \ref{fig:log_ampl_fit_xy} si può notare come la curva dei dati sperimentali con fit rientri all'interno di questo range, ma si trovi vicino ad un estremo per valori bassi di tensione in ingresso.
+Questa valutazione sostiene l'ipotesi di un errore sistematico nella presa dati, risultante in una stima imprecisa dei parametri del fit.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -624,23 +625,24 @@ Il circuito si dimostra conforme a quanto atteso, infatti i segnali di output ri
 \label{fig:OPA-deriv}
 \end{center}
 \end{figure}
-Rispetto al circuito integratore presentato sopra, nel caso del circuito derivatore le posizioni del condensatore e del resistore sono state invertite affinché il condensatore $C$ sia collegato al terminale di ingresso dell'amplificatore invertente mentre il resistore $R_1$ costituisca l'elemento di feedback negativo. Questo circuito esegue l'operazione matematica di differenziazione, cioè produce un'uscita di tensione proporzionale alla velocità di variazione della tensione di ingresso e alla corrente che scorre attraverso il condensatore. Si noti che il condensatore blocca qualsiasi contenuto \textit{DC} della tensione in ingresso, consentendo  quindi il solo passaggio di segnali di tipo \textit{AC}, la cui frequenza dipende dalla velocità di variazione del segnale di input. Alle basse frequenze la reattanza del condensatore è "Alta" con conseguente basso guadagno ($\frac{R_1}{X_C}$) e bassa tensione di uscita, mentre per alte frequenze si avrà un gain nettamente maggiore e un segnale di output più intenso. Ciò è dovuto principalmente all'effetto di primo ordine, che determina la risposta in frequenza del circuito provocandone una risposta di secondo ordine che, alle alte frequenze, dà una tensione di uscita molto superiore a quella che ci si aspetterebbe. Per evitare ciò, il gain ad alta frequenza deve essere ridotto aggiungendo in serie al condensatore un resistore di feedback $R_f$ di resistenza ridotta. 
 
-\subsection{\textbf{Valutazione della risposta}}
+Rispetto al circuito integratore presentato sopra, nel caso del circuito derivatore le posizioni del condensatore e del resistore sono state invertite affinché il condensatore $C$ sia collegato al terminale di ingresso dell'amplificatore invertente mentre il resistore $R_1$ costituisca l'elemento di feedback negativo. Questo circuito esegue l'operazione matematica di differenziazione, cioè produce un'uscita di tensione proporzionale alla velocità di variazione della tensione di ingresso e alla corrente che scorre attraverso il condensatore. Si noti che il condensatore blocca qualsiasi contenuto \textit{DC} della tensione in ingresso, consentendo  quindi il solo passaggio di segnali di tipo \textit{AC}. Alle basse frequenze la reattanza del condensatore è elevata con conseguente guadagno basso ($\frac{R_1}{X_C}$) e bassa tensione di uscita, mentre per alte frequenze si avrà un guadagno nettamente maggiore, si è infatti realizzato un filtro passa alto attivo. 
+%E' possibile ridurre il guadagno ad alta frequenza introducendo utililizzando un resistore di feedback $R_f$ di resistenza ridotta. 
+
+\subsection{\textbf{Valutazione della risposta a differenti forme d'onda in ingresso}}
 Una volta assemblato il circuito si è proseguito analizzando qualitativamente il comportamento a segnali in input di diversa forma d'onda, verificando che l'output fosse in accordo con quello previsto.
 
 \begin{figure}[H]%[!ht]
 \begin{center}
 \includegraphics[width=0.50\textwidth]{analysis/output/OPA-differentiator.pdf}
-\caption{Risposta del circuito derivatore reale a diverse forme d’onda in ingresso. Partendo dall’alto gradino, onda quadra, onda a dente di sega e sinusoide}
+\caption{Risposta del circuito derivatore reale a diverse forme d’onda in ingresso. Partendo dall’alto gradino, onda quadra, onda a dente di sega e sinusoide. La derivata dell'onda quadra sarebbe teoricamente una delta di Dirac, che però non può esistere a livello sperimentale perché richiederebbe banda infinita.}
 \label{fig:derivatore}
 \end{center}
 \end{figure}
-Dalla \textit{Fig. \ref{fig:derivatore}}, in cui le scale dei voltaggi sono diverse fra input e output col fine di ottimizzarne la comprensibilità visiva, si vede come il segnale in uscita sia effettivamente paragonabile con la derivata della $V_{in}$. In particolare ricavando la sfasamento tra le due forme d'onda si trova $\theta = 87.23 \deg$, compatibile con 90 deg.
 
-Si può dunque confermare che il funzionamento del circuito rispecchi la teoria. Ovviamente è necessario tener conto del fatto che la bontà della derivazione dipenda strettamente dalla frequenza del segnale in ingresso. Infatti se quest'ultima non fosse stata molto minore rispetto alla frequenza di taglio il circuito avrebbe agito da semplice amplificatore invertente.
-\subsection{\textbf{Conclusioni}}
-Il circuito del derivatore reale raggiunge le aspettative per quanto riguarda l'elaborazione del segnale di input. Infatti facendo riferimento alla \textit{Fig. \ref{fig:derivatore}} nel caso dell'onda quadra l'output assume la forma di una delta di Dirac, con la rampa si ottiene un'onda quadra e dalla sinusoide in ingresso si ottiene una cosinusoide. Infine è importante osservare come l'ampiezza dell'output sia fortemente soppressa rispetto all'input,ma che nonostante ciò si abbia un rumore più evidente.
+Dalla \textit{Fig. \ref{fig:derivatore}}, in cui le scale dei voltaggi sono diverse fra input e output col fine di ottimizzarne la comprensibilità visiva, si vede come il segnale in uscita sia effettivamente paragonabile con la derivata della $V_{in}$. In particolare valutando lo sfasamento tra le due forme d'onda si trova $\theta = 87.23 \deg$, compatibile con 90 deg, che corrisponde ad un'integrazione termine a termine di tutte le componenti di Fourier del segnale in ingresso.
+
+Il funzionamento osservato è quindi in accordo con le previsioni teoriche. Ovviamente è necessario tener conto del fatto che la bontà della derivazione dipende, come ampiamente discusso nel caso dell'integratore, strettamente dalla frequenza del segnale in ingresso. Infatti se quest'ultima non fosse stata molto minore rispetto alla frequenza di taglio il circuito avrebbe agito da semplice amplificatore invertente, dal momento che avrebbe introdotto uno sfasamento trascurabile alle componenti sinusoidali di Fourier.
 
 %%%%%%%%%%FINE SECONDO GIORNO%%%%%%%%%%%%%%%
 %%%%%%%%%%INIZIO TERZO GIORNO%%%%%%%%%%%%%%%
@@ -653,7 +655,7 @@ Sulla \textit{breadboard} è stato implementato il circuito in \textit{Fig. \ref
 V_{out} = - R  \sum_{n} \frac{V_n}{R_n} = - \sum_{n} V_n 
 \end{equation}
 
- L'ultimo passaggio è possibile scegliendo tutti i valori delle resistenze uguali ($R = R_1 = R_2$). Nel nostro caso si ha: $R_1 =(9.81 \pm 0.13) \ k\Omega, \ R_2 = (9.95 \pm 0.13) \ k\Omega ,\ R_3 = (9.89 \pm 0.13) \ k\Omega$.
+Il circuito mixer realizzato in laboratorio non aggiunge amplificazione ai segnali, questo si ottiene scegliendo tutti i valori delle resistenze circa uguali ($R = R_1 = R_2$). Nel nostro caso si ha: $R_1 =(9.81 \pm 0.13) \ k\Omega, \ R_2 = (9.95 \pm 0.13) \ k\Omega ,\ R_3 = (9.89 \pm 0.13) \ k\Omega$.
 
 I primi due canali dell'oscilloscopio sono collegati ai segnali $V_1$ e $V_2$ prodotti dal generatore di funzioni, mentre il terzo canale misura la tensione in uscita $V_{out}$.
 
@@ -670,8 +672,8 @@ I primi due canali dell'oscilloscopio sono collegati ai segnali $V_1$ e $V_2$ pr
 
 
 \subsection{\textbf{Somma di forme d'onda sinusoidali}}
-In un primo momento agli ingressi dell'amplificatore sono state mandate due sinusoidi in fase con ampiezza $V_+ = V_- = 0.5 V$. La somma dei due segnali risulta essere una nuova sinusoide di ampiezza $V_{out} = 1 V$ con segno opposto a quelle in ingresso (come da \textit{fig. \ref{fig:Mixer1}})
-Lo stesso effetto si ha per sinusoidi con ampiezze diverse ($V_+ = 0.5, V_- = 0.25 V$) in \textit{figura \ref{fig:Mixer3} }. La tensione in uscita risulta effettivamente avere ampiezza pari alla somma delle ampiezze delle onde in ingresso.
+In un primo momento agli ingressi dell'amplificatore sono state mandate due sinusoidi in fase con ampiezza $V_1 = V_2 = 0.5 V$. La somma dei due segnali risulta essere una nuova sinusoide di ampiezza $V_{out} = 1 V$ con segno opposto a quelle in ingresso (come da \textit{fig. \ref{fig:Mixer1}})
+Lo stesso effetto si ha per sinusoidi con ampiezze diverse ($V_1 = 0.5, V_2 = 0.25 V$) in \textit{figura \ref{fig:Mixer3} }. La tensione in uscita risulta effettivamente avere ampiezza pari alla somma delle ampiezze delle onde in ingresso.
 
 \begin{figure}[H]%[!ht]
 \begin{center}
@@ -697,24 +699,23 @@ Lo stesso effetto si ha per sinusoidi con ampiezze diverse ($V_+ = 0.5, V_- = 0.
 \end{center}
 \end{figure}
 
-Sostituendo il segnale all'ingresso negativo con la sinusoide opposta, si ottiene all'uscita un segnale sostanzialmente nullo, frutto dalla somma di onde opposte di uguale ampiezza come evidenziato in \texit{fig. \ref{fig:Mixer2}}. Il leggero distaccamento dallo zero del segnale in uscita è causato dal fatto che $R_1$ e $R_2$ non sono esattamente identiche, dunque la formula (1) non è una somma diretta ma è pesata sui valori delle resistenze collegate. Questa configurazione coincide con quella dell'amplificatore di differenze di segnali quando in ingresso riceve due sinusoidi identiche. (Vedi paragrafo \ref{par:differenze})
+Sostituendo il segnale all'ingresso negativo con la sinusoide opposta, si ottiene all'uscita un segnale sostanzialmente nullo, frutto dalla somma di forme d'onda opposte di uguale ampiezza come evidenziato in \texit{fig. \ref{fig:Mixer2}}. Il leggero distaccamento dallo zero del segnale in uscita è causato dal fatto che $R_1$ e $R_2$ non sono esattamente identiche, dunque la formula (1) non è una somma diretta ma è pesata sui valori delle resistenze collegate. Questa configurazione coincide con quella dell'amplificatore di differenze di segnali quando in ingresso riceve due sinusoidi identiche. (Vedi paragrafo \ref{par:differenze})
 
- Si è infine svolta la verifica della linearità dell'amplificazione del canale non invertente effettuando una regressione lineare sullo scatter dei dati estratti in visualizzazione $X-Y$ mettendo a confronto $Ch_1$ e $Ch_2$.
+ Si è infine svolta una verifica qualitativa della linearità dell'amplificazione del canale non invertente effettuando una regressione lineare sullo scatter dei dati estratti in visualizzazione $X-Y$ mettendo a confronto $Ch_1$ con l'uscita.
 \begin{figure}[H]%[!ht]
 \begin{center}
 \includegraphics[width=0.50\textwidth]{analysis/output/OPA-linfit-non-inv.pdf}
-\caption{Regressione lineare ($y$ = $ax$ +$b$) del canale non invertente in modalita $X-Y$ dell'oscilloscopio ($Ch_in-Ch-out$)}
+\caption{Regressione lineare ($y$ = $ax$ +$b$) del canale non invertente in modalità $X-Y$ dell'oscilloscopio ($Ch_{in}-Ch_{out}$)}
 \label{fig:lin-non-inv}
 \end{center}
 \end{figure}
+Il minimizzatore di $\chi^2$ restituisce p-value del test di adattamento $\sim$ 1 e i seguenti valori per i parametri di fit
 \[a = 0.997 \pm 0.003 \]
 \[b = (-0.0097 \pm 0.0009) V \]
-Effettuando un test di compatibilità tra il coefficiente angolare $a$ ed il suo valore atteso $a_e = 1$ si può affermare che i due dati  siano effettivamente consistenti con un livello di significatività superiore al 5\% ($Z=0.99$).
-\subsection{\textbf{Formazione di battimenti}}
-Mandando ai due ingressi sinusoidi con frequenza diversa $f_1 = 1\ kHz, \ f_2 = 1.1\ kHz$ e uguale ampiezza $1 \ V$, l'amplificatore genera una sovrapposizione di onde sfasate che possiederà una frequenza di battimento. La tensione in uscita non avrà quindi un ampiezza costante, ma essa pulserà in modo periodico con una frequenza propria, detta \textit{di battimento}, visualizzabile in \textit{figura \ref{fig:beats}}.
+Effettuando un test di compatibilità tra il coefficiente angolare $a$ ed il suo valore atteso $a_e = 1$ si può affermare che i due dati  siano effettivamente compatibili con un livello di significatività superiore al 5\%, infatti $Z=0.99$.
 
-\subsection{\textbf{Discussione conclusiva}}
-Lo studio qualitativo dei risultati ottenuti nelle diverse configurazioni ha permesso di verificare la corretta implementazione del circuito sommatore. Il circuito rispetta inoltre i canoni di linearità fra l'input e l'output. 
+\subsection{\textbf{Formazione di battimenti}}
+Mandando ai due ingressi sinusoidi con frequenza leggermente diversa $f_1 $\sim$ 1.0\ kHz, \ f_2 $\sim$ 1.1\ kHz$ e uguale ampiezza (1 V), con $\Delta f$ >> f, si può avere la generazione di battimenti. Si osserverà quindi nella forma d'onda in uscita un inviluppo sinusoidale con frequenza f' $\sim$ 100 Hz. Si veda la \textit{figura \ref{fig:beats}}.
 
 \begin{figure}[H]%[!ht]
 \begin{center}
@@ -728,9 +729,11 @@ Lo studio qualitativo dei risultati ottenuti nelle diverse configurazioni ha per
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{\textbf{Amplificatore di differenze invertente \label{par:differenze}}} %Federico
 \subsection{\textbf{Introduzione}}
-Un operazionale è in grado di comportarsi anche come amplificatore di differenze di funzioni d'onda, configurazione in cui il segnale di uscita è proporzionale alla differenza dei segnali in ingresso. Perciò è stato implementato il circuito in \textit{Fig.  \ref{fig:differenze}}, per il quale vale la seguente relazione: 
-\[V_{out} =\frac{V_2 - V_1}{K} \quad con \quad K = \frac{R_1}{R_2}=\frac{R_3}{R_4} \tag{2} \] 
-Scegliendo le resistenze con valori identici ($R_1 = R_2 = R_3 =R_4 $) si otterrà quindi la differenza pura dei segnali all'uscita dell'amplificatore cambiata di segno, poiché l'amplificatore è collegato in configurazione invertente.
+Mediante un amplificatore operazionale è possibile realizzare un amplificatore di differenze inviando a ciascun ingresso dell'OPA un operando mediante opportune resistenze di ingresso e rete di feedback resistiva per controllare il guadagno. In laboratorio è stato implementato il circuito in \textit{figura \ref{fig:differenze}}, per il quale vale la seguente relazione: 
+\begin{equation}
+    V_{out} =\frac{V_2 - V_1}{K} \quad con \quad K = \frac{R_1}{R_2}=\frac{R_3}{R_4} \tag{2}
+\end{equation}
+Scegliendo le resistenze con valori identici ($R_1 = R_2 = R_3 =R_4 $) si otterrà quindi la differenza senza amplificazione dei segnali all'uscita dell'amplificatore cambiata di segno, poiché l'amplificatore è collegato in configurazione invertente.
 
 \begin{figure}[H]%[!ht]
 \begin {center}
@@ -751,14 +754,14 @@ Per verificare il corretto funzionamento di questa configurazione sono state man
 \end {center}
 \end{figure}
 
-Il grafico mostra che in uscita si registra una tensione praticamente nulla. Nuovamente il lieve distacco dallo zero è da imputare alle piccole differenze in valore delle resistenze.
+Il grafico mostra che in uscita si registra una tensione praticamente nulla. Come nel sommatore, il lieve distacco dallo zero è da imputare alle piccole differenze del valore delle resistenze di ingresso.
 
-Applicando poi una sinusoide a media nulla al primo canale e una sinusoide a media $-0.2 V$ al secondo, con ampiezza uguale alla prima, all'uscita si può visualizzare l'offset in tensione \textit{(Fig. \ref{fig:diff3})}. 
+Si è poi applicata una sinusoide a media nulla al primo canale e una sinusoide a media $-0.2 V$ al secondo, con ampiezza uguale alla prima, all'uscita si può visualizzare un segnale DC pari all'offset in tensione \textit{(Si veda la figura \ref{fig:diff3})}. 
 
 \begin{figure}[H]%[!ht]
 \begin {center}
 \includegraphics[width=0.50\textwidth]{analysis/output/OPA_diff_sin3.pdf}
-\caption{Sottrazione da una funzione sinusoidale con offset di una componente DC di ampiezza pari all'offet, con risultato pari ad una sinusoide con media nulla}
+\caption{Sottrazione da una funzione sinusoidale con offset di una componente DC di ampiezza pari all'offset, con risultato pari ad una sinusoide con media nulla}
 \label{fig:diff3}
 \end {center}
 \end{figure}
@@ -792,7 +795,7 @@ e la differenza tra un'onda quadra e una rampa entrambe di ampiezza massima $V=0
 \end{figure}
 
 
-Con la medesima procedura adoperata nel caso del mixer si è effettuta la verifica della linearità dell'amplificazione del canale invertente effettuando una regressione lineare sullo scatter dei dati in modalità $X-Y$ di $Ch_1$ e $Ch_2$.
+Con la medesima procedura adoperata nel caso del mixer si è effettuata la verifica della linearità dell'amplificazione del canale invertente effettuando una regressione lineare sui dati registrati in modalità $X-Y$ di tra il canale invertente e l'uscita.
 In questo caso dato che la curva positiva sarà rappresentata dall'ingresso in sottrazione, mentre quella positiva dall'ingresso non in sottrazione ci si aspetta un valore negativo di coefficiente angolare $a_e = -1$
 
 Ancora una volta $a$ risulta essere consistente con il valore atteso a conferma della teoria ($Z=1.91$).
