@@ -537,29 +537,28 @@ Il $\chi^2$ pari a $5.219$ con 15 gradi di libertà conferma che la funzione teo
 La stima del parametro restituisce $V_T =$ $(20.0 \pm 0.7)$ mV, che considerando un valore atteso a temperatura assoluta $T = 300K$ pari a $26 mV$ risulta incompatibile, infatti il test Gauss riporta $Z = 8.637$ evidenziando la presenza di un errore nella stima.
 
 È ragionevole supporre che la temperatura ambiente del laboratorio fosse inferiore a $300 K$, ma non si possiede una misura utile a calcolare un valore atteso più corretto
-Si pensa dunque che ci possa essere un errore sistematico nella presa dati. In particolare la scelta della tensione $V_in$ potrebbe non essere stata ottimale.
-
-%% AGGIUNGERE GIUSTIFICAZIONE O IPOTESI
-
+Si pensa dunque che ci possa essere un errore sistematico nella presa dati. 
 
 L'ultimo parametro che si intende calcolare è la tensione di saturazione inversa del diodo.
 A partire dall'equivalenza $V_0 = 2 \cdot V_T \cdot ln(R \cdot I_0)$  per $v_s = 1$, è possibile sostituire il valore ottenuto di $V_T = 20.0 \pm 0.7 mV$, ottenendo
 
 \[ I_0 = \frac{e^{\frac{k}{2 \cdot V_T}}}{R} = (3 \pm 1) \cdot 10^{-10} A \]
 
-Il valore ha un ordine di grandezza compatibile con la corrente di saturazione inversa attessa, ma si segnala un grande errore relativo ($33 \% $) dovuto alla propagazione degli errori su 3 parametri.
+Il valore ha un ordine di grandezza compatibile con la corrente di saturazione inversa attesa, ma si segnala un grande errore relativo ($33 \% $) dovuto alla propagazione degli errori su 3 parametri.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Grafico di risposta}
+\subsection{Grafico di risposta e conclusioni}
 
 \begin{figure}[H]%[!ht]
-\begin {center}
-\includegraphics[trim = {100px 0 0 0}, width=0.48\textwidth]{analysis/output/OPA-log-fitted.pdf}
+\begin{center}
+\includegraphics[trim = {10px 0 0 0}, width=0.50\textwidth]{analysis/output/OPA-log-fitted.pdf}
 \caption{Caratteristica ingresso-uscita in DC dell'amplificatore logaritmico, in nero i valori misurati con il multimetro, in blu il fit con modello logaritmico, in azzurro la stessa misura effettuata utilizzando l'oscilloscopio in modalità XY}
 \label{fig:log_ampl_fit_xy}
-\end {center}
+\end{center}
 \end{figure}
+
+Utilizzando l'oscilloscopio in modalità x-y, con persistenza infinita dei dati, e inviando in ingresso un segnale sinusoidale alla frequenza di $1 Hz$, si ottiene una distribuzione di valori di $V_{out}$. Dalla sovrapposizione tra quest 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -590,14 +589,17 @@ Inizialmente si sono scelte $R = (9.920 \pm 0.103) \ k\Omega \ e \ C = (23.4 \pm
 \label{fig:OPA-integ-res}
 \end {center}
 \end{figure}
-Impostando una frequenza, $f= 5 kHz$, si è proceduto con l'osservazione della risposta del circuito, \textit{Fig. \ref{fig:OPA-integ-res}}. Come atteso la $V_{out}$ risulta essere molto vicina all'integrale del segnale in ingresso. In particolare si nota la compatibilità con l'integrale calcolato numericamente rappresentato dalla linea rossa tratteggiata, a meno di un termine lineare dovuto all'offset dell'integrando.
+Impostando una frequenza, $f= 5 kHz$, si è proceduto con l'osservazione della risposta del circuito, \textit{Fig. \ref{fig:OPA-integ-res}}. Come atteso, la $V_{out}$ risulta essere molto vicina all'integrale del segnale in ingresso. In particolare si nota la compatibilità con l'integrale calcolato numericamente rappresentato dalla linea rossa tratteggiata, a meno di un termine lineare dovuto all'offset dell'integrando.
 
 \subsection{\textbf{Studio della risposta in frequenza}}
 
 Terminata la prima fase si è passati all'analisi dell'output del circuito in funzione della frequenza. I dati sono stati presentati su un grafico e interpolati in primo luogo con la forma funzionale di un filtro passa basso e poi in seguito con la funzione di trasferimento attesa, che risulta essere: 
-\[H(s) = -\frac{\frac{R_2}{R_1}}{1 + s(2 \pi C R_2)} = -\frac{\frac{R_2}{R_1}}{1 + \frac{s}{f_t}}\]
-Dalla forma funzionale si nota che il comportamento del circuito si discosta da quello di un integratore reale all'abbassarsi del valore di $R_2$, per questa ragione si è scelto un resistore con resistenza compatibile a quella di $R_1$.
+\begin{equation}
+    H(s) = -\frac{\frac{R_2}{R_1}}{1 + s(2 \pi C R_2)} = -\frac{\frac{R_2}{R_1}}{1 + \frac{s}{f_t}}
+\end{equation}
 
+con $f_H$ polo della funzione di trasferimento e $A_v(0)$ il valore di \textit{magnitude} alla frequenza nulla, estratto dalla regressione del fit. Il minimizzatore restituisce infatti per i parametri i seguenti valori:  f_H = (0.75 $\pm$ 0.01) kHz A_v(0) = (1.001 $\pm$ 0.003)
+Dal confronto di $A_v(0)$ con il gain della $H(s)$ e tra $f_H$ ed $f_t$ si evince un'ottima compatibilità entro un livello di significatività del 5\% in entrambi i casi ($t_{Gain} = 0.39 $, $t_{Freq} = 1.45 $) .
 
 \begin{figure}[H]%[!ht]
 \begin{center}
@@ -606,13 +608,11 @@ Dalla forma funzionale si nota che il comportamento del circuito si discosta da 
 \label{fig:integ-bode}
 \end{center}
 \end{figure}
-\[f_H = (0.75 \pm 0.01) kHz\]
-\[A_v(0) = (1.001 \pm 0.003)\]
-con $f_H$ polo della funzione di transfer e $A_v(0)$ il valore di \textit{magnitude} alla frequenza nulla, estratto dalla regressione del fit.
-Dal confronto di $A_v(0)$ con il gain della $H(s)$ e tra $f_H$ ed $f_t$ si evince un'ottima consistenza entro un livello di significatività del 5\% in entrambi i casi ($t_{Gain} = 0.39 $, $t_{Freq} = 1.45 $) .
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{\textbf{Considerazioni finali}}
-Il circuito si dimostra conforme a quanto espresso, infatti i segnali di output risultano essere ben approssimabili agli integrali numerici delle onde in ingresso. E' importante sottolineare il fatto che il circuito integratore tenda a ridurre il rumore del segnale in ingresso, come si evince della \textit{Fig. \ref{fig:OPA-integ-res}}, comportamento opposto a quello di un OPA derivatore. Un ulteriore fatto che merita di essere sottolineato è il valore di \textit{plateau} del diagramma di Bode relativo alla fase \textit{Fig. \ref{fig:integ-bode}}, si nota infatti che per frequenze elevate quest'ultimo si stabilizzi sul valore di $\sim -90 \deg$ a conferma di una vera e propria integrazione del segnale in input.   
+\subsection{\textbf{Considerazioni conclusive}}
+Il circuito si dimostra conforme a quanto atteso, infatti i segnali di output risultano approssimare correttamente gli integrali numerici delle forme d'onda in ingresso quando la frequenza del segnale integrando è sufficientemente elevata, confrontata con la frequenza di taglio. E' importante sottolineare il fatto che il circuito integratore tenda a ridurre il rumore del segnale in ingresso, come si evince della \textit{Fig. \ref{fig:OPA-integ-res}}, comportamento opposto a quello di un OPA derivatore. Si vuole inoltre sottolineare, in riferimento alla figura \ref{fig:integ-bode}, che volendo caratterizzare correttamente la risposta in frequenza anche per attenuazioni elevate, alcuni punti ad alta frequenza hanno un errore relativo che in scala logaritmica risulta particolarmente elevato. Questo è dovuto ai limiti della risoluzione verticale dell'oscilloscopio.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{\textbf{Amplificatore derivatore}} %Matteo
