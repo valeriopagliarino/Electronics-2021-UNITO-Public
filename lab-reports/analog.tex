@@ -276,7 +276,8 @@ Nel caso in esame la soglia è stata posta a $V_{th} = 2.1$ $V$ utilizzando un c
 \end {center}
 
 
-Dal confronto tra la figura \ref{fig:biased_cross} e la figura \ref{fig:open_loop_non_inv_zc} si può notare come in questo caso la soglia si trovi al valore atteso, comportando delle regioni di saturazione positiva e negativa non simmetriche. Di seguito è riportata la durata degli intervalli di commutazione nella prima colonna, mentre nelle successive la tensione di saturazione raggiunta e il ritardo rispetto all'effettivo punto di transito del segnale in ingresso per 2.1 V.
+Dal confronto tra la figura \ref{fig:biased_cross} e la figura \ref{fig:open_loop_non_inv_zc} si può notare come in questo caso la soglia si trovi al valore atteso, comportando delle regioni di saturazione positiva e negativa non simmetriche. 
+Di seguito è riportata la durata degli intervalli di commutazione nella prima colonna, mentre nelle successive la tensione di saturazione raggiunta e il ritardo rispetto all'effettivo punto di transito del segnale in ingresso per 2.1 V.
 \end{figure}
 
 \begin{tabular}{|c|c|c|c|}
@@ -298,7 +299,7 @@ In tutte e tre le configurazioni l'amplificatore ad anello aperto presenta il me
 \subsection{\textbf{Introduzione all'esperienza}}
 
 La configurazione ad anello aperto finora trattata non offre la possibilità di utilizzare l'amplificatore operazionale in modo ottimale al di là dell'uso come discriminatore. Al fine di ottenere un'amplificazione regolabile e dipende esclusivamente da componenti esterni, anziché da parametri ibridi, nonché migliorare il controllo del dispositivo, si utilizza una rete di feedback negativo.
-Il caso in esame utilizza una rete costituita da una resistenza $R_f$ che riporta parte della corrente in uscita nuovamente nell'ingresso invertente dell'amplificatore, dove è fornito il segnale in ingresso.
+Il caso in esame utilizza una rete costituita da una resistenza $R_2$ che riporta parte della corrente in uscita nuovamente nell'ingresso invertente dell'amplificatore, dove è fornito il segnale in ingresso.
 
 \begin{figure}[H]%[!ht]
 \begin {center}
@@ -339,7 +340,7 @@ Un amplificatore non invertente ha la peculiarità di dare in uscita un segnale 
 \end{figure}
 
 In laboratorio si è considerata la configurazione citata in \textit{Fig.\ref{fig:loop-non-inv}} con l'obiettivo di ottenere un guadagno teorico A = 2. In dettaglio, sfruttando la legge sopracitata
-\[A_2 = 1 + R_2/R_1 = 2.003 \pm 0.072\]
+\[A_2 = 1 + R_2/R_1 = 2.00 \pm 0.07\]
 \[V_i = (0.276 \pm 0.002) V \: \: V_2 = (0.54 \pm 0.01) V\]
 
 Dalla \textit{Fig. \ref{fig:g2-11}} si nota infatti che la risposta del circuito conferma il comportamento atteso, osserviamo, infatti, un segnale in uscita in fase con quello in entrata, con un guadagno $A_{2_c} = 1.96 \pm 0.05$. L'accordo tra il guadagno atteso e quello misurato sperimentalmente con l'oscilloscopio è confermato da un \textit{Test Z} che riporta il seguente valore per la variabile statistica $Z = 0.54$, minore del valore di Z critico corrispondente ad un livello di significatività del 5 \%.
@@ -399,7 +400,7 @@ Per analizzare tale fenomeno è stata nuovamente realizzata la configurazione ad
 \end{figure}
 
 
-Il valore del coefficiente angolare della retta restituito da minimizzatore ci porta a concludere che SR = $(0.7 \pm 0.1) \frac{V}{\mu s}$, valore compatibile con quanto riportato nel datasheet, infatti un test Z eseguito attribuendo al valore teorico un'incertezza pari all'ultima cifra significativa restituisce una variabile statistica Z = 1.43 $<$ $Z_{c}$ = 1.96 con $\alpha$ = 5 \%.
+Il valore del coefficiente angolare della retta restituito da minimizzatore ci porta a concludere che SR = $(0.7 \pm 0.1) \frac{V}{\mu s}$, valore compatibile con quanto riportato nel datasheet, infatti un test Z, eseguito attribuendo al valore teorico un'incertezza pari all'ultima cifra significativa, restituisce una variabile statistica Z = 1.43 $<$ $Z_{c}$ = 1.96 con $\alpha$ = 5 \%.
 
 \subsection{\textbf{Discussione e conclusioni}}
 In conclusione il circuito ha dimostrato di operare esattamente come previsto, processando un segnale in output in fase con quello in input, e amplificato di un valore consistente con quello calcolato per via teorica. La funzione di trasferimento impiegata si è dimostrata perfettamente in linea con i dati sperimentali, sia per quanto riguarda le misure di fase, che per le misure di ampiezza. Notiamo però, che mentre le misure di ampiezza sono risultate sufficientemente accurate, l'oscilloscopio è risultato impreciso nel misurare lo sfasamento. Infine lo slew-rate estratto dalla regressione è risultato in accordo con quanto riportato sul datasheet.
@@ -448,7 +449,7 @@ Il minimizzatore ha restituito per i parametri i valori $k = -R_2/R$ e $a = \fra
 
 Per il caso con guadagno teorico 1 il test di adattamento della variabile $\chi^2$ = 7.31 ha restituito un p-value pari a 0.99.
 Dal fit si sono ricavati i seguenti parametri:
-$A_{fit} = 0.0264 \pm 0.001 dB$
+$A_{fit} = 0.026 \pm 0.001 dB$
 $f_{H1} = (0.57 \pm 0.03) MHz$
 $k_1 = 1.0 \pm 0.1$
 
@@ -599,7 +600,7 @@ Affinché l'amplificatore non vada in saturazione alle basse frequenze, viene ag
 Una caratteristica importante è che il circuito si comporta effettivamente da integratore solo per frequenze superiori a quella di taglio, $f_{t}=\frac{1}{2 \pi C R_{1} }$, è quindi necessario scegliere $R$ e $C$ opportunamente, in relazione alla distribuzione spettrale del segnale da integrare. Questo è giustificabile osservando il grafico di fase del diagramma di Bode associato: oltre la frequenza di taglio tutte le armoniche sinusoidali di Fourier vengono sfasate di un angolo tale da essere approssimabili come inverse di cosinusoidi, cioè integrali delle sinusoidi di partenza.
 
 \subsection{\textbf{Caratterizzazione}}
-Inizialmente si sono scelte $R = (9.920 \pm 0.103) \ k\Omega \ e \ C = (23.4 \pm 1.2) \ nF$ con lo scopo di ottenere una frequenza di taglio non eccessivamente bassa per favorire lo studio della risposta in frequenza della fase successiva: \[f_{t} = \frac{1}{2 \pi R_{1} C}= 685.63 \pm 35.88 Hz\].
+Inizialmente si sono scelte $R = (9.9 \pm 0.1) \ k\Omega \ e \ C = (23 \pm 1) \ nF$ con lo scopo di ottenere una frequenza di taglio non eccessivamente bassa per favorire lo studio della risposta in frequenza della fase successiva: \[f_{t} = \frac{1}{2 \pi R_{1} C}= (0.69 \pm 0.04) kHz\].
 
 \begin{figure}[H]%[!ht]
 \begin {center}
@@ -619,11 +620,13 @@ Terminata la prima fase si è passati all'analisi dell'output del circuito in fu
 
 con $f_H$ polo della funzione di trasferimento e $A_v(0)$ il valore di \textit{magnitude} alla frequenza nulla, estratto dalla regressione del fit. Il minimizzatore restituisce infatti per i parametri i seguenti valori:  f_H = (0.75 $\pm$ 0.01) kHz A_v(0) = (1.001 $\pm$ 0.003)
 Dal confronto di $A_v(0)$ con il gain della $H(s)$ e tra $f_H$ ed $f_t$ si evince un'ottima compatibilità entro un livello di significatività del 5\% in entrambi i casi ($t_{Gain} = 0.39 $, $t_{Freq} = 1.45 $) .
+\vspace{-10mm}
 
 \begin{figure}[H]%[!ht]
 \begin{center}
-\includegraphics[width=0.40\textwidth]{analysis/output/OPA-integrator_bode(mag+phase).pdf}
-\caption{Diagramma di Bode del circuito integratore, nel quadrante superiore è illustrata l'ampiezza di tensione in scala dB, mentre nel quadrante inferiore la curva predetta per la fase dal modello utilizzato per interpolare i dati di ampiezza.}
+\includegraphics[width=0.50\textwidth]{analysis/output/OPA-integrator_bode(mag+phase).pdf}
+\vspace{-10mm}
+\caption{Diagramma di Bode del circuito integratore, nel quadrante superiore è illustrata l'ampiezza di tensione in scala dB, mentre nel quadrante inferiore la curva predetta per la fase dal modello utilizzato per interpolare i dati di ampiezza. (Sull'asse delle ascisse le frequenze di Hertz)}
 \label{fig:integ-bode}
 \end{center}
 \end{figure}
@@ -639,7 +642,7 @@ Il circuito si dimostra conforme a quanto atteso, infatti i segnali di output ri
 \begin{figure}[H]%[!ht]
 \begin{center}
 \includegraphics[width=0.38\textwidth]{sch-simulations/output/OPA-deriv.pdf}
-\caption{Schema  del  circuito  elettrico  per  la  caratterizzazione  dell’OPA derivatore.  Valori  per  i  componenti  utilizzati  misurati  con  il  multimetro: R1= $(9.920 \pm 0.103)$ $k\Omega$, R2= $(9.850 \pm 0.102)$ $k\Omega$, C1= $(23.4 \pm 1.2)$ $\ nF$}
+\caption{Schema  del  circuito  elettrico  per  la  caratterizzazione  dell’OPA derivatore.  Valori  per  i  componenti  utilizzati  misurati  con  il  multimetro: R1= $(9.9 \pm 0.1)$ $k\Omega$, R2= $(9.9 \pm 0.1)$ $k\Omega$, C1= $(23 \pm 1)$ $\ nF$}
 \label{fig:OPA-deriv}
 \end{center}
 \end{figure}
@@ -658,7 +661,7 @@ Una volta assemblato il circuito si è proseguito analizzando qualitativamente i
 \end{center}
 \end{figure}
 
-Dalla \textit{Fig. \ref{fig:derivatore}}, in cui le scale dei voltaggi sono diverse fra input e output col fine di ottimizzarne la comprensibilità visiva, si vede come il segnale in uscita sia effettivamente paragonabile con la derivata della $V_{in}$. In particolare valutando lo sfasamento tra le due forme d'onda si trova $\theta = 87.23 \deg$, compatibile con 90 deg, che corrisponde ad un'integrazione termine a termine di tutte le componenti di Fourier del segnale in ingresso.
+Dalla \textit{Fig. \ref{fig:derivatore}}, in cui le scale dei voltaggi sono diverse fra input e output col fine di ottimizzarne la comprensibilità visiva, si vede come il segnale in uscita sia effettivamente paragonabile con la derivata della $V_{in}$. In particolare valutando lo sfasamento tra le due forme d'onda si trova $\theta = 87.23^{\circ}$, compatibile con $90^{\circ}$, che corrisponde ad un'integrazione termine a termine di tutte le componenti di Fourier del segnale in ingresso.
 
 Il funzionamento osservato è quindi in accordo con le previsioni teoriche. Ovviamente è necessario tener conto del fatto che la bontà della derivazione dipende, come ampiamente discusso nel caso dell'integratore, strettamente dalla frequenza del segnale in ingresso. Infatti se quest'ultima non fosse stata molto minore rispetto alla frequenza di taglio il circuito avrebbe agito da semplice amplificatore invertente, dal momento che avrebbe introdotto uno sfasamento trascurabile alle componenti sinusoidali di Fourier.
 
@@ -681,7 +684,7 @@ I primi due canali dell'oscilloscopio sono collegati ai segnali $V_1$ e $V_2$ pr
 \begin{figure}[H]%[!ht]
 \begin{center}
 \includegraphics[width=0.45\textwidth]{sch-simulations/output/OPA-mixer.pdf}
-\caption{Schema  del  circuito  elettrico  per  la  caratterizzazione  della configurazione invertente del circuito sommatore. Valori per i componenti utilizzati misurati con il multimetro: R1= $(9.81 \pm 0.101)$ $k\Omega$, R2= $(9.95 \pm 0.104)$ $k\Omega$, R3= $(9.89 \pm 0.103)$ $k\Omega$}
+\caption{Schema  del  circuito  elettrico  per  la  caratterizzazione  della configurazione invertente del circuito sommatore. Valori per i componenti utilizzati misurati con il multimetro: R1= $(9.8 \pm 0.1)$ $k\Omega$, R2= $(10.0 \pm 0.1)$ $k\Omega$, R3= $(9.9 \pm 0.1)$ $k\Omega$}
 \label{fig:OPA-mixer}
 \end {center}
 \end{figure}
@@ -733,12 +736,12 @@ Il minimizzatore di $\chi^2$ restituisce p-value del test di adattamento $\sim$ 
 Effettuando un test di compatibilità tra il coefficiente angolare $a$ ed il suo valore atteso $a_e = 1$ si può affermare che i due dati  siano effettivamente compatibili con un livello di significatività superiore al 5\%, infatti $Z=0.99$.
 
 \subsection{\textbf{Formazione di battimenti}}
-Mandando ai due ingressi sinusoidi con frequenza leggermente diversa $f_1 $\sim$ 1.0\ kHz, \ f_2 $\sim$ 1.1\ kHz$ e uguale ampiezza (1 V), con $\Delta f$ >> f, si può avere la generazione di battimenti. Si osserverà quindi nella forma d'onda in uscita un inviluppo sinusoidale con frequenza f' $\sim$ 100 Hz. Si veda la \textit{figura \ref{fig:beats}}.
+Pilotando i due ingressi con sinusoidi di frequenza leggermente diversa $f_1 \sim 1.0 kHz$,  $f_2 \sim 1.1 kHz$ e uguale ampiezza (1 V), con $\Delta f >> f$, si può avere la generazione di battimenti. Si osserverà quindi nella forma d'onda in uscita un inviluppo sinusoidale con frequenza $f' \sim 100 Hz$. Si veda la \textit{figura \ref{fig:beats}}.
 
 \begin{figure}[H]%[!ht]
 \begin{center}
-\includegraphics[width=0.42\textwidth]{analysis/output/OPA_mixer_beats.pdf}
-\caption{Somma di sinusoidi identiche, ma con frequenze che differiscono di una quantità $\Delta f$ = 10 Hz, con $f_2 = f_1 + \Delta_f$ e $f_1$ = Hz  danno origine a battimenti di frequenza $f_b$ = Hz}
+\includegraphics[width=0.47\textwidth]{analysis/output/OPA_mixer_beats.pdf}
+\caption{Somma di sinusoidi identiche, ma con frequenze che differiscono di una quantità $\Delta f$ = 10 Hz, con $f_2 = f_1 + \Delta_f$ e $f_1$ = Hz  danno origine a battimenti di frequenza $f_b$ = 100 Hz}
 \label{fig:beats}
 \end{center}
 \end{figure}
@@ -756,7 +759,7 @@ Scegliendo le resistenze con valori identici ($R_1 = R_2 = R_3 =R_4 $) si otterr
 \begin{figure}[H]%[!ht]
 \begin {center}
 \includegraphics[width=0.38\textwidth]{sch-simulations/output/OPA-difference-amp.pdf}
-\caption{Circuito amplificatore di differenze invertente. Sono stati usati i seguenti valori di resistenze: $R_1 =(9.81 \pm 0.13) \ k\Omega, \ R_2 = (9.95 \pm 0.13) \ k\Omega ,\ R_3 = (9.89 \pm 0.13) \ k\Omega \ e \ R_4 = (9.83 \pm 0.13) k\Omega  $  }
+\caption{Circuito amplificatore di differenze invertente. Sono stati usati i seguenti valori di resistenze: $R_1 =(9.8 \pm 0.1) \ k\Omega, \ R_2 = (10.0 \pm 0.1) \ k\Omega ,\ R_3 = (9.9 \pm 0.1) \ k\Omega \ e \ R_4 = (9.8 \pm 0.1) k\Omega  $ }
 \label{fig:differenze}
 \end {center}
 \end{figure}
@@ -766,7 +769,7 @@ Per verificare il corretto funzionamento di questa configurazione sono state man
 
 \begin{figure}[H]%[!ht]
 \begin {center}
-\includegraphics[width=0.50\textwidth]{analysis/output/OPA_diff_sin2.pdf}
+\includegraphics[trim = {0 0 0 50pt}, clip, width=0.52\textwidth]{analysis/output/OPA_diff_sin2.pdf}
 \caption{Sottrazione di sinusoidi identiche}
 \label{fig:diff2}
 \end {center}
@@ -777,36 +780,40 @@ Il grafico mostra che in uscita si registra una tensione praticamente nulla. Com
 Si è poi applicata una sinusoide a media nulla al primo canale e una sinusoide a media $-0.2 V$ al secondo, con ampiezza uguale alla prima, all'uscita si può visualizzare un segnale DC pari all'offset in tensione \textit{(Si veda la figura \ref{fig:diff3})}. 
 
 \begin{figure}[H]%[!ht]
-\begin {center}
-\includegraphics[width=0.50\textwidth]{analysis/output/OPA_diff_sin3.pdf}
+\begin{center}
+\includegraphics[trim = {0 0 0 52pt},clip, width=0.53\textwidth]{analysis/output/OPA_diff_sin3.pdf}
 \caption{Sottrazione da una funzione sinusoidale con offset di una componente DC di ampiezza pari all'offset, con risultato pari ad una sinusoide con media nulla}
 \label{fig:diff3}
-\end {center}
+\end{center}
 \end{figure}
 
 \subsection{\textbf{Differenza di ulteriori forme d'onda e verifica della linearità}}
 Nei grafici che seguono è possibile visualizzare la differenza di onde quadre con ampiezze diverse ($V_{+_max} = 0.5V \quad e \quad V_{-_max} = 0.25V$) in \textit{fig. \ref{fig:diff_square}}
 e la differenza tra un'onda quadra e una rampa entrambe di ampiezza massima $V=0.5V$ in \textit{Fig. \ref{fig:diff_squareramp}}.
 
+\vspace{-4mm}
+
 \begin{figure}[H]%[!ht]
-\begin {center}
-\includegraphics[width=0.45\textwidth]{analysis/output/OPA_diff_square.pdf}
+\begin{center}
+\includegraphics[trim = {0 0 30pt 0}, width=0.45\textwidth]{analysis/output/OPA_diff_square.pdf}
+\vspace{-5mm}
 \caption{Sottrazione da un'onda quadra di ampiezza $2A$ di un'onda quadra con ampiezza $A$}
 \label{fig:diff_square}
-\end {center}
+\end{center}
 \end{figure}
 
-\vspace{-5mm}
+\vspace{-7mm}
 
 \begin{figure}[H]%[!ht]
-\begin {center}
+\begin{center}
 \includegraphics[width=0.45\textwidth]{analysis/output/OPA_diff_squareramp.pdf}
+\vspace{-5mm}
 \caption{Differenza tra un'onda quadra e una rampa}
 \label{fig:diff_squareramp}
-\end {center}
+\end{center}
 \end{figure}
 
-\vspace{-15mm}
+\vspace{-10mm}
 
 \begin{figure}[H]%[!ht]
 \begin{center}
@@ -820,7 +827,7 @@ e la differenza tra un'onda quadra e una rampa entrambe di ampiezza massima $V=0
 Con la medesima procedura adoperata nel caso del mixer si è effettuata la verifica della linearità dell'amplificazione del canale invertente effettuando una regressione lineare $V_o = aV_i + b$ sui dati registrati in modalità $X-Y$ di tra il canale invertente e l'uscita.
 In questo caso dato che la curva positiva sarà rappresentata dall'ingresso in sottrazione, mentre quella positiva dall'ingresso non in sottrazione ci si aspetta un valore negativo di coefficiente angolare $a_e = -1$
 
-Ancora una volta il parametro $a$ restituito dal minimizzatore risulta essere compatibile con il valore atteso ($Z=1.91$) > $Z_{critico}$ per $\alpha$ = 5 \%, mentre il test di adattamento di $\chi^2$ riporta p-value $\sim$ 1, mostrando che nel range scelto l'amplificatore risulta priva di distorsioni, al livello di accuratezza disponibile con nostri strumenti.
+Ancora una volta il parametro $a$ restituito dal minimizzatore risulta essere compatibile con il valore atteso ($Z=1.91 > Z_{critico}$) per $\alpha$ = 5 \%, mentre il test di adattamento di $\chi^2$ riporta p-value $\sim$ 1, mostrando che nel range scelto l'amplificatore risulta priva di distorsioni, al livello di accuratezza disponibile con nostri strumenti.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -838,13 +845,16 @@ Dove $V_{th+}$ la tensione di soglia superiore e $V_{th-}$ quella inferiore, men
 
 \begin{figure}[H]%[!ht]
 \begin{center}
-\includegraphics[width=0.45\textwidth]{sch-simulations/output/OPA-mixer-trigger.pdf}
+\includegraphics[width=0.48\textwidth]{sch-simulations/output/OPA-mixer-trigger.pdf}
 \caption{Schema elettrico utilizzato per la caratterizzazione del trigger di Schmitt con l'obiettivo di mostrare le capacità di immunità al rumore. Il circuito di dotato di due stadi operazionali, il primo con funzione di sommatore produce un segnale rumoroso sommando un noise ad alta frequenza ad un segnale sinusoidale, il secondo costituisce il trigger vero e proprio. Sono stati usati i seguenti valori per le resistenze: $R_1 =(9.8 \pm 0.1) \ k\Omega, \ R_2 = (9.9 \pm 0.1) \ k\Omega ,\ R_3 = (9.8 \pm 0.1) \ k\Omega \, \ R_4 = (9.8 \pm 0.1) \ k\Omega \ R = (9.8 \pm 0.1) \ k\Omega , \ R = (9.8 \pm 0.1 ) \ k\Omega $  } 
 \label{fig:schmitt-trigger}
 \end{center}
 \end{figure}
 
 \subsection{\textbf{Caratterizzazione}}
+Inizialmente è stato fornito al \textit{trigger di Schmitt} un segnale sinusoidale con rumore trascurabile, osservando la commutazione invertente con isteresi attesa (\textit{Fig.\ref{fig:trigger-clean}}): 
+Un simile circuito può essere utilizzato per trasformare un segnale sinusoidale in un'onda quadra, oppure come già anticipato, per rigenerare dal rumore un segnale digitale.
+Nel circuito implementato la tensione di saturazione, riferita a massa è: $+V_{sat}  = 14.6 \pm 0.1  V $ e $-V_{sat}  = -14.0 \pm 0.1  V $. 
 
 \begin{figure}[H]%[!ht]
 \begin {center}
@@ -862,10 +872,6 @@ Dove $V_{th+}$ la tensione di soglia superiore e $V_{th-}$ quella inferiore, men
 \label{fig:trigger-noisy}
 \end {center}
 \end{figure}
-
-Inizialmente è stato fornito al \textit{trigger di Schmitt} un segnale sinusoidale con rumore trascurabile, osservando la commutazione invertente con isteresi attesa (\textit{Fig.\ref{fig:trigger-clean}}): 
-Un simile circuito può essere utilizzato per trasformare un segnale sinusoidale in un'onda quadra, oppure come già anticipato, per rigenerare dal rumore un segnale digitale.
-Nel circuito implementato la tensione di saturazione, riferita a massa è: $+V_{sat}  = 14.6 \pm 0.1  V $ e $-V_{sat}  = -14.0 \pm 0.1  V $. 
 
 In laboratorio si volevano confrontare le capacità di immunità al rumore di un trigger di Schmitt rispetto ad un normale comparatore di soglia realizzato con un amplificatore operazionale in configurazione ad anello aperto. E' quindi stato generato un segnale costituito da una sinusoide con ampiezza $V_{s-pp}$ = 15 V a cui è stato sommato un rumore ad alta frequenza con forma onda quadra di ampiezza $V_{n-pp}$ = 4 V utilizzando un primo stadio operazionale in configurazione mixer invertente. L'uscita di questo stadio è stata dapprima inviata in un comparatore di soglia con $V_{th}$ = 0 ottenendo una serie di commutazioni indesiderate nei punti di \textit{zero-crossing} del rumore, (figura \ref{fig:trigger-noisy}), dopodiché il comparatore è stato sostituito con un trigger di Schmitt e questa volta la commutazione è risultata corretta e immune al rumore, come ben visibile in \textit{figura \ref{fig:trigger-ok}}.
 
@@ -1027,7 +1033,7 @@ Quello che si osserva è che il segnale è la risultante di un'onda diretta, che
 \begin{figure}[H]%[!ht]
 \begin {center}
 \includegraphics[width=0.38\textwidth]{analysis/output/cavo coassiale.png}
-\caption{Tratto $\delta x$ cavo assiale}
+\caption{Tratto $\delta x$ cavo coassiale}
 \label{fig:coassiale}
 \end {center}
 \end{figure}
@@ -1373,6 +1379,8 @@ Particolarmente rilevante è risultata la possibilità di esportare le tracce in
     \label{tab:SiPMscale}
 \end{table}
 
+\clearpage
+\newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \tableofcontents
 
