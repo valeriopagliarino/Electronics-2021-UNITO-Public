@@ -308,22 +308,24 @@ Un amplificatore non invertente ha la peculiarità di dare in uscita un segnale 
 \end{equation}
 \vspace{-7mm}
 
-
+\newpage
 \subsection{\textbf{Caratterizzazione}}
+
 In laboratorio si è considerata la configurazione citata in \textit{Fig.\ref{fig:loop-non-inv}} con l'obiettivo di ottenere un guadagno pari a due. In dettaglio sfruttando ala legge sopracitata
 \[A_2 = 1 + R_2/R_1 = 2.003 \pm 0.072\]
 \[V_i = (0.276 \pm 0.002) V \: \: V_2 = (0.54 \pm 0.01(3)) V\]
 
 \begin{figure}[H]%[!ht]
-\begin {center}
+\begin {top}
 \includegraphics[width=0.48\textwidth]{analysis/output/OPA-closed-loop-non-inv-G2-11.pdf}
-\caption{Amplificatore operazionale in configurazione ad anello chiuso non invertente (curva di colore blu)}
+\caption{Amplificatore operazionale in configurazione ad anello chiuso non invertente (curva di colore blu)\\}
 \label{fig:g2-11}
 \end {center}
-\end{figure}
 
-Dalla \textit{Fig. \ref{fig:g2-11}} si nota infatti che la risposta del circuito comporta un segnale in uscita in fase con quello in entrata, con un guadagno:
-\[A_{2_c} = 1.96 \pm 0.05\]
+
+
+Dalla \textit{Fig. \ref{fig:g2-11}} si nota infatti che la risposta del circuito comporta un segnale in uscita in fase con quello in entrata, con un guadagno: $A_{2_c} = 1.96 \pm 0.05$
+\end{figure}
 I valori di $V_{out}$ misurati con l'oscilloscopio sono risultati in accordo con la teoria.
 L'accordo tra il guadagno atteso e quello misurato sperimentalmente con l'oscilloscopio è confermato da un \textit{Test t} che riporta il seguente valore per la variabile statistica $t_2 = 0.54$ , superiore al livello di significatività adottato pari al 5 \%.
 
@@ -358,7 +360,7 @@ Per analizzare tale fenomeno si è osservata la risposta del circuito all'aument
 \begin{figure}[H]%[!ht]
 \begin {center}
 \includegraphics[width=0.50\textwidth]{analysis/output/OPA-open-loop-slew-rate.pdf}
-\caption{Amplificazione ad anello aperto al variare della frequenza,  dall'alto f = 100, 50, 10, 5 kHz}
+\caption{Amplificazione ad anello aperto al variare della frequenza, dall'alto f = 100, 50, 10, 5 kHz}
 \label{fig:slew-rate-table}
 \end {center}
 \end{figure}
@@ -370,7 +372,7 @@ Per analizzare tale fenomeno si è osservata la risposta del circuito all'aument
 \label{fig:slew-rate-fit}
 \end {center}
 \end{figure}
-\[SR = (0.6858 \pm 0.1059) \frac{V}{\mu s}\]
+\[SR = (0.7 \pm 0.1) \frac{V}{\mu s}\]
 Il valore è consistente con la letteratura.
 \subsection{\textbf{Discussione e conclusioni}}
 In conclusione il circuito ha dimostrato di operare esattamente come previsto, processando un segnale in output in fase con quello in input e amplificato di un valore consistente con quello calcolato per via teorica. La funzione di di transfer usata si è dimostrata perfettamente in linea con la presa dati, a conferma di ciò la controverifica fatta con i valori di fase e il loro andamento similare a quello del diagramma di fase. Infine lo slew rate estratto dalla regressione è in accordo con l'ordine di grandezza dei valori relativi ad operazionali di questo genere. 
@@ -391,7 +393,7 @@ La successiva analisi consiste nello studio in frequenza del guadagno in configu
 Il comportamento atteso da tale configurazione prevede che il guadagno sia pari a $A_{vf} = -\frac{R_f}{R}$. 
 Ci si propone di studiare l'andamento in frequenza dell'amplificazione in due diversi casi: guadagno teorico pari a $-1$ e guadagno teorico pari a $-10$.
 
-Per il primo caso si utilizzano due resistori $R_f = 1.00 \pm 0.01 k\Omega $ e $R = 990 \pm 14 k\Omega$, con guadagno teorico pari a $A_{vf} = -1.00 \pm 0.02 $ Per il secondo caso si utilizzano due resistori $R_f = 9.87 \pm 14 k\Omega $ e $R = 990 \pm 14 k\Omega$, con guadagno teorico pari a $A_{vf} = -9.8 \pm 0.2$
+Per il primo caso si utilizzano due resistori $R_f = 1.00 \pm 0.01 k\Omega $ e $R = 0.99 \pm 0.01 k\Omega$, con guadagno teorico pari a $A_{vf} = -1.00 \pm 0.02 $ Per il secondo caso si utilizzano due resistori $R_f = 0.99 \pm 0.01 k\Omega $ e $R = 0.99 \pm 0.01 k\Omega$, con guadagno teorico pari a $A_{vf} = -9.8 \pm 0.2$
 
 Come segnale in ingresso si è scelta un'onda di tipo sinusoidale, con ampiezza di $100 mV$.
 
@@ -399,29 +401,50 @@ I dati misurati sono riportati nelle \textit{tabelle \ref{tab:opa-inv-g1} (guada
 
 \subsection{\textbf{Studio della risposta in frequenza}}
 
-Si è ricavata una funzione di trasferimento $H(s)$ in modo analogo al caso della configurazione non invertente. Si sono interpolati i dati sperimentali ottenendo un'ottima corrispondenza. Da questa funzione è stato possibile stimare il guadagno - $3 dB$, e tramite un cursore orizzontale posto a tale livello si è trovata l'intersezione con la curva teorica, corrispondente alla frequenza di taglio $f_H$.
+Si è ricavata una funzione di trasferimento $H(s)$ in modo analogo al caso della configurazione non invertente. 
+\[H(s) = \frac{k}{1+as}\]
+con $k = -R_f/R$ e $a = \frac{1}{f_H}$ 
+Si sono interpolati i dati sperimentali ottenendo un'ottima corrispondenza. Da questa funzione è stato possibile stimare il guadagno - $3 dB$, e tramite un cursore orizzontale posto a tale livello si è trovata l'intersezione con la curva teorica, corrispondente alla frequenza di taglio $f_H$.
 
 \begin{figure}[H]%[!ht]
 \begin{center}
-\includegraphics[width=0.38\textwidth]{analysis/output/OPA-bode_gain1(mag).pdf}
+\includegraphics[width=0.48\textwidth]{analysis/output/OPA-bode_gain1(mag).pdf}
 \caption{Amplificatore retroazionato invertente con guadagno teorico 1: risposta in funzione della frequenza. In rosso il cursore a livello $f_H$}
 \label{fig:closed_loop_inv_gain_1}
 \end{center}
 \end{figure}
 
 Per il caso con guadagno teorico 1, il valore ottenuto è stato:
-$f_H = 0.57 \pm 0.03 MHz$
+$f_{H1} = (0.57 \pm 0.03) MHz$
+$k_1 = 1.0 \pm 0.1$
 
 \begin{figure}[H]%[!ht]
 \begin {center}
-\includegraphics[width=0.38\textwidth]{analysis/output/OPA-bode_gain10(mag).pdf}
+\includegraphics[width=0.48\textwidth]{analysis/output/OPA-bode_gain10(mag).pdf}
 \caption{Amplificatore retroazionato invertente con guadagno teorico 10: risposta in funzione della frequenza. In rosso il cursore a livello $f_H$ }
 \label{fig:closed_loop_inv_gain_10}
 \end {center}
 \end{figure}
 
+%\vfill
+
 Per il caso con guadagno teorico 10, il valore ottenuto è stato:
-$f_H = 84 \pm 5 KHz$.
+$f_{H10} = (0.84 \pm 0.05) MHz$.
+$k_{10} = 9.6 \pm 0.1$
+
+\subsection{\tetbf{Studio della conservazione del valore \textbf{$BW$ $\times$ $GAIN$}}}
+
+Infine è stata effettuato un test statistico tra i due prodotti $BW \times GAIN$ sfruttando i valori di $f_H$ e $k$ estratti per regressione attraverso il confronto tra:
+
+$\abs{BW \times GAIN}_1 = (0.56 \pm 0.03) MHz$
+$\abs{BW \times GAIN}_{10} = (0.84 \pm 0.05) MHz$
+
+
+Tali valori non sono risultati consistenti entro un livello di significatività del 5\% ($Z = 4.83 > Z_c = 1.96$). 
+
+È probabile che l'incertezza sulla misure delle frequenze, proporzionale alle misure stesse, abbia inciso sulla bontà delle regressioni con funzioni teoriche, in particolare ad alte frequenze, superiori alle frequenze di taglio.
+
+Come si nota nel grafico \ref{fig:OPA-bode_gain_comparison(mag)}, infatti, le due curve non hanno lo stesso andamento ad alte frequenze, come sarebbe atteso, e questo influisce sulla conservazione della legge in esame. 
 
 
 \begin{figure}[H]%[!ht]
@@ -431,6 +454,8 @@ $f_H = 84 \pm 5 KHz$.
 \label{fig:OPA-bode_gain_comparison(mag)}
 \end {center}
 \end{figure}
+\subsection{\textbf{Discussione generale}}
+Il circuito sopracitato ha dimostrato in entrambe le configurazioni di avere una risposta alla frequenza in linea con quella teorica. Le due forme funzionali ottenute dalla regressione non risultano però essere sovrapponibili nel dominio delle frequenze ad alti valori. Si suppone la presenza di un errore sistematico per i motivi citati nel sottoparagrrafo precedente.
 
 %%%%%%%%%%FINE PRIMO GIORNO%%%%%%%%%%%%%%%
 %%%%%%%%%%INIZIO SECONDO GIORNO%%%%%%%%%%%
@@ -511,16 +536,20 @@ Con valore teorico a temperatura assoluta $T = 300K$ pari a $26 mV$ il test di c
 Si pensa dunque che ci possa essere un errore sistematico nella presa dati. In particolare la scelta della tensione $V_in$ potrebbe non essere stata ottimale. Un tale valore
 fa sì che gli ultimi dati misurati siano influenzati dallo slew rate. Tale ipotesi è confermata da una successiva analisi:
 
-Si è analizzato l'amplificatore logaritmico tramite la funzione X-Y dell'oscilloscopio, con persistenza infinita dei dati e inviando all'ingresso una funzione sinusoidale [!
-TENSIONE!]. L'immagine rappresenta la sovrapposizione tra la regressione con funzione logaritmica e il grafico x-y. Si nota che i dati per tensioni basse si avvicinano
+Si è analizzato l'amplificatore logaritmico tramite la funzione X-Y dell'oscilloscopio, con persistenza infinita dei dati e inviando all'ingresso una funzione sinusoidale. L'immagine rappresenta la sovrapposizione tra la regressione con funzione logaritmica e il grafico x-y. Si nota che i dati per tensioni basse si avvicinano
 all'estremo basso della distribuzione, mentre per tensioni alte si avvicinano all'estremo alto della distribuzione. Questo può significare che le condizioni durante la
 misurazione siano cambiate al crescere della temperatura, introducendo un errore
 
 L'ultimo parametro che si intende calcolare è la tensione di saturazione inversa del diodo.
-A partire dall'equivalenza $V_0 = 2 \cdot V_T \cdot ln(R \cdot I_0)$ per $v_s = 1$, è possibile sostituire il valore ottenuto di $V_T = 20.0 \pm 0.7 mV$, ottenendo
-$I_0 = \frac{e^{\frac{k}{2 \cdot V_T}}}{R} = 3 \pm 1 \cdot 10^{-10} A$
+A partire dall'equivalenza $V_0 = 2 \cdot V_T \cdot ln(R \cdot I_0)$  per $v_s = 1$, è possibile sostituire il valore ottenuto di $V_T = 20.0 \pm 0.7 mV$, ottenendo
+
+\[ I_0 = \frac{e^{\frac{k}{2 \cdot V_T}}}{R} = 3 \pm 1 \cdot 10^{-10} A \]
 
 Il valore ha un ordine di grandezza compatibile con la corrente di saturazione inversa tipica dei diodi, ma si segnala un grande errore relativo ($33 \% $) dovuto alla propagazione degli errori su 3 parametri.
+
+\subsection{Conclusioni finali}
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Grafico di risposta}
@@ -1018,7 +1047,7 @@ Per verificare qualitativamente il comportamento della linea nei tre casi descri
 
 Nel caso a circuito aperto, è possibile stimare la lunghezza $L$ del cavo, misurando il tempo di andata e ritorno dell'impulso: sapendo che il segnale si propaga a velocità $v_f = 5 \ ns$. Il valore $\Delta t / {v_f}$ corrisponde infatti al doppio della distanza percorsa dal segnale. 
 Estrapolando dal grafico del segnale in ingresso i valori per i due massimi relativi che corrispondono alla partenza e al ritorno dell'impulso, si calcola $\Delta t$. Si ottiene quindi: 
-$L = 27.7 \pm 0.5)$. (Errore stimato tenendo conto sia della risoluzione temporale dell'oscilloscopio, sia dell'imprecisione di posizionamento dei cursori dovuta a forme differenti dei fronti di salita).
+$L = (27.7 \pm 0.5) \ m $. (Errore stimato tenendo conto sia della risoluzione temporale dell'oscilloscopio, sia dell'imprecisione di posizionamento dei cursori dovuta a forme differenti dei fronti di salita).
 
 
 \subsection{\textbf{Periodo di ripetizione}}
@@ -1093,6 +1122,10 @@ Invece con $\lambda$ = L :
     \item Con cortocircuito sull'uscita: Si ottengono minimi sull'ingresso, sull'uscita e un massimo a L/4
     \item Con linea adattata: non c'è onda riflessa, l'onda si propaga senza interferenze.
 \end{itemize}
+
+\subsection{Conclusioni}
+Dallo studio del comportamento di una linea di ritardo con diverse terminazioni - cortocircuito, circuito aperto e linea adattata - è stata ricavata la misura della lunghezza del cavo utilizzato sia tramite l'invio di un singolo impulso sia con ripetizioni di impulsi. S
+ciascuna configurazione è stata caratterizzata, visualizzando il comportamento dei fronti d'onda sinusoidali di ciascuna ad inizio, $L/4, \ L/2$, ed $L$. 
 
 
 \clearpage
