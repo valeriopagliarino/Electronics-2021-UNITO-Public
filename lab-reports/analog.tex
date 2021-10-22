@@ -446,15 +446,15 @@ $k_1 = 1.0 \pm 0.1$
 %\vfill
 
 Per il caso con guadagno teorico 10, il valore ottenuto è stato:
-$A_{fit} = 20.026 \pm 0.001 dB$
-$f_{H10} = (0.84 \pm 0.05) MHz$.
+$A_{fit} = 20.026 \pm 0.001$ $dB$
+$f_{H10} = (0.84 \pm 0.05)$ $MHz$.
 $k_{10} = 9.6 \pm 0.1$
 
 \subsection{\textbf{Studio della conservazione del prodotto guadagno x larghezza di banda}}
 
 E' noto che in un circuito amplificatore realizzato con amplificatori operazionali in prodotto guadagno x larghezza di banda è una caratteristica costante del dispositivo. Si è quindi voluta valutare la compatibilità tra quanto ottenuto nel caso con guadagno A = 10 e A = 1: $\\ | BW \times A_1 | = (0.56 \pm 0.03)\ MHz \\$  e  $ | BW \times A_{10} | = (0.84 \pm 0.05)\ MHz$
-Questa volta, contrariamente a quanto atteso, un test statistico tra i due prodotti $BW \times A$ sfruttando i valori di $f_H$ e $k$ estratti per regressione non ha dato risultati consistenti entro un livello di significatività del 5\% ($Z = 4.83 > Z_c = 1.96$). I risultati sono però comunque all'interno del range atteso 0.431 - 1.5 MHz riportato sul datasheet. Notiamo che il prodotto con valore più basso è quello ricavato a frequenza più alta, questo ci permette di ipotizzare che ad alta frequenza qualche fenomeno che necessita di ulteriori misure per essere giustificato correttamente abbia alterato attenuato i valori di guadagno misurati portando ad una sottostima della frequenza di taglio.
-Anche dal grafico in figura \ref{fig:OPA-bode_gain_comparison(mag)} si nota infatti che ad alte frequenze le due funzioni di trasferimento ottenute per fit non tendono a sovrapporsi come sarebbe atteso.
+Questa volta, contrariamente a quanto atteso, un test statistico tra i due prodotti $BW \times A$ sfruttando i valori di $f_H$ e $k$ estratti per regressione non ha dato risultati consistenti entro un livello di significatività del 5\% ($Z = 4.83 > Z_c = 1.96$). I risultati sono però comunque all'interno del range atteso 0.431 - 1.5 MHz riportato sul datasheet. Notiamo che il prodotto con valore più basso è quello ricavato a frequenza più alta, questo ci permette di ipotizzare che ad alta frequenza qualche fenomeno che necessita di ulteriori misure per essere giustificato correttamente abbia alterato i valori di guadagno misurati portando ad una sottostima della frequenza di taglio.
+Anche dal grafico in figura \ref{fig:OPA-bode_gain_comparison(mag)} si nota, infatti, che ad alte frequenze le due funzioni di trasferimento ottenute per fit non tendono a sovrapporsi come sarebbe atteso.
 
 
 \begin{figure}[H]%[!ht]
@@ -464,8 +464,6 @@ Anche dal grafico in figura \ref{fig:OPA-bode_gain_comparison(mag)} si nota infa
 \label{fig:OPA-bode_gain_comparison(mag)}
 \end {center}
 \end{figure}
-\subsection{\textbf{Discussione generale}}
-Il circuito sopracitato ha dimostrato in entrambe le configurazioni di avere una risposta alla frequenza in linea con quella teorica. Le due forme funzionali ottenute dalla regressione non risultano però essere sovrapponibili nel dominio delle frequenze ad alti valori. Si suppone la presenza di un errore sistematico di cui non si è tenuto conto sulle misure ad alta frequenza.
 
 %%%%%%%%%%FINE PRIMO GIORNO%%%%%%%%%%%%%%%
 %%%%%%%%%%INIZIO SECONDO GIORNO%%%%%%%%%%%
@@ -473,17 +471,17 @@ Il circuito sopracitato ha dimostrato in entrambe le configurazioni di avere una
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{\textbf{Amplificatore logaritmico}} %Stefano
 \subsection{\textbf{Introduzione all'esperienza}}
-Un amplificatore operazionale, se inserito in un circuito che usa un diodo come feedback, amplifica il segnale in ingresso secondo la legge
+Un amplificatore operazionale, se inserito in un circuito che usa un diodo nella rete di feedback, amplifica il segnale in ingresso secondo la legge
 
 \begin{equation}
 V_0 = - \eta \cdot V_T \cdot ln( \frac{v_s}{R \cdot I_0} )
 \end{equation}
 con $V_T = \frac{k_{b} \cdot T}{q}$ \\
 
-derivante dalla caratteristica tensione-corrente di Shockey del diodo, dalla realizzando così un amplificatore logaritmico che è particolarmente utile in tutte quelle applicazioni in cui si devono amplificare, misurare o acquisire segnali che spaziano su un range di ampiezze particolarmente vasto.
+derivante dalla caratteristica tensione-corrente di Shockey del diodo,  realizzando così un amplificatore logaritmico che è particolarmente utile in tutte quelle applicazioni in cui si devono amplificare, misurare o acquisire segnali che spaziano su un range di ampiezze particolarmente vasto.
 
 \subsection{\textbf{Caratterizzazione}}
-Ci si propone di verificare la legge, inserendo un diodo al silicio ($\eta = 2$) come retroazione nel circuito, e un resistore $R = 2.00 \pm 0.02 \ k\Omega$, e fornendo una in tensione continua all'ingresso invertente. Inoltre, si intende ricavare sperimentalmente il valore dei parametri $V_T$ e $I_0$.
+Ci si propone di verificare la legge, utilizzando un diodo al silicio ($\eta = 2$), un resistore di limitazione della corrente pari a $R = 2.00 \pm 0.02 \ k\Omega$, e fornendo una tensione continua all'ingresso invertente dell'amplificatore operazionale. Inoltre, si intende ricavare sperimentalmente il valore dei parametri $V_T$ e $I_0$ per regressione.
 
 \begin{figure}[H]%[!ht]
 \begin {center}
@@ -499,9 +497,8 @@ Avendo inserito un diodo al silicio la legge può essere riscritta come
 V_0 = 2 \cdot V_T \cdot ln(R \cdot I_0) - 2 \cdot V_T \cdot ln(v_s)
 \end{equation}
 
-La prima misurazione ha lo scopo di inviare in ingresso un segnale $V_{in} = 1V$ per ottenere  $V_0 = 2 \cdot V_T \cdot ln(R \cdot I_0)$, valore costante indipendente dal segnale.
-
-Si sono ricavati i seguenti dati:
+La prima misurazione consiste nell'inviare in ingresso un segnale $V_{in} = 1V$ per ottenere la costante  $V_0 = 2 \cdot V_T \cdot ln(R \cdot I_0)$.
+In laboratorio nell'impossibilità con l'alimentatore di fornire un segnale esattamente pari a $1$ V, sono state acquisite alcune misure nell'intorno, che sono poi state mediate.
 
 \begin{center}
 \begin{tabular}{|c|c|}
@@ -516,19 +513,16 @@ $V_{in} \pm 0.006 $ [V] & $V_{out} \pm 0.002 [V]$   \\ \hline
 \end{tabular}
 \end{center}
 
-La media dei valori di $V_{out}$ è pari a 
+La media dei valori di $V_{out}$ è risultata pari a 
 
 \[V_{out} = (-0.575 \pm 0.001 )V\]
 
-Si procede dunque allo studio del comportamento dell'amplificatore per valori variabili di tensione in ingresso.
-
-Si sono misurati i valori picco-picco riportati nella \textit{tabella \ref{tab:opa-log}}.
-
+Si procede dunque allo studio del comportamento dell'amplificatore per valori variabili di tensione in ingresso, volendo ricostruire la legge di Shockley. Le tensioni misurate sono riportate in appendice nella \textit{tabella \ref{tab:opa-log}}.
 
 \begin{figure}[H]%[!ht]
 \begin {center}
 \includegraphics[width=0.48\textwidth]{analysis/output/fit_log_vout_vin.pdf}
-\caption{}
+\caption{Interpolazione della caratteristica dell'amplificatore logaritmico}
 \label{fig:log_ampl_fit}
 \end {center}
 \end{figure}
@@ -539,25 +533,21 @@ Si effettua una regressione tra i valori sperimentali e la funzione teorica
 \end{equation}
 con $k = -0.575 \pm 0.001 V$ pari alla costante precedentemente calcolata.
 
-Il $\chi^2$ pari a $5.219$ con 15 gradi di libertà conferma che la funzione teorica descrive con ottima approssimazione i dati misurati.
-La stima del parametro restituisce $V_T = 20.0 \pm 0.7 mV$.
+Il $\chi^2$ pari a $5.219$ con 15 gradi di libertà conferma che la funzione teorica descrive con ottima approssimazione i dati misurati, si ottiene infatti un valore del p-value nel test di adattamento di 0.99, superiore al livello di significatività usuale del 5 \%.
+La stima del parametro restituisce $V_T =$ $(20.0 \pm 0.7)$ mV, che considerando un valore atteso a temperatura assoluta $T = 300K$ pari a $26 mV$ risulta incompatibile, infatti il test Gauss riporta $Z = 8.637$ evidenziando la presenza di un errore nella stima.
 
-Con valore teorico a temperatura assoluta $T = 300K$ pari a $26 mV$ il test di compatibilità di Gauss risulta in $Z = 8.637$ evidenziando la presenza di un errore nella stima.
+È ragionevole supporre che la temperatura ambiente del laboratorio fosse inferiore a $300 K$, ma non si possiede una misura utile a calcolare un valore atteso più corretto
+Si pensa dunque che ci possa essere un errore sistematico nella presa dati. In particolare la scelta della tensione $V_in$ potrebbe non essere stata ottimale.
 
-È ragionevole supporre che la temperatura ambiente del laboratorio fosse inferiore a $300 K$, ma non si possiede una misura utile a calcolare un valore atteso più corretto.
-Si pensa dunque che ci possa essere un errore sistematico nella presa dati. In particolare la scelta della tensione $V_in$ potrebbe non essere stata ottimale. Un tale valore
-fa sì che gli ultimi dati misurati siano influenzati dallo slew rate. Tale ipotesi è confermata da una successiva analisi:
+%% AGGIUNGERE GIUSTIFICAZIONE O IPOTESI
 
-Si è analizzato l'amplificatore logaritmico tramite la funzione X-Y dell'oscilloscopio, con persistenza infinita dei dati e inviando all'ingresso una funzione sinusoidale. L'immagine rappresenta la sovrapposizione tra la regressione con funzione logaritmica e il grafico x-y. Si nota che i dati per tensioni basse si avvicinano
-all'estremo basso della distribuzione, mentre per tensioni alte si avvicinano all'estremo alto della distribuzione. Questo può significare che le condizioni durante la
-misurazione siano cambiate al crescere della temperatura, introducendo un errore
 
 L'ultimo parametro che si intende calcolare è la tensione di saturazione inversa del diodo.
 A partire dall'equivalenza $V_0 = 2 \cdot V_T \cdot ln(R \cdot I_0)$  per $v_s = 1$, è possibile sostituire il valore ottenuto di $V_T = 20.0 \pm 0.7 mV$, ottenendo
 
 \[ I_0 = \frac{e^{\frac{k}{2 \cdot V_T}}}{R} = (3 \pm 1) \cdot 10^{-10} A \]
 
-Il valore ha un ordine di grandezza compatibile con la corrente di saturazione inversa tipica dei diodi, ma si segnala un grande errore relativo ($33 \% $) dovuto alla propagazione degli errori su 3 parametri.
+Il valore ha un ordine di grandezza compatibile con la corrente di saturazione inversa attessa, ma si segnala un grande errore relativo ($33 \% $) dovuto alla propagazione degli errori su 3 parametri.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -574,6 +564,7 @@ Il valore ha un ordine di grandezza compatibile con la corrente di saturazione i
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{\textbf{Amplificatore integratore invertente}} %Matteo
+
 In questa esperienza di laboratorio verrà analizzato il funzionamento di un circuito integratore attivo realizzato mediante un amplificatore operazionale, osservandone in primo luogo la risposta a diversi tipi di segnali, quali a gradino, rampa e sinusoidali, per poi studiarne il comportamento in funzione della variazione di frequenza della $V_{in}$.
 \subsection{\textbf{Circuito}}
 \begin{figure}[H]%[!ht]
@@ -584,10 +575,11 @@ In questa esperienza di laboratorio verrà analizzato il funzionamento di un cir
 \end{center}
 \end{figure}
 %Come sottintende il nome, l'Op-Amp integratore è un operazionale che esegue l'operazione matematica dell'integrazione, facendo si che il circuito emetta una $V_{out}$ proporzionale all'integrale della $V_{in}$. In altre parole, facendo riferimento alla \ref{fig:OPA-integ}, l'ampiezza del segnale in uscita è determinato dal periodo di tempo in cui una tensione è presente in input, poiché la corrente attraverso il circuito di feedback carica o scarica il condensatore mentre il feedback negativo richiesto avviene attraverso il condensatore.
-Mediante un amplificatore operazione è possibile realizzare un circuito integratore, cioè in grado di produrre in uscita un segnale proporzionale alla primitiva della forma d'onda in ingresso, inserendo una capacità nella rete di feedback tra l'ingresso invertente e l'uscita.
+Mediante un amplificatore operazionale è possibile realizzare un circuito integratore, cioè in grado di produrre in uscita un segnale proporzionale alla primitiva della forma d'onda in ingresso, inserendo una capacità nella rete di feedback tra l'ingresso invertente e l'uscita.
 Affinché l'amplificatore non vada in saturazione alle basse frequenze, viene aggiunto in parallelo a $C$ un resistore $R_{2}$ che fa si che in tale regime operativo il condensatore si comporti come una impedenza infinita, determinando un guadagno $A_{v}=-R_{2}/R{1}$. Questa configurazione è detta \textit{circuito integratore attivo limitato}. 
 %essendo il periodo della tensione in ingresso relativamente lungo,
 Una caratteristica importante è che il circuito si comporta effettivamente da integratore solo per frequenze superiori a quella di taglio, $f_{t}=\frac{1}{2 \pi C R_{1} }$, è quindi necessario scegliere $R$ e $C$ opportunamente, in relazione alla distribuzione spettrale del segnale da integrare. Questo è giustificabile osservando il grafico di fase del diagramma di Bode associato: oltre la frequenza di taglio tutte le armoniche sinusoidali di Fourier vengono sfasate di un angolo tale da essere approssimabili come inverse di cosinusoidi, cioè integrali delle sinusoidi di partenza.
+
 \subsection{\textbf{Caratterizzazione}}
 Inizialmente si sono scelte $R = (9.920 \pm 0.103) \ k\Omega \ e \ C = (23.4 \pm 1.2) \ nF$ con lo scopo di ottenere una frequenza di taglio non eccessivamente bassa per favorire lo studio della risposta in frequenza della fase successiva: \[f_{t} = \frac{1}{2 \pi R_{1} C}= 685.63 \pm 35.88 Hz\].
 
