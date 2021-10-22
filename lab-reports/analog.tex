@@ -239,7 +239,7 @@ Ci si attende dunque un comportamento analogo al precedente, ma con amplificazio
 \end {center}
 \end{figure}
 
-Nella \textit{figura \ref{fig:open_loop_non_inv_zc}} si apprezza la concordanza di segno tra segnale in ingresso ed il segnale in uscita, come annunciato nell'introduzione. E' inoltre apprezzabile il fatto che il livello di amplificazione rimanga costante nelle due configurazioni, come evidenziato dal cursore rosso.
+Nella \textit{figura \ref{fig:open_loop_non_inv_zc}} si apprezza la concordanza di segno tra segnale in ingresso ed il segnale in uscita, come già detto nell'introduzione. E' inoltre apprezzabile il fatto che il livello di amplificazione rimanga costante nelle due configurazioni, come evidenziato dal cursore rosso.
 Si conclude dicendo che in entrambi i casi la velocità con cui l'operazionale si porta in saturazione è limitata, producendo un segnale in uscita con dei fronti di salita e discesa non perfettamente verticali e non per motivazioni legate alla banda passante, ma bensì per la velocità di commutazione dell'OPA espressa dalla caratteristica dello \textit{slew rate} verrà analizzata quantitativamente nei paragrafi successivi.  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -358,7 +358,7 @@ Si è ora interessati a valutare la risposta in frequenza del circuito di amplif
 
 in cui $k$ rappresenta il guadagno e $a = \frac{1}{f_H}$ con $f_H$ la frequenza di taglio. 
 
-Nel grafico in \textit{Fig. \ref{fig:gain2}} è riportato in primo luogo il diagramma di Bode relativo all'ampiezza, ottenuto per mezzo della regressione di $H(s)$. In quest'ultimo la $f_{H_2}$ ($f_{H}$ con G = 2) è stata ricavata dall'intersezione tra la curva di fit e un cursore orizzontale ad altezza pari al guadagno nella regione di \textit{plateau} sottratto di $3$ $dB$. Il diagramma di fase è stato ricavato dalla funzione di trasferimento e vi sono stati sovrapposti i valori acquisiti con l'oscilloscopio. 
+Nel grafico in \textit{Fig. \ref{fig:gain2}} è riportato in primo luogo il diagramma di Bode relativo all'ampiezza, ottenuto per mezzo della regressione di $H(s)$. In quest'ultimo la $f_{H_2}$ ($f_{H}$ con A = 2) è stata ricavata dall'intersezione tra la curva di fit e un cursore orizzontale ad altezza pari al guadagno nella regione di \textit{plateau} sottratto di $3$ $dB$. Il diagramma di fase è stato ricavato dalla funzione di trasferimento e vi sono stati sovrapposti i valori acquisiti con l'oscilloscopio. 
 
 \subsection{\textbf{Slew rate}}
 In un amplificatore operazionale reale la velocità di variazione della tensione di uscita non può superare un valore limite detto \textit{slew-rate} o velocità di risposta:
@@ -401,7 +401,7 @@ In conclusione il circuito ha dimostrato di operare esattamente come previsto, p
 \end {center}
 \end{figure}
 
-Dopo aver analizzato nel dettaglio il circuito amplificatore retroazionato non invertente, si ripete ora parte dell'analisi in condigurazione invertente.
+Dopo aver analizzato nel dettaglio il circuito amplificatore retroazionato non invertente, si ripete ora parte dell'analisi in configurazione invertente.
 
 Il comportamento atteso da tale configurazione prevede che il guadagno sia pari a $A_{vf} = -\frac{R_2}{R}$. 
 Ci si propone di studiare l'andamento in frequenza dell'amplificazione in due diversi casi: guadagno teorico pari a $-1$ e guadagno teorico pari a $-10$.
@@ -430,7 +430,8 @@ Il minimizzatore di $\chi^2$ ha restituito per i parametri i valori $k = -R_2/R$
 \end{center}
 \end{figure}
 
-Per il caso con guadagno teorico 1, il valore ottenuto è stato:
+Per il caso con guadagno teorico 1, i valore ottenuto dal fit sono stato:
+$A_{fit} = 0.0264 \pm 0.001 dB$
 $f_{H1} = (0.57 \pm 0.03) MHz$
 $k_1 = 1.0 \pm 0.1$
 
@@ -445,14 +446,15 @@ $k_1 = 1.0 \pm 0.1$
 %\vfill
 
 Per il caso con guadagno teorico 10, il valore ottenuto è stato:
+$A_{fit} = 20.026 \pm 0.001 dB$
 $f_{H10} = (0.84 \pm 0.05) MHz$.
 $k_{10} = 9.6 \pm 0.1$
 
 \subsection{\textbf{Studio della conservazione del prodotto guadagno x larghezza di banda}}
 
-E' noto che in un circuito amplificatore realizzato con amplificatori operazionali in prodotto guadagno x larghezza di banda è una caratteristica costante del dispositivo. Si è quindi voluta valutare la compatibilità tra quanto ottenuto nel caso G = 10 e G = 1: $\\ | BW \times G_1 | = (0.56 \pm 0.03)\ MHz \\$  e  $ | BW \times G_{10} | = (0.84 \pm 0.05)\ MHz$
-Questa volta, contrariamente a quanto atteso, un test statistico tra i due prodotti $BW \times G$ sfruttando i valori di $f_H$ e $k$ estratti per regressione non ha dato risultati consistenti entro un livello di significatività del 5\% ($Z = 4.83 > Z_c = 1.96$). 
-È probabile che l'incertezza sulla misure delle frequenze, proporzionale alle misure stesse, abbia inciso sulla bontà delle regressioni con funzioni teoriche, in particolare ad alte frequenze, superiori alle frequenze di taglio. Come si nota nel grafico \ref{fig:OPA-bode_gain_comparison(mag)}, infatti, le due curve non hanno lo stesso andamento ad alte frequenze. Si ipotizza che ad alta frequenza alcuni effetti di cui non abbiamo tenuto conto possano aver alterato le misure, portando ad un 
+E' noto che in un circuito amplificatore realizzato con amplificatori operazionali in prodotto guadagno x larghezza di banda è una caratteristica costante del dispositivo. Si è quindi voluta valutare la compatibilità tra quanto ottenuto nel caso con guadagno A = 10 e A = 1: $\\ | BW \times A_1 | = (0.56 \pm 0.03)\ MHz \\$  e  $ | BW \times A_{10} | = (0.84 \pm 0.05)\ MHz$
+Questa volta, contrariamente a quanto atteso, un test statistico tra i due prodotti $BW \times A$ sfruttando i valori di $f_H$ e $k$ estratti per regressione non ha dato risultati consistenti entro un livello di significatività del 5\% ($Z = 4.83 > Z_c = 1.96$). I risultati sono però comunque all'interno del range atteso 0.431 - 1.5 MHz riportato sul datasheet. Notiamo che il prodotto con valore più basso è quello ricavato a frequenza più alta, questo ci permette di ipotizzare che ad alta frequenza qualche fenomeno che necessita di ulteriori misure per essere giustificato correttamente abbia alterato attenuato i valori di guadagno misurati portando ad una sottostima della frequenza di taglio.
+Anche dal grafico in figura \ref{fig:OPA-bode_gain_comparison(mag)} si nota infatti che ad alte frequenze le due funzioni di trasferimento ottenute per fit non tendono a sovrapporsi come sarebbe atteso.
 
 
 \begin{figure}[H]%[!ht]
@@ -463,7 +465,7 @@ Questa volta, contrariamente a quanto atteso, un test statistico tra i due prodo
 \end {center}
 \end{figure}
 \subsection{\textbf{Discussione generale}}
-Il circuito sopracitato ha dimostrato in entrambe le configurazioni di avere una risposta alla frequenza in linea con quella teorica. Le due forme funzionali ottenute dalla regressione non risultano però essere sovrapponibili nel dominio delle frequenze ad alti valori. Si suppone la presenza di un errore sistematico per i motivi citati nel sottoparagrafo precedente.
+Il circuito sopracitato ha dimostrato in entrambe le configurazioni di avere una risposta alla frequenza in linea con quella teorica. Le due forme funzionali ottenute dalla regressione non risultano però essere sovrapponibili nel dominio delle frequenze ad alti valori. Si suppone la presenza di un errore sistematico di cui non si è tenuto conto sulle misure ad alta frequenza.
 
 %%%%%%%%%%FINE PRIMO GIORNO%%%%%%%%%%%%%%%
 %%%%%%%%%%INIZIO SECONDO GIORNO%%%%%%%%%%%
@@ -471,13 +473,15 @@ Il circuito sopracitato ha dimostrato in entrambe le configurazioni di avere una
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{\textbf{Amplificatore logaritmico}} %Stefano
 \subsection{\textbf{Introduzione all'esperienza}}
-Un amplificatore operazionale, se inserito in un circuito che usa un diodo come feedback, amplifica il segnale in ingresso secondo la legge:
+Un amplificatore operazionale, se inserito in un circuito che usa un diodo come feedback, amplifica il segnale in ingresso secondo la legge
 
 \begin{equation}
 V_0 = - \eta \cdot V_T \cdot ln( \frac{v_s}{R \cdot I_0} )
 \end{equation}
-
 con $V_T = \frac{k_{b} \cdot T}{q}$ \\
+
+derivante dalla caratteristica tensione-corrente di Shockey del diodo, dalla realizzando così un amplificatore logaritmico che è particolarmente utile in tutte quelle applicazioni in cui si devono amplificare, misurare o acquisire segnali che spaziano su un range di ampiezze particolarmente vasto.
+
 \subsection{\textbf{Caratterizzazione}}
 Ci si propone di verificare la legge, inserendo un diodo al silicio ($\eta = 2$) come retroazione nel circuito, e un resistore $R = 2.00 \pm 0.02 \ k\Omega$, e fornendo una in tensione continua all'ingresso invertente. Inoltre, si intende ricavare sperimentalmente il valore dei parametri $V_T$ e $I_0$.
 
@@ -640,9 +644,7 @@ Una volta assemblato il circuito si è proseguito analizzando qualitativamente i
 \label{fig:derivatore}
 \end{center}
 \end{figure}
-Dalla \textit{Fig. \ref{fig:derivatore}}, in cui le scale dei voltaggi sono diverse fra input e output col fine di ottimizzarne la comprensibilità visiva, si vede come il segnale in uscita sia effettivamente paragonabile con la derivata della $V_{in}$. In particolare ricavando la sfasamento tra le due onde secondo la legge:
-\[\theta = \frac{360}{T}\Delta t\]
-in cui $T$ è il periodo dell'onda e $\Delta t$ è lo sfasamento calcolato tra i due picchi di input e output. Si ricava $\theta = 87.23 \deg$.
+Dalla \textit{Fig. \ref{fig:derivatore}}, in cui le scale dei voltaggi sono diverse fra input e output col fine di ottimizzarne la comprensibilità visiva, si vede come il segnale in uscita sia effettivamente paragonabile con la derivata della $V_{in}$. In particolare ricavando la sfasamento tra le due forme d'onda si trova $\theta = 87.23 \deg$, compatibile con 90 deg.
 
 Si può dunque confermare che il funzionamento del circuito rispecchi la teoria. Ovviamente è necessario tener conto del fatto che la bontà della derivazione dipenda strettamente dalla frequenza del segnale in ingresso. Infatti se quest'ultima non fosse stata molto minore rispetto alla frequenza di taglio il circuito avrebbe agito da semplice amplificatore invertente.
 \subsection{\textbf{Conclusioni}}
