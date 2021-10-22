@@ -129,11 +129,14 @@ In molteplici applicazioni si ha la necessità di convertire tensioni alternate 
 
 \begin{figure}[H]%[!ht]
 \begin{center}
-\includegraphics[width=0.38\textwidth]{sch-simulations/output/Diode-rectifier.pdf}
+\includegraphics[width=0.32\textwidth]{sch-simulations/output/Diode-rectifier.pdf}
 \caption{Schema del circuito elettrico per la caratterizzazione del diodo al Silicio.}
 \label{fig:diode-rectifier}
 \end{center}
 \end{figure}
+
+\vspace{-5mm}
+
 La trattazione successiva riguarda i raddrizzatori a singola semionda ed in particolare l'implementazione del circuito in \textit{Fig. \ref{fig:diode-rectifier}}, realizzato tramite un unico diodo a cui può essere aggiunto un condensatore di filtraggio. In tale configurazione il condensatore si comporta come un filtro passa basso trasformando una tensione in ingresso impulsiva, in una di tipo continuo. 
 Uno degli obiettivi nella realizzazione di un raddrizzatore è quello di minimizzare la \textit{tensione di ripple} rimanente, ciò è possibile regolando il valore della costante di tempo $\tau$ costituito dal carico e dal condensatore.
 Analizzando il funzionamento del circuito in assenza del condensatore di livellamento, invece, si avrà in uscita un segnale impulsivo costituito solamente dalla semionda positiva oppure negativa, a seconda del verso in cui viene installato il diodo.
@@ -141,6 +144,7 @@ Analizzando il funzionamento del circuito in assenza del condensatore di livella
 \subsection{\textbf{Caratterizzazione}}
 In laboratorio è stato implementato il circuito della \textit{Fig. \ref{fig:diode-rectifier}} in assenza del condensatore di filtraggio in modo da poter osservare il comportamento del diodo.
 
+\vspace{-5mm}
 
 \begin{figure}[H]%[!ht]
 \begin {center}
@@ -203,6 +207,7 @@ Si sceglie dunque di considerare in saturazione l'amplificatore per valori super
 Di seguito i valori per cui vengono superate le soglie nei vari intervalli temporali: nella prima colonna è riportato l'intervallo in cui avviene la commutazione, nella seconda colonna il valore di tensione di saturazione che viene raggiunto, mentre nella terza colonna il valore assunto dal segnale in ingresso quando viene raggiunta la saturazione.
 
 \newline
+\vspace{2mm}
 
 \begin{tabular}{|c|c|c|}
 \hline
@@ -231,16 +236,18 @@ Ci si attende dunque un comportamento analogo al precedente, ma con amplificazio
 
 \subsection{\textbf{Caratterizzazione e considerazioni}}
 
+
+
+Nella \textit{figura \ref{fig:open_loop_non_inv_zc}} si apprezza la concordanza di segno tra segnale in ingresso ed il segnale in uscita, come già detto nell'introduzione. E' inoltre apprezzabile il fatto che il livello di amplificazione rimanga costante nelle due configurazioni, come evidenziato dal cursore rosso.
+Si conclude dicendo che in entrambi i casi la velocità con cui l'operazionale si porta in saturazione è limitata, producendo un segnale in uscita con dei fronti di salita e discesa non perfettamente verticali e non per motivazioni legate alla banda passante, ma bensì per la velocità di commutazione dell'OPA espressa dalla caratteristica dello \textit{slew rate} verrà analizzata quantitativamente nei paragrafi successivi. 
+
 \begin{figure}[H]%[!ht]
 \begin {center}
 \includegraphics[width=0.52\textwidth]{analysis/output/OPA-open-loop-non-inv-zero-crossing-z2.pdf}
-\caption{Nell'immagine si apprezza il segnale processato dal circuito ad anello aperto non invertente. In rosso è riportata la soglia di commutazione che era stata calcolata per la configurazione invertente (compatibile con zero).}
+\caption{Nell'immagine si apprezza il segnale processato dal circuito ad anello aperto non invertente in blu. In rosso è riportata la soglia di commutazione che era stata calcolata per la configurazione invertente (compatibile con zero), in nero è visualizzato il segnale in ingresso.}
 \label{fig:open_loop_non_inv_zc}
 \end {center}
 \end{figure}
-
-Nella \textit{figura \ref{fig:open_loop_non_inv_zc}} si apprezza la concordanza di segno tra segnale in ingresso ed il segnale in uscita, come già detto nell'introduzione. E' inoltre apprezzabile il fatto che il livello di amplificazione rimanga costante nelle due configurazioni, come evidenziato dal cursore rosso.
-Si conclude dicendo che in entrambi i casi la velocità con cui l'operazionale si porta in saturazione è limitata, producendo un segnale in uscita con dei fronti di salita e discesa non perfettamente verticali e non per motivazioni legate alla banda passante, ma bensì per la velocità di commutazione dell'OPA espressa dalla caratteristica dello \textit{slew rate} verrà analizzata quantitativamente nei paragrafi successivi.  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{\textbf{Configurazione ad anello aperto con soglia arbitraria}} %Stefano
@@ -420,7 +427,7 @@ Sono stati acquisiti valori di guadagno nell'intervallo di frequenze da 0 a 5 MH
     H(s) = \frac{k}{1+as}
 \end{equation}
 
-Il minimizzatore di $\chi^2$ ha restituito per i parametri i valori $k = -R_2/R$ e $a = \frac{1}{f_H}$. Da questa funzione è stato possibile stimare il guadagno - $3 dB$, e tramite un cursore orizzontale posto a tale livello si è trovata l'intersezione con la curva teorica, corrispondente alla frequenza di taglio $f_H$.
+Il minimizzatore ha restituito per i parametri i valori $k = -R_2/R$ e $a = \frac{1}{f_H}$. Da questa funzione è stato possibile stimare il guadagno - $3 dB$, e tramite un cursore orizzontale posto a tale livello si è trovata l'intersezione con la curva teorica, corrispondente alla frequenza di taglio $f_H$.
 
 \begin{figure}[H]%[!ht]
 \begin{center}
@@ -430,7 +437,8 @@ Il minimizzatore di $\chi^2$ ha restituito per i parametri i valori $k = -R_2/R$
 \end{center}
 \end{figure}
 
-Per il caso con guadagno teorico 1, i valore ottenuto dal fit sono stato:
+Per il caso con guadagno teorico 1 il test di adattamento della variabile $\chi^2$ = 7.31 ha restituito un p-value pari a 0.99.
+Dal fit si sono ricavati i seguenti parametri:
 $A_{fit} = 0.0264 \pm 0.001 dB$
 $f_{H1} = (0.57 \pm 0.03) MHz$
 $k_1 = 1.0 \pm 0.1$
@@ -445,7 +453,8 @@ $k_1 = 1.0 \pm 0.1$
 
 %\vfill
 
-Per il caso con guadagno teorico 10, il valore ottenuto è stato:
+Per il caso con guadagno teorico 10 il test di adattamento della variabile $\chi^2$ = 5.55 ha restituito un p-value pari a 0.99.
+Dal fit si sono ricavati i parametri:
 $A_{fit} = 20.026 \pm 0.001$ $dB$
 $f_{H10} = (0.84 \pm 0.05)$ $MHz$.
 $k_{10} = 9.6 \pm 0.1$
@@ -795,35 +804,37 @@ e la differenza tra un'onda quadra e una rampa entrambe di ampiezza massima $V=0
 \end{figure}
 
 
-Con la medesima procedura adoperata nel caso del mixer si è effettuata la verifica della linearità dell'amplificazione del canale invertente effettuando una regressione lineare sui dati registrati in modalità $X-Y$ di tra il canale invertente e l'uscita.
+Con la medesima procedura adoperata nel caso del mixer si è effettuata la verifica della linearità dell'amplificazione del canale invertente effettuando una regressione lineare $V_o = aV_i + b$ sui dati registrati in modalità $X-Y$ di tra il canale invertente e l'uscita.
 In questo caso dato che la curva positiva sarà rappresentata dall'ingresso in sottrazione, mentre quella positiva dall'ingresso non in sottrazione ci si aspetta un valore negativo di coefficiente angolare $a_e = -1$
 
-Ancora una volta $a$ risulta essere consistente con il valore atteso a conferma della teoria ($Z=1.91$).
-\subsection{\textbf{Discussione finale}}
-Anche per l'amplificazione di differenze, lo studio qualitativo dei risultati ha confermato la corretta implementazione e funzionamento del circuito; in ogni situazione presentata il comportamento in uscita dell'amplificatore ha rispecchiato il comportamento atteso.
+Ancora una volta il parametro $a$ restituito dal minimizzatore risulta essere compatibile con il valore atteso ($Z=1.91$) > $Z_{critico}$ per $\alpha$ = 5 \%, mentre il test di adattamento di $\chi^2$ riporta p-value $\sim$ 1, mostrando che nel range scelto l'amplificatore risulta priva di distorsioni, al livello di accuratezza disponibile con nostri strumenti.
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{\textbf{Trigger di Schmitt}} 
 \subsection{\textbf{Introduzione}}
-Il \textit{Trigger di Schmitt} è un circuito elettronico che impone isteresi alla soglia di transizione ingresso-uscita con l'aiuto di un feedback positivo. L'isteresi fa si che vengano forniti due diversi livelli di tensione di soglia per il fronte di salita e di discesa. Essenzialmente, si tratta di un multivibratore bistabile e la sua uscita rimane in uno degli stati stabili indefinitamente. Affinché l'uscita cambi da uno stato stabile all'altro, il segnale di ingresso deve cambiare (o attivarsi) in modo appropriato. Questo funzionamento bistabile del trigger di Schmitt richiede un amplificatore con feedback positivo (o \textit{feedback rigenerativo}) con un guadagno in loop maggiore di uno; il Trigger di Schmitt è anche noto come \textit{comparatore rigenerativo}.
-In particolare quando $V_{in}$ è leggermente superiore alla tensione di riferimento, $V_{ref}$, la $V_{out}$ diventa $-V_{sat}$ e nel caso in cui sia inferiore diventerà invece $V_{sat}$. La tensione di input a cui avviene la commutazione può essere controllata attraverso i valori di $R_1$ e $R_2$.
-\[V_{ref} = \frac{V_{sat}R_2}{R_1+R_2}\]
-Si definisce $V_{th+}$ la tensione di soglia superiore e $V_{th-}$ quella inferiore, mentre $V_{sat}$ è la tensione di saturazione.
-%$V_{sat}$ e $V_{ref}$ sono i punti dove la funzione di trasferimento caratteristica incrocia gli assi relativi a $V_{out}$ e $V_{in}$.
+Il \textit{Trigger di Schmitt} è un circuito elettronico comparatore che impone isteresi alla soglia di transizione con l'aiuto di un feedback positivo. L'isteresi fa si che vengano forniti due diversi livelli di tensione di soglia per il fronte di salita e di discesa. 
+Essenzialmente, si tratta di un multivibratore bistabile, quindi se il segnale in ingresso non attraversa una delle soglie la sua uscita rimane in uno degli stati stabili indefinitamente. Il feedback positivo permette inoltre di avere fronti di commutazione più ripidi rispetto ad un discriminatore ad anello aperto. Per la sua capacità di filtrare il rumore da un segnale digitale viene anche detto \textit{comparatore rigenerativo}.
+Le tensioni a cui avviene la commutazione possono essere controllate attraverso i valori di $R_1$ e $R_2$.
 
-In laboratorio, utilizzando due amplificatori operazionali LM741 è stato implementato il circuito in \textit{Fig. \ref{fig:schmitt-trigger}}.
+\begin{equation}
+    V_{th \pm} = \pm \frac{V_{sat}R_2}{R_1+R_2}
+\end{equation}
+
+Dove $V_{th+}$ la tensione di soglia superiore e $V_{th-}$ quella inferiore, mentre $V_{sat}$ è la tensione di saturazione. In laboratorio, utilizzando due amplificatori operazionali LM741 è stato implementato il circuito in \textit{Fig. \ref{fig:schmitt-trigger}}. Nel nostro setup sperimentale con $R_1$ = (9.8 $\pm$ 0.1) $\Omega$ e $R_2$ = (9.9 $\pm$ 0.1) $\Omega$ si sono ottenuti, come atteso, valori per soglie $\sim$ $\pm$ $V_{sat}$ / 2 $\sim$ $\pm$ 7.5 V. Infatti, mediante i cursori dell'oscilloscopio è stato misurato $\Delta V_t  = V_{th+}-V_{th-}$ $=$ $(14.42 \pm 0.04) $ $V$ e $\Delta V_{sat}  = V_{sat_+}-V_{sat_{-}}$ $=$ $(28.3 \pm 0.1)$ $ V$
 
 \begin{figure}[H]%[!ht]
 \begin{center}
 \includegraphics[width=0.45\textwidth]{sch-simulations/output/OPA-mixer-trigger.pdf}
-\caption{Schema elettrico utilizzato per la caratterizzazione del trigger di Schmitt con l'obiettivo di mostrare le capacità di immunità al rumore. Il circuito di dotato di due stadi operazionali, il primo con funzione di sommatore produce un segnale rumoroso sommando un noise ad alta frequenza ad un segnale sinusoidale, il secondo costituisce il trigger vero e proprio. Sono stati usati i seguenti valori di resistenza: $R_1 =(9.8 \pm 0.1) \ k\Omega, \ R_2 = (9.9 \pm 0.1) \ k\Omega ,\ R_3 = (9.8 \pm 0.1) \ k\Omega \, \ R_4 = (9.8 \pm 0.1) \ k\Omega \ R = (9.8 \pm 0.1) \ k\Omega , \ R = (9.8 \pm 0.1 ) \ k\Omega $  } 
+\caption{Schema elettrico utilizzato per la caratterizzazione del trigger di Schmitt con l'obiettivo di mostrare le capacità di immunità al rumore. Il circuito di dotato di due stadi operazionali, il primo con funzione di sommatore produce un segnale rumoroso sommando un noise ad alta frequenza ad un segnale sinusoidale, il secondo costituisce il trigger vero e proprio. Sono stati usati i seguenti valori per le resistenze: $R_1 =(9.8 \pm 0.1) \ k\Omega, \ R_2 = (9.9 \pm 0.1) \ k\Omega ,\ R_3 = (9.8 \pm 0.1) \ k\Omega \, \ R_4 = (9.8 \pm 0.1) \ k\Omega \ R = (9.8 \pm 0.1) \ k\Omega , \ R = (9.8 \pm 0.1 ) \ k\Omega $  } 
 \label{fig:schmitt-trigger}
 \end{center}
 \end{figure}
+
 \subsection{\textbf{Caratterizzazione}}
 Inizialmente è stato fornito al \textit{trigger di Schmitt} un segnale sinusoidale con rumore trascurabile, osservando la commutazione invertente con isteresi attesa (\textit{Fig.\ref{fig:trigger-clean}}): 
-quando il segnale supera la tensione $V_{LT} $ l'uscita si porta a $ + V_{sat}$ e rimane in saturazione fino a quando il segnale non supera $V_{UT} $ portandosi alla tensione $- V_{sat}$. Un simile circuito può essere utilizzato per trasformare un segnale sinusoidale in un'onda quadra, per ripulire dal rumore un segnale digitale oppure come comparatore con isteresi.
-Nel circuito implementato la tensione di saturazione, riferita a massa è: $+V_{sat}  = 14.6 \pm 0.1  V $ e $-V_{sat}  = -14.0 \pm 0.1  V $
+Un simile circuito può essere utilizzato per trasformare un segnale sinusoidale in un'onda quadra, oppure come già anticipato, per rigenerare dal rumore un segnale digitale.
+Nel circuito implementato la tensione di saturazione, riferita a massa è: $+V_{sat}  = 14.6 \pm 0.1  V $ e $-V_{sat}  = -14.0 \pm 0.1  V $. 
 
 \begin{figure}[H]%[!ht]
 \begin {center}
@@ -833,7 +844,7 @@ Nel circuito implementato la tensione di saturazione, riferita a massa è: $+V_{
 \end {center}
 \end{figure}
 
-In laboratorio si volevano confrontare le capacità di immunità al rumore di un trigger di Schmitt rispetto ad un normale comparatore di soglia realizzato con un amplificatore operazionale in configurazione ad anello aperto. E' quindi stato generato un segnale costituito da una sinusoide con ampiezza $V_{s-pp}$ = 15 V a cui è stato sommato un rumore ad alta frequenza con forma onda quadra di ampiezza $V_{n-pp}$ = 4 V utilizzando un primo stadio operazionale in configurazione mixer invertente. L'uscita di questo stadio è stata dapprima inviata in un comparatore di soglia con $V_{th}$ = 0 ottenendo una serie di commutazioni indesiderate nei punti di \textit{zero-crossing} del rumore, (figura \ref{fig:trigger-noisy}), dopodiché il comparatore è stato realizzato con un trigger di Schmitt e questa volta la commutazione è risultata corretta e immune dal rumore, come ben visibile in \textit{figura \ref{fig:trigger-ok}}.
+In laboratorio si volevano confrontare le capacità di immunità al rumore di un trigger di Schmitt rispetto ad un normale comparatore di soglia realizzato con un amplificatore operazionale in configurazione ad anello aperto. E' quindi stato generato un segnale costituito da una sinusoide con ampiezza $V_{s-pp}$ = 15 V a cui è stato sommato un rumore ad alta frequenza con forma onda quadra di ampiezza $V_{n-pp}$ = 4 V utilizzando un primo stadio operazionale in configurazione mixer invertente. L'uscita di questo stadio è stata dapprima inviata in un comparatore di soglia con $V_{th}$ = 0 ottenendo una serie di commutazioni indesiderate nei punti di \textit{zero-crossing} del rumore, (figura \ref{fig:trigger-noisy}), dopodiché il comparatore è stato sostituito con un trigger di Schmitt e questa volta la commutazione è risultata corretta e immune al rumore, come ben visibile in \textit{figura \ref{fig:trigger-ok}}.
 \begin{figure}[H]%[!ht]
 \begin {center}
 \includegraphics[width=0.50\textwidth]{analysis/output/noisy-open-ring.pdf}
@@ -850,20 +861,13 @@ In laboratorio si volevano confrontare le capacità di immunità al rumore di un
 \end {center}
 \end{figure}
 
-
-Questo avviene perché retroazione positiva introdotta nella configurazione del trigger di Schmitt, oltre a rendere più ripido il fronte di commutazione, introduce due soglie diverse per la transizione al livello alto e a quello basso, simmetriche rispetto alla soglia, che rimane sullo zero crossing: $V_{th+}$ = $R_1$ / ($R_2$ + $R_1$) e $V_{th-}$ = - $R_1$ / ($R_2$ + $R_1$) (si faccia riferimento allo schema in figura \ref{fig:schmitt-trigger}). Nel nostro setup sperimentale con $R_1$ = (9.8 $\pm$ 0.1) $\Omega$ e $R_2$ = (9.9 $\pm$ 0.1) $\Omega$ si sono ottenuti, come atteso, valori per soglie $\sim$ $\pm$ $V_{sat}$ / 2 $\sim$ $\pm$ 7.5 V. Infatti, mediante i cursori dell'oscilloscopio è stato misurato $\Delta V_t  = V_{th+}-V_{th-}$ $=$ $(14.42 \pm 0.04) $ $V$ e $\Delta V_{sat}  = V_{sat_+}-V_{sat_{-}}$ $=$ $(28.3 \pm 0.1)$ $ V$
-
-
-
-\subsection{\textbf{Analisi della risposta in frequenza}}
-
-
-
+\subsection{Comportamento al variare della frequenza}
+Terminiamo questa sezione dedicata al trigger di Schmitt volendo verificare la dipendenza delle prestazioni dalla frequenza del segnale fornito in ingresso. Osservando la risposta a $100 Hz$, essa risulta completamente coerente con il comportamento visto prima sul piano tensione-tempo; aumentando la frequenza, però, ci si aspetta che la frequenza di commutazione possa diventare troppo veloce per permettere al trigger di raggiungere in uscita le tensioni di saturazione, dando origine alle situazioni che si osservano in \textit{figg. \ref{fig:hyst-table} e \ref{fig:trigger-hyst}}. Questo fenomeno non è dovuto alla banda passante dell'operazionale, ma bensì al suo slew-rate insufficiente.
 
 \begin{figure}[H]%[!ht]
 \begin {center}
 \includegraphics[trim = {30pt 0 0 0}, width=0.50\textwidth]{analysis/output/OPA-trigger-histeresis-table.pdf}
-\caption{Rappresentazione dei cicli di isteresi del trigger di Schmitt al variare della frequenza della sinusoide fornita in ingresso. Si osserva chiaramente che ad alta frequenza la velocità di commutazione del circuito diventa insufficiente. Questo parametro dipende dallo slew rate dell'amplificatore operazionale utilizzato }
+\caption{Rappresentazione dei cicli di isteresi del trigger di Schmitt al variare della frequenza della sinusoide fornita in ingresso. Si osserva chiaramente che ad alta frequenza la velocità di commutazione del circuito diventa insufficiente. Questo parametro dipende dallo slew rate dell'amplificatore operazionale utilizzato.}
 \label{fig:hyst-table}
 \end {center}
 \end{figure}
@@ -875,13 +879,6 @@ Questo avviene perché retroazione positiva introdotta nella configurazione del 
 \label{fig:trigger-hyst}
 \end {center}
 \end{figure}
-
-Osservando la risposta a $100 Hz$ si vede come effettivamente i valori empirici di $V_{sat}$ e $V_{ref}$ rispettino le leggi sopracitate; aumentando la frequenza, però, ci si aspetta che la frequenza di commutazione possa diventare troppo veloce per permettere al trigger di Schmitt di raggiungere le tensioni in uscita $\pm$ $V_{sat}$ dando origine alle situazioni che si osservano in \textit{figg. \ref{fig:hyst-table} e \ref{fig:trigger-hyst}}. Questo fenomeno non è dovuto alla banda passante dell'operazionale, ma bensì al suo slew-rate.
-
-\subsection{Conclusioni}
-Il circuito con \textit{trigger di Schmitt} è stato dunque caratterizzato sia in configurazione di anello aperto (isteresi assente) sia di anello chiuso (con isteresi). Si è mostrato come in quest'ultimo caso si comporti come discriminatore senza risentire, ad esempio, di commutazioni indesiderate causate dallo \textit{zero-crossing} di segnali rumorosi.
-Con l'oscilloscopio in modalità X-Y è stato visualizzato il ciclo di isteresi del trigger ed è stata analizzata la risposta a diverse frequenze. 
-
 
 %%%%%%%%%%FINE TERZO GIORNO%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%INIZIO QUARTO GIORNO%%%%%%%%%%%%%%%
@@ -989,7 +986,6 @@ In conclusione, la metodologia sperimentale proposta è risultata adeguata per e
 Un segnale che si propaga lungo un cavo coassiale subisce un'attenuazione dovuta alla resistività del materiale del conduttore e la sua velocità di propagazione dipende dalle induttanze e dalle capacità caratteristiche dei conduttori che costituiscono la linea. Ciò produce, nei cavi reali, un'impedenza caratteristica della linea $Z_c$, dipendente esclusivamente dal materiale di cui è composto il cavo e dalla sua geometria.
 Considerando un tratto infinitesimo $\delta x$ del cavo (\textit{fig. \ref{fig:coassiale}) }, si può impostare un sistema di due equazioni differenziali del tipo:
 
-
 \begin{equation}
     \begin{cases}
   \frac{dV}{dx} = -Z_1 I \\
@@ -1005,7 +1001,7 @@ Definendo $\gamma = (Z_1 Y_2)^{1/2}$ (costante della propagazione della linea) e
      I(x) = (1/Z_c)(Ae^{-\gamma x} + Be^{\gamma x}) 
  \end{equation}
 Le espressioni ricavate dipendono solo da $x$ e non dal tempo. 
-Quello che si osserva è che il segnale è la risultante di un'onda diretta, che si attenua con l'aumentare delle $x$ e un'onda riflessa che pare aumentare in ampiezza al crescere delle $x$ e che dunque viaggia in senso opposto.
+Quello che si osserva è che il segnale è la risultante di un'onda diretta, che si attenua con l'aumentare delle $x$ e un'onda riflessa che pare aumentare in ampiezza al crescere delle $x$ e che dunque viaggia in senso opposto. Risulta utile defnire la quantità $\rho = (Z_L / Z_c + 1) - (Z_L / Z_c - 1)$, dove $Z_L$ la resistenza di carico.
 
 \begin{figure}[H]%[!ht]
 \begin {center}
@@ -1017,9 +1013,9 @@ Quello che si osserva è che il segnale è la risultante di un'onda diretta, che
 
 Supponiamo ora di chiudere la linea con un'impedenza di carico $Z_L$, si potranno configurare tre possibili situazioni: 
 \begin{itemize}
-    \item $Z_L = 0$ (cortocircuito): il segnale riflesso ha la stessa ampiezza di quello incidente ed è capovolto
-    \item $Z_L = \infty$ (circuito aperto): il segnale riflesso torna al generatore con ampiezza doppia rispetto a quello trasmesso
-    \item $Z_L = Z_c$ (linea adattata): non c'è segnale riflesso, il segnale incidente si attenua all'infinito.
+    \item $Z_L = 0$ (cortocircuito, $\rho = -1$): il segnale riflesso ha la stessa ampiezza di quello incidente ed è capovolto
+    \item $Z_L = \infty$ (circuito aperto, $\rho = 1$): il segnale riflesso torna al generatore con ampiezza doppia rispetto a quello trasmesso
+    \item $Z_L = Z_c$ (linea adattata, $\rho = 0$): non c'è segnale riflesso, il segnale incidente si attenua all'infinito.
 \end{itemize}
 
 I valori tipici per un cavo coassiale tipo RG-58 e RG-174 sono $Z_c = 50 \Omega \ $ con ritardo di propagazione per metro $  \ 1/v_f = 5 \ ns/m $.
