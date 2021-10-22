@@ -399,36 +399,38 @@ I dati misurati sono riportati nelle \textit{tabelle \ref{tab:opa-inv-g1} (guada
 
 \subsection{\textbf{Studio della risposta in frequenza}}
 
+Si è ricavata una funzione di trasferimento $H(s)$ in modo analogo al caso della configurazione non invertente. Si sono interpolati i dati sperimentali ottenendo un'ottima corrispondenza. Da questa funzione è stato possibile stimare il guadagno - $3 dB$, e tramite un cursore orizzontale posto a tale livello si è trovata l'intersezione con la curva teorica, corrispondente alla frequenza di taglio $f_H$.
+
 \begin{figure}[H]%[!ht]
 \begin{center}
-\includegraphics[width=0.50\textwidth]{analysis/output/OPA-bode_gain1(mag).pdf}
-\vspace{-70mm}
+\includegraphics[width=0.38\textwidth]{analysis/output/OPA-bode_gain1(mag).pdf}
 \caption{Amplificatore retroazionato invertente con guadagno teorico 1: risposta in funzione della frequenza. In rosso il cursore a livello $f_H$}
 \label{fig:closed_loop_inv_gain_1}
 \end{center}
 \end{figure}
 
-
-
-Si è ricavata una funzione di trasferimento $H(s)$ in modo analogo al caso della configurazione non invertente. Si sono interpolati i dati sperimentali ottenendo un'ottima corrispondenza. Da questa funzione è stato possibile stimare il guadagno - $3 dB$, e tramite un cursore orizzontale posto a tale livello si è trovata l'intersezione con la curva teorica, corrispondente alla frequenza di taglio $f_H$.
-
 Per il caso con guadagno teorico 1, il valore ottenuto è stato:
-$f_H = 84 \pm 5 KHz$
-
+$f_H = 0.57 \pm 0.03 MHz$
 
 \begin{figure}[H]%[!ht]
 \begin {center}
-\includegraphics[width=0.50\textwidth]{analysis/output/OPA-bode_gain10(mag).pdf}
-\vspace{-70mm}
+\includegraphics[width=0.38\textwidth]{analysis/output/OPA-bode_gain10(mag).pdf}
 \caption{Amplificatore retroazionato invertente con guadagno teorico 10: risposta in funzione della frequenza. In rosso il cursore a livello $f_H$ }
 \label{fig:closed_loop_inv_gain_10}
 \end {center}
 \end{figure}
 
-Per il caso con guadagno teorico 1, il valore ottenuto è stato:
-$f_H = 0.57 \pm 0.03 MHz$
+Per il caso con guadagno teorico 10, il valore ottenuto è stato:
+$f_H = 84 \pm 5 KHz$.
 
 
+\begin{figure}[H]%[!ht]
+\begin {center}
+\includegraphics[width=0.38\textwidth]{analysis/output/OPA-bode_gain_comparison(mag).pdf}
+\caption{Confronto tra guadagno e larghezza di banda}
+\label{fig:OPA-bode_gain_comparison(mag)}
+\end {center}
+\end{figure}
 
 %%%%%%%%%%FINE PRIMO GIORNO%%%%%%%%%%%%%%%
 %%%%%%%%%%INIZIO SECONDO GIORNO%%%%%%%%%%%
