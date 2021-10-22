@@ -207,7 +207,7 @@ Si sceglie dunque di considerare in saturazione l'amplificatore per valori super
 Di seguito i valori per cui vengono superate le soglie nei vari intervalli temporali: nella prima colonna è riportato l'intervallo in cui avviene la commutazione, nella seconda colonna il valore di tensione di saturazione che viene raggiunto, mentre nella terza colonna il valore assunto dal segnale in ingresso quando viene raggiunta la saturazione.
 
 \newline
-\vspace{2mm}
+\vspace{4mm}
 
 \begin{tabular}{|c|c|c|}
 \hline
@@ -269,7 +269,8 @@ Nel caso in esame la soglia è stata posta a $V_{th} = 2.1$ $V$ utilizzando un c
 
 \begin{figure}[H]%[!ht]
 \begin {center}
-\includegraphics[width=0.48\textwidth]{analysis/output/OPA-open-loop-biased_threshold.pdf}
+\includegraphics[width=0.52\textwidth]{analysis/output/OPA-open-loop-biased_threshold.pdf}
+\vspace{-4mm}
 \caption{Amplificatore ad anello aperto: discriminatore con soglia a $V = 2.1 V$}
 \label{fig:biased_cross}
 \end {center}
@@ -325,24 +326,24 @@ Un amplificatore non invertente ha la peculiarità di dare in uscita un segnale 
 \end{equation}
 \vspace{-7mm}
 
-\newpage
 \subsection{\textbf{Caratterizzazione}}
+
+
+
+\begin{figure}[H]%[!ht]
+
+\includegraphics[width=0.48\textwidth]{analysis/output/OPA-closed-loop-non-inv-G2-11.pdf}
+\caption{Amplificatore operazionale in configurazione ad anello chiuso non invertente (curva di colore blu)}
+\label{fig:g2-11}
+
+\end{figure}
 
 In laboratorio si è considerata la configurazione citata in \textit{Fig.\ref{fig:loop-non-inv}} con l'obiettivo di ottenere un guadagno teorico A = 2. In dettaglio, sfruttando la legge sopracitata
 \[A_2 = 1 + R_2/R_1 = 2.003 \pm 0.072\]
 \[V_i = (0.276 \pm 0.002) V \: \: V_2 = (0.54 \pm 0.01) V\]
 
-\begin{figure}[H]%[!ht]
-\begin{top}
-\includegraphics[width=0.48\textwidth]{analysis/output/OPA-closed-loop-non-inv-G2-11.pdf}
-\caption{Amplificatore operazionale in configurazione ad anello chiuso non invertente (curva di colore blu)}
-\label{fig:g2-11}
-\end{top}
-\end{figure}
-
 Dalla \textit{Fig. \ref{fig:g2-11}} si nota infatti che la risposta del circuito conferma il comportamento atteso, osserviamo, infatti, un segnale in uscita in fase con quello in entrata, con un guadagno $A_{2_c} = 1.96 \pm 0.05$. L'accordo tra il guadagno atteso e quello misurato sperimentalmente con l'oscilloscopio è confermato da un \textit{Test Z} che riporta il seguente valore per la variabile statistica $Z = 0.54$, minore del valore di Z critico corrispondente ad un livello di significatività del 5 \%.
 
-\vfill
 
 \subsection{\textbf{Studio della risposta in frequenza}}
 
@@ -351,6 +352,7 @@ Dalla \textit{Fig. \ref{fig:g2-11}} si nota infatti che la risposta del circuito
 \begin{figure}[H]%[!ht]
 \begin {center}
 \includegraphics[width=0.50\textwidth]{analysis/output/OPA-bode_gain2(mag+phase).pdf}
+\vspace{-8mm}
 \caption{Diagramma di Bode con OpAmp non invertente}
 \label{fig:gain2}
 \end{center}
@@ -368,13 +370,7 @@ in cui $k$ rappresenta il guadagno e $a = \frac{1}{f_H}$ con $f_H$ la frequenza 
 Nel grafico in \textit{Fig. \ref{fig:gain2}} è riportato in primo luogo il diagramma di Bode relativo all'ampiezza, ottenuto per mezzo della regressione di $H(s)$. In quest'ultimo la $f_{H_2}$ ($f_{H}$ con A = 2) è stata ricavata dall'intersezione tra la curva di fit e un cursore orizzontale ad altezza pari al guadagno nella regione di \textit{plateau} sottratto di $3$ $dB$. Il diagramma di fase è stato ricavato dalla funzione di trasferimento e vi sono stati sovrapposti i valori acquisiti con l'oscilloscopio. 
 
 \subsection{\textbf{Slew rate}}
-In un amplificatore operazionale reale la velocità di variazione della tensione di uscita non può superare un valore limite detto \textit{slew-rate} o velocità di risposta:
-\begin{equation}
-    SR = (\frac{dV_{out}}{dt})_{max}
-\end{equation}
-Per il dispositivo LM741 il datasheet riporta un valore pari a 0.5 V/$\mu$s a T = 298 K.
-Questa limitazione è dovuta a fenomeni non lineari quali la saturazione dello stadio di ingresso dell'amplificatore operazionale e non è in relazione con la larghezza di banda finita dell'OPA. 
-Per analizzare tale fenomeno è stata nuovamente realizzata la configurazione ad anello aperto ed è stata osservata la risposta del circuito all'aumento progressivo della frequenza del segnale in ingresso da amplificare, con valori di tensione picco-picco elevati ($V_{pp}$ = 1 V). Raggiunta la frequenza di 100 kHz si è potuto osservare come i fronti di salita e discesa in uscita dall'OPA nel punto in cui è attesa la massima variazione fossero approssimabili con una retta con coefficiente angolare corrispondente allo slew-rate. E' quindi stato possibile valutare quantitativamente questa caratteristica, confrontandola con quanto espresso sul datasheet del produttore, mediante una regressione lineare.
+
 \begin{figure}[H]%[!ht]
 \begin {center}
 \includegraphics[width=0.50\textwidth]{analysis/output/OPA-open-loop-slew-rate.pdf}
@@ -383,6 +379,17 @@ Per analizzare tale fenomeno è stata nuovamente realizzata la configurazione ad
 \end {center}
 \end{figure}
 
+
+In un amplificatore operazionale reale la velocità di variazione della tensione di uscita non può superare un valore limite detto \textit{slew-rate} o velocità di risposta:
+\begin{equation}
+    SR = (\frac{dV_{out}}{dt})_{max}
+\end{equation}
+
+Per il dispositivo LM741 il datasheet riporta un valore pari a 0.5 V/$\mu$s a T = 298 K.
+Questa limitazione è dovuta a fenomeni non lineari quali la saturazione dello stadio di ingresso dell'amplificatore operazionale e non è in relazione con la larghezza di banda finita dell'OPA. 
+Per analizzare tale fenomeno è stata nuovamente realizzata la configurazione ad anello aperto ed è stata osservata la risposta del circuito all'aumento progressivo della frequenza del segnale in ingresso da amplificare, con valori di tensione picco-picco elevati ($V_{pp}$ = 1 V). Raggiunta la frequenza di 100 kHz si è potuto osservare come i fronti di salita e discesa in uscita dall'OPA nel punto in cui è attesa la massima variazione fossero approssimabili con una retta con coefficiente angolare corrispondente allo slew-rate. E' quindi stato possibile valutare quantitativamente questa caratteristica, confrontandola con quanto espresso sul datasheet del produttore, mediante una regressione lineare.
+
+
 \begin{figure}[H]%[!ht]
 \begin {center}
 \includegraphics[width=0.45\textwidth]{analysis/output/OPA-slew-rate-fit.pdf}
@@ -390,6 +397,8 @@ Per analizzare tale fenomeno è stata nuovamente realizzata la configurazione ad
 \label{fig:slew-rate-fit}
 \end {center}
 \end{figure}
+
+
 Il valore del coefficiente angolare della retta restituito da minimizzatore ci porta a concludere che SR = $(0.7 \pm 0.1) \frac{V}{\mu s}$, valore compatibile con quanto riportato nel datasheet, infatti un test Z eseguito attribuendo al valore teorico un'incertezza pari all'ultima cifra significativa restituisce una variabile statistica Z = 1.43 $<$ $Z_{c}$ = 1.96 con $\alpha$ = 5 \%.
 
 \subsection{\textbf{Discussione e conclusioni}}
@@ -787,6 +796,8 @@ e la differenza tra un'onda quadra e una rampa entrambe di ampiezza massima $V=0
 \end {center}
 \end{figure}
 
+\vspace{-15mm}
+
 \begin{figure}[H]%[!ht]
 \begin {center}
 \includegraphics[width=0.45\textwidth]{analysis/output/OPA_diff_squareramp.pdf}
@@ -794,6 +805,8 @@ e la differenza tra un'onda quadra e una rampa entrambe di ampiezza massima $V=0
 \label{fig:diff_squareramp}
 \end {center}
 \end{figure}
+
+\vspace{-15mm}
 
 \begin{figure}[H]%[!ht]
 \begin{center}
