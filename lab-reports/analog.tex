@@ -69,7 +69,7 @@ Oggi la ricerca in fisica in ogni ambito è supportata in modo fondamentale dall
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{\textbf{Strumentazione utilizzata}} %Valerio
 
-\IEEEPARstart{I}{} circuiti qui descritti sono stati implementati mediante l'uso di componentistica \textit{COTS} \textit{(off the shelf} in standard \textit{through hole}, più maneggevole rispetto a quella \textit{SMD}, installata su breadboard. Le interconnessioni sono state realizzate con normali jumper mentre le alimentazioni sono state collegate utilizzando connettori a banana. I segnali sono stati misurati con l'oscilloscopio utilizzando sonde passive attenuate X10.
+\IEEEPARstart{I}{} circuiti qui descritti sono stati implementati mediante l'uso di componentistica \textit{COTS} \textit{(off the shelf)} in standard \textit{through hole}, più maneggevole rispetto a quella \textit{SMD}, installata su breadboard. Le interconnessioni sono state realizzate con normali jumper mentre le alimentazioni sono state collegate utilizzando connettori a banana. I segnali sono stati misurati con l'oscilloscopio utilizzando sonde passive attenuate X10.
 Segue oltre una brevissima dei principali strumenti di misura e generatori utilizzati.
 
 \subsection{\textbf{Oscilloscopio Tektronix TBS1104}}
@@ -115,7 +115,7 @@ Questi due generatori di segnali arbitrari basati sulla sintesi digitale diretta
 Per lo studio della propagazione di segnali attraverso una linea di trasmissione coassiale è stato fondamentale disporre di un generatore di segnali in grado di produrre impulsi sufficientemente veloci, in relazione al tempo di propagazione lungo la linea, con fronti più ripidi possibile. Per questo motivo è stato impiegato un generatore di segnali arbitrari Keithley 3390, anch'esso basato sulla tecnologia della sintesi digitale diretta, che dispone di una banda passante analogica di 50 MHz, una durata minima degli impulsi di 20 ns e un fronte di salita minimo di 10 ns. \cite{F}
 
 \subsection{\textbf{Multimetro digitale Meterman 35XP e alimentatore da banco duale GW-Instek GPS-4303}}
-Il corredo di strumentazione è stato completato con multimetro digitale Meterman 35XP utilizzato per misurare tensioni, resistenze e capacità, soprattutto in fase montaggio e verifica dei circuiti e da un generatore di tensione GW-Instek GPS-4303 con 4 canali a tensione e corrente variabile utilizzabili per fornire alimentazione duale all'amplificatore operazionale impiegato. La tensione proveniente da questo alimentatore è risultato in alcuni casi un po' rumorosa, pertanto sono stati aggiunti sulla breadboard dei condensatori livellanti in parallelo con valori nominali di $\sim$ 22 nF e $\sim$ 100 nF. Il multimetro ha una risoluzione di 3-3/4 cifre, un'accuratezza nelle misure di tensione DC di 0.5 \% della lettura + 1 * ultima cifra fino a 1KV e un'accuratezza nelle misure di resistenza di 1.0 \% della lettura + 4 * ultima cifra fino a 40 M$\Omega$. Per l'accuratezza nelle misure di capacità si rimanda al datasheet. L'alimentatore è invece in grado di fornire sui canali utilizzati fino a 30V / 5A. \cite{C} \cite{D}.
+Il corredo di strumentazione è stato completato con multimetro digitale Meterman 35XP utilizzato per misurare tensioni, resistenze e capacità, soprattutto in fase montaggio e verifica dei circuiti e da un generatore di tensione GW-Instek GPS-4303 con 4 canali a tensione e corrente variabile utilizzabili per fornire alimentazione duale all'amplificatore operazionale impiegato. La tensione proveniente da questo alimentatore è risultato in alcuni casi un po' rumorosa, pertanto sono stati aggiunti sulla breadboard dei condensatori livellanti in parallelo con valori nominali di $\sim$ 22 nF e $\sim$ 100 nF. Il multimetro ha una risoluzione di 3+3/4 cifre, un'accuratezza nelle misure di tensione DC di 0.5 \% della lettura + 1 * ultima cifra fino a 1KV e un'accuratezza nelle misure di resistenza di 1.0 \% della lettura + 4 * ultima cifra fino a 40 M$\Omega$. Per l'accuratezza nelle misure di capacità si rimanda al datasheet. L'alimentatore è invece in grado di fornire sui canali utilizzati fino a 30V / 5A. \cite{C} \cite{D}.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{\textbf{Ponte raddrizzatore a diodi a singola semionda}} %Matteo
 \subsection{\textbf{Introduzione all'esperienza}}
@@ -219,7 +219,7 @@ Di seguito i valori per cui vengono superate le soglie nei vari intervalli tempo
 \end{tabular}\\
 \newline
 
-Effettuando una media tra i due valori per la soglia alta si ottiene: $V_{zc} = (-0.05 \pm 0.02) V$ .
+Effettuando una media tra i due valori per la soglia alta si ottiene: $V_{zc} = -0.05 \pm 0.02 V$ .
 Ripetendo il processo per la soglia bassa si ricava: $V_{zc} = 0.03 \pm 0.02 V$
 
 I valori ottenuti sono in linea con le aspettative. Il loro ordine di grandezza è lo stesso dell'errore a loro associato e pertanto sono compatibili con un valore di tensione nullo.
@@ -392,7 +392,7 @@ Per analizzare tale fenomeno è stata nuovamente realizzata la configurazione ad
 
 \begin{figure}[H]%[!ht]
 \begin {center}
-\includegraphics[width=0.45\textwidth]{analysis/output/OPA-slew-rate-fit.pdf}
+\includegraphics[trim = {30pt 0 0 0}, width=0.53\textwidth]{analysis/output/OPA-slew-rate-fit.pdf}
 \caption{Regressione lineare effettuata sul fronte di salita del segnale di output a 100 kHz, riferimento alla \textit{Fig. \ref{fig:slew-rate-table}}}
 \label{fig:slew-rate-fit}
 \end {center}
@@ -796,7 +796,7 @@ e la differenza tra un'onda quadra e una rampa entrambe di ampiezza massima $V=0
 \end {center}
 \end{figure}
 
-\vspace{-15mm}
+\vspace{-5mm}
 
 \begin{figure}[H]%[!ht]
 \begin {center}
@@ -845,9 +845,6 @@ Dove $V_{th+}$ la tensione di soglia superiore e $V_{th-}$ quella inferiore, men
 \end{figure}
 
 \subsection{\textbf{Caratterizzazione}}
-Inizialmente è stato fornito al \textit{trigger di Schmitt} un segnale sinusoidale con rumore trascurabile, osservando la commutazione invertente con isteresi attesa (\textit{Fig.\ref{fig:trigger-clean}}): 
-Un simile circuito può essere utilizzato per trasformare un segnale sinusoidale in un'onda quadra, oppure come già anticipato, per rigenerare dal rumore un segnale digitale.
-Nel circuito implementato la tensione di saturazione, riferita a massa è: $+V_{sat}  = 14.6 \pm 0.1  V $ e $-V_{sat}  = -14.0 \pm 0.1  V $. 
 
 \begin{figure}[H]%[!ht]
 \begin {center}
@@ -857,7 +854,7 @@ Nel circuito implementato la tensione di saturazione, riferita a massa è: $+V_{
 \end {center}
 \end{figure}
 
-In laboratorio si volevano confrontare le capacità di immunità al rumore di un trigger di Schmitt rispetto ad un normale comparatore di soglia realizzato con un amplificatore operazionale in configurazione ad anello aperto. E' quindi stato generato un segnale costituito da una sinusoide con ampiezza $V_{s-pp}$ = 15 V a cui è stato sommato un rumore ad alta frequenza con forma onda quadra di ampiezza $V_{n-pp}$ = 4 V utilizzando un primo stadio operazionale in configurazione mixer invertente. L'uscita di questo stadio è stata dapprima inviata in un comparatore di soglia con $V_{th}$ = 0 ottenendo una serie di commutazioni indesiderate nei punti di \textit{zero-crossing} del rumore, (figura \ref{fig:trigger-noisy}), dopodiché il comparatore è stato sostituito con un trigger di Schmitt e questa volta la commutazione è risultata corretta e immune al rumore, come ben visibile in \textit{figura \ref{fig:trigger-ok}}.
+
 \begin{figure}[H]%[!ht]
 \begin {center}
 \includegraphics[width=0.50\textwidth]{analysis/output/noisy-open-ring.pdf}
@@ -865,6 +862,13 @@ In laboratorio si volevano confrontare le capacità di immunità al rumore di un
 \label{fig:trigger-noisy}
 \end {center}
 \end{figure}
+
+Inizialmente è stato fornito al \textit{trigger di Schmitt} un segnale sinusoidale con rumore trascurabile, osservando la commutazione invertente con isteresi attesa (\textit{Fig.\ref{fig:trigger-clean}}): 
+Un simile circuito può essere utilizzato per trasformare un segnale sinusoidale in un'onda quadra, oppure come già anticipato, per rigenerare dal rumore un segnale digitale.
+Nel circuito implementato la tensione di saturazione, riferita a massa è: $+V_{sat}  = 14.6 \pm 0.1  V $ e $-V_{sat}  = -14.0 \pm 0.1  V $. 
+
+In laboratorio si volevano confrontare le capacità di immunità al rumore di un trigger di Schmitt rispetto ad un normale comparatore di soglia realizzato con un amplificatore operazionale in configurazione ad anello aperto. E' quindi stato generato un segnale costituito da una sinusoide con ampiezza $V_{s-pp}$ = 15 V a cui è stato sommato un rumore ad alta frequenza con forma onda quadra di ampiezza $V_{n-pp}$ = 4 V utilizzando un primo stadio operazionale in configurazione mixer invertente. L'uscita di questo stadio è stata dapprima inviata in un comparatore di soglia con $V_{th}$ = 0 ottenendo una serie di commutazioni indesiderate nei punti di \textit{zero-crossing} del rumore, (figura \ref{fig:trigger-noisy}), dopodiché il comparatore è stato sostituito con un trigger di Schmitt e questa volta la commutazione è risultata corretta e immune al rumore, come ben visibile in \textit{figura \ref{fig:trigger-ok}}.
+
 
 \begin{figure}[H]%[!ht]
 \begin {center}
@@ -875,7 +879,6 @@ In laboratorio si volevano confrontare le capacità di immunità al rumore di un
 \end{figure}
 
 \subsection{Comportamento al variare della frequenza}
-Terminiamo questa sezione dedicata al trigger di Schmitt volendo verificare la dipendenza delle prestazioni dalla frequenza del segnale fornito in ingresso. Osservando la risposta a $100 Hz$, essa risulta completamente coerente con il comportamento visto prima sul piano tensione-tempo; aumentando la frequenza, però, ci si aspetta che la frequenza di commutazione possa diventare troppo veloce per permettere al trigger di raggiungere in uscita le tensioni di saturazione, dando origine alle situazioni che si osservano in \textit{figg. \ref{fig:hyst-table} e \ref{fig:trigger-hyst}}. Questo fenomeno non è dovuto alla banda passante dell'operazionale, ma bensì al suo slew-rate insufficiente.
 
 \begin{figure}[H]%[!ht]
 \begin {center}
@@ -884,6 +887,11 @@ Terminiamo questa sezione dedicata al trigger di Schmitt volendo verificare la d
 \label{fig:hyst-table}
 \end {center}
 \end{figure}
+
+
+Terminiamo questa sezione dedicata al trigger di Schmitt volendo verificare la dipendenza delle prestazioni dalla frequenza del segnale fornito in ingresso. Osservando la risposta a $100 Hz$, essa risulta completamente coerente con il comportamento visto prima sul piano tensione-tempo; aumentando la frequenza, però, ci si aspetta che la frequenza di commutazione possa diventare troppo veloce per permettere al trigger di raggiungere in uscita le tensioni di saturazione, dando origine alle situazioni che si osservano in \textit{figg. \ref{fig:hyst-table} e \ref{fig:trigger-hyst}}. Questo fenomeno non è dovuto alla banda passante dell'operazionale, ma bensì al suo slew-rate insufficiente.
+
+
 
 \begin{figure}[H]%[!ht]
 \begin {center}
@@ -1093,7 +1101,7 @@ La misura ottenuta con il secondo metodo risulta essere ampiamente compatibile c
 \centering
 \begin{center}
 \includegraphics[trim = {200pt 0 0 0}, width=1.1\textwidth]{analysis/output/Delay_line_standingWave2L.pdf}
-\caption{Onde stazionarie $\lambda = 2L$}
+\caption{Onde stazionarie con lunghezza d'onda $\lambda = 2L$}
 \label{fig: "onde staz 2L}
 \end{center}
 \end{figure*}
@@ -1122,6 +1130,7 @@ La misura ottenuta con il secondo metodo risulta essere ampiamente compatibile c
 \end{figure*}
 
 
+
 \subsection{\textbf{Formazione di onde stazionarie}}
 
 Se al posto di un impulso si invia sulla linea un segnale sinusoidale con lunghezza d'onda pari a quella della linea oppure pari al suo doppio (o altre armoniche) si generano delle onde stazionarie risultanti dall'interferenza dell'onda incidente con quella riflessa. 
@@ -1147,7 +1156,7 @@ Invece con $\lambda$ = L :
 Dallo studio del comportamento di una linea di ritardo con diverse terminazioni - cortocircuito, circuito aperto e linea adattata - è stata ricavata la misura della lunghezza del cavo utilizzato sia tramite l'invio di un singolo impulso sia con ripetizioni di impulsi. Inviando onde sinusoidali si è verificata qualitativamente la formazione di onde stazionarie nella linea e, per ciascuna delle terminazioni, si è studiato il comportamento dei fronti d'onda ad inizio, $L/4, \ L/2$, ed $L$. 
 
 
-\clearpage
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Conclusioni generali} %Tutti quanti
 In questa breve relazione di laboratorio sono stati caratterizzati alcuni circuiti nell'ambito dell'elettronica analogica che ricoprono particolare importanza nella ricerca in fisica. I risultati ottenuti sono risultati globalmente in accordo con la teoria, come è stato possibile verificare qualitativamente attraverso i grafici, oppure in alcuni casi quantitativamente mediante test statistici di compatibilità tra i valori ottenuti in laboratorio e quanto predetto dai modelli utilizzati. Le metodologie impiegate sono risultate adeguate, in particolare è sempre risultato possibile raggiungere nelle misure un rapporto segnale / rumore sufficiente per poter mettere in luce le caratteristiche desiderate del circuito sotto esame. La breadboard, infatti, nel range di frequenze utilizzato (0 - 1 MHz) non ha mostrato attenuazioni o capacità parassite problematiche. Da questo punto di vista l'esperienza più delicata è risultata la caratterizzazione del SiPM, per cui si rimanda all'apposito paragrafo di discussione. \\
@@ -1155,10 +1164,54 @@ In questa breve relazione di laboratorio sono stati caratterizzati alcuni circui
 Particolarmente rilevante è risultata la possibilità di esportare le tracce in formati numerici (CSV) dall'oscilloscopio per poter procedere all'analisi in un secondo momento con tecniche più quantitative che hanno garantito maggior precisione (per esempio grazie ad algoritmi di ricerca dei fronti di salita e discesa) rispetto all'uso dei cursori dell'oscilloscopio (posizionamento soprattutto visivo). Questo soprattutto nella misurazione degli intervalli tra impulsi nell'esperienza della linea di ritardo, oppure per la misurazione delle tensioni durante la caratterizzazione del SiPM.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\clearpage
 \section{Appendice}
 %INSERIRE:
 % 1. Tabella presa dati per ciascun bode plot
 % 2. Tabella presa dati 
+
+
+
+\begin{table}[H]
+\begin{tabular}{c|c|c}
+\multicolumn{1}{c|}{$V_{in}$ {[}mV{]}} & \multicolumn{1}{|c|}{$V_{out}$ {[}mV{]}} & \multicolumn{1}{c}{$f$ {[}Hz{]}}\\ 
+\hline  \\
+104 $ \pm $ 4 & (9.5 $ \pm $ 0.4) $ \cdot 10^{2} $ & 1.000 $ \pm $ 0.001       \\
+97 $ \pm $ 4  & (9.4 $ \pm $ 0.4) $ \cdot 10^{2} $ & 5.000 $ \pm $ 0.005         \\
+96 $ \pm $ 4  & (9.4 $ \pm $ 0.4) $ \cdot 10^{2} $ & 10.00 $ \pm $ 0.01        \\
+96 $ \pm $ 4  & (9.4 $ \pm $ 0.4) $ \cdot 10^{2} $ & 50.00 $ \pm $ 0.05          \\
+96 $ \pm $ 4  & (9.4 $ \pm $ 0.4) $ \cdot 10^{2} $ & 250.0 $ \pm $ 0.3         \\
+97 $ \pm $ 4  & (9.4 $ \pm $ 0.4) $ \cdot 10^{2} $ & 1000 $ \pm $ 1          \\
+96 $ \pm $ 4  & (9.4 $ \pm $ 0.4) $ \cdot 10^{2} $ & 3000 $ \pm $ 3          \\
+95 $ \pm $ 4  & (9.4 $ \pm $ 0.4) $ \cdot 10^{2} $ & (1.000 $ \pm $ 0.001)  $ \cdot 10^{4} $            \\
+85 $ \pm $ 4  & (8.2 $ \pm $ 0.4) $ \cdot 10^{2} $ & (1.500 $ \pm $ 0.002)   $ \cdot 10^{4} $          \\
+89 $ \pm $ 4  & (8.3 $ \pm $ 0.4) $ \cdot 10^{2} $ & (2.500 $ \pm $ 0.003 ) $ \cdot 10^{4} $             \\
+82 $ \pm $ 4  & (7.5 $ \pm $ 0.4) $ \cdot 10^{2} $ & (3.000 $ \pm $ 0.003 ) $ \cdot 10^{04} $             \\
+87 $ \pm $ 4  & (7.7 $ \pm $ 0.4) $ \cdot 10^{2} $ & (4.000 $ \pm $ 0.004) $ \cdot 10^{4} $   \\
+86 $ \pm $ 4  & (7.2 $ \pm $ 0.4) $ \cdot 10^{2} $ & (4.500 $ \pm $ 0.004) $ \cdot 10^{4} $   \\
+97 $ \pm $ 4  & (8.2 $ \pm $ 0.4) $ \cdot 10^{2} $ & (5.000 $ \pm $ 0.005) $ \cdot 10^{4} $   \\
+89 $ \pm $ 4  & (7.5 $ \pm $ 0.4) $ \cdot 10^{2} $ & (5.500 $ \pm $ 0.005) $ \cdot 10^{4} $   \\
+88 $ \pm $ 4  & (6.7 $ \pm $ 0.4) $ \cdot 10^{2} $ & (7.500 $ \pm $ 0.007) $ \cdot 10^{4} $   \\
+97 $ \pm $ 4  & (6.3 $ \pm $ 0.4) $ \cdot 10^{2} $ & (1.0000 $ \pm $ 0.0010) $ \cdot 10^{5} $ \\
+90 $ \pm $ 4  & (5.6 $ \pm $ 0.4) $ \cdot 10^{2} $ & (1.1000 $ \pm $ 0.0011) $ \cdot 10^{5} $ \\
+88 $ \pm $ 4  & (4.9 $ \pm $ 0.4) $ \cdot 10^{2} $ & (1.3000 $ \pm $ 0.0013) $ \cdot 10^{5} $ \\
+89 $ \pm $ 4  & (4.3 $ \pm $ 0.4) $ \cdot 10^{2} $ & (1.6000 $ \pm $ 0.0016) $ \cdot 10^{5} $ \\
+100 $ \pm $ 4 & (4.0 $ \pm $ 0.4) $ \cdot 10^{2} $ & (2.0000 $ \pm $ 0.0020) $ \cdot 10^{5} $ \\
+92 $ \pm $ 4  & (3.0 $ \pm $ 0.4) $ \cdot 10^{2} $ & (2.5000 $ \pm $ 0.0025) $ \cdot 10^{5} $ \\
+101 $ \pm $ 4 & (2.8 $ \pm $ 0.4) $ \cdot 10^{2} $ & (3.0000 $ \pm $ 0.0030) $ \cdot 10^{5} $ \\
+102 $ \pm $ 4 & (2.2 $ \pm $ 0.4) $ \cdot 10^{2} $ & (4.000 $ \pm $ 0.004) $ \cdot 10^{5} $   \\
+102 $ \pm $ 4 & (1.3 $ \pm $ 0.4) $ \cdot 10^{2} $ & (7.000 $ \pm $ 0.007) $ \cdot 10^{5} $   \\
+101 $ \pm $ 4 & 86 $ \pm $ 4 & (1.0000 $ \pm $ 0.0010) $ \cdot 10^{6} $ \\
+101 $ \pm $ 4 & 41 $ \pm $ 4 & (2.0000 $ \pm $ 0.0020) $ \cdot 10^{6} $ \\
+100 $ \pm $ 4 & 12 $ \pm $ 4 & (5.000 $ \pm $ 0.005) $ \cdot 10^{6} $   \\
+77 $ \pm $ 4  & 2 $ \pm $ 4  & (2.0000 $ \pm $ 0.0020) $ \cdot 10^{7} $
+\end{tabular}
+\vspace{5 mm}
+\caption{Scala valori di tensione in input e output relativi a frequenze progressive relative all'OPA invertente, guadagno teorico 10}
+\label{tab:opa-inv-g10}
+\end{table}
+
 
 \begin{table}[H]
 \centering
@@ -1217,76 +1270,6 @@ Particolarmente rilevante è risultata la possibilità di esportare le tracce in
 \label{tab:opa-inv-g1}
 \end{table}
 
-\begin{table}[H]
-\begin{tabular}{c|c|c}
-\multicolumn{1}{c|}{$V_{in}$ {[}mV{]}} & \multicolumn{1}{|c|}{$V_{out}$ {[}mV{]}} & \multicolumn{1}{c}{$f$ {[}Hz{]}}\\ 
-\hline  \\
-104 $ \pm $ 4 & (9.5 $ \pm $ 0.4) $ \cdot 10^{2} $ & 1.000 $ \pm $ 0.001       \\
-97 $ \pm $ 4  & (9.4 $ \pm $ 0.4) $ \cdot 10^{2} $ & 5.000 $ \pm $ 0.005         \\
-96 $ \pm $ 4  & (9.4 $ \pm $ 0.4) $ \cdot 10^{2} $ & 10.00 $ \pm $ 0.01        \\
-96 $ \pm $ 4  & (9.4 $ \pm $ 0.4) $ \cdot 10^{2} $ & 50.00 $ \pm $ 0.05          \\
-96 $ \pm $ 4  & (9.4 $ \pm $ 0.4) $ \cdot 10^{2} $ & 250.0 $ \pm $ 0.3         \\
-97 $ \pm $ 4  & (9.4 $ \pm $ 0.4) $ \cdot 10^{2} $ & 1000 $ \pm $ 1          \\
-96 $ \pm $ 4  & (9.4 $ \pm $ 0.4) $ \cdot 10^{2} $ & 3000 $ \pm $ 3          \\
-95 $ \pm $ 4  & (9.4 $ \pm $ 0.4) $ \cdot 10^{2} $ & (1.000 $ \pm $ 0.001)  $ \cdot 10^{4} $            \\
-85 $ \pm $ 4  & (8.2 $ \pm $ 0.4) $ \cdot 10^{2} $ & (1.500 $ \pm $ 0.002)   $ \cdot 10^{4} $          \\
-89 $ \pm $ 4  & (8.3 $ \pm $ 0.4) $ \cdot 10^{2} $ & (2.500 $ \pm $ 0.003 ) $ \cdot 10^{4} $             \\
-82 $ \pm $ 4  & (7.5 $ \pm $ 0.4) $ \cdot 10^{2} $ & (3.000 $ \pm $ 0.003 ) $ \cdot 10^{04} $             \\
-87 $ \pm $ 4  & (7.7 $ \pm $ 0.4) $ \cdot 10^{2} $ & (4.000 $ \pm $ 0.004) $ \cdot 10^{4} $   \\
-86 $ \pm $ 4  & (7.2 $ \pm $ 0.4) $ \cdot 10^{2} $ & (4.500 $ \pm $ 0.004) $ \cdot 10^{4} $   \\
-97 $ \pm $ 4  & (8.2 $ \pm $ 0.4) $ \cdot 10^{2} $ & (5.000 $ \pm $ 0.005) $ \cdot 10^{4} $   \\
-89 $ \pm $ 4  & (7.5 $ \pm $ 0.4) $ \cdot 10^{2} $ & (5.500 $ \pm $ 0.005) $ \cdot 10^{4} $   \\
-88 $ \pm $ 4  & (6.7 $ \pm $ 0.4) $ \cdot 10^{2} $ & (7.500 $ \pm $ 0.007) $ \cdot 10^{4} $   \\
-97 $ \pm $ 4  & (6.3 $ \pm $ 0.4) $ \cdot 10^{2} $ & (1.0000 $ \pm $ 0.0010) $ \cdot 10^{5} $ \\
-90 $ \pm $ 4  & (5.6 $ \pm $ 0.4) $ \cdot 10^{2} $ & (1.1000 $ \pm $ 0.0011) $ \cdot 10^{5} $ \\
-88 $ \pm $ 4  & (4.9 $ \pm $ 0.4) $ \cdot 10^{2} $ & (1.3000 $ \pm $ 0.0013) $ \cdot 10^{5} $ \\
-89 $ \pm $ 4  & (4.3 $ \pm $ 0.4) $ \cdot 10^{2} $ & (1.6000 $ \pm $ 0.0016) $ \cdot 10^{5} $ \\
-100 $ \pm $ 4 & (4.0 $ \pm $ 0.4) $ \cdot 10^{2} $ & (2.0000 $ \pm $ 0.0020) $ \cdot 10^{5} $ \\
-92 $ \pm $ 4  & (3.0 $ \pm $ 0.4) $ \cdot 10^{2} $ & (2.5000 $ \pm $ 0.0025) $ \cdot 10^{5} $ \\
-101 $ \pm $ 4 & (2.8 $ \pm $ 0.4) $ \cdot 10^{2} $ & (3.0000 $ \pm $ 0.0030) $ \cdot 10^{5} $ \\
-102 $ \pm $ 4 & (2.2 $ \pm $ 0.4) $ \cdot 10^{2} $ & (4.000 $ \pm $ 0.004) $ \cdot 10^{5} $   \\
-102 $ \pm $ 4 & (1.3 $ \pm $ 0.4) $ \cdot 10^{2} $ & (7.000 $ \pm $ 0.007) $ \cdot 10^{5} $   \\
-101 $ \pm $ 4 & 86 $ \pm $ 4 & (1.0000 $ \pm $ 0.0010) $ \cdot 10^{6} $ \\
-101 $ \pm $ 4 & 41 $ \pm $ 4 & (2.0000 $ \pm $ 0.0020) $ \cdot 10^{6} $ \\
-100 $ \pm $ 4 & 12 $ \pm $ 4 & (5.000 $ \pm $ 0.005) $ \cdot 10^{6} $   \\
-77 $ \pm $ 4  & 2 $ \pm $ 4  & (2.0000 $ \pm $ 0.0020) $ \cdot 10^{7} $
-\end{tabular}
-\vspace{5 mm}
-\caption{Scala valori di tensione in input e output relativi a frequenze progressive relative all'OPA invertente, guadagno teorico 10}
-\label{tab:opa-inv-g10}
-\end{table}
-
-
-\begin{table}[H]
-\centering
-\begin{tabular}{c|c}
-\multicolumn{1}{c|}{$V_{in}$ {[}V{]}} & \multicolumn{1}{c}{$V_{out}$ {[}V{]}} \\ \hline
-\\
-0.568 $\pm$ 0.004 & -0.548 $\pm$ 0.002  \\
-0.880 $\pm$ 0.005 & -0.564 $\pm$ 0.002 \\ 
-1.099 $\pm$ 0.006 & -0.577 $\pm$ 0.002 \\ 
-1.377 $\pm$ 0.008 & -0.586 $\pm$ 0.002 \\ 
-1.642 $\pm$ 0.009 & -0.596 $\pm$ 0.002 \\ 
-2.05 $\pm$ 0.01 & -0.605 $\pm$ 0.002 \\ 
-2.50 $\pm$ 0.02 & -0.613 $\pm$ 0.002 \\ 
-3.04 $\pm$ 0.02 & -0.62 $\pm$ 0.002 \\ 
-3.66 $\pm$ 0.02 & -0.627 $\pm$ 0.002 \\ 
-4.08 $\pm$ 0.03 & -0.63 $\pm$ 0.007 \\ 
-4.62 $\pm$ 0.03 & -0.635 $\pm$ 0.007 \\ 
-5.12 $\pm$ 0.04 & -0.638 $\pm$ 0.007 \\ 
-5.64 $\pm$ 0.04 & -0.641 $\pm$ 0.007 \\ 
-6.24 $\pm$ 0.04 & -0.645 $\pm$ 0.007 \\ 
-7.02 $\pm$ 0.05 & -0.648 $\pm$ 0.007 \\ 
-7.76 $\pm$ 0.05 & -0.649 $\pm$ 0.007 \\ 
-8.48 $\pm$ 0.05 & -0.652 $\pm$ 0.007 \\ 
-9.31 $\pm$ 0.06 & -0.653 $\pm$ 0.007 \\ 
-10.09 $\pm$ 0.06 & -0.657 $\pm$ 0.007 \\ 
-12.31 $\pm$ 0.07 & -0.659 $\pm$ 0.007 \\ 
-\end{tabular}
-\vspace{5 mm}
-\caption{Scala valori di tensione in input e output relativi a frequenze progressive relative all'OPA logaritmico}
-\label{tab:opa-log}
-\end{table}
 
 \begin{table}[H]
 \centering
@@ -1324,6 +1307,43 @@ Particolarmente rilevante è risultata la possibilità di esportare le tracce in
 \caption{Scala valori di tensione in input e output relativi a frequenze progressive relative all'OPA integratore}
 \label{tab:opa-non-inv}
 \end{table}
+
+\vfill
+
+
+
+\begin{table}[H]
+\centering
+\begin{tabular}{c|c}
+\multicolumn{1}{c|}{$V_{in}$ {[}V{]}} & \multicolumn{1}{c}{$V_{out}$ {[}V{]}} \\ \hline
+\\
+0.568 $\pm$ 0.004 & -0.548 $\pm$ 0.002  \\
+0.880 $\pm$ 0.005 & -0.564 $\pm$ 0.002 \\ 
+1.099 $\pm$ 0.006 & -0.577 $\pm$ 0.002 \\ 
+1.377 $\pm$ 0.008 & -0.586 $\pm$ 0.002 \\ 
+1.642 $\pm$ 0.009 & -0.596 $\pm$ 0.002 \\ 
+2.05 $\pm$ 0.01 & -0.605 $\pm$ 0.002 \\ 
+2.50 $\pm$ 0.02 & -0.613 $\pm$ 0.002 \\ 
+3.04 $\pm$ 0.02 & -0.62 $\pm$ 0.002 \\ 
+3.66 $\pm$ 0.02 & -0.627 $\pm$ 0.002 \\ 
+4.08 $\pm$ 0.03 & -0.63 $\pm$ 0.007 \\ 
+4.62 $\pm$ 0.03 & -0.635 $\pm$ 0.007 \\ 
+5.12 $\pm$ 0.04 & -0.638 $\pm$ 0.007 \\ 
+5.64 $\pm$ 0.04 & -0.641 $\pm$ 0.007 \\ 
+6.24 $\pm$ 0.04 & -0.645 $\pm$ 0.007 \\ 
+7.02 $\pm$ 0.05 & -0.648 $\pm$ 0.007 \\ 
+7.76 $\pm$ 0.05 & -0.649 $\pm$ 0.007 \\ 
+8.48 $\pm$ 0.05 & -0.652 $\pm$ 0.007 \\ 
+9.31 $\pm$ 0.06 & -0.653 $\pm$ 0.007 \\ 
+10.09 $\pm$ 0.06 & -0.657 $\pm$ 0.007 \\ 
+12.31 $\pm$ 0.07 & -0.659 $\pm$ 0.007 \\ 
+\end{tabular}
+\vspace{5 mm}
+\caption{Scala valori di tensione in input e output relativi a frequenze progressive relative all'OPA logaritmico}
+\label{tab:opa-log}
+\end{table}
+
+
 
 
 \begin{table}[H]
