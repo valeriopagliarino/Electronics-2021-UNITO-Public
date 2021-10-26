@@ -40,12 +40,15 @@
 
 \documentclass[journal]{IEEEtran}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \usepackage[italian]{babel}
 
 % *** CITATION PACKAGES ***
 \usepackage[style=ieee]{biblatex} 
 \bibliography{digital.bib}    %your file created using JabRef
 \usepackage{hyperref}
+
 % *** MATH PACKAGES ***
 \usepackage{amsmath}
  \usepackage{multirow}
@@ -56,6 +59,11 @@
 \hyphenation{op-tical net-works semi-conduc-tor}
 \usepackage{graphicx}  %needed to include png, eps figures
 \usepackage{float}  % used to fix location of images i.e.\begin{figure}[H]
+
+\usepackage{csquotes} % correzione errore compilazione
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 
 \begin{document}
 
@@ -81,7 +89,7 @@
         \end{center}}% <-this % stops a space
         
 % The report headers
-\markboth{Universita' degli Studi di Torino - C.d.L. Triennale in Fisica - 01/01/19 - A.A. 2021-2022    \quad   \quad \quad \quad   \quad \quad \quad  \quad   \quad \quad \quad   \quad \quad LABORATORIO DI ELETTRONICA \quad \quad }%do not delete next lines
+\markboth{Università degli Studi di Torino - C.d.L. Triennale in Fisica - 01/01/19 - A.A. 2021-2022    \quad   \quad \quad \quad   \quad \quad \quad  \quad   \quad \quad \quad   \quad \quad LABORATORIO DI ELETTRONICA \quad \quad }%do not delete next lines
 {Shell \MakeLowercase{\textit{et al.}}: Bare Demo of IEEEtran.cls for IEEE Journals}
 
 % make the title area
@@ -90,63 +98,80 @@
 % As a general rule, do not put math, special symbols or citations
 % in the abstract or keywords.
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \begin{abstract} Testo dell'Abstract
 \end{abstract}
 
 
-\section{Paragrafo}
+\section{Componenti e strumenti utilizzati}
 \IEEEPARstart{T}{esto} di esempio.
 
-\begin{figure*}[t]%[t]
-\centering
+\begin{figure}[H]%[!ht]
 \begin{center}
-\includegraphics[width=1.15\textwidth]{sch-simulations/output/SAR_4bit_cv1.pdf}
+\includegraphics[width=0.40\textwidth]{lab-reports/Schematics-and-graphics/SN7400N.png}
+\caption{SN7400N}
+\label{fig:integrated_nand}
 \end{center}
-\caption{Schema elettrico completo del convertitore ADC SAR 4 bit}
-\label{fig:sarCompleteSchematic}
-\end{figure*}
+\end{figure}
 
 
+%\begin{figure*}[t]%[t]
+%\centering
+%\begin{center}
+%\includegraphics[width=1.15\textwidth]{sch-simulations/output/SAR_4bit_cv1.pdf}
+%\end{center}
+%\caption{Schema elettrico completo del convertitore ADC SAR 4 bit}
+%\label{fig:circuit_sarCompleteSchematic}
+%\end{figure*}
+
+\section{Tabella di verità R-S flip flop}
 
 \begin{figure}[H]%[!ht]
 \begin{center}
 \includegraphics[width=0.40\textwidth]{sch-simulations/output/flip-flop-RS.pdf}
 \caption{Flip-flop set - reset}
-\label{fig:ledp}
+\label{fig:circuit_flip_flop}
 \end{center}
 \end{figure}
+
+
+
+\begin{figure}[H]%[!ht]
+\begin{center}
+\includegraphics[width=0.54\textwidth]{sch-simulations/output/shift-register.pdf}
+\caption{Registro a scorrimento e circuito di controllo}
+\label{fig:circuit_shift_register}
+\end{center}
+\end{figure}
+
+
+\section{Extra: oscillatore ad anello}
 
 \begin{figure}[H]%[!ht]
 \begin{center}
 \includegraphics[width=0.40\textwidth]{sch-simulations/output/ring-osc-logic.pdf}
-\caption{Ring oscillator}
-\label{fig:ledp}
+\caption{Circuito equivalente dell'oscillatore ad anello}
+\label{fig:circuit_ring_oscillator}
 \end{center}
 \end{figure}
 
 \begin{figure}[H]%[!ht]
 \begin{center}
-\includegraphics[width=0.54\textwidth]{sch-simulations/output/shift-register.pdf}
-\caption{Registro a scorrimento e circuito di controllo}
-\label{fig:ledp}
+\includegraphics[width=0.40\textwidth]{analysis/output/inverter_ring.pdf}
+\caption{Studio dell'oscillatore ad anello}
+\label{fig:inverter_ring_xy}
 \end{center}
 \end{figure}
 
-\begin{figure}[H]%[!ht]
-\begin{center}
-\includegraphics[width=0.54\textwidth]{sch-simulations/output/shift-register.pdf}
-\caption{Registro a scorrimento e circuito di controllo}
-\label{fig:ledp}
-\end{center}
-\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{figure}[H]%[!ht]
-\begin{center}
-\includegraphics[width=0.54\textwidth]{sch-simulations/output/shift-register.pdf}
-\caption{SN7400N}
-\label{fig:ledp}
-\end{center}
-\end{figure}
+\newpage
+
+\tableofcontents % Indice
+
+\printbibliography % Bibliografia
+
 
 \end{document}
 
