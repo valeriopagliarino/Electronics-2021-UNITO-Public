@@ -1,42 +1,4 @@
-%% Lab Report for EEET2493_labreport_template.tex
-%% V1.0
-%% 2019/01/16
-%% This is the template for a Lab report following an IEEE paper. Modified by Francisco Tovar after Michael Sheel original document.
 
-
-%% This is a skeleton file demonstrating the use of IEEEtran.cls
-%% (requires IEEEtran.cls version 1.8b or later) with an IEEE
-%% journal paper.
-%%
-%% Support sites:
-%% http://www.michaelshell.org/tex/ieeetran/
-%% http://www.ctan.org/pkg/ieeetran
-%% and
-%% http://www.ieee.org/
-
-%%*************************************************************************
-%% Legal Notice:
-%% This code is offered as-is without any warranty either expressed or
-%% implied; without even the implied warranty of MERCHANTABILITY or
-%% FITNESS FOR A PARTICULAR PURPOSE! 
-%% User assumes all risk.
-%% In no event shall the IEEE or any contributor to this code be liable for
-%% any damages or losses, including, but not limited to, incidental,
-%% consequential, or any other damages, resulting from the use or misuse
-%% of any information contained here.
-%%
-%% All comments are the opinions of their respective authors and are not
-%% necessarily endorsed by the IEEE.
-%%
-%% This work is distributed under the LaTeX Project Public License (LPPL)
-%% ( http://www.latex-project.org/ ) version 1.3, and may be freely used,
-%% distributed and modified. A copy of the LPPL, version 1.3, is included
-%% in the base LaTeX documentation of all distributions of LaTeX released
-%% 2003/12/01 or later.
-%% Retain all contribution notices and credits.
-%% ** Modified files should be clearly indicated as such, including  **
-%% ** renaming them and changing author support contact information. **
-%%*************************************************************************
 
 \documentclass[journal]{IEEEtran}
 
@@ -107,55 +69,12 @@ Introduzione all'esperienza
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Strumenti utilizzati}
-
-\subsection{\textbf{Oscilloscopio Tektronix TBS1104}}
-
-\begin{figure}[h!]
-  \centering
-  \includegraphics[width=0.18\textwidth]{lab-reports/Schematics-and-graphics/TEK Osc.png}
-\end{figure}
-
-La maggior parte delle misure di tensione e tempo è stata realizzata con un \textit{digital storage oscilloscope (DSO)} Tektronix 1104 con banda passante di 70 MHz, frequenza di campionamento massima di 1 GSa/s che consente fino a 5 ns/div di risoluzione temporale, 4 canali e 2.5K punti di memoria per finestra di acquisizione, risoluzione verticale di 8 bit e sensibilità fino a 10 mV/div.
-\cite{A}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\subsection{\textbf{Generatore di funzioni Rigol DG1022Z}}
-
-\begin{figure}[h!]
-  \centering
-  \includegraphics[width=0.18\textwidth]{lab-reports/Schematics-and-graphics/RIGOL Gen.png}
-\end{figure}
-
-Questo generatore di segnali arbitrari basato sulla sintesi digitale diretta (DDS) è stato impiegato per il pilotaggio dei circuiti. Il generatore ha una banda passante massima di 25 MHz, una frequenza di campionamento del DAC di 100 MSa/s e una risoluzione verticale di 14 bit. 
-\cite{B}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\subsection{\textbf{Multimetro digitale Meterman 35XP e alimentatore da banco duale GW-Instek GPS-4303}}
-Il corredo di strumentazione è stato completato con multimetro digitale Meterman 35XP utilizzato per misurare tensioni, resistenze e capacità, soprattutto in fase montaggio e verifica dei circuiti e da un generatore di tensione GW-Instek GPS-4303 con 4 canali a tensione e corrente variabile utilizzabili per fornire alimentazione duale all'amplificatore operazionale impiegato. La tensione proveniente da questo alimentatore è risultato in alcuni casi un po' rumorosa, pertanto sono stati aggiunti sulla breadboard dei condensatori livellanti in parallelo con valori nominali di $\sim$ 22 nF e $\sim$ 100 nF. Il multimetro ha una risoluzione di 3+3/4 cifre, un'accuratezza nelle misure di tensione DC di 0.5 \% della lettura + 1 * ultima cifra fino a 1KV e un'accuratezza nelle misure di resistenza di 1.0 \% della lettura + 4 * ultima cifra fino a 40 M$\Omega$. Per l'accuratezza nelle misure di capacità si rimanda al datasheet. L'alimentatore è invece in grado di fornire sui canali utilizzati fino a 30V / 5A. \cite{C} \cite{C}.
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\section{Il circuito completo}
-
-\begin{figure*}[t]%[t]
-\centering
-\begin{center}
-\includegraphics[width=1.15\textwidth]{sch-simulations/output/SAR_4bit_cv1.pdf}
-\end{center}
-\caption{Schema elettrico completo del convertitore ADC SAR 4 bit}
-\label{fig:circuit_sarCompleteSchematic}
-\end{figure*}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 \section{Componenti utilizzati}
 
-\subsection{NAND}
+Qui descrizione degli integrati logici utilizzati, direi che è un po' brutto fare dei copia e incolla della descrizione degli strumenti di misura che abbiamo già messo in analogica, siccome sia Aglietta che Migliore hanno letto quella relazione. 
+
+
+\subsection{Logica TTL serie 7400}
 
 \begin{figure}[H]%[!ht]
 \begin{center}
@@ -165,19 +84,16 @@ Il corredo di strumentazione è stato completato con multimetro digitale Meterma
 \end{center}
 \end{figure}
 
-\subsection{AND}
+\subsection{Transistor di interfaccia PN2222A}
 
-\subsection{Transistor}
 
-\subsection{OPA}
 
-\subsection{Resistori}
-$R_b = 0.99 \pm 0.01 \ k\Omega$ \\
+
+
+
+Questi valori li riporterei nel corpo della descrizione dello schema elettrico dell'ADC.
+$R_b = 0.99 \pm 0.01 \ k\Omega \\$
 $R_c = 99 \pm 1 \ k\Omega$
-
-
-
-
 
 
 
@@ -223,6 +139,16 @@ $R_c = 99 \pm 1 \ k\Omega$
 %% Terzo Giorno 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\begin{figure*}[t]%[t]
+\centering
+\begin{center}
+\includegraphics[width=1.15\textwidth, angle=90]{sch-simulations/digital/output/SAR_4bit_cv1.pdf}
+\end{center}
+\caption{Schema elettrico completo del convertitore ADC SAR 4 bit}
+\label{fig:circuit_sarCompleteSchematic}
+\end{figure*}
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Appendice
@@ -264,6 +190,8 @@ $R_c = 99 \pm 1 \ k\Omega$
 \newpage
 
 \tableofcontents % Indice
+
+\newpage
 
 \printbibliography % Bibliografia
 
