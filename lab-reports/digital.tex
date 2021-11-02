@@ -79,14 +79,12 @@ Qui descrizione degli integrati logici utilizzati, direi che è un po' brutto fa
 \begin{figure}[H]%[!ht]
 \begin{center}
 \includegraphics[width=0.40\textwidth]{lab-reports/Schematics-and-graphics/SN7400N.png}
-\caption{SN7400N}
+\caption{Fotografia del DIE e \textit{package} plastico DIP \textit{(Dual Inline Package)} dell'integrato con 2 porte NAND SN7400N}
 \label{fig:integrated_nand}
 \end{center}
 \end{figure}
 
 \subsection{Transistor di interfaccia PN2222A}
-
-
 
 
 
@@ -102,12 +100,12 @@ $R_c = 99 \pm 1 \ k\Omega$
 %% Primo Giorno 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Tabella di verità R-S flip flop}
+\section{Caratterizzazione del flip-flop RS}
 
 \begin{figure}[H]%[!ht]
 \begin{center}
 \includegraphics[width=0.40\textwidth]{sch-simulations/digital/output/flip-flop-RS.pdf}
-\caption{Flip-flop set - reset}
+\caption{Logica interna del flip-flop set-reset}
 \label{fig:circuit_flip_flop}
 \end{center}
 \end{figure}
@@ -135,6 +133,15 @@ $R_c = 99 \pm 1 \ k\Omega$
 
 \section{Tabella di verità JK}
 
+\begin{figure}[t]%[t]
+\centering
+\begin{center}
+\includegraphics[width=0.40\textwidth]{sch-simulations/digital/output/flip-flop-JK.pdf}
+\end{center}
+\caption{Logica interna del flip-flop JK}
+\label{fig:circuit_JK}
+\end{figure}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Terzo Giorno 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -142,7 +149,7 @@ $R_c = 99 \pm 1 \ k\Omega$
 \begin{figure*}[t]%[t]
 \centering
 \begin{center}
-\includegraphics[width=1.15\textwidth, angle=90]{sch-simulations/digital/output/SAR_4bit_cv1.pdf}
+\includegraphics[trim = {0 0 50 0}, width=1.40\textwidth, angle=90]{sch-simulations/digital/output/Schema_convertitore_completo.pdf}
 \end{center}
 \caption{Schema elettrico completo del convertitore ADC SAR 4 bit}
 \label{fig:circuit_sarCompleteSchematic}
