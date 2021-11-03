@@ -85,6 +85,8 @@ I ciruiti logici descritti nella presente relazione di laboratorio sono stati re
     \item \textbf{SN74LS08N} - Un integrato che implementa 4 porte AND in logica positiva mediante uno stadio di ingresso realizzato con transistor BJT multi-emettitore e uscita totem-pole. Questo componente ha tempi di commutazione  di 17.5 ns per portarsi allo stato basso e 12 ns per portarsi allo stato alto.
     
     \item \textbf{SN74LS00N} - Un integrato che implementa 4 porte NAND in logica positiva con tempi di commutazione di 9 ns e 10 ns rispettivamente per portarsi allo stato basso o allo stato alto.
+    
+    \item \textbf{SN74LS04} - Un integrato che implementa 6 porte NOT (inverter) con tempi di commutzione di 12 ns e 8 ns rispettivamente per portarsi allo stato basso e allo stato alto.
 \end{itemize}
 
 \begin{figure}[H]%[!ht]
@@ -119,22 +121,6 @@ Testo
 \end{center}
 \end{figure}
 
-\begin{figure}[H]%[!ht]
-\begin{center}
-\includegraphics[width=0.50\textwidth]{sch-simulations/digital/output/shift-register.pdf}
-\caption{Registro a scorrimento e circuito di controllo}
-\label{fig:circuit_shift_register}
-\end{center}
-\end{figure}
-
-
-\begin{figure}[H]%[!ht]
-\begin{center}
-\includegraphics[width=0.40\textwidth]{sch-simulations/digital/output/DAC.pdf}
-\caption{DAC}
-\label{fig:circuit_shift_register}
-\end{center}
-\end{figure}
 
 \subsection{Verifica della tabella di verità della porta AND}
 Testo
@@ -147,35 +133,17 @@ Testo
 \subsection{Studio della caratteristica di trasferimento della porta NOT}
 Testo
 
+\begin{figure}[H]%[!ht]
+\begin{center}
+\includegraphics[width=0.40\textwidth]{analysis/output/inverter_ring_xy.pdf}
+\caption{Caratteristica di trasferimento della porta NOT}
+\label{fig:inverter_ring_xy}
+\end{center}
+\end{figure}
+
 
 \subsection{Verifica della tabella di verità del flip-flop di tipo J-K}
 Testo
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\section{Verifica del funzionamento del ring oscillator realizzato con inverter}
-Testo
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\section{Realizzazione di un ADC SAR a 4 bit}
-
-\subsection{Descrizione generale e specifiche tecniche desiderate}
-
-\subsection{Verifica del circuito con registro di scorrimento e annessa logica di controllo}
-Testo
-
-\subsection{Verifica del circuito di pilotaggio del DAC (J-K) e dello stadio analogico}
-Testo
-
-
-\begin{figure}[H]%[!ht]
-\begin{center}
-\includegraphics[width=0.35\textwidth]{sch-simulations/digital/output/lf398.png}
-\caption{Sample and hold}
-\label{fig:circuit_flip_flop}
-\end{center}
-\end{figure}
 
 \begin{figure}[t]%[t]
 \centering
@@ -186,13 +154,53 @@ Testo
 \label{fig:circuit_JK}
 \end{figure}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Verifica del funzionamento del ring oscillator realizzato con inverter}
+Come anticipato nel paragrafo di descrizione degli integrati, il dispositivo SN74LS04 che implementa 6 porte NOT presenta un tempo di commutazione non trascurabile al variare del livello logico del segnale in ingresso alle alte frequenze e questo, se realizziamo una catena di porte OR, darà origine ad un ritardo di propagazione del segnale in ogni porta. 
+Questo effetto si può sfruttare in modo interessante realizzando un anello chiuso con un numero dispari di inverters, nel nostro caso 7 porte, realizzati con due integrati;  
+
+\begin{figure}[H]%[!ht]
+\begin{center}
+\includegraphics[width=0.40\textwidth]{sch-simulations/digital/output/ring-osc-logic.pdf}
+\caption{Circuito equivalente dell'oscillatore ad anello}
+\label{fig:circuit_ring_oscillator}
+\end{center}
+\end{figure}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Realizzazione di un ADC SAR a 4 bit}
+
+\subsection{Descrizione generale e specifiche tecniche desiderate}
+
+\subsection{Verifica del circuito con registro di scorrimento e annessa logica di controllo}
+Testo
+
+\begin{figure}[H]%[!ht]
+\begin{center}
+\includegraphics[width=0.50\textwidth]{sch-simulations/digital/output/shift-register.pdf}
+\caption{Registro a scorrimento e circuito di controllo}
+\label{fig:circuit_shift_register}
+\end{center}
+\end{figure}
+
+\subsection{Verifica del circuito di pilotaggio del DAC (J-K) e dello stadio analogico}
+Testo
+
+\begin{figure}[H]%[!ht]
+\begin{center}
+\includegraphics[width=0.40\textwidth]{sch-simulations/digital/output/DAC.pdf}
+\caption{DAC}
+\label{fig:circuit_shift_register}
+\end{center}
+\end{figure}
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% Terzo Giorno 28/10
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Calibrazione DAC}
+\section{Calibrazione del DAC}
 
 \begin{figure}[t]%[t]
 \centering
@@ -203,13 +211,15 @@ Testo
 \label{fig:graph_calibrazione_dac}
 \end{figure}
 
+$ m = -0.211 \pm 0.001 $
+$ q = -0.01 \pm 0.01 $
 $ \chi^{2} = 0.006 $
 
 \ref{tab:calibrazione_dac}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Calibrazione ADC}
+\section{Campionamento di tensioni continue e calibrazione dell'ADC}
 
 \begin{figure}[t]%[t]
 \centering
@@ -220,19 +230,42 @@ $ \chi^{2} = 0.006 $
 \label{fig:graph_calibrazione_adc}
 \end{figure}
 
+$ m = -0.3092 \pm 0.0001 $
+$ q = -0.02 \pm 0.01$
 $ \chi^{2} = 0.57 $
 
 \ref{tab:calibrazione_adc}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% Quarto Giorno 2/11
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Campionamento di tensioni variabili}
+Testo
 
+\subsection{Circuito di \textit{sample-holding}}
+Testo
+
+\begin{figure}[H]%[!ht]
+\begin{center}
+\includegraphics[width=0.35\textwidth]{sch-simulations/digital/output/lf398.png}
+\caption{Sample and hold}
+\label{fig:circuit_flip_flop}
+\end{center}
+\end{figure}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% Circuito completo
+\section{Registrazione della conversione mediante scheda a microcontrollore}
+Testo
+
+\subsection{Verifica del teorema del campionamento di Nyquist-Shannon}
+Testo
+
+\subsection{Valutazione della linearità con metodo della \textit{code density}}
+Testo
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Discussione dei risultati e conclusioni}
+Testo
+
 
 \begin{figure*}[t]%[t]
 \centering
@@ -252,26 +285,6 @@ $ \chi^{2} = 0.57 $
 \clearpage
 
 \begin{appendices}
-
-\section{Oscillatore ad anello}
-
-\begin{figure}[H]%[!ht]
-\begin{center}
-\includegraphics[width=0.40\textwidth]{sch-simulations/digital/output/ring-osc-logic.pdf}
-\caption{Circuito equivalente dell'oscillatore ad anello}
-\label{fig:circuit_ring_oscillator}
-\end{center}
-\end{figure}
-
-\begin{figure}[H]%[!ht]
-\begin{center}
-\includegraphics[width=0.48\textwidth]{analysis/output/inverter_ring_xy.pdf}
-\caption{Studio dell'oscillatore ad anello}
-\label{fig:inverter_ring_xy}
-\end{center}
-\end{figure}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Caratterizzazione transistor npn}
 
