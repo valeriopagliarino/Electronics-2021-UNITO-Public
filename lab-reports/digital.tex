@@ -63,7 +63,8 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{abstract} 
-Introduzione all'esperienza
+Dopo aver analizzato i principali circuiti analogici che consentono l'amplificazione e il condizionamento dei segnali, in questa seconda relazione di laboratorio si studieranno alcune tecniche di elettronica digitale con l'obiettivo di realizzare un convertitore ADC (Analog to Digital Converter) ad approssimazioni successive, analizzando la catena del segnale dall'ingresso analogico fino alla memorizzazione dei dati su scheda di memoria. Inizialmente, dopo aver introdotto la famiglia di integrati digitali 7400xxxx che verrà utilizzata, verranno prese in esame alcune funzioni logiche fondamentali come le porte AND, NAND, NOT, i flip-flop di tipo set-reset e J-K di cui verranno studiate le tabelle di verità e talvolta le funzioni di trasferimento. A questo punto verrà introdotta l'architettura generale del convertitore SAR, seguita da una rapida caratterizzazione dei sottocircuiti che lo compongono: il registro a scorrimento con la relativa logica di controllo, i J-K, il DAC e lo stadio analogico. Successivamente, dopo aver assemblato il circuito, si passerà alla verifica di alcune caratteristiche quantitative di base, con la calibrazione del DAC e dell'ADC al completo.
+A questo punto si potranno finalmente eseguire le prime operazioni di campionamento con l'ausilio dell'oscilloscopio: dapprima di segnali costanti e poi di forme d'onda variabili nel tempo. Infine, verrà installato un circuito analogico di \textit{sample holding} per migliorare le prestazioni del dispositivo nel campionamento di segnali variabili e si prevederà un sistema di registrazione delle misure mediante una scheda a microcontrollore. Quest'ultimo passaggio renderà possibile la verifica del teorema del campionamento di Nyquist-Shannon e la valutazione della linearità differenziale del dispositivo realizzato. 
 \end{abstract}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -71,10 +72,11 @@ Introduzione all'esperienza
 
 \section{Componenti utilizzati}
 
-Qui descrizione degli integrati logici utilizzati, direi che è un po' brutto fare dei copia e incolla della descrizione degli strumenti di misura che abbiamo già messo in analogica, siccome sia Aglietta che Migliore hanno letto quella relazione. 
+In aggiunta alla strumentazione da laboratorio già descritta nella precedente relazione, per la realizzazione delle esperienze di elettronica digitale sono stati utilizzati i componenti descritti brevemente nei sotto-paragrafi seguenti.
 
 
 \subsection{Logica TTL serie 7400}
+Testo
 
 \begin{figure}[H]%[!ht]
 \begin{center}
@@ -85,14 +87,13 @@ Qui descrizione degli integrati logici utilizzati, direi che è un po' brutto fa
 \end{figure}
 
 \subsection{Transistor di interfaccia PN2222A}
+Testo
 
+\subsection{Integrato di \textit{sample holding} LF398}
+Testo
 
-
-
-Questi valori li riporterei nel corpo della descrizione dello schema elettrico dell'ADC.
-$R_b = 0.99 \pm 0.01 \ k\Omega \\$
-$R_c = 99 \pm 1 \ k\Omega$
-
+\subsection{Scheda a microcontrollore}
+Nell'ultima fase dell'esperienza di laboratorio verrà realizzato un semplice sistema di registrazione dei valori acquisiti utilizzando un microcontrollore \textit{Atmel ATmega328P} basato sull'architettura Harvard RISC a 8 bit interfacciato con un lettore di schede microSD. Questo MCU viene impiegato con un oscillatore esterno al quarzo a 16 MHz per il clock, dispone di 32 KB di memoria ISP flash e nel nostro caso è installato su una scheda Arduino che ospita anche un secondo microcontrollore \textit{Atmel ATmega16u2} con funzione di interfaccia di programmazione USB. La funzione di questo dispositivo è quella di leggere lo stato delle uscite dei J-K, corrispondente alla rappresentazione binaria del segnale campionato, e di scrivere su un file salvato una scheda microSD a cui è connesso mediante una linea seriale SPI.
 
 
 
@@ -104,7 +105,7 @@ $R_c = 99 \pm 1 \ k\Omega$
 
 \begin{figure}[H]%[!ht]
 \begin{center}
-\includegraphics[width=0.40\textwidth]{sch-simulations/digital/output/flip-flop-RS.pdf}
+\includegraphics[width=0.30\textwidth]{sch-simulations/digital/output/flip-flop-RS.pdf}
 \caption{Logica interna del flip-flop set-reset}
 \label{fig:circuit_flip_flop}
 \end{center}
@@ -116,6 +117,15 @@ $R_c = 99 \pm 1 \ k\Omega$
 \begin{center}
 \includegraphics[width=0.54\textwidth]{sch-simulations/digital/output/shift-register.pdf}
 \caption{Registro a scorrimento e circuito di controllo}
+\label{fig:circuit_shift_register}
+\end{center}
+\end{figure}
+
+
+\begin{figure}[H]%[!ht]
+\begin{center}
+\includegraphics[width=0.40\textwidth]{sch-simulations/digital/output/DAC.pdf}
+\caption{DAC}
 \label{fig:circuit_shift_register}
 \end{center}
 \end{figure}
