@@ -67,7 +67,7 @@ def linear_fit(x, y, y_err):
 
 def graph(x, y, x_err=None, y_err=None, y_fit=None, curve_label='dati sperimentali', fit_label = 'fit', title='', x_label='', y_label='', x_ticks=None, y_ticks=None, x_tick_labels=None):
     '''Draw errorbar and if present a fit curve'''
-    fig, ax = plt.subplots(figsize=(6, 8))
+    fig, ax = plt.subplots(figsize=(5, 7))
 
     ax.set_title(title)
     ax.set_xlabel(x_label)
