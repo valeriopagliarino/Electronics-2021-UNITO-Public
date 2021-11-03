@@ -63,7 +63,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{abstract} 
-Dopo aver analizzato i principali circuiti analogici che consentono l'amplificazione e il condizionamento dei segnali, in questa seconda relazione di laboratorio si studieranno alcune tecniche di elettronica digitale con l'obiettivo di realizzare un convertitore ADC (Analog to Digital Converter) ad approssimazioni successive, analizzando la catena del segnale dall'ingresso analogico fino alla memorizzazione dei dati su scheda di memoria. Inizialmente, dopo aver introdotto la famiglia di integrati digitali 7400xxxx che verrà utilizzata, verranno prese in esame alcune funzioni logiche fondamentali come le porte AND, NAND, NOT, i flip-flop di tipo set-reset e J-K di cui verranno studiate le tabelle di verità e talvolta le funzioni di trasferimento. A questo punto verrà introdotta l'architettura generale del convertitore SAR, seguita da una rapida caratterizzazione dei sottocircuiti che lo compongono: il registro a scorrimento con la relativa logica di controllo, i J-K, il DAC e lo stadio analogico. Successivamente, dopo aver assemblato il circuito, si passerà alla verifica di alcune caratteristiche quantitative di base, con la calibrazione del DAC e dell'ADC al completo.
+Dopo aver analizzato i principali circuiti analogici che consentono l'amplificazione e il condizionamento dei segnali, in questa seconda relazione di laboratorio si studieranno alcune tecniche di elettronica digitale con l'obiettivo di realizzare un convertitore ADC (Analog to Digital Converter) ad approssimazioni successive, analizzando la catena del segnale dall'ingresso analogico fino alla memorizzazione dei dati su scheda di memoria. Inizialmente, dopo aver introdotto la famiglia di integrati digitali 7400 che verrà utilizzata, verranno prese in esame alcune funzioni logiche fondamentali come le porte AND, NAND, NOT, i flip-flop di tipo set-reset e J-K di cui verranno studiate le tabelle di verità e talvolta le funzioni di trasferimento. A questo punto verrà introdotta l'architettura generale del convertitore SAR, seguita da una rapida caratterizzazione dei sottocircuiti che lo compongono: il registro a scorrimento con la relativa logica di controllo, i J-K, il DAC e lo stadio analogico. Successivamente, dopo aver assemblato il circuito, si passerà alla verifica di alcune caratteristiche quantitative di base, con la calibrazione del DAC e dell'ADC al completo.
 A questo punto si potranno finalmente eseguire le prime operazioni di campionamento con l'ausilio dell'oscilloscopio: dapprima di segnali costanti e poi di forme d'onda variabili nel tempo. Infine, verrà installato un circuito analogico di \textit{sample holding} per migliorare le prestazioni del dispositivo nel campionamento di segnali variabili e si prevederà un sistema di registrazione delle misure mediante una scheda a microcontrollore. Quest'ultimo passaggio renderà possibile la verifica del teorema del campionamento di Nyquist-Shannon e la valutazione della linearità differenziale del dispositivo realizzato. 
 \end{abstract}
 
@@ -72,36 +72,46 @@ A questo punto si potranno finalmente eseguire le prime operazioni di campioname
 
 \section{Componenti utilizzati}
 
-In aggiunta alla strumentazione da laboratorio già descritta nella precedente relazione, per la realizzazione delle esperienze di elettronica digitale sono stati utilizzati i componenti descritti brevemente nei sotto-paragrafi seguenti.
+In aggiunta alla strumentazione da laboratorio già descritta nella precedente relazione e all'OPA LM741, per la realizzazione delle esperienze di elettronica digitale sono stati utilizzati i componenti descritti brevemente nei sotto-paragrafi seguenti.
 
 
 \subsection{Logica TTL serie 7400}
-Testo
+I ciruiti logici descritti nella presente relazione di laboratorio sono stati realizzati utilizzando la famiglia di integrati 7400 che utilizza lo standard TTL. Questi componenti sono realizzati mediante transistor bipolari e resistori su die a basso livello di integrazione e riconoscono come segnale di livello alto una tensione da 2 V a 5 V e come segnale di livello basso una tensione da a 0 V a 0.8 V; lo standard prevede un margine di rumore pari a 0.4 V. In laboratorio sono stati utilizzati:
+\begin{itemize}
+    \item \textbf{SN74LS164M} - Un registro a scorrimento con capacità di memoria di 8 bit che supporta frequenze di clock fino a 25 MHz con un assorbimento di corrente inferiore a 54 mA dotato di due ingressi seriali in NAND tra loro e un ingresso di clear asincrono.
+    
+    \item \textbf{74LS76AN} - Un integrato contenente due flip-flop di tipo J-K che lavorano sul fronte di discesa del clock (\textit{negative-edge triggered}) con ingressi separati per il clock e per il segnale di clear asincrono. Il componente supporta frequenze di commutazione fino a 30 MHz e ritardo di propagazione dei segnali di clock, clear e PRE inferiore a 25 ns. Dal momento che le uscite Q di questi J-K verranno utilizzate per alimentare una rete di resistenze per realizzare un DAC R-2R, è interessante riportare che questi componenti supportano correnti di corto-circuito sulle uscite fino a 100 mA in regime impulsato.
+    
+    \item \textbf{SN74LS08N} - Un integrato che implementa 4 porte AND in logica positiva mediante uno stadio di ingresso realizzato con transistor BJT multi-emettitore e uscita totem-pole. Questo componente ha tempi di commutazione  di 17.5 ns per portarsi allo stato basso e 12 ns per portarsi allo stato alto.
+    
+    \item \textbf{SN74LS00N} - Un integrato che implementa 4 porte NAND in logica positiva con tempi di commutazione di 9 ns e 10 ns rispettivamente per portarsi allo stato basso o allo stato alto.
+    
+    \item \textbf{SN74LS04} - Un integrato che implementa 6 porte NOT (inverter) con tempi di commutzione di 12 ns e 8 ns rispettivamente per portarsi allo stato basso e allo stato alto.
+\end{itemize}
 
 \begin{figure}[H]%[!ht]
 \begin{center}
 \includegraphics[width=0.40\textwidth]{lab-reports/Schematics-and-graphics/SN7400N.png}
-\caption{Fotografia del DIE e \textit{package} plastico DIP \textit{(Dual Inline Package)} dell'integrato con 2 porte NAND SN7400N}
+\caption{Fotografia del DIE e del \textit{package} plastico DIP \textit{(Dual Inline Package)} dell'integrato con 2 porte NAND SN7400N}
 \label{fig:integrated_nand}
 \end{center}
 \end{figure}
 
 \subsection{Transistor di interfaccia PN2222A}
-Testo
+Gli integrati logici appena descritti, appartenendo alla famiglia TTL con stato alto a 5V, non possono essere collegati direttamente all'uscita degli amplificatori operazionali presenti nello stadio analogico del SAR, che operano tra +15V e -15V, si rende quindi necessaria l'introduzione di un transistor di interfaccia come il PN2222A, un BJT NPN \textit{general purpose} con $h_{fe}$ compreso tra 100 e 300 che tollera correnti di collettore fino a 600 mA. Questo dispositivo verrà utilizzato in configurazione ad emettitore comune in modalità interdizione / saturazione.
 
 \subsection{Integrato di \textit{sample holding} LF398}
-Testo
+Il convertitore SAR tratttato in questa relazione può campionare segnali variabili nel tempo sotto l'ipotesi di piccole variazioni di questi durante ciascun ciclo di campionamento e questo implica di utilizzare una frequenza di campionamento molto maggiore della frequenza delle armoniche di Fourier del segnale in ingresso. Per ottenere prestazioni migliori, raggiungendo il limite posto dal teorema di campionamento di Nyquist-Shannon, è necessario introdurre un circuito in grado di mantenere costante la tensione all'ingresso dell'ADC fino a quanto il ciclo di conversione non viene completato. Questo viene realizzato mediante l'integrato monolitico \textit{sample and hold} LF398, che prevede un ingresso compatibile con la logica TTL per controllare la finestra di campionamento, due pin per il collegamento del condensatore che permetterà il mantenimento della tensione in uscita, due pin di alimentazione duale $\pm$ 15V e naturalmente i pin di ingresso e di uscita del segnale analogico. L'integrato necessita di meno di 10 $\mu s$ per effettuare il campionamento e il datasheet riporta una stabilità del guadagno pari allo 0.002 \%.
 
 \subsection{Scheda a microcontrollore}
 Nell'ultima fase dell'esperienza di laboratorio verrà realizzato un semplice sistema di registrazione dei valori acquisiti utilizzando un microcontrollore \textit{Atmel ATmega328P} basato sull'architettura Harvard RISC a 8 bit interfacciato con un lettore di schede microSD. Questo MCU viene impiegato con un oscillatore esterno al quarzo a 16 MHz per il clock, dispone di 32 KB di memoria ISP flash e nel nostro caso è installato su una scheda Arduino che ospita anche un secondo microcontrollore \textit{Atmel ATmega16u2} con funzione di interfaccia di programmazione USB. La funzione di questo dispositivo è quella di leggere lo stato delle uscite dei J-K, corrispondente alla rappresentazione binaria del segnale campionato, e di scrivere su un file salvato una scheda microSD a cui è connesso mediante una linea seriale SPI.
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\section{Caratterizzazione dei circuiti logici fondamentali}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% Primo Giorno 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\section{Caratterizzazione del flip-flop RS}
+\subsection{Flip-flop di tipo set - reset}
+Testo
 
 \begin{figure}[H]%[!ht]
 \begin{center}
@@ -111,37 +121,29 @@ Nell'ultima fase dell'esperienza di laboratorio verrà realizzato un semplice si
 \end{center}
 \end{figure}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Verifica della tabella di verità della porta AND}
+Testo
+
+
+\subsection{Studio della caratteristica di trasferimento della porta AND}
+Testo
+
+
+\subsection{Studio della caratteristica di trasferimento della porta NOT}
+Testo
 
 \begin{figure}[H]%[!ht]
 \begin{center}
-\includegraphics[width=0.54\textwidth]{sch-simulations/digital/output/shift-register.pdf}
-\caption{Registro a scorrimento e circuito di controllo}
-\label{fig:circuit_shift_register}
+\includegraphics[width=0.40\textwidth]{analysis/output/inverter_ring_xy.pdf}
+\caption{Caratteristica di trasferimento della porta NOT}
+\label{fig:inverter_ring_xy}
 \end{center}
 \end{figure}
 
 
-\begin{figure}[H]%[!ht]
-\begin{center}
-\includegraphics[width=0.40\textwidth]{sch-simulations/digital/output/DAC.pdf}
-\caption{DAC}
-\label{fig:circuit_shift_register}
-\end{center}
-\end{figure}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% Secondo Giorno 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\section{Tabella di verità AND}
-
-\subsection{Misura $V_{IH}$ }
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\section{Tabella di verità JK}
+\subsection{Verifica della tabella di verità del flip-flop di tipo J-K}
+Testo
 
 \begin{figure}[t]%[t]
 \centering
@@ -152,9 +154,118 @@ Nell'ultima fase dell'esperienza di laboratorio verrà realizzato un semplice si
 \label{fig:circuit_JK}
 \end{figure}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Verifica del funzionamento del ring oscillator realizzato con inverter}
+Come anticipato nel paragrafo di descrizione degli integrati, il dispositivo SN74LS04 che implementa 6 porte NOT presenta un tempo di commutazione non trascurabile al variare del livello logico del segnale in ingresso alle alte frequenze e questo, se realizziamo una catena di porte OR, darà origine ad un ritardo di propagazione del segnale in ogni porta. 
+Questo effetto si può sfruttare in modo interessante realizzando un anello chiuso con un numero dispari di inverters, nel nostro caso 7 porte, realizzati con due integrati;  
+
+\begin{figure}[H]%[!ht]
+\begin{center}
+\includegraphics[width=0.40\textwidth]{sch-simulations/digital/output/ring-osc-logic.pdf}
+\caption{Circuito equivalente dell'oscillatore ad anello}
+\label{fig:circuit_ring_oscillator}
+\end{center}
+\end{figure}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Realizzazione di un ADC SAR a 4 bit}
+
+\subsection{Descrizione generale e specifiche tecniche desiderate}
+
+\subsection{Verifica del circuito con registro di scorrimento e annessa logica di controllo}
+Testo
+
+\begin{figure}[H]%[!ht]
+\begin{center}
+\includegraphics[width=0.50\textwidth]{sch-simulations/digital/output/shift-register.pdf}
+\caption{Registro a scorrimento e circuito di controllo}
+\label{fig:circuit_shift_register}
+\end{center}
+\end{figure}
+
+\subsection{Verifica del circuito di pilotaggio del DAC (J-K) e dello stadio analogico}
+Testo
+
+\begin{figure}[H]%[!ht]
+\begin{center}
+\includegraphics[width=0.40\textwidth]{sch-simulations/digital/output/DAC.pdf}
+\caption{DAC}
+\label{fig:circuit_shift_register}
+\end{center}
+\end{figure}
+
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% Terzo Giorno 
+
+\section{Calibrazione del DAC}
+
+\begin{figure}[t]%[t]
+\centering
+\begin{center}
+\includegraphics[width=0.40\textwidth]{analysis/output/calibrazione_dac.pdf}
+\end{center}
+\caption{Calibrazione DAC}
+\label{fig:graph_calibrazione_dac}
+\end{figure}
+
+$ m = -0.211 \pm 0.001 $
+$ q = -0.01 \pm 0.01 $
+$ \chi^{2} = 0.006 $
+
+\ref{tab:calibrazione_dac}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Campionamento di tensioni continue e calibrazione dell'ADC}
+
+\begin{figure}[t]%[t]
+\centering
+\begin{center}
+\includegraphics[width=0.40\textwidth]{analysis/output/calibrazione_adc.pdf}
+\end{center}
+\caption{Calibrazione ADC}
+\label{fig:graph_calibrazione_adc}
+\end{figure}
+
+$ m = -0.3092 \pm 0.0001 $
+$ q = -0.02 \pm 0.01$
+$ \chi^{2} = 0.57 $
+
+\ref{tab:calibrazione_adc}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Campionamento di tensioni variabili}
+Testo
+
+\subsection{Circuito di \textit{sample-holding}}
+Testo
+
+\begin{figure}[H]%[!ht]
+\begin{center}
+\includegraphics[width=0.35\textwidth]{sch-simulations/digital/output/lf398.png}
+\caption{Sample and hold}
+\label{fig:circuit_flip_flop}
+\end{center}
+\end{figure}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Registrazione della conversione mediante scheda a microcontrollore}
+Testo
+
+\subsection{Verifica del teorema del campionamento di Nyquist-Shannon}
+Testo
+
+\subsection{Valutazione della linearità con metodo della \textit{code density}}
+Testo
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Discussione dei risultati e conclusioni}
+Testo
+
 
 \begin{figure*}[t]%[t]
 \centering
@@ -171,30 +282,63 @@ Nell'ultima fase dell'esperienza di laboratorio verrà realizzato un semplice si
 %% Appendice
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\clearpage
 
 \begin{appendices}
 
-\section{Oscillatore ad anello}
-
-\begin{figure}[H]%[!ht]
-\begin{center}
-\includegraphics[width=0.40\textwidth]{sch-simulations/digital/output/ring-osc-logic.pdf}
-\caption{Circuito equivalente dell'oscillatore ad anello}
-\label{fig:circuit_ring_oscillator}
-\end{center}
-\end{figure}
-
-\begin{figure}[H]%[!ht]
-\begin{center}
-\includegraphics[width=0.48\textwidth]{analysis/output/inverter_ring_xy.pdf}
-\caption{Studio dell'oscillatore ad anello}
-\label{fig:inverter_ring_xy}
-\end{center}
-\end{figure}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 \section{Caratterizzazione transistor npn}
+
+\section{Tabella calibrazione DAC}
+
+\centering
+\begin{tabular}{cc}
+binario & V $ \pm 0.1 \ V $ \\ \hline
+0       & 0.0                          \\
+1       & -0.3                       \\
+10      & -0.6                       \\
+11      & -0.9                       \\
+100     & -1.2                       \\
+101     & -1.6                       \\
+110     & -1.9                       \\
+111     & -2.2                       \\
+1000    & -2.5                       \\
+1001    & -2.8                       \\
+1010    & -3.1                       \\
+1011    & -3.4                       \\
+1100    & -3.7                       \\
+1101    & -4.0                       \\
+1110    & -4.3                       \\
+1111    & -4.6
+\vspace{5 mm}
+\caption{}
+\label{tab:calibrazione_dac}
+\end{tabular}
+
+
+\section{Tabella calibrazione ADC}
+
+\begin{tabular}{cc}
+binario & $V_{min}  \pm 0.1 \ V$ \\ \hline
+1111    & -3.2                  \\
+1110    & -3.0                  \\
+1101    & -2.7                  \\
+1100    & -2.5                  \\
+1011    & -2.3                  \\
+1010    & -2.1                  \\
+1001    & -1.9                  \\
+1000    & -1.7                  \\
+111     & -1.5                  \\
+110     & -1.3                  \\
+101     & -1.0                  \\
+100     & -0.8                  \\
+11      & -0.7                  \\
+10      & -0.5                  \\
+1       & -0.2                  \\
+0       & 0.0
+\vspace{5 mm}
+\caption{}
+\label{tab:calibrazione_adc}
+\end{tabular}
 
 
 \end{appendices}

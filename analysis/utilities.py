@@ -65,19 +65,33 @@ def linear_fit(x, y, y_err):
     return (q,m), fitted
 
 
-def graph(x, y, x_err=None, y_err=None, y_fit=None, curve_label='dati sperimentali', fit_label = 'fit', title='', x_label='', y_label=''):
+def graph(x, y, x_err=None, y_err=None, y_fit=None, curve_label='dati sperimentali', fit_label = 'fit', title='', x_label='', y_label='', x_ticks=None, y_ticks=None, x_tick_labels=None):
     '''Draw errorbar and if present a fit curve'''
-    fig, ax = plt.subplots(figsize=(6, 8))
+    fig, ax = plt.subplots(figsize=(5, 7))
 
     ax.set_title(title)
     ax.set_xlabel(x_label)
     ax.set_ylabel(y_label)
 
+
+    if (x_ticks is not None):
+        ax.set_xticks(x_ticks)
+
+    if (x_tick_labels is not None):
+        ax.set_xticklabels(x_tick_labels)
+
+
+    if (y_ticks is not None):
+        ax.set_yticks(y_ticks)
+
+    ax.errorbar(x, y, xerr=x_err, yerr=y_err, label=curve_label, fmt='.', color='black')
+
     if(y_fit is not None):
         ax.plot(x, y_fit, label=fit_label, c='blue')
 
-    ax.errorbar(x, y, xerr=x_err, yerr=y_err, label=curve_label, fmt='.', color='black')
+
     ax.legend()
+    ax.grid()
 
     plt.show()
 

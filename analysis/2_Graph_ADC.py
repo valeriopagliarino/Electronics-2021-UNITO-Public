@@ -12,4 +12,4 @@ v_err = np.ones(16)*0.1
 fit_p, v_fit = linear_fit(n, v, v_err)
 
 stats(n, v, y_err=v_err, y_fit=v_fit, fit_par_values=fit_p, fit_par_names=['m', 'q'])
-graph(n, v, y_err=v_err, y_fit=v_fit, title='ADC', x_label='', y_label='V (V)')
+graph(n, v, y_err=v_err, y_fit=v_fit, title='Calibrazione dell\'ADC', x_label='binario', y_label='V (V)', x_ticks=np.arange(0, 16, 1), x_tick_labels=[bin(i)[2:] for i in range(16)])
