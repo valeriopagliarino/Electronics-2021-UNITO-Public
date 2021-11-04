@@ -1,13 +1,12 @@
 from sys import argv
 import numpy as np
+import pandas as pd
 
-with open(argv[1]) as file:
-    data = file.readlines()
+data = pd.read_csv(argv[1])
+numbers = data.to_numpy().transpose()[1]
 
-numbers = [float(i[:-1]) for i in data]
 ints = [int(i) for i in numbers]
-
 unique, counts = np.unique(ints, return_counts=True)
 
-for i in zip(range(1,16), counts):
+for i in zip(range(0,16), counts):
     print(f"{i[0]} : {i[1]}")
