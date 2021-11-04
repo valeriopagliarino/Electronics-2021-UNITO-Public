@@ -64,8 +64,8 @@ void gen_hist(DataErrors &data){
     hist_data->GetYaxis()->SetTitle("Ampiezza"); 
     
     /* Range */
-/*     hist_data->GetXaxis()->SetRangeUser(6.22, 6.60);  */
-    /* hist_data->GetYaxis()->SetRangeUser(0,110);   */
+    /*     hist_data->GetXaxis()->SetRangeUser(6.22, 6.60);  */
+     hist_data->GetYaxis()->SetRangeUser(0, 80000);
 /*      */
 
     /* Disegna */
@@ -78,7 +78,6 @@ void gen_hist(DataErrors &data){
 int hist_arduino(){
     /* Read data */
     DataErrors data("../data-source/4-11-21/ramp_merge/DATA9_single.TXT", 0, "");
-    
     gen_hist(data);
 
     return 0;
