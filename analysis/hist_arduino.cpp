@@ -42,7 +42,7 @@ void gen_hist(DataErrors &data){
     TCanvas *canvas = new TCanvas("canvas data" , "canvas data", 0,0, 1920, 1080); 
     canvas->cd(); 
 
-    TH1F *hist_data = new TH1F("data","data", n_classi, data[0].d, data[-1].d); 
+    TH1F *hist_data = new TH1F("data","data", n_classi, data[0].d, data[-1].d + 1); 
    
     for(PairDatumError pde : data)
        hist_data->Fill(pde.d, 1); 

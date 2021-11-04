@@ -8,5 +8,5 @@ numbers = data.to_numpy().transpose()[1]
 ints = [int(i) for i in numbers]
 unique, counts = np.unique(ints, return_counts=True)
 
-for i in zip(range(1,16), counts):
+for i in zip(range(0,16), counts):
     print(f"{i[0]} : {i[1]}")
