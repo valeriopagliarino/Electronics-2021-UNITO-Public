@@ -77,7 +77,7 @@ void gen_hist(DataErrors &data){
 
 int hist_arduino(){
     /* Read data */
-    DataErrors data("../data-source/4-11-21/data.csv", 0, "");
+    DataErrors data("../data-source/4-11-21/hist.txt", 0, "");
     
     gen_hist(data);
 
