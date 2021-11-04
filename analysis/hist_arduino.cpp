@@ -77,7 +77,7 @@ void gen_hist(DataErrors &data){
 
 int hist_arduino(){
     /* Read data */
-    DataErrors data("../data-source/4-11-21/ramp_merge/S46_single.txt", 0, "");
+    DataErrors data("../data-source/4-11-21/ramp_merge/DATA9_single.TXT", 0, "");
     
     gen_hist(data);
 
