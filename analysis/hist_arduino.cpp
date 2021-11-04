@@ -26,7 +26,7 @@ void gen_hist(DataErrors &data){
 
 
     const double dispersione_max = data[-1].d - data[0].d;
-    const double ampiezza_classe = 1 * 3;  /* 3 volte dato */
+    const double ampiezza_classe = 1;  /* 3 volte dato */
     const int n_classi = ceil(dispersione_max / ampiezza_classe);
 
     const double dispersione_ist = n_classi * ampiezza_classe;
@@ -77,7 +77,7 @@ void gen_hist(DataErrors &data){
 
 int hist_arduino(){
     /* Read data */
-    DataErrors data("../data-source/4-11-21/data.csv", 0, "");
+    DataErrors data("../data-source/4-11-21/hist.txt", 0, "");
     
     gen_hist(data);
 
