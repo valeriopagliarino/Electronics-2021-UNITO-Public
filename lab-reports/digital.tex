@@ -1,4 +1,23 @@
-
+% TO DO ANALISI DATI:
+% 
+% 1. Tutte le tabelle di verità e i grafici logici di timing:
+%   - Porta AND
+%   - J/K
+%   - R/S
+%   - Clear
+%   - Altri circuiti logici dell'ADC: registro di scorrimento, porte AND di pilotaggio dei J/K etc... per il paragrafo IV.
+%
+% 2. Immagini oscilloscopio dei segnale di clock e di clear
+%   
+%
+% 3. Le tabelle con tutti i plot della calibrazione ADC
+%
+% 4. Le tabelle con tutti i plot di Nyquist (interpolati
+%    con sinusoidi) dai dati di Arduino
+%
+% 5. Istogrammi code density
+%
+%
 
 \documentclass[journal]{IEEEtran}
 
@@ -121,11 +140,41 @@ Nell'ultima fase dell'esperienza di laboratorio verrà realizzato un semplice si
 \section{Caratterizzazione dei circuiti logici fondamentali}
 
 \subsection{Verifica della tabella di verità della porta AND}
-Testo
+Una porta AND è un gate logico digitale con due o più ingressi e un'uscita che esegue la congiunzione logica. L'output di tale componente rispetta la seguente tabella di verità:
+\begin{center}
+\begin{tabular}{ |c|c|c| } 
+ \hline
+ A & B & OUT \\ \hline 
+ 0 & 0 & 0 \\ \hline
+ 1 & 0 & 0 \\ \hline
+ 0 & 0 & 0 \\ \hline
+ 1 & 1 & 1 \\ \hline
+ 
+ \hline
+\end{tabular}
+\end{center}
+In laboratorio utilizzando l'integrato \textbf{SN74LS08N} e fornendo in ingresso due onde quadre di frequenza 5 Hz oscillanti tra 0 e 5 V e sfasate di un quarto di periodo si è ottenuta la  \textit{figura \ref{fig:AND-table}} 
+\begin{figure}[H]%[!ht]
+\begin{center}
+\includegraphics[width=0.40\textwidth]{analysis/output/AND-all.pdf}
+\caption{Verifica della tabella di verità della porta logica AND}
+\label{fig:AND-table}
+\end{center}
+\end{figure}
+
+Dal grafico si evincono tutti i possibili scenari, notando in particolare che il  segnale in uscita risulta allo stato logico 1 solamente nel momento in cui entrambi gli ingressi sono in tale livello.
 
 
-\subsection{Studio della caratteristica di trasferimento della porta AND}
+\subsection{Studio della caratteristica di trasferimento della porta NAND}
 Testo
+
+\begin{figure}[H]%[!ht]
+\begin{center}
+\includegraphics[width=0.40\textwidth]{analysis/output/NAND-XY.pdf}
+\caption{Forma d'onda generata dall'anello di inverter}
+\label{fig:graph_ring_oscillator}
+\end{center}
+\end{figure}
 
 
 \subsection{Studio della caratteristica di trasferimento della porta NOT}
@@ -133,7 +182,7 @@ Testo
 
 \begin{figure}[H]%[!ht]
 \begin{center}
-\includegraphics[width=0.40\textwidth]{analysis/output/inverter_ring_xy.pdf}
+\includegraphics[width=0.45\textwidth]{analysis/output/inverter_ring_xy.pdf}
 \caption{Caratteristica di trasferimento della porta NOT}
 \label{fig:inverter_ring_xy}
 \end{center}
@@ -151,6 +200,14 @@ Testo
 \end{center}
 \end{figure}
 
+\begin{figure}[H]%[!ht]
+\begin{center}
+\includegraphics[width=0.40\textwidth]{analysis/output/.pdf}
+\caption{Verifica della tabella di verità di un flip-flop di tipo set-reset realizzato con porte NAND}
+\label{fig:graph_ring_oscillator}
+\end{center}
+\end{figure}
+
 
 
 \subsection{Verifica della tabella di verità del flip-flop di tipo J-K}
@@ -163,6 +220,14 @@ Testo
 \end{center}
 \caption{Logica interna del flip-flop JK}
 \label{fig:circuit_JK}
+\end{figure}
+
+\begin{figure}[H]%[!ht]
+\begin{center}
+\includegraphics[width=0.40\textwidth]{analysis/output/RS_truth.pdf}
+\caption{Verifica della tabella di verità di un flip-flop di tipo J-K}
+\label{fig:graph_ring_oscillator}
+\end{center}
 \end{figure}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -184,13 +249,17 @@ Tra il ritardo di propagazione (t), il numero delle porte (n) e la frequenza del
 f = \frac{1}{2tn}
 \end{math}
 In laboratorio è stata acquisita la forma d'onda seguente, la cui frequenza risulta essere f = (12.66 $\pm$ 0.01) MHz, corrispondente ad un ritardo di propagazione medio tra gli inverter t = (5.6428 $\pm$ 0.0007) ns.
+
+
 \begin{figure}[H]%[!ht]
 \begin{center}
-\includegraphics[width=0.40\textwidth]{data-source/25-10-21/ring-oscillator.JPG}
+\includegraphics[width=0.52\textwidth]{analysis/output/oscillating-ring.pdf}
 \caption{Forma d'onda generata dall'anello di inverter}
 \label{fig:graph_ring_oscillator}
 \end{center}
 \end{figure}
+
+
 Oscillatori di questo tipo sono utili per numerose applicazioni che spaziano dai VCO (voltage controller oscillators) dei phased-locked-loops (PLL) impiegati per generare il clock di tutte le moderne CPU fino alla generazione di numeri casuali sfruttando il jitter.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -212,6 +281,7 @@ Il convertitore si compone dei seguenti blocchi funzionali fondamentali (con rif
 \subsection{Verifica del circuito con registro di scorrimento e annessa logica di controllo}
 Testo
 
+
 \begin{figure}[H]%[!ht]
 \begin{center}
 \includegraphics[width=0.50\textwidth]{sch-simulations/digital/output/shift-register.pdf}
@@ -219,6 +289,8 @@ Testo
 \label{fig:circuit_shift_register}
 \end{center}
 \end{figure}
+
+
 
 \subsection{Verifica del circuito di pilotaggio del DAC (J-K) e dello stadio analogico}
 Testo
@@ -233,6 +305,26 @@ Testo
 
 \subsection{Caratteristica di trasferimento del transistor di interfaccia}
 Testo
+
+\begin{figure}[H]%[!ht]
+\begin{center}
+\includegraphics[width=0.45\textwidth]{analysis/output/NPN-XY.pdf}
+\caption{Caratteristica di trasferimento in tensione base-collettore del transistor di interfaccia.}
+\label{fig:inverter_ring_xy}
+\end{center}
+\end{figure}
+
+
+\subsection{Caratteristiche del segnale di \textit{clear}}
+Testo
+
+\begin{figure}[H]%[!ht]
+\begin{center}
+\includegraphics[width=0.45\textwidth]{data-source/25-10-21/DeltaT-clear.JPG}
+\caption{Ritardo di propagazione attraverso i circuiti logici di U8 del segnale di clear}
+\label{fig:inverter_ring_xy}
+\end{center}
+\end{figure}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -272,6 +364,12 @@ $ \chi^{2} = 0.57 $ \\
 
 \ref{tab:calibrazione_adc}
 
+\begin{figure*}[t]%[t]
+\centering
+\includegraphics[trim = {30 0 50 0}, width=0.95\textwidth]{analysis/output/calibration.pdf}
+\caption{Calibrazione dell'ADC}
+\label{fig:waveforms_no_sh_scope}
+\end{figure*}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Campionamento di tensioni variabili}
@@ -279,7 +377,23 @@ Testo
 
 \begin{figure}[H]%[!ht]
 \begin{center}
-\includegraphics[trim = {0 0 0 0}, width=0.50\textwidth]{analysis/output/direct_aq_waveforms.pdf}
+\includegraphics[trim = {0 25 0 0},clip, width=0.50\textwidth]{analysis/output/direct_aq_waveforms.pdf}
+\caption{Didascalia}
+\label{fig:circuit_DAC}
+\end{center}
+\end{figure}
+
+\begin{figure}[H]%[!ht]
+\begin{center}
+\includegraphics[trim = {0 25 0 0},clip, width=0.50\textwidth]{analysis/output/triangle_wave_aq.pdf}}
+\caption{Didascalia}
+\label{fig:circuit_DAC}
+\end{center}
+\end{figure}
+
+\begin{figure}[H]%[!ht]
+\begin{center}
+\includegraphics[trim = {0 25 0 0},clip, width=0.50\textwidth]{analysis/output/square_wave_aq.pdf}}
 \caption{Didascalia}
 \label{fig:circuit_DAC}
 \end{center}
@@ -294,8 +408,9 @@ Testo
 
 
 
-\subsection{Circuito di \textit{sample-holding}}
+\subsection{Circuito \textit{sample-hold}}
 Testo
+
 
 \begin{figure}[H]%[!ht]
 \begin{center}
@@ -309,8 +424,71 @@ Testo
 \section{Registrazione della conversione mediante scheda a microcontrollore}
 Testo
 
-\subsection{Verifica del teorema del campionamento di Nyquist-Shannon}
+\subsection{Verifica del teorema del campionamento di Nyquist-Shannon con sample-hold e oscilloscopio}
 Testo
+
+\clearpage
+\clearpage
+\begin{figure}[H]%[!ht]
+\begin{center}
+\includegraphics[trim={0 25 0 0}, clip, width=0.50\textwidth]{analysis/output/campionamento_50Hz.pdf}
+
+\caption{Campionamento di forma d'onda sinusoidale f = 50 Hz. In rosso il segnale logico di controllo del sample-hold, in nero il segnale in uscita dal sample-hold, in verde il segnale in uscita dal DAC, il blu il segnale analogico in ingresso e in grigio il segnale ricostruito dall'ADC.}
+\label{fig:graph_ring_oscillator}
+\end{center}
+\end{figure}
+\vspace{-10mm}
+%
+\begin{figure}[H]%[!ht]
+\begin{center}
+\includegraphics[trim={0 25 0 0}, clip,width=0.50\textwidth]{analysis/output/campionamento_150Hz.pdf}
+\caption{Campionamento di forma d'onda sinusoidale f = 150 Hz, colori come nella figura precedente.}
+\label{fig:graph_ring_oscillator}
+\end{center}
+\end{figure}
+\vspace{-10mm}
+%
+\begin{figure}[H]%[!ht]
+\begin{center}
+\includegraphics[trim={0 25 0 0}, clip,width=0.50\textwidth]{analysis/output/campionamento_250Hz.pdf}
+\caption{Campionamento di forma d'onda sinusoidale f = 250 Hz, colori come nella figura precedente.}
+\label{fig:graph_ring_oscillator}
+\end{center}
+\end{figure}
+\vspace{-10mm}
+%
+\begin{figure}[H]%[!ht]
+\begin{center}
+\includegraphics[trim={0 40 0 0}, clip,width=0.50\textwidth]{analysis/output/campionamento_350Hz.pdf}
+\caption{Campionamento di forma d'onda sinusoidale f = 350 Hz, colori come nella figura precedente.}
+\label{fig:graph_ring_oscillator}
+\end{center}
+\end{figure}
+\vspace{-10mm}
+%
+\begin{figure}[H]%[!ht]
+\begin{center}
+\includegraphics[trim={0 40 0 0}, clip,width=0.50\textwidth]{analysis/output/campionamento_500Hz.pdf}
+\caption{Campionamento di forma d'onda sinusoidale f = 500 Hz, colori come nella figura precedente.}
+\label{fig:graph_ring_oscillator}
+\end{center}
+\end{figure}
+\vspace{-10mm}
+%
+\begin{figure}[H]%[!ht]
+\begin{center}
+\includegraphics[trim={0 40 0 0}, clip,width=0.50\textwidth]{analysis/output/campionamento_800Hz.pdf}
+\caption{Campionamento di forma d'onda sinusoidale f = 800 Hz, colori come nella figura precedente.}
+\label{fig:graph_ring_oscillator}
+\end{center}
+\end{figure}
+
+\subsection{Verifica del teorema del campionamento di Nyquist-Shannon con sample-hold e acquisizione con microcontrollore}
+Testo
+
+
+
+
 
 \subsection{Valutazione della linearità con metodo della \textit{code density}}
 Testo
