@@ -9,13 +9,14 @@
 %
 % 2. Immagini oscilloscopio dei segnale di clock e di clear
 %   
-%
+% 
 % 3. Le tabelle con tutti i plot della calibrazione ADC
 %
 % 4. Le tabelle con tutti i plot di Nyquist (interpolati
 %    con sinusoidi) dai dati di Arduino
 %
 % 5. Istogrammi code density
+%
 %
 %
 
@@ -97,9 +98,7 @@ In aggiunta alla strumentazione da laboratorio già descritta nella precedente r
 \subsection{Logica TTL serie 7400}
 I ciruiti logici descritti nella presente relazione di laboratorio sono stati realizzati utilizzando la famiglia di integrati 7400 che utilizza lo standard TTL. Questi componenti sono realizzati mediante transistor bipolari e resistori su die a basso livello di integrazione e riconoscono come segnale di livello alto una tensione da 2 V a 5 V e come segnale di livello basso una tensione da a 0 V a 0.8 V; lo standard prevede un margine di rumore pari a 0.4 V. In laboratorio sono stati utilizzati:
 \begin{itemize}
-    \item \textbf{SN74LS164M} - Un registro a scorrimento con capacità di memoria di 8 bit che supporta frequenze di clock fino a 25 MHz con un assorbimento di corrente inferiore a 54 mA dotato di due ingressi seriali in NAND tra loro e un ingresso di clear asincrono. 
-    
-   \cite{D}
+    \item \textbf{SN74LS164M} - Un registro a scorrimento che commuta sul fronte positivo del clock con capacità di memoria di 8 bit che supporta frequenze di clock fino a 25 MHz con un assorbimento di corrente inferiore a 54 mA dotato di due ingressi seriali in NAND tra loro e un ingresso di clear asincrono. \cite{D}
     
     \item \textbf{74LS76AN} - Un integrato contenente due flip-flop di tipo J-K che lavorano sul fronte di discesa del clock (\textit{negative-edge triggered}) con ingressi separati per il clock e per il segnale di clear asincrono. Il componente supporta frequenze di commutazione fino a 30 MHz e ritardo di propagazione dei segnali di clock, clear e PRE inferiore a 25 ns. Dal momento che le uscite Q di questi J-K verranno utilizzate per alimentare una rete di resistenze per realizzare un DAC R-2R, è interessante riportare che questi componenti supportano correnti di corto-circuito sulle uscite fino a 100 mA in regime impulsato.
     \cite{E}
@@ -156,7 +155,7 @@ Una porta AND è un gate logico digitale con due o più ingressi e un'uscita che
 In laboratorio utilizzando l'integrato \textbf{SN74LS08N} e fornendo in ingresso due onde quadre di frequenza 5 Hz oscillanti tra 0 e 5 V e sfasate di un quarto di periodo si è ottenuta la  \textit{figura \ref{fig:AND-table}} 
 \begin{figure}[H]%[!ht]
 \begin{center}
-\includegraphics[width=0.40\textwidth]{analysis/output/AND-all.pdf}
+\includegraphics[width=0.50\textwidth]{analysis/output/AND-all.pdf}
 \caption{Verifica della tabella di verità della porta logica AND}
 \label{fig:AND-table}
 \end{center}
@@ -170,7 +169,7 @@ Testo
 
 \begin{figure}[H]%[!ht]
 \begin{center}
-\includegraphics[width=0.40\textwidth]{analysis/output/NAND-XY.pdf}
+\includegraphics[width=0.45\textwidth]{analysis/output/NAND-XY.pdf}
 \caption{Forma d'onda generata dall'anello di inverter}
 \label{fig:graph_ring_oscillator}
 \end{center}
@@ -210,9 +209,19 @@ Testo
  1 & 1 & 1 & 0 \\ \hline
 \end{tabular}
 \end{center}
+
 \begin{figure}[H]%[!ht]
 \begin{center}
-\includegraphics[width=0.40\textwidth]{analysis/output/set-reset-table.pdf}
+\includegraphics[trim = {0 0 580 0}, clip, width=0.37\textwidth]{analysis/output/set-reset-table.pdf}
+\caption{Verifica della tabella di verità di un flip-flop di tipo set-reset realizzato con porte NAND}
+\label{fig:graph_ring_oscillator}
+\end{center}
+\end{figure}
+
+
+\begin{figure}[H]%[!ht]
+\begin{center}
+\includegraphics[trim = {580 0 0 0}, clip, width=0.37\textwidth]{analysis/output/set-reset-table.pdf}
 \caption{Verifica della tabella di verità di un flip-flop di tipo set-reset realizzato con porte NAND}
 \label{fig:graph_ring_oscillator}
 \end{center}
@@ -245,13 +254,12 @@ Testo
 \end{tabular}
 \end{center}
 
-\begin{figure}[H]%[!ht]
-\begin{center}
-\includegraphics[width=0.48\textwidth]{analysis/output/JK-truth.pdf}
+\begin{figure*}[t]%[t]
+\centering
+\includegraphics[width=0.95\textwidth]{analysis/output/JK-truth.pdf}
 \caption{Verifica della tabella di verità di un flip-flop di tipo J-K}
-\label{fig:graph_ring_oscillator}
-\end{center}
-\end{figure}
+\label{fig:waveforms_no_sh_scope}
+\end{figure*}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -313,6 +321,14 @@ Testo
 \end{center}
 \end{figure}
 
+\begin{figure}[H]%[!ht]
+\begin{center}
+\includegraphics[trim = {0 0 0 0}, clip, width=0.50\textwidth]{reg}
+\caption{BIT con transistor}
+\label{fig:BIT_with_transistor}
+\end{center}
+\end{figure}
+
 
 
 \subsection{Verifica del circuito di pilotaggio del DAC (J-K) e dello stadio analogico}
@@ -320,11 +336,47 @@ Testo
 
 \begin{figure}[H]%[!ht]
 \begin{center}
-\includegraphics[width=0.40\textwidth]{sch-simulations/digital/output/DAC.pdf}
+\includegraphics[width=0.48\textwidth]{sch-simulations/digital/output/DAC.pdf}
 \caption{DAC}
 \label{fig:circuit_DAC}
 \end{center}
 \end{figure}
+
+\begin{figure}[H]%[!ht]
+\begin{center}
+\includegraphics[trim = {100 0 550 0}, clip, width=0.43\textwidth]{analysis/output/cumulative_BIT.pdf}
+\caption{memoria bit}
+\label{fig:cumulative_BIT}
+\end{center}
+\end{figure}
+
+\begin{figure}[H]%[!ht]
+\begin{center}
+\includegraphics[trim = {600 0 100 0}, clip, width=0.39\textwidth]{analysis/output/cumulative_BIT.pdf}
+\caption{memoria bit}
+\label{fig:cumulative_BIT}
+\end{center}
+\end{figure}
+
+
+\begin{figure}[H]%[!ht]
+\begin{center}
+\includegraphics[width=0.48\textwidth]{analysis/output/BIT-shift-clk.pdf}
+\caption{circuito di scorrimento}
+\label{fig:BIT_shift_clk}
+\end{center}
+\end{figure}
+
+\begin{figure}[H]%[!ht]
+\begin{center}
+\includegraphics[trim = {570 0 0 0}, clip, width=0.50\textwidth]{analysis/output/cumulative_BIT_with_transistor.pdf}
+\caption{BIT con transistor}
+\label{fig:BIT_with_transistor}
+\end{center}
+\end{figure}
+
+
+
 
 \subsection{Caratteristica di trasferimento del transistor di interfaccia}
 Testo
@@ -507,14 +559,40 @@ Testo
 \end{figure}
 
 \subsection{Verifica del teorema del campionamento di Nyquist-Shannon con sample-hold e acquisizione con microcontrollore}
-Testo
 
+%% Ridurre numero di immagini, cambiare dimensione
+
+\clearpage 
+\begin{figure*}[t]%[t]
+\centering
+\includegraphics[trim = {150 0 0 400}, width=1.1\textwidth]{analysis/output/cumulative_nyquist_mcu.pdf}
+\caption{campionamento di segnale sinusoidale con frequenze da 5 a 2000 Hz}
+\label{fig:nyquist_mcu_cumulative}
+\end{figure*}
 
 
 
 
 \subsection{Valutazione della linearità con metodo della \textit{code density}}
-Testo
+
+\begin{figure}[H]%[!ht]
+\begin{center}
+\includegraphics[width=0.48\textwidth]{analysis/output/dnl_800_hz.pdf}
+\caption{Istogramma delle frequenze di occupazione dei codici: frequenza di clock pari a 800 Hz}
+\label{fig:graph_dnl_800_hz}
+\end{center}
+\end{figure}
+
+
+
+\begin{figure}[H]%[!ht]
+\begin{center}
+\includegraphics[width=0.48\textwidth]{analysis/output/dnl_8000_hz_S28.pdf}
+\caption{Istogramma delle frequenze di occupazione dei codici: frequenza di clock pari a 8000 Hz}
+\label{fig:graph_dnl_8000_hz_S28}
+\end{center}
+\end{figure}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Discussione dei risultati e conclusioni}
