@@ -19,7 +19,6 @@ using namespace std;
 
 void gen_hist(DataErrors &data){
    /* Sort Data to make hist */
-
     double min = data.min(), max=data.max();
 
     cout << "min = " << min << endl;
@@ -72,23 +71,27 @@ void gen_hist(DataErrors &data){
     cout << "Media [normata]: " << pond_freq.mean() << endl;
     cout << "Dev Std [normata]: " << pond_freq.sigma() << endl; 
 
-    TLine *l1 = new TLine(1, frequencies.mean().d, 15, frequencies.mean().d);
 
     TH1D *dst = new TH1D("dst", "dst", 10000, 0.5, 1.5);
     for(PairDatumError pde : pond_freq)
        dst->Fill(pde.d); 
 
-    /* dst->Draw() ; */
-    cout << dst->GetStdDev();
+    cout << dst->GetStdDev() << endl;
 
-    hist_data->Scale(1./frequencies.mean().d);
     /* Range */
+    hist_data->Scale(1./frequencies.mean().d);
     hist_data->GetYaxis()->SetRangeUser(0, 2);
-    /* Disegna */
 
+    /* Disegna */
     gStyle->SetOptStat(10); 
-    /* hist_data->Draw(); */
-    /* l1->Draw(); */
+    hist_data->Draw();
+
+    /* TLine *l1 = new TLine(1, frequencies.mean().d, 15, frequencies.mean().d); */
+    TLine *l1 = new TLine(1, pond_freq.mean().d, 15, pond_freq.mean().d);
+    l1->SetLineColor(2);
+    l1->SetLineStyle(7);
+    l1->SetLineWidth(2);
+    l1->Draw();
 }
 
 void plot_devstd(double *freq, double *devstd, const int size){
@@ -112,13 +115,13 @@ void plot_devstd(double *freq, double *devstd, const int size){
 
 int hist_arduino(){
     /* Read data */
-    DataErrors data("../data-source/9-11-21/R8_single.csv", 0, "");
-    /* gen_hist(data); */
+    DataErrors data("../data-source/9-11-21/R1_single.csv", 0, "");
+    gen_hist(data);
     
-    DataErrors freq("../data-source/9-11-21/freq_R.csv", 0, "");
-    DataErrors devstd("../data-source/9-11-21/dev_std_R.csv", 0, "");
-
-    plot_devstd(freq.d_toptr(), devstd.d_toptr(), freq.size());
+/*     DataErrors freq("../data-source/9-11-21/freq_R.csv", 0, ""); */
+    /* DataErrors devstd("../data-source/9-11-21/dev_std_R.csv", 0, ""); */
+/*  */
+    /* plot_devstd(freq.d_toptr(), devstd.d_toptr(), freq.size()); */
 
     return 0;
 }
