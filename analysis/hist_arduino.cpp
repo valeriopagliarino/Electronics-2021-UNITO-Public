@@ -96,6 +96,8 @@ void plot_devstd(double *freq, double *devstd, const int size){
     TCanvas *canvas = new TCanvas("canvas data" , "canvas data", 0,0, 1920, 1080); 
     canvas->cd();
 
+    canvas->SetGrid();
+
     TGraph *g = new TGraph(size, freq, devstd);
     g->SetTitle("Distribuzione dev std"); 
     g->GetXaxis()->SetTitle("Frequenza (kHz)"); 
@@ -113,10 +115,10 @@ int hist_arduino(){
     DataErrors data("../data-source/9-11-21/R8_single.csv", 0, "");
     /* gen_hist(data); */
     
-    double arr_freq[] = {0.4, 0.6, 0.8, 1, 1.5, 3, 5, 8};
-    double arr_dev_std[] = {0.036, 0.036, 0.045, 0.039, 0.035, 0.063, 0.099, 0.15};
+    DataErrors freq("../data-source/9-11-21/freq_R.csv", 0, "");
+    DataErrors devstd("../data-source/9-11-21/dev_std_R.csv", 0, "");
 
-    plot_devstd(arr_freq, arr_dev_std, 8);
+    plot_devstd(freq.d_toptr(), devstd.d_toptr(), freq.size());
 
     return 0;
 }
