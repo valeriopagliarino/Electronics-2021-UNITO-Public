@@ -52,29 +52,71 @@ void gen_hist(DataErrors &data){
     hist_data->GetXaxis()->SetTitle("codice"); 
     hist_data->GetYaxis()->SetTitle("frequenza"); 
     
-    /* Range */
-    hist_data->GetYaxis()->SetRangeUser(0, 1000);
-
     DataErrors frequencies;
     cout << "Frequenze bin" << endl;
     for(int i=1; i<n_classi; i++){
-        frequencies +=  PairDatumError(hist_data->GetBinContent(i), 0); 
+        frequencies +=  PairDatumError(hist_data->GetBinContent(i), 0);
         cout << i << ": " << hist_data->GetBinContent(i) << endl;
     }
+    cout << "Media: " << frequencies.mean() << endl;
 
-    cout << "Media: " << frequencies.mean();
+    DataErrors pond_freq;
+    double mean = frequencies.mean().d;
+    for(PairDatumError pde : frequencies){
+        pond_freq += pde / frequencies.mean().d;
+    }
+
+    cout << "Frequenze [normate]" << endl;
+    cout << pond_freq << endl;
+
+    cout << "Media [normata]: " << pond_freq.mean() << endl;
+    cout << "Dev Std [normata]: " << pond_freq.sigma() << endl; 
+
     TLine *l1 = new TLine(1, frequencies.mean().d, 15, frequencies.mean().d);
 
+    TH1D *dst = new TH1D("dst", "dst", 10000, 0.5, 1.5);
+    for(PairDatumError pde : pond_freq)
+       dst->Fill(pde.d); 
+
+    /* dst->Draw() ; */
+    cout << dst->GetStdDev();
+
+    hist_data->Scale(1./frequencies.mean().d);
+    /* Range */
+    hist_data->GetYaxis()->SetRangeUser(0, 2);
     /* Disegna */
+
     gStyle->SetOptStat(10); 
-    hist_data->Draw();
-    l1->Draw();
+    /* hist_data->Draw(); */
+    /* l1->Draw(); */
+}
+
+void plot_devstd(double *freq, double *devstd, const int size){
+
+    TCanvas *canvas = new TCanvas("canvas data" , "canvas data", 0,0, 1920, 1080); 
+    canvas->cd();
+
+    TGraph *g = new TGraph(size, freq, devstd);
+    g->SetTitle("Distribuzione dev std"); 
+    g->GetXaxis()->SetTitle("Frequenza (kHz)"); 
+    g->GetYaxis()->SetTitle("Dev Std"); 
+
+    g->SetMarkerSize(0.8);
+    g->SetMarkerStyle(21);
+    g->SetMarkerColor(4);
+ 
+    g->Draw("APL");
 }
 
 int hist_arduino(){
     /* Read data */
-    DataErrors data("../data-source/4-11-21/S28_single.csv", 0, "");
-    gen_hist(data);
+    DataErrors data("../data-source/9-11-21/R8_single.csv", 0, "");
+    /* gen_hist(data); */
+    
+    double arr_freq[] = {0.4, 0.6, 0.8, 1, 1.5, 3, 5, 8};
+    double arr_dev_std[] = {0.036, 0.036, 0.045, 0.039, 0.035, 0.063, 0.099, 0.15};
+
+    plot_devstd(arr_freq, arr_dev_std, 8);
 
     return 0;
 }
