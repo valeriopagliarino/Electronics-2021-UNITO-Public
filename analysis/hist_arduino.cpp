@@ -73,7 +73,7 @@ void gen_hist(DataErrors &data){
 
 int hist_arduino(){
     /* Read data */
-    DataErrors data("../data-source/4-11-21/800_Hz_clock", 0, "");
+    DataErrors data("../data-source/4-11-21/S28_single.csv", 0, "");
     gen_hist(data);
 
     return 0;
