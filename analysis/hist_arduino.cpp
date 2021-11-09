@@ -115,12 +115,12 @@ void plot_devstd(double *freq, double *devstd, const int size){
 
 int hist_arduino(){
     /* Read data */
-    DataErrors data("../data-source/9-11-21/R1_single.csv", 0, "");
+    DataErrors data("../data-source/9-11-21/G3_single.csv", 0, "");
     gen_hist(data);
     
-/*     DataErrors freq("../data-source/9-11-21/freq_R.csv", 0, ""); */
-    /* DataErrors devstd("../data-source/9-11-21/dev_std_R.csv", 0, ""); */
-/*  */
+/*     DataErrors freq("../data-source/9-11-21/freq_G.csv", 0, ""); */
+    /* DataErrors devstd("../data-source/9-11-21/dev_std_G.csv", 0, ""); */
+    /*  */
     /* plot_devstd(freq.d_toptr(), devstd.d_toptr(), freq.size()); */
 
     return 0;
