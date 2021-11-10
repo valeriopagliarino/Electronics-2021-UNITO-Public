@@ -5,6 +5,7 @@
 #include <TH1.h>             
 #include <TStyle.h>
 #include <TFitResultPtr.h>
+#include <TLine.h>
 
 #include <cmath>
 #include <iomanip>
@@ -15,26 +16,29 @@
 
 #include<sugodata.hpp>
 
+
+
 using namespace std;
 
-void gen_hist(DataErrors &data){
+void gen_hist(DataErrors &data, int frequency){
    /* Sort Data to make hist */
     double min = data.min(), max=data.max();
 
-    cout << "min = " << min << endl;
-    cout << "max = " << max << endl;
-
-
+    
     const double dispersione_max = max - min; 
     const double ampiezza_classe = 1;
     const int n_classi = ceil(dispersione_max / ampiezza_classe);
 
     const double dispersione_ist = n_classi * ampiezza_classe;
   
+    cout << "\033[1;33m";
     cout << "Istogramma: data " << endl 
-         << "\tN Classi = " << n_classi << endl 
-         << "\tApprossimato da: " << dispersione_max << " / " << ampiezza_classe << " = " << dispersione_max/ampiezza_classe << endl
-         << "\tDispersione istogramma = " << dispersione_ist << endl << endl;
+        << "\tmin = " << min << endl
+        << "\tmax = " << max << endl
+        << "\tN Classi = " << n_classi << endl 
+        << "\tApprossimato da: " << dispersione_max << " / " << ampiezza_classe << " = " << dispersione_max/ampiezza_classe << endl
+        << "\tDispersione istogramma = " << dispersione_ist << endl << endl;
+    cout << "\033[0;m";
          
 
     TCanvas *canvas = new TCanvas("canvas data" , "canvas data", 0,0, 1920, 1080); 
@@ -47,17 +51,21 @@ void gen_hist(DataErrors &data){
        hist_data->Fill(pde.d, 1); 
     
     /* Estetica grafico */
-    hist_data->SetTitle(""); 
+    hist_data->SetTitle(("Frequenza di clock " + to_string(frequency) + " Hz").c_str()); 
     hist_data->GetXaxis()->SetTitle("codice"); 
-    hist_data->GetYaxis()->SetTitle("frequenza"); 
+    hist_data->GetYaxis()->SetTitle("frequenza codice"); 
     
     DataErrors frequencies;
-    cout << "Frequenze bin" << endl;
+    cout << endl << "Frequenze bin" << endl;
     for(int i=1; i<n_classi; i++){
         frequencies +=  PairDatumError(hist_data->GetBinContent(i), 0);
         cout << i << ": " << hist_data->GetBinContent(i) << endl;
     }
+
+    cout << "\033[1;32m";
     cout << "Media: " << frequencies.mean() << endl;
+    cout << "Dev Std: " << frequencies.sigma() << endl;
+    cout << "\033[0;m";
 
     DataErrors pond_freq;
     double mean = frequencies.mean().d;
@@ -65,37 +73,31 @@ void gen_hist(DataErrors &data){
         pond_freq += pde / frequencies.mean().d;
     }
 
-    cout << "Frequenze [normate]" << endl;
+    cout << endl << "Frequenze [normate]" << endl;
     cout << pond_freq << endl;
 
+    cout << "\033[1;34m";
     cout << "Media [normata]: " << pond_freq.mean() << endl;
     cout << "Dev Std [normata]: " << pond_freq.sigma() << endl; 
-
-
-    TH1D *dst = new TH1D("dst", "dst", 10000, 0.5, 1.5);
-    for(PairDatumError pde : pond_freq)
-       dst->Fill(pde.d); 
-
-    cout << dst->GetStdDev() << endl;
+    cout << "\033[0;m";
 
     /* Range */
     hist_data->Scale(1./frequencies.mean().d);
-    hist_data->GetYaxis()->SetRangeUser(0, 2);
+    hist_data->GetYaxis()->SetRangeUser(0, 1.6);
 
     /* Disegna */
     gStyle->SetOptStat(10); 
     hist_data->Draw();
 
-    /* TLine *l1 = new TLine(1, frequencies.mean().d, 15, frequencies.mean().d); */
-    TLine *l1 = new TLine(1, pond_freq.mean().d, 15, pond_freq.mean().d);
-    l1->SetLineColor(2);
-    l1->SetLineStyle(7);
-    l1->SetLineWidth(2);
-    l1->Draw();
+    /* Line */
+    TLine *line = new TLine(1, pond_freq.mean().d, 15, pond_freq.mean().d);
+    line->SetLineColor(2);
+    line->SetLineStyle(7);
+    line->SetLineWidth(2);
+    line->Draw();
 }
 
 void plot_devstd(double *freq, double *devstd, const int size){
-
     TCanvas *canvas = new TCanvas("canvas data" , "canvas data", 0,0, 1920, 1080); 
     canvas->cd();
 
@@ -109,21 +111,27 @@ void plot_devstd(double *freq, double *devstd, const int size){
     g->SetMarkerSize(0.8);
     g->SetMarkerStyle(21);
     g->SetMarkerColor(4);
+
+    g->SetLineColor(1);
  
     g->GetYaxis()->SetRangeUser(0, 0.18);
 
     g->Draw("APL");
 }
 
-int hist_arduino(){
-    /* Read data */
-    DataErrors data("../data-source/9-11-21/G8_single.csv", 0, "");
-    /* gen_hist(data); */
-    
+int hist_arduino(int name=0){
     DataErrors freq("../data-source/9-11-21/freq_G.csv", 0, "");
     DataErrors devstd("../data-source/9-11-21/dev_std_G.csv", 0, "");
+   
+    if(name < 1 || name > 9){
+        plot_devstd(freq.d_toptr(), devstd.d_toptr(), freq.size());
+        return 0;
+    }
 
-    plot_devstd(freq.d_toptr(), devstd.d_toptr(), freq.size());
+    /* Read data */
+    string fname = "../data-source/9-11-21/G" + to_string(name) + "_single.csv";
+    DataErrors data(fname, 0, "");
+    gen_hist(data, int(freq[name-1].d * 1000));
 
     return 0;
 }
