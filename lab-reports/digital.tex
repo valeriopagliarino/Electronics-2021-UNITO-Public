@@ -43,6 +43,7 @@
 \usepackage{float}  % used to fix location of images i.e.\begin{figure}[H]
 
 \usepackage{csquotes} % correzione errore compilazione
+\usepackage[table]{xcolor}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -144,7 +145,8 @@ Una porta AND è un gate logico con due o più ingressi e un'uscita che esegue l
 \begin{center}
 \begin{tabular}{ |c|c|c| } 
  \hline
- A & B & OUT \\ \hline 
+ \rowcolor{lightgray}
+ A & B & OUT \\ \hline \hline
  0 & 0 & 0 \\ \hline
  1 & 0 & 0 \\ \hline
  0 & 0 & 0 \\ \hline
@@ -164,20 +166,8 @@ In laboratorio utilizzando l'integrato \textbf{SN74LS08N} e fornendo in ingresso
 
 Lo sfasamento introdotto fa sì che si verifichino tutte le possibili combinazioni di stati logici agli ingressi A e B, permettendo la verifica dell'intera tabella di verità. Si osserva, in particolare, che l'uscita è allo stato alto solo quando lo sono sia A che B.
 
-\subsection{Studio della caratteristica di trasferimento della porta NAND}
-Testo
-
-\begin{figure}[H]%[!ht]
-\begin{center}
-\includegraphics[width=0.45\textwidth]{analysis/output/NAND-XY.pdf}
-\caption{Forma d'onda generata dall'anello di inverter}
-\label{fig:graph_ring_oscillator}
-\end{center}
-\end{figure}
-
 
 \subsection{Studio della caratteristica di trasferimento della porta NOT}
-Passiamo ora allo studio della caratteristica di trasferimento della porta NOT, rappresentata in figura \ref{fig:transf_not_c}, dove sull'asse orizzontale troviamo la tensione in ingresso e sull'asse verticale la tensione in uscita. La forma del fronte di discesa che distingue il livello di uscita alto dal livello di uscita basso è di fondamentale importanza per il buon funzionamento della porta logica, perché consente una progressiva rigenerazione di un segnale logico attenuato o affetto da rumore, man mano che esso attraversa più porte logiche, anziché un suo ulteriore degrado. Questa proprietà di osserva facilmente del grafico
 
 \begin{figure}[H]%[!ht]
 \begin{center}
@@ -187,10 +177,25 @@ Passiamo ora allo studio della caratteristica di trasferimento della porta NOT, 
 \end{center}
 \end{figure}
 
+Passiamo ora allo studio della caratteristica di trasferimento della porta NOT, rappresentata in textit{figura \ref{fig:transf_not}}
+, dove sull'asse orizzontale troviamo la tensione in ingresso e sull'asse verticale la tensione in uscita. La forma del fronte di discesa che distingue il livello di uscita alto dal livello di uscita basso è di fondamentale importanza per il buon funzionamento della porta logica, perché consente una progressiva rigenerazione di un segnale logico attenuato o affetto da rumore, man mano che esso attraversa più porte logiche, anziché un suo ulteriore degrado. Supponiamo infatti di avere un segnale logico basso (0 V) affetto da un rumore ampio 1 V che attraversa un buffer formato con due porte NOT in serie: dal grafico si osserva che la prima mapperà 1 V a 3.3 V circa, mentre la seconda mapperà 3.3 V precisamente a 0 V. Si è ottenuto così un effetto di reiezione del rumore.
+
+
+
+
+\subsection{Studio della caratteristica di trasferimento della porta NAND}
+Ripetiamo ora la medesima analisi per la porta NAND fissando un ingresso al livello alto 5 V.
+
+\begin{figure}[H]%[!ht]
+\begin{center}
+\includegraphics[width=0.45\textwidth]{analysis/output/NAND-XY.pdf}
+\caption{Forma d'onda generata dal gate NAND}
+\label{fig:graph_ring_oscillator}
+\end{center}
+\end{figure}
+
 
 \subsection{Flip-flop di tipo set - reset}
-Testo
-
 \begin{figure}[H]%[!ht]
 \begin{center}
 \includegraphics[width=0.30\textwidth]{sch-simulations/digital/output/flip-flop-RS.pdf}
@@ -198,23 +203,56 @@ Testo
 \label{fig:circuit_flip_flop}
 \end{center}
 \end{figure}
+Il \textit{Flip-Flop SR }, noto  anche come \textit{SR Latch}, può essere considerato come uno dei circuiti sequenziali più basilari possibili. Sostanzialmente si tratta di un dispositivo di memoria a un bit bistabile. E' dotato di due ingressi quali \textit{SET} e \textit{RESET} rispettivamente significanti uscita al valore logico 1 e 0. L'ingresso di RESET  inoltre ripristina il  Flip-Flop nel suo stato originale. Un circuito Flip-Flop basato sui gate NAND fornisce un feedback da entrambe le sue uscite agli ingressi opposti ed è comunemente sfruttato per la memorizzazione di un singolo Bit di dati. Quindi si può affermare che questo dispositivo presenti tre ingressi, quali SET, RESET e Q, logica in uscita , relativa allo stato corrente ed alla cronologia. Infine il termine Flip-Flop si riferisce al funzionamento effetivo del dispositivo, in quanto quest'ultimo può essere \textit{'capovolto'} in uno stato SET logico o  \textit{'floppato'} nello stato di RESET logico opposto.  
+Il comportamento di un SR NAND Flip-Flop è regolato dalla seguente tavola di verità:
 \begin{center}
-\begin{tabular}{ |c|c|c|c| } 
+\begin{tabular}{ |c|c|c|c|c| } 
  \hline
- S & R & Q & $\overline{Q}$ \\ \hline 
- 0 & 0 & 1 & 1 \\ \hline
- 0 & 1 & 1 & 0 \\ \hline
- 1 & 0 & 0 & 1 \\ \hline
- 1 & 1 & 0 & 1 \\ \hline
- 1 & 1 & 1 & 0 \\ \hline
+ \rowcolor{lightgray}
+S & R & Q & $\overline{Q}$ &\\ \hline \hline
+ 0 & 0 & 1 & 1 & Impredicibile\\  \hline
+ 0 & 1 & 1 & 0 & Stato stabile\\ \hline
+ 1 & 0 & 0 & 1 & Stato stabile\\ \hline
+ 1 & 1 & 0 & 1 & Memoria\\ \hline
+ 1 & 1 & 1 & 0 & Memoria\\ \hline
+ 
+ \hline
 \end{tabular}
 \end{center}
 
 \begin{figure}[H]%[!ht]
 \begin{center}
+\includegraphics[ width=0.37\textwidth]{analysis/output/set-reset-to-0_0.pdf}
+\label{fig:SR-00}
+\end{center}
+\end{figure}
+
+\begin{figure}[H]%[!ht]
+\begin{center}
+\includegraphics[ width=0.37\textwidth]{analysis/output/set-reset-to-1_0.pdf}
+\label{fig:SR-10}
+\end{center}
+\end{figure}
+
+\begin{figure}[H]%[!ht]
+\begin{center}
+\includegraphics[ width=0.37\textwidth]{analysis/output/set-reset-to-1_1.pdf}
+\label{fig:SR-11}
+\end{center}
+\end{figure}
+
+\begin{figure}[H]%[!ht]
+\begin{center}
+\includegraphics[ width=0.37\textwidth]{analysis/output/set-reset-to-0_1.pdf}
+\label{fig:SR-01}
+\end{center}
+\end{figure}
+
+\begin{figure}[H]%[!ht]
+\begin{center}
 \includegraphics[trim = {0 0 580 0}, clip, width=0.37\textwidth]{analysis/output/set-reset-table.pdf}
 \caption{Verifica della tabella di verità di un flip-flop di tipo set-reset realizzato con porte NAND}
-\label{fig:graph_ring_oscillator}
+\label{fig:SR-1}
 \end{center}
 \end{figure}
 
@@ -223,14 +261,17 @@ Testo
 \begin{center}
 \includegraphics[trim = {580 0 0 0}, clip, width=0.37\textwidth]{analysis/output/set-reset-table.pdf}
 \caption{Verifica della tabella di verità di un flip-flop di tipo set-reset realizzato con porte NAND}
-\label{fig:graph_ring_oscillator}
+\label{fig:SR-2}
 \end{center}
 \end{figure}
 
-
-
+Le \textit{figure \ref{fig:SR-1}, \ref{fig:SR-2}} sottolineano il fatto che il dispositivo agisca nella maniera attesa, verificando in ogni situazione i livelli logici predetti.
+Questo dispositivo presenta però due grosse limitazioni:
+\begin{itemize}
+    \item Lo stato S=0 e R=0 deve essere evitato, poichè produce un risultato impredicibile
+    \item Se gli stati di S o R cambiano mentre l'input è alto la corretta operazione di latching non avviene
+\end{itemize}
 \subsection{Verifica della tabella di verità del flip-flop di tipo J-K}
-Testo
 
 \begin{figure}[H]%[t]
 \centering
@@ -241,10 +282,13 @@ Testo
 \label{fig:circuit_JK}
 \end{figure}
 
+Il \textit{JK Flip-Flop} è uno dei  Flip-Flop più usati all'interno dei circuiti digitali. Presenta due input \textit{J} e \textit{K} analoghi al SET e RESET del caso  precedente. Tale dispositivo è in grado di superare entrambi i principali problemi del SR Flip-Flop. Infatti si tratta sostanzialmente di un SR Flip-Flop dotato di NAND a tre ingressi, uno dei  quali è occupato dal Clock. Grazie all'aggiunta del Clock vi sono quattro possibili combinazioni, riportate nella tabella di verità sottostante 
+
 \begin{center}
 \begin{tabular}{ |c|c|c|c|c| } 
  \hline
- J & K & Q & $\overline{Q}$ & $ Q_{n + 1} $ \\ \hline 
+ \rowcolor{lightgray}
+ J & K & Q & $\overline{Q}$ & $ Q_{n + 1} $ \\ \hline \hline
  0 & 0 &  &  & $Q_n$ \\ \hline
  1 & 0 & 0 & 1 & 1 \\ \hline
  1 & 0 & 1 & 0 & 1\\ \hline
