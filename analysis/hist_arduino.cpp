@@ -64,7 +64,7 @@ void gen_hist(DataErrors &data, int frequency){
 
     cout << "\033[1;32m";
     cout << "Media: " << frequencies.mean() << endl;
-    cout << "Dev Std: " << frequencies.sigma() << endl;
+    cout << "Dev Std: "; frequencies.sigma().print();
     cout << "\033[0;m";
 
     DataErrors pond_freq;
@@ -78,7 +78,7 @@ void gen_hist(DataErrors &data, int frequency){
 
     cout << "\033[1;34m";
     cout << "Media [normata]: " << pond_freq.mean() << endl;
-    cout << "Dev Std [normata]: " << pond_freq.sigma() << endl; 
+    cout << "Dev Std [normata]: "; pond_freq.sigma().print(); 
     cout << "\033[0;m";
 
     /* Range */
