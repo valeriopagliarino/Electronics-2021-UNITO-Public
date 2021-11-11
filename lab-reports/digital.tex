@@ -137,9 +137,10 @@ Nell'ultima fase dell'esperienza di laboratorio verrà realizzato un semplice si
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Caratterizzazione dei circuiti logici fondamentali}
+Si verificheranno rapidamente in laboratrio alcune caratteristiche significative di alcuni circuiti logici fondamentali, alcuni verranno utilizzati successivamente per la realizzazione dell'ADC.
 
 \subsection{Verifica della tabella di verità della porta AND}
-Una porta AND è un gate logico digitale con due o più ingressi e un'uscita che esegue la congiunzione logica. L'output di tale componente rispetta la seguente tabella di verità:
+Una porta AND è un gate logico con due o più ingressi e un'uscita che esegue l'operazione di congiunzione logica. L'output di tale componente rispetta, infatti, la seguente tabella di verità:
 \begin{center}
 \begin{tabular}{ |c|c|c| } 
  \hline
@@ -152,7 +153,7 @@ Una porta AND è un gate logico digitale con due o più ingressi e un'uscita che
  \hline
 \end{tabular}
 \end{center}
-In laboratorio utilizzando l'integrato \textbf{SN74LS08N} e fornendo in ingresso due onde quadre di frequenza 5 Hz oscillanti tra 0 e 5 V e sfasate di un quarto di periodo si è ottenuta la  \textit{figura \ref{fig:AND-table}} 
+In laboratorio utilizzando l'integrato \textbf{SN74LS08N} e fornendo in ingresso due onde quadre di frequenza 5 Hz oscillanti tra 0 e 5 V e sfasate di un quarto di periodo si è ottenuto il grafico in  \textit{figura \ref{fig:AND-table}} 
 \begin{figure}[H]%[!ht]
 \begin{center}
 \includegraphics[width=0.50\textwidth]{analysis/output/AND-all.pdf}
@@ -161,8 +162,7 @@ In laboratorio utilizzando l'integrato \textbf{SN74LS08N} e fornendo in ingresso
 \end{center}
 \end{figure}
 
-Dal grafico si evincono tutti i possibili scenari, notando in particolare che il  segnale in uscita risulta allo stato logico 1 solamente nel momento in cui entrambi gli ingressi sono in tale livello.
-
+Lo sfasamento introdotto fa sì che si verifichino tutte le possibili combinazioni di stati logici agli ingressi A e B, permettendo la verifica dell'intera tabella di verità. Si osserva, in particolare, che l'uscita è allo stato alto solo quando lo sono sia A che B.
 
 \subsection{Studio della caratteristica di trasferimento della porta NAND}
 Testo
@@ -177,13 +177,13 @@ Testo
 
 
 \subsection{Studio della caratteristica di trasferimento della porta NOT}
-Testo
+Passiamo ora allo studio della caratteristica di trasferimento della porta NOT, rappresentata in figura \ref{fig:transf_not_c}, dove sull'asse orizzontale troviamo la tensione in ingresso e sull'asse verticale la tensione in uscita. La forma del fronte di discesa che distingue il livello di uscita alto dal livello di uscita basso è di fondamentale importanza per il buon funzionamento della porta logica, perché consente una progressiva rigenerazione di un segnale logico attenuato o affetto da rumore, man mano che esso attraversa più porte logiche, anziché un suo ulteriore degrado. Questa proprietà di osserva facilmente del grafico
 
 \begin{figure}[H]%[!ht]
 \begin{center}
 \includegraphics[width=0.45\textwidth]{analysis/output/inverter_ring_xy.pdf}
 \caption{Caratteristica di trasferimento della porta NOT}
-\label{fig:inverter_ring_xy}
+\label{fig:transf_not}
 \end{center}
 \end{figure}
 
@@ -307,7 +307,22 @@ Il convertitore si compone dei seguenti blocchi funzionali fondamentali (con rif
     \item Un registro di scorrimento a 8 bit (U7) che permette di effettuare la scansione dei bit nel processo di confronto del segnale in ingresso ad approssimazioni successive, insieme a due circuiti di controllo implementati con porte NAND: il primo, basato su U8, genera il segnale di \textit{clear} che effettua il reset degli integrati TTL al termine del ciclo di conversione, mentre il secondo, basato su U9, inizializza l'ingresso del registro all'inizio di ogni ciclo di conversione.
     \item Una logica comprendente 4 porte AND implementate nell'integrato U5 che controllano 4 flip-flop di tipo J-K, implementati negli integrati U3 e U4. (MSB su U3). I flip-flop J-K vengono settati (J) in sequenza dalle uscite del registro di scorrimento e vengono resettati (K) quando viene settato il flip-flop successivo solamente se il circuito comparatore ha come complemento logico dell'uscita uno stato alto. Al termine di un ciclo del registro le uscite dei J-K rappresentano quindi il risultato della conversione.
     \item Uno stadio analogico che confronta il segnale in ingresso con la sua rappresentazione fornita dalle uscite dei J-K, composto da un DAC R-2R controllato da queste ultime la cui uscita viene confrontata mediante un OPA LM741 ad anello aperto (U2) con la tensione da campionare. L'uscita del comparatore pilota le porte AND che resettano i J-K mediante un transistor di interfaccia che garantisce sia la compatibilità dei livelli logici (l'uscita arriva a +15 V, mentre TTL prevede lo stato alto a +5 V), sia un più rapido fronte di commutazione. Lo stadio analogico può essere completato inserendo un circuito di \textit{sample and hold} a monte, pilotato dal registro a scorrimento.
+    
 \end{itemize}
+ 
+% Resistenze TRANSISTOR: 
+% R_base = 0.99+-0.01 kOhm (R10)
+% R_collettore = 99+-1 kOhm (R11) 
+
+% Resistenze DAC R-2R (riferimenti a numerazione figura DAC): 
+% R5 = 1.94 +- 0.01 kOhm
+% R1 = 0.999 +- 0.009 kOhm
+% R6 = 1.94 +- 0.01 kOhm
+% R2 = 1.000 +- 0.009 kOhm
+% R7 = 2.01 +- 0.01 kOhm
+% R3 = 1.002 +- 0.009 kOhm
+% R8 = 2.01 +- 0.01 kOhm
+% R4 = 1.99 +- 0.01 kOhm
 
 \subsection{Verifica del circuito con registro di scorrimento e annessa logica di controllo}
 Testo
@@ -484,13 +499,13 @@ Testo
 
 
 \subsection{Circuito \textit{sample-hold}}
-Testo
+Finora è stato possibile eseguire il campionamento di segnali variabili nel tempo solamente sotto l'ipotesi di variazione lenta rispetto al tempo di campionamento dell'ADC. Questa ipotesi è necessaria perché il processo di approssimazioni successive dà risultati coerenti solo se durante le operazioni di confronto con l'uscita del DAC il segnale analogico in ingresso rimane pressoché costante. Per poter lavorare con segnali in ingresso più veloci, fino al limite teorico imposto dal teorema del campionamento di Nyquist-Shannon che discuteremo in seguito, si rende quindi necessaria l'introduzione di un circuito \textit{sample \& hold} che nel nostro apparato è stato realizzato con un integrato LF398. Tale componente è controllato dall'uscita $Q_F$ del registro di scorrimento: quando questo segnale digitale è alto la tensione in uscita dall'integrato insegue l'ingresso (campionamento), mentre quanto si abbassa, grazie al condensatore $C_h$, l'integrato mantiene l'uscita fissa al valore che aveva al fronte di discesa di $Q_F$. Questo fa sì che quando saranno alte le uscite del registro da $Q_A$ a $Q_E$ (operazioni di confronto) LF398 sia in modalità \textit{hold}.
 
 
 \begin{figure}[H]%[!ht]
 \begin{center}
 \includegraphics[width=0.35\textwidth]{sch-simulations/digital/output/lf398.png}
-\caption{Schema di collegamento dell'integrato LF398 utilizzato in laboratorio per realizzare il circuito di \textit{sample and hold}, proveniente dal datasheet Texas Instruments del componente. Il valore del condensatore è $C_h$ = (0.00 $\pm$ 0.00) pF}
+\caption{Schema di collegamento dell'integrato LF398 utilizzato in laboratorio per realizzare il circuito di \textit{sample and hold}, proveniente dal datasheet Texas Instruments del componente. Il valore del condensatore è $C_h$ = (10.5 $\pm$ 0.4) nF}
 \label{fig:circuit_sample_and_hold}
 \end{center}
 \end{figure}
@@ -509,7 +524,7 @@ Testo
 \includegraphics[trim={0 25 0 0}, clip, width=0.50\textwidth]{analysis/output/campionamento_50Hz.pdf}
 
 \caption{Campionamento di forma d'onda sinusoidale f = 50 Hz. In rosso il segnale logico di controllo del sample-hold, in nero il segnale in uscita dal sample-hold, in verde il segnale in uscita dal DAC, il blu il segnale analogico in ingresso e in grigio il segnale ricostruito dall'ADC.}
-\label{fig:graph_ring_oscillator}
+\label{fig:sampSH1}
 \end{center}
 \end{figure}
 \vspace{-10mm}
@@ -518,7 +533,7 @@ Testo
 \begin{center}
 \includegraphics[trim={0 25 0 0}, clip,width=0.50\textwidth]{analysis/output/campionamento_150Hz.pdf}
 \caption{Campionamento di forma d'onda sinusoidale f = 150 Hz, colori come nella figura precedente.}
-\label{fig:graph_ring_oscillator}
+\label{fig:sampSH2}
 \end{center}
 \end{figure}
 \vspace{-10mm}
@@ -527,7 +542,7 @@ Testo
 \begin{center}
 \includegraphics[trim={0 25 0 0}, clip,width=0.50\textwidth]{analysis/output/campionamento_250Hz.pdf}
 \caption{Campionamento di forma d'onda sinusoidale f = 250 Hz, colori come nella figura precedente.}
-\label{fig:graph_ring_oscillator}
+\label{fig:sampSH3}
 \end{center}
 \end{figure}
 \vspace{-10mm}
@@ -536,7 +551,7 @@ Testo
 \begin{center}
 \includegraphics[trim={0 40 0 0}, clip,width=0.50\textwidth]{analysis/output/campionamento_350Hz.pdf}
 \caption{Campionamento di forma d'onda sinusoidale f = 350 Hz, colori come nella figura precedente.}
-\label{fig:graph_ring_oscillator}
+\label{fig:sampSH4}
 \end{center}
 \end{figure}
 \vspace{-10mm}
@@ -545,7 +560,7 @@ Testo
 \begin{center}
 \includegraphics[trim={0 40 0 0}, clip,width=0.50\textwidth]{analysis/output/campionamento_500Hz.pdf}
 \caption{Campionamento di forma d'onda sinusoidale f = 500 Hz, colori come nella figura precedente.}
-\label{fig:graph_ring_oscillator}
+\label{fig:sampSH5}
 \end{center}
 \end{figure}
 \vspace{-10mm}
@@ -554,7 +569,7 @@ Testo
 \begin{center}
 \includegraphics[trim={0 40 0 0}, clip,width=0.50\textwidth]{analysis/output/campionamento_800Hz.pdf}
 \caption{Campionamento di forma d'onda sinusoidale f = 800 Hz, colori come nella figura precedente.}
-\label{fig:graph_ring_oscillator}
+\label{fig:sampSH6}
 \end{center}
 \end{figure}
 
