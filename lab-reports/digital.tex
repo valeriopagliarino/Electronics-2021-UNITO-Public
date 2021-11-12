@@ -184,7 +184,7 @@ Passiamo ora allo studio della caratteristica di trasferimento della porta NOT, 
 
 
 \subsection{Studio della caratteristica di trasferimento della porta NAND}
-Ripetiamo ora la medesima analisi per la porta NAND fissando un ingresso al livello alto 5 V.
+Ripetiamo ora la medesima analisi per la porta NAND fissando un ingresso al livello alto 5 V e collegando, come già fatto in precedenza, l'altro ingresso al generatore di segnali impostato per produrre una rampa da 0 V a 5 V a f = 500 Hz. La figura è prodotta dall'oscilloscopio in modalità di visualizzazione XY con il canale orizzontale collegato all'uscita del generatore e il canale verticale all'uscita della porta NAND. Osserviamo una zona particolarmente rumorosa nell'intorno della tensione a cui la porta NAND effettua la commutazione e osserviamo che anche con l'uscita scollegata da qualsiasi carico la porta NAND non raggiunge i 5 V in uscita previsti dallo standard TTL, ciò nonostante la posizione della soglia di commutazione a circa 1 V garantisce la corretta interpretazione di segnali alti con ampiezza 4 V.
 
 \begin{figure}[H]%[!ht]
 \begin{center}
@@ -276,16 +276,7 @@ Questo dispositivo presenta però due limitazioni:
 \end{itemize}
 \subsection{Verifica della tabella di verità del flip-flop di tipo J-K}
 
-\begin{figure}[H]%[t]
-\centering
-\begin{center}
-\includegraphics[width=0.40\textwidth]{sch-simulations/digital/output/flip-flop-JK.pdf}
-\end{center}
-\caption{Logica interna del flip-flop JK}
-\label{fig:circuit_JK}
-\end{figure}
-
-Il \textit{JK Flip-Flop} è uno dei  flip-flop più diffusi nei circuiti digitali. Presenta due input \textit{J} e \textit{K} con funzioni analoghe al SET e RESET del latch visto in precedenza. Tale dispositivo è in grado di superare entrambe le limitazioni prima elencate per il flip-flop RS. Si tratta, infatti, di un SR Flip-Flop dotato di NAND a tre ingressi, che permette l'introduzione di un segnale di \textit{clock} e permette di aggiungere due nuovi circuiti di feedback dalle uscite. Grazie all'aggiunta del \textit{clock} vi sono quattro possibili combinazioni, riportate nella tabella di verità sottostante, mentre i circuiti di feedback eliminano lo stato impredicibile sostituendolo con l'operazione di \textit{toggle}.
+Il \textit{JK Flip-Flop} è uno dei  flip-flop più diffusi nei circuiti digitali. Presenta due input \textit{J} e \textit{K} con funzioni analoghe al SET e RESET del latch visto in precedenza; tale dispositivo è in grado di superare entrambe le limitazioni prima elencate per quest'ultimo. Si tratta, infatti, di un flip-flop SR dotato di porte NAND a tre ingressi (realizzate con transistor ad emettitore triplo), che permettono sia l'introduzione di un segnale di \textit{clock} l'aggiunta di due nuovi circuiti di feedback dalle uscite che eliminano lo stato impredicibile sostituendolo con l'operazione di \textit{toggle}. Vi sono quindi quattro combinazioni logiche possibili per gli ingressi, riportate nella tabella di verità sottostante.
 \newline
 \begin{center}
 \begin{tabular}{ |c|c|c|c|c| } 
@@ -300,6 +291,15 @@ Il \textit{JK Flip-Flop} è uno dei  flip-flop più diffusi nei circuiti digital
  1 & 1 &  & & $\overline{Q_n}$ \\ \hline
 \end{tabular}
 \end{center}
+
+\begin{figure}[H]%[t]
+\centering
+\begin{center}
+\includegraphics[width=0.40\textwidth]{sch-simulations/digital/output/flip-flop-JK.pdf}
+\end{center}
+\caption{Logica interna del flip-flop JK}
+\label{fig:circuit_JK}
+\end{figure}
 
 \begin{figure*}[t]%[t]
 \centering
@@ -333,7 +333,7 @@ In laboratorio è stata acquisita la forma d'onda seguente, la cui frequenza ris
 
 \begin{figure}[H]%[!ht]
 \begin{center}
-\includegraphics[width=0.52\textwidth]{analysis/output/oscillating-ring.pdf}
+\includegraphics[width=0.50\textwidth]{analysis/output/oscillating-ring.pdf}
 \caption{Forma d'onda generata dall'anello di inverter}
 \label{fig:graph_ring_oscillator}
 \end{center}
@@ -374,10 +374,6 @@ Il convertitore si compone dei seguenti blocchi funzionali fondamentali (con rif
 % R4 = 1.99 +- 0.01 kOhm
 
 \subsection{Verifica del circuito con registro di scorrimento e annessa logica di controllo}
-Gli \textit{Shift Register} sono un tipo di circuito logico sequenziale sfruttato principalmente per l'archiviazione di dati digitali. L’integrato utilizzato in laboratorio è realizzato mediante un gruppo di \textit{M/S Flip-Flop} collegati in catena in modo che l'output da un flip -flop diventi l'input del successivo . La maggior parte dei registri non possiede una sequenza interna caratteristica di stati. Tutti i Flip -Flop sono guidati da un Clock comune e  sono settati o ripristinati simultaneamente.
-I bit archiviati all’interno dei registri vengono trasferiti alle posizioni successive applicando delle pulsazioni di Clock. Dunque lo scorrimento completo di N bit richiederà N colpi di Clock.
-Per quanto riguarda il circuito di gestione si hanno due funzioni distinte, quali lo scorrimento dei Bit ed il comando di Clear, tale da resettare l'output del dispositivo a zero.
-La sezione adibita allo scorrimento dello SR è realizzata con un Flip-Flop di gate NAND in cui SET e RESET sono rispettivamente la negazione del primo Bit ed il segnale di clear proveniente dalla seconda sezione del circuito di controllo, come osservabile dalla \textit{figura \ref{fig:circuit_shift_register}}. 
 
 \begin{figure}[H]%[!ht]
 \begin{center}
@@ -387,7 +383,15 @@ La sezione adibita allo scorrimento dello SR è realizzata con un Flip-Flop di g
 \end{center}
 \end{figure}
 
-La logica sequenziale a differenza di quella combinatoria non è affetta esclusivamente dall’input momentaneo, ma anche da quello passato. Il fatto che il completamento di un ciclo abbia un tempo finito e strettamente legato alla frequenza di Clock fa si che l’elaborazione dello  shift register abbia un delay rispetto alla forma d’onda in ingresso. Nel caso in questione, in cui l'integrato \textbf{SN74LS164M} è caratterizzato da 8 stadi, il ritardo tra l’input e l’output è di 8 colpi di Clock.
+
+Gli \textit{shift register} (registri a scorrimento) sono un tipo di circuito logico sequenziale sfruttato principalmente per l'archiviazione di dati digitali o per la lettura in parallelo di dati trasferiti in modalità seriale. Il registro utilizzato in laboratorio è realizzato mediante un gruppo di \textit{master-slave flip-flop} collegati in catena in modo che l'output di ogni blocco costituisca l'input del successivo. Tutti i flip-flop sono controllati da un segnale di clock e da un segnale di reset comune.
+Ad ogni fronte di salita del clock (il registro utilizzato in laboratorio è del tipo \textit{positive-edge}) lo stato di ogni flip-flop viene trasferito al successivo, mentre il primo della catena viene inizializzato utilizzando i valori logici presenti agli ingressi A e B del registro. Lo stato di ciascun flip-flop può essere letto in modo asincrono in parallelo utilizzando le uscite {$Q_A$, ... , $Q_G$}. Il dispositivo utilizzato in laboratorio per la realizzazione dell'ADC è un registro ad 8 bit \textit{SN74LS164M} corredato da due circuiti logici ausiliari di controllo realizzati con porte NAND:
+\begin{itemize}
+    \item Il primo (quello che nello schema in figura \ref{fig:circuit_shift_register} è realizzato con l'integrato IC1) controlla l'inizializzazione del registro: quando il segnale di reset passa allo stato basso un flip-flop SR inizializza gli ingressi A e B del registro allo stato alto e attende il primo fronte di salita del clock che fa scorrere il registro di una posizione, a quel punto lo stato alto viene trasferito all'uscita $Q_0$ (o $Q_A$) il cui complemento logico esegue il reset del flip-flop riportando gli ingressi A e B al valore basso. 
+    \item Il secondo (quello che nello schema in figura \ref{fig:circuit_shift_register} è realizzato con l'integrato IC3) è invece responsabile dell'operazione di RESET: quando il bit 1 con cui era stato inizializzato il registro raggiunge l'ultima uscita $Q_7$ (o $Q_H$) oppure quando lo switch manuale di reset viene portato allo stato basso, il circuito porta il segnale di clear globale allo stato basso, effettuando così il reset di tutti i circuiti logici.
+\end{itemize}
+
+La figura seguente mostra la verifica effettuata in laboratorio sul corretto funzionamento di questo circuito: il canale 4 dell'oscilloscopio acquisisce il segnale di trigger (realizzato con il generatore di funzioni utilizzando un'onda quadra oscillante tra 0 V e 5 V con frequenza di 5 Hz) mentre i primi tre canali (come segnato nello schema in figura \ref{fig:circuit_shift_register}) sono collegati alle tre uscite del registro successive alla prima. Dopo aver effettuato il reset osserviamo che il registro viene inizializzato dal circuito di controllo con un solo bit allo stato alto e questo bit viene fatto scorrere fino alla fine, quando avverrà un nuovo reset. 
 
 
 \begin{figure}[H]%[!ht]
@@ -398,53 +402,90 @@ La logica sequenziale a differenza di quella combinatoria non è affetta esclusi
 \end{center}
 \end{figure}
 
-
-
 \subsection{Verifica del circuito di pilotaggio del DAC (J-K) e dello stadio analogico}
-Testo
+Descriviamo e verifichiamo ora il sottocircuito successivo che consente il funzionamento dell'ADC: il circuito di pilotaggio del DAC realizzato con flip-flop di tipo J-K. L'obiettivo di questo circuito è di effettuare il confronto del valore di ogni bit con la tensione da misurare mediante il pilotaggio del DAC, realizzando il processo di approssimazioni successive. 
 
 \begin{figure}[H]%[!ht]
 \begin{center}
 \includegraphics[width=0.48\textwidth]{sch-simulations/digital/output/DAC.pdf}
-\caption{DAC}
+\caption{Circuito di controllo del DAC con flip-flop J-K e sezione analogica dell'ADC.}
 \label{fig:circuit_DAC}
 \end{center}
 \end{figure}
 
+
+Il funzionamento è il seguente: ogni uscita del registro di scorrimento attiva il J di ciascun flip-flop e, con l'esclusione della prima, attiva il K del flip-flop precedente. Mentre però l'operazione di set J è sempre effettuata, l'operazione di reset K è effettuata solo se il complemento logico dell'uscita del comparatore è alto, perché ogni ingresso K non è direttamente collegato al registro, ma bensì attraverso una porta AND con il segnale logico proveniente dal comparatore. Il risultato è che ogni bit viene attivato, ma viene disattivato solo in base all'operazione di confronto, quindi al termine del ciclo di conversione lo stato delle uscite dei J-K costituirà la rappresentazione binaria del segnale quantizzato. 
+
+La verifica in laboratorio si è svolta dapprima collegando le 4 uscite dei J-K ai 4 canali dell'oscilloscopio e forzando al livello basso il complemento logico dell'uscita del comparatore (si veda la figura \ref{fig:cumulative_BIT}), in questo caso, come atteso osserviamo che in un ciclo di conversione tutti i bit vengono attivati e rimangono allo stato alto fino al segnale di reset, che coinvolge anche i J-K.
+
+Nella figura \ref{fig:cumulative_BIT_clk} osserviamo il medesimo scenario di funzionamento, ma questa volta la sonda collegata al canale 4 dell'oscilloscopio è stata collegata al clock e questo ci permette di osservare, per esempio, che la commutazione dei J-K avviene sul fronte di discesa. Per il corretto funzionamento dell'ADC è molto rilevante che le la commutazione del registro avvenga sul fronte di salita del clock, mentre quella dei J-K avvenga sul fronte di discesa, in questo modo quando i flip-flop leggono i loro ingressi J e K il registro li ha già sicuramente portati ad uno stato logico valido.
+
 \begin{figure}[H]%[!ht]
 \begin{center}
 \includegraphics[trim = {100 0 550 0}, clip, width=0.43\textwidth]{analysis/output/cumulative_BIT.pdf}
-\caption{memoria bit}
+\caption{Uscite dei flip-flop J-K quando il complemento logico del comparatore è allo stato basso}
 \label{fig:cumulative_BIT}
 \end{center}
 \end{figure}
+
+\vspace{-10mm}
 
 \begin{figure}[H]%[!ht]
 \begin{center}
 \includegraphics[trim = {600 0 100 0}, clip, width=0.39\textwidth]{analysis/output/cumulative_BIT.pdf}
-\caption{memoria bit}
-\label{fig:cumulative_BIT}
+\label{fig:cumulative_BIT_clk}
 \end{center}
 \end{figure}
 
+\vspace{-7mm}
+
+Nella figura seguente si osserva la medesima misura effettuata però forzando il complemento logico dell'uscita del comparatore allo stato alto. Le uscte delle porte AND che controllano gli ingressi K potranno quindi raggiungere lo stato alto e ogni bit verrà resettato sul fronte di discesa del \textit{clock} in cui viene settato il bit successivo.
 
 \begin{figure}[H]%[!ht]
 \begin{center}
 \includegraphics[width=0.48\textwidth]{analysis/output/BIT-shift-clk.pdf}
-\caption{circuito di scorrimento}
 \label{fig:BIT_shift_clk}
 \end{center}
 \end{figure}
 
+Per realizzare l'acquisizione seguente sono state invece collegati i primi tre canali dell'oscilloscopio alle uscite dei J-K, ma l'ultimo canale è stato collegato alla base del transistor di interfaccia del comparatore, quindi mostra esattamente il risultato logico dell'operazione di confronto. Osserviamo che quando l'operazione di confronto restituisce 0 (uscita del DAC più alta del segnale in ingresso) le porte AND possono attivarsi e i bit vengono man mano resettati, mentre quando l'operazione di confronto restituisce 1 (uscita del DAC più bassa del segnale in ingresso) i bit rimangono attivi quando la conversione giunge al termine.
+
 \begin{figure}[H]%[!ht]
 \begin{center}
 \includegraphics[trim = {570 0 0 0}, clip, width=0.50\textwidth]{analysis/output/cumulative_BIT_with_transistor.pdf}
-\caption{BIT con transistor}
+\caption{Uscite dei J-K sui primi tre ingressi dell'oscilloscopio, sul 4 il livello logico dell'uscita del comparatore}
 \label{fig:BIT_with_transistor}
 \end{center}
 \end{figure}
 
+\subsection{Convertitore digitale-analogico}
+Il confronto tra il valore logico rappresentato dalle uscite dei flip-flop J-K e il segnale analogico in ingresso è possibile solo grazie ad un DAC di tipo R-2R pilotato da tali uscite. Il DAC è realizzato mediante resistori discreti dei valori riportati a seguire che realizzano una rete che alimenta l'ingresso invertente di un amplificatore operazionale retroazionato a guadagno unitario (LM741). L'uscita di tale amplificatore operazionale controlla l'ingresso invertente di un secondo componente identico che lavora però in configurazione ad anello aperto, realizzando così il comparatore vero e proprio, dal momento che il suo ingresso non invertente costituisce l'ingresso analogico dell'ADC. Come anticipato, si rende necessaria l'introduzione di un transistor di interfaccia con tre funzioni:
+\begin{itemize}
+    \item Adatta i livelli di tensione $\pm$ 15 V ai livelli logici TTL 0V - 5V
+    \item Effettua un'operazione di "NOT" logico
+    \item Grazie all'amplificazione dovuta alla configurazione ad emettitore comune rende più ripido i fronti di commutazione dell'uscita del comparatore, consentendo all'ADC di lavorare a frequenze più elevate.
+\end{itemize}
 
+
+
+
+\begin{table}[H]
+\begin{center}
+\caption{Resistori utilizzati per il DAC}
+\begin{tabular}{c|c}
+Nome in fig.\ref{fig:nyquist_mcu_cumulative} & R [k$\Omega $] \\ \hline
+R1  & $1.00 \pm 0.01$ \\
+R2  & $1.00 \pm 0.01$ \\
+R3  & $1.00 \pm 0.01$ \\
+R4  & $2.01 \pm 0.02$ \\
+R5  & $1.94 \pm 0.02$ \\
+R6  & $1.94 \pm 0.02$ \\
+R7  & $2.01 \pm 0.02$ \\
+R8  & $1.99 \pm 0.02$ \\
+\label{tab:resistori_dac}
+\end{tabular}
+\end{center}
+\end{table}
 
 
 \subsection{Caratteristica di trasferimento del transistor di interfaccia}
@@ -643,24 +684,64 @@ Testo
 
 \subsection{Valutazione della linearità con metodo della \textit{code density}}
 
+Istogrammi delle frequenze di occupazione dei codici
+
 \begin{figure}[H]%[!ht]
 \begin{center}
-\includegraphics[width=0.48\textwidth]{analysis/output/dnl_800_hz.pdf}
-\caption{Istogramma delle frequenze di occupazione dei codici: frequenza di clock pari a 800 Hz}
+
+%1
+\caption{$\sigma = 0.033$}
+\includegraphics[width=0.48\textwidth]{analysis/output/dnl_1_400hz_bars.pdf}
+\label{fig:graph_dnl_400_hz}
+%2
+\caption{$\sigma = 0.031$}
+\includegraphics[width=0.48\textwidth]{analysis/output/dnl_2_600hz_bars.pdf}
+\label{fig:graph_dnl_600_hz}
+%3
+\caption{$\sigma = 0.028$}
+\includegraphics[width=0.48\textwidth]{analysis/output/dnl_3_800hz_bars.pdf}
 \label{fig:graph_dnl_800_hz}
+%4
+\caption{$\sigma = 0.030$}
+\includegraphics[width=0.48\textwidth]{analysis/output/dnl_4_1000hz_bars.pdf}
+\label{fig:graph_dnl_1000_hz}
 \end{center}
 \end{figure}
 
+\begin{figure}[H]
+\begin{center}
+%5
+\caption{$\sigma = 0.043$}
+\includegraphics[width=0.48\textwidth]{analysis/output/dnl_5_1500hz_bars.pdf}
+\label{fig:graph_dnl_1500_hz}
+%6
+\caption{$\sigma = 0.063$}
+\includegraphics[width=0.48\textwidth]{analysis/output/dnl_6_3000hz_bars.pdf}
+\label{fig:graph_dnl_3000_hz}
+%7
+\caption{$\sigma = 0.099$}
+\includegraphics[width=0.48\textwidth]{analysis/output/dnl_7_5000hz_bars.pdf}
+\label{fig:graph_dnl_5000_hz}
+%8
+\caption{$\sigma = 0.16$}
+\includegraphics[width=0.48\textwidth]{analysis/output/dnl_8_8000hz_bars.pdf}
+\label{fig:graph_dnl_8000_hz}
 
+\end{center}
+\end{figure}
+
+\subsubsection{Distribuzione della deviazione standard}
 
 \begin{figure}[H]%[!ht]
 \begin{center}
-\includegraphics[width=0.48\textwidth]{analysis/output/dnl_8000_hz_S28.pdf}
-\caption{Istogramma delle frequenze di occupazione dei codici: frequenza di clock pari a 8000 Hz}
-\label{fig:graph_dnl_8000_hz_S28}
+\includegraphics[width=0.50\textwidth]{analysis/output/dnl_sigma_pdf}
+\caption{Letture mancanti}
+\label{fig:graph_dnl_sigma}
 \end{center}
 \end{figure}
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Valori mancanti}
 
