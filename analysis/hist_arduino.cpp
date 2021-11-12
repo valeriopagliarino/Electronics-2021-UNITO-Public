@@ -109,9 +109,9 @@ void plot_devstd(double *freq, double *devstd, const int size){
     canvas->SetGrid();
 
     TGraph *g = new TGraph(size, freq, devstd);
-    g->SetTitle("Distribuzione dev std"); 
+    g->SetTitle("Distribuzione #sigma"); 
     g->GetXaxis()->SetTitle("Frequenza (kHz)"); 
-    g->GetYaxis()->SetTitle("Dev Std"); 
+    g->GetYaxis()->SetTitle("#sigma"); 
 
     g->SetMarkerSize(0.8);
     g->SetMarkerStyle(21);
@@ -136,6 +136,8 @@ int hist_arduino(int name=0){
     /* Read data */
     string fname = "../data-source/9-11-21/G" + to_string(name) + "_single.csv";
     DataErrors data(fname, 0, "");
+    if(name == 9 )
+        name = 8;
     gen_hist(data, int(freq[name-1].d * 1000));
 
     return 0;
