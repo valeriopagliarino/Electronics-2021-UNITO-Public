@@ -43,6 +43,7 @@ void gen_hist(DataErrors &data, int frequency){
 
     TCanvas *canvas = new TCanvas("canvas data" , "canvas data", 0,0, 1920, 1080); 
     canvas->cd(); 
+    canvas->SetGrid(); 
 
     /* TH1F *hist_data = new TH1F("data","data", n_classi, min, max + 1);  */
     TH1F *hist_data = new TH1F("","data", n_classi-1, min+1, max);
@@ -53,7 +54,7 @@ void gen_hist(DataErrors &data, int frequency){
     /* Estetica grafico */
     hist_data->SetTitle(("Frequenza di clock " + to_string(frequency) + " Hz").c_str()); 
     hist_data->GetXaxis()->SetTitle("codice"); 
-    hist_data->GetYaxis()->SetTitle("frequenza codice"); 
+    hist_data->GetYaxis()->SetTitle("frequenza codice normata"); 
     
     DataErrors frequencies;
     cout << endl << "Frequenze bin" << endl;
@@ -83,7 +84,11 @@ void gen_hist(DataErrors &data, int frequency){
 
     /* Range */
     hist_data->Scale(1./frequencies.mean().d);
-    hist_data->GetYaxis()->SetRangeUser(0, 1.6);
+    hist_data->GetYaxis()->SetRangeUser(0, 1.5);
+    hist_data->GetYaxis()->SetNdivisions(15, 2, 0, 0);
+    hist_data->GetXaxis()->SetNdivisions(15, 0, 0);
+
+    hist_data->SetLineWidth(2);
 
     /* Disegna */
     gStyle->SetOptStat(10); 
