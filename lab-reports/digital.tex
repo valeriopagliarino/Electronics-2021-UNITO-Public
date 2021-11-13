@@ -463,7 +463,7 @@ Il confronto tra il valore logico rappresentato dalle uscite dei flip-flop J-K e
 \begin{itemize}
     \item Adatta i livelli di tensione $\pm$ 15 V ai livelli logici TTL 0V - 5V
     \item Effettua un'operazione di "NOT" logico
-    \item Grazie all'amplificazione dovuta alla configurazione ad emettitore comune rende più ripido i fronti di commutazione dell'uscita del comparatore, consentendo all'ADC di lavorare a frequenze più elevate.
+    \item Grazie all'amplificazione dovuta alla configurazione ad emettitore comune rende più ripido il fronte di commutazione dell'uscita del comparatore, consentendo all'ADC di lavorare a frequenze più elevate.
 \end{itemize}
 
 
@@ -684,7 +684,7 @@ Testo
 
 \subsection{Valutazione della linearità con metodo della \textit{code density}}
 
-Istogrammi delle frequenze di occupazione dei codici
+I seguenti istogrammi rappresentano le frequenze dei codici in 8 prese dati a differenti frequenze di clock. La linea rossa tratteggiata indica il valore medio delle frequenze. %% continua ...
 
 \begin{figure}[H]%[!ht]
 \begin{center}
@@ -730,7 +730,7 @@ Istogrammi delle frequenze di occupazione dei codici
 \end{center}
 \end{figure}
 
-\subsubsection{Distribuzione della deviazione standard}
+\subsection{Distribuzione della deviazione standard}
 
 \begin{figure}[H]%[!ht]
 \begin{center}
@@ -739,6 +739,18 @@ Istogrammi delle frequenze di occupazione dei codici
 \label{fig:graph_dnl_sigma}
 \end{center}
 \end{figure}
+
+
+\subsection{Test inversione bit}
+
+\begin{figure}[H]%[!ht]
+\begin{center}
+\includegraphics[width=0.48\textwidth]{analysis/output/dnl_non_lin_8000hz_bars.pdf}
+\caption{Presa dati con bit invertiti: $ 4->3, \ 3->2, \ 2->4 $}  %% TODO
+\label{fig:graph_dnl_non_lin}
+\end{center}
+\end{figure}
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -845,4 +857,5 @@ binario & $V_{min}  \pm 0.1 \ V$ \\ \hline
 
 \printbibliography % Bibliografia
 
-\end{document}
+\end{document}    \item Grazie all'amplificazione dovuta alla configurazione ad emettitore comune rende più ripido il fronte di commutazione dell'uscita del comparatore, consentendo all'ADC di lavorare a frequenze più elevate.
+
