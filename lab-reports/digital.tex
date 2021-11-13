@@ -416,7 +416,7 @@ Descriviamo e verifichiamo ora il sottocircuito successivo che consente il funzi
 
 Il funzionamento è il seguente: ogni uscita del registro di scorrimento attiva il J di ciascun flip-flop e, con l'esclusione della prima, attiva il K del flip-flop precedente. Mentre però l'operazione di set J è sempre effettuata, l'operazione di reset K è effettuata solo se il complemento logico dell'uscita del comparatore è alto, perché ogni ingresso K non è direttamente collegato al registro, ma bensì attraverso una porta AND con il segnale logico proveniente dal comparatore. Il risultato è che ogni bit viene attivato, ma viene disattivato solo in base all'operazione di confronto, quindi al termine del ciclo di conversione lo stato delle uscite dei J-K costituirà la rappresentazione binaria del segnale quantizzato. 
 
-La verifica in laboratorio si è svolta dapprima collegando le 4 uscite dei J-K ai 4 canali dell'oscilloscopio e forzando al livello basso il complemento logico dell'uscita del comparatore (si veda la figura \ref{fig:cumulative_BIT}), in questo caso, come atteso osserviamo che in un ciclo di conversione tutti i bit vengono attivati e rimangono allo stato alto fino al segnale di reset, che coinvolge anche i J-K.
+La verifica in laboratorio si è svolta dapprima collegando le 4 uscite dei J-K ai 4 canali dell'oscilloscopio e forzando al livello basso il complemento logico dell'uscita del comparatore (si veda la figura \ref{fig:cumulative_BIT}), in questo caso, come atteso osserviamo che in un ciclo di conversione tutti i bit vengono attivati e rimangono allo stato alto fino all'operazione di clear, che coinvolge anche i J-K.
 
 Nella figura \ref{fig:cumulative_BIT_clk} osserviamo il medesimo scenario di funzionamento, ma questa volta la sonda collegata al canale 4 dell'oscilloscopio è stata collegata al clock e questo ci permette di osservare, per esempio, che la commutazione dei J-K avviene sul fronte di discesa. Per il corretto funzionamento dell'ADC è molto rilevante che le la commutazione del registro avvenga sul fronte di salita del clock, mentre quella dei J-K avvenga sul fronte di discesa, in questo modo quando i flip-flop leggono i loro ingressi J e K il registro li ha già sicuramente portati ad uno stato logico valido.
 
@@ -482,6 +482,8 @@ R5  & $1.94 \pm 0.02$ \\
 R6  & $1.94 \pm 0.02$ \\
 R7  & $2.01 \pm 0.02$ \\
 R8  & $1.99 \pm 0.02$ \\
+%QUESTI VALORI SONO INCONSISTENTI, IMMAGINO SI TRATTI DI UN TESTO
+%SEGNAPOSTO
 \label{tab:resistori_dac}
 \end{tabular}
 \end{center}
@@ -489,19 +491,19 @@ R8  & $1.99 \pm 0.02$ \\
 
 
 \subsection{Caratteristica di trasferimento del transistor di interfaccia}
-Testo
+Nella \textit{figura \ref{fig:VTC-bjt}} è riportata la \textit{VTC} del transistor NPN PN2222A appena descritto nel paragrafo precedente. La misurazione della caratteristica di trasferimento in tensione ha permesso di confermare che effettivamente il componente agisce da inverter logico. In laboratorio si è potuto osservare, inoltre, che il fronte di discesa della tensione di emettitore quando il transistor passa dalla regione di interdizione a quella di saturazione risulta essere nettamente più ripido rispetto al fronte di salita della tensione di base (corrispondente all'uscita dall'OPA del comparatore) e questo permette di far lavoare l'ADC a frequenze di clock più elevate. Infine, come desiderato ottenere la compatibilità con lo standard TTL, la $V_{out}$ (tensione di emettitore) si trova sempre compresa tra 0 V e 5 V. Per misurare la caratteristica, la base del transistor è stata alimentata con una rampa positiva tra -15 V e +15 V attraverso la resistenza R10 dal generatore di funzioni e su questo segnale è stata collegata la prima sonda dell'oscilloscopio (asse orizzontale), la seconda sonda (asse verticale) è stata invece collegata al collettore del transistor.
 
 \begin{figure}[H]%[!ht]
 \begin{center}
 \includegraphics[width=0.45\textwidth]{analysis/output/NPN-XY.pdf}
 \caption{Caratteristica di trasferimento in tensione base-collettore del transistor di interfaccia.}
-\label{fig:inverter_ring_xy}
+\label{fig:VTC-bjt}
 \end{center}
 \end{figure}
 
 
 \subsection{Caratteristiche del segnale di \textit{clear}}
-Testo
+Tutti i componenti digitali sincroni utilizzati dispongono di un ingresso a cui è possibile fornire un segnale di \textit{clear} che quando è portato al livello basso effettua il reset del dispositivo. Nei circuiti logici dell'ADC che stiamo esaminando i pin di clear sono collegati tutti in parallelo e tale segnale è prodotto dal circuito di controllo del registro che utilizza l'integrato che nello schema generale è denominato U8. Come già discusso in precedenza, tale circuito di controllo mantiene basso il livello del clear quando l'interruttore di reset è portato a massa oppure quando il registro porta al livello alto l'uscita $Q_G$ o $Q_7$. Si nota immediatamente quindi che il segnale di clear è destinato a rimanere al livello basso per un tempo estremamente breve, poiché non appena il registro effettua il reset l'uscita suddetta passerà immediatamente al livello basso. Risulta quindi interessante esaminare la durata del segnale, che da risulta essere $\Delta \tau$ = (46 $\pm$ 5) ns ed è rappresentata nella terza traccia a partire dall'alto nella figura seguente.
 
 \begin{figure}[H]%[!ht]
 \begin{center}
@@ -515,7 +517,7 @@ Testo
 
 \section{Calibrazione del DAC}
 
-\begin{figure}[t]%[t]
+\begin{figure}[H]%[t]
 \centering
 \begin{center}
 \includegraphics[width=0.51\textwidth]{analysis/output/calibrazione_dac.pdf}
@@ -534,7 +536,7 @@ $ \chi^{2} = 0.006 $ \\
 
 \section{Campionamento di tensioni continue e calibrazione dell'ADC}
 
-\begin{figure}[t]%[t]
+\begin{figure}[H]%[t]
 \centering
 \begin{center}
 \includegraphics[width=0.51\textwidth]{analysis/output/calibrazione_adc.pdf}
@@ -684,7 +686,12 @@ Testo
 
 \subsection{Valutazione della linearità con metodo della \textit{code density}}
 
-I seguenti istogrammi rappresentano le frequenze dei codici in 8 prese dati a differenti frequenze di clock. La linea rossa tratteggiata indica il valore medio delle frequenze. %% continua ...
+I seguenti istogrammi rappresentano le frequenze dei codici in 8 prese dati a differenti frequenze di clock. La linea rossa tratteggiata indica il valore medio delle frequenze.
+Affinché il dispositivo generi tutti i codici necessari il range di variazione del segnale di input deve essere superiore rispetto a quello di \textit{clipping}. Per questa ragione si è scelto di utilizzare una forma d'onda a rampa con estremi -4.5-0.5 V. Inoltre si è applicato uno \textit{sweep} di frequenza da 5 Hz a 50 Hz eseguito in $\Delta T$ = 35 s
+con lo scopo di evitare che la scelta accidentale di frequenze multiple e sottomultiple di quella di campionamento influissero sulla veridicità dei dati presi.
+Infine i condici pari allo 0 ed al $2^n$, che nel caso specifico corrisponderà a 16, sono stati esclusi dalla conta a causa del numero non valido di occorrenze.
+I dati misurati infine sono stati normalizzati rispetto al valore medio di ricorrenze.
+%% continua ...
 
 \begin{figure}[H]%[!ht]
 \begin{center}
@@ -730,8 +737,10 @@ I seguenti istogrammi rappresentano le frequenze dei codici in 8 prese dati a di
 \end{center}
 \end{figure}
 
-\subsection{Distribuzione della deviazione standard}
 
+\subsection{Distribuzione della deviazione standard}
+Dai grafici soprastanti si nota come la linearità del dispositivo sia mantenuta solamente per frequenze di campionamento limitate. Dalla \textit{figura \ref{fig:graph_dnl_3000_hz}} alla \textit{figura \ref{fig:graph_dnl_8000_hz}} infatti si osservano variazioni rispetto al valor medio superiori al 10\%.
+In particolare nella \textit{figura \ref{fig:graph_dnl_sigma}} si sottolinea come la deviazione standard dei valori dei vari codici si attesti su un valore di plateau entro valori di frequenze di Clock minori di 1 Khz per poi aumentare fino a livelli pari al 16 \% del valore medio di occorrenze dei codici. 
 \begin{figure}[H]%[!ht]
 \begin{center}
 \includegraphics[width=0.50\textwidth]{analysis/output/dnl_sigma_pdf}
@@ -742,7 +751,8 @@ I seguenti istogrammi rappresentano le frequenze dei codici in 8 prese dati a di
 
 
 \subsection{Test inversione bit}
-
+Per accertarsi di quale fosse la principale causa della perdita di linearità all'aumento della frequenza di campionamento sono stati scambiati i collegamenti dei bit in uscita dall'Arduino verso il Raspberry. 
+Confrontando i risultati ottenuti nelle \textit{figure \ref{fig:graph_dnl_8000_hz}} e \textit{\ref{fig:graph_dnl_non_lin}} si vede come i codici con maggiori ricorrenze non siano analoghi nei due casi. Ciò suggerisce un limite della parte digitale che potrebbe essere dovuto ad una R2R non perfettamente calibrata, condizione comprensibile a causa della limitata uguaglianza fra le resistenze impiegate.
 \begin{figure}[H]%[!ht]
 \begin{center}
 \includegraphics[width=0.48\textwidth]{analysis/output/dnl_non_lin_8000hz_bars.pdf}
