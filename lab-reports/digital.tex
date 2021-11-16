@@ -190,7 +190,7 @@ Ripetiamo ora la medesima analisi per la porta NAND fissando un ingresso al live
 \begin{center}
 \includegraphics[width=0.45\textwidth]{analysis/output/NAND-XY.pdf}
 \caption{Forma d'onda generata dal gate NAND}
-\label{fig:graph_ring_oscillator}
+\label{fig:VTC NAND gate}
 \end{center}
 \end{figure}
 
@@ -225,21 +225,21 @@ In laboratorio è stato implementato un flip-flop RS utilizzando due porte logic
 \begin{figure}[H]%[!ht]
 \begin{center}
 \includegraphics[ width=0.48\textwidth]{analysis/output/set-reset-to-0_0.pdf}
-\label{fig:SR}
+\label{fig:SR1}
 \end{center}
 \end{figure}
 
 \begin{figure}[H]%[!ht]
 \begin{center}
 \includegraphics[ width=0.48\textwidth]{analysis/output/set-reset-to-1_0.pdf}
-\label{fig:SR}
+\label{fig:SR2}
 \end{center}
 \end{figure}
 
 \begin{figure}[H]%[!ht]
 \begin{center}
 \includegraphics[ width=0.48\textwidth]{analysis/output/set-reset-to-1_1.pdf}
-\label{fig:SR}
+\label{fig:SR3}
 \end{center}
 \end{figure}
 
@@ -409,7 +409,7 @@ Descriviamo e verifichiamo ora il sottocircuito successivo che consente il funzi
 \begin{center}
 \includegraphics[width=0.48\textwidth]{sch-simulations/digital/output/DAC.pdf}
 \caption{Circuito di controllo del DAC con flip-flop J-K e sezione analogica dell'ADC.}
-\label{fig:circuit_DAC}
+\label{fig:circuit_DAC_JK_transistor}
 \end{center}
 \end{figure}
 
@@ -454,7 +454,7 @@ Per realizzare l'acquisizione seguente sono state invece collegati i primi tre c
 \begin{center}
 \includegraphics[trim = {570 0 0 0}, clip, width=0.50\textwidth]{analysis/output/cumulative_BIT_with_transistor.pdf}
 \caption{Uscite dei J-K sui primi tre ingressi dell'oscilloscopio, sul 4 il livello logico dell'uscita del comparatore}
-\label{fig:BIT_with_transistor}
+\label{fig:Comparator-output}
 \end{center}
 \end{figure}
 
@@ -510,13 +510,15 @@ Tutti i componenti digitali sincroni utilizzati dispongono di un ingresso a cui 
 \begin{center}
 \includegraphics[width=0.40\textwidth]{data-source/25-10-21/clear.jpg}
 \caption{Ritardo di propagazione attraverso i circuiti logici di U8 del segnale di clear}
-\label{fig:inverter_ring_xy}
+\label{fig:clear-delay}
 \end{center}
 \end{figure}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Calibrazione del DAC}
+Un DAC ideale, ricevuto un segnale digitale in input, fornisce un valore accurato di tensione. Nella realtà il voltaggio in uscita è soggetto ad errori sia sul guadagno che sull'offset, derivanti non solo dal DAC, ma anche da altri componenti della catena di segnale. 
+Per verificare che la conversione abbia un comportamento lineare, cioé che le soglie di tensione tra due binari consecutivi siano equidistanti, per ciascun possibile livello logico all'ingresso del convertitore è stata registrata la tensione in uscita corrispondente. Ciò che si ottiene è la distribuzione di punti visibile in \textit{fig. \ref{fig:graph_calibrazione_dac}}. Quanto più i punti sono concentrati su una retta, tanto più la conversione è lineare. 
 
 \begin{figure}[H]%[t]
 \centering
@@ -527,15 +529,19 @@ Tutti i componenti digitali sincroni utilizzati dispongono di un ingresso a cui 
 \label{fig:graph_calibrazione_dac}
 \end{figure}
 
+Il fit lineare eseguito dà i seguenti parametri: \\
 $ m = -0.211 \pm 0.001 $ \\
 $ q = -0.01 \pm 0.01 \ V $ \\
-$ \chi^{2} = 0.006 $ \\
+$ \chi^{2} = 0.006 $ 
+
+Il test del chi quadro conferma che i dati sperimentali sono ben descritti da una relazione lineare. Il comportamento del circuito DAC risulta lineare.
 
 \ref{tab:calibrazione_dac}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Campionamento di tensioni continue e calibrazione dell'ADC}
+In laboratorio si è proceduto in maniera qualitativa con la presa dati relativa ai valori di tensione necessari per promuovere il livello logico considerato a quello successivo. Utilizzando come riferimenti l'uscita del comparatore, visualizzata per mezzo di una sonda sul display dell'oscilloscopio e l'\textit{accensione} del led sulla basetta. %inserire nome%
 
 \begin{figure}[H]%[t]
 \centering
@@ -546,44 +552,53 @@ $ \chi^{2} = 0.006 $ \\
 \label{fig:graph_calibrazione_adc}
 \end{figure}
 
+In \textit{figura \ref{fig:graph_calibrazione_adc}} sono riportati i valori di tensioni sopracitati.
+Il fit lineare (retta blu) ha restituito i seguenti valori:
+\newline
+
 $ m = -0.3092 \pm 0.0001 $ \\
 $ q = -0.02 \pm 0.01 \ V$ \\
 $ \chi^{2} = 0.57 $ \\
 
 \ref{tab:calibrazione_adc}
 
+Il test del chi quadro conferma anche in questo caso la linearità dei dati.
+
 \begin{figure*}[t]%[t]
 \centering
 \includegraphics[trim = {30 0 50 0}, width=0.95\textwidth]{analysis/output/calibration.pdf}
-\caption{Calibrazione dell'ADC}
-\label{fig:waveforms_no_sh_scope}
+\caption{Calibrazione dell'ADC. Soglia alta di transizione per ciascun bit (da 1111 a 0000). In rosso il complemento della sequenza di bit (emettitore del transistor), in blu le approssimazioni successive all'uscita del DAC, in nero il segnale in ingresso}
+\label{fig:BIT_high_transition_threshold}
 \end{figure*}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Campionamento di tensioni variabili}
-Testo
+Dopo aver caratterizzato il comportamento dell'ADC in regime stazionario, effettuiamo ora un test di campionamento di segnali variabili nel tempo. Dal momento che non abbiamo ancora introdotto il circuito di \textit{sample \& hold}, il campionamento di tali segnali è possibile solo sotto l'ipotesi di piccole variazioni del segnale in ingresso nella finestra temporale di conversione; come segnale di clock si imposta un'onda quadra TTL di frequenza f = 8 KHz sul generatore di funzioni. Si considerino ora le figure \ref{fig:Square_wave_aquisition} e \ref{fig:Triangular_wave_aquisition}: per realizzare queste acquisizioni il canale del generatore di funzioni non impiegato per generare il segnale di clock è stato utilizzato per generare la tensione variabile rappresentata in nero, acquisita del primo canale dell'oscilloscopio e utilizzata come riferimento per il trigger. La seconda sonda dell'oscilloscopio, corrispondente alla traccia in blu, è stata invece collegata all'uscita del DAC e mostra esattamente il processo di approssimazioni successive mentre converge al codice che più si avvicina al segnale analogico, invece in rosso è mostrato il segnale acquisito dall'oscilloscopio sul collettore del transistor di interfaccia, all'uscita del comparatore. La figura \ref{fig:Square_wave_aquisition} mostra l'acquisizione di un'onda quadra con livelli di tensione $V_{max}$ = 0.0 V e $V_{min}$ = -3.2 V e frequenza f = 100 Hz, mentre \ref{fig:Triangular_wave_aquisition} mostra l'acquisizione di un'onda triangolare con livelli di tensione $V_{max}$ = 0.0 V e $V_{min}$ = - 2.0 V e medesima frequenza. Nelle due figure apprezziamo in modo qualitativo il corretto funzionamento del convertitore SAR, si nota particolarmente la commutazione del MSB intorno alla metà del range dinamico del convertitore.
 
-\begin{figure}[H]%[!ht]
-\begin{center}
-\includegraphics[trim = {0 25 0 0},clip, width=0.50\textwidth]{analysis/output/direct_aq_waveforms.pdf}
-\caption{Didascalia}
-\label{fig:circuit_DAC}
-\end{center}
-\end{figure}
 
 \begin{figure}[H]%[!ht]
 \begin{center}
 \includegraphics[trim = {0 25 0 0},clip, width=0.50\textwidth]{analysis/output/triangle_wave_aq.pdf}
-\caption{Didascalia}
-\label{fig:circuit_DAC}
+\caption{Campionamento e conversione forma d'onda triangolare}
+\label{fig:Triangular_wave_aquisition}
 \end{center}
 \end{figure}
 
 \begin{figure}[H]%[!ht]
 \begin{center}
 \includegraphics[trim = {0 25 0 0},clip, width=0.50\textwidth]{analysis/output/square_wave_aq.pdf}
-\caption{Didascalia}
-\label{fig:circuit_DAC}
+\caption{Campionamento e conversione forma d'onda quadra}
+\label{fig:Square_wave_aquisition}
+\end{center}
+\end{figure}
+
+I due grafici precedenti risultano adeguati per visualizzare il processo di approssimazione, ma non consentono di confrontare agevolmente il codice ottenuto al termine del ciclo di conversione con il segnale analogico in ingresso. Per poter svolgere qualitativamente questa analisi, si utilizza nuovamente il potenziometro multigiro lineare da R = (0.00 $\pm$ 0.00) K$\Omega$ per realizzare un partitore resistivo $R_A$ = (0.00 $\pm$ 0.00) K$\Omega$, $R_B$ = (0.00 $\pm$ 0.00) K$\Omega$ che attenui i segnali della logica TTL di X5 in tensione in modo da fornire al canale rimasto libero dell'oscilloscopio una tensione di 1 V quando l'uscita $Q_F$ del registro è allo stato alto: si tratta del segnale di conversione completata. Si imposta quindi l'oscilloscopio in modalità \textit{math} effettuando il prodotto tra questo cananle e il segnale in uscita dal DAC. Si ottiene così il segnale raffigurato in blu scuro nel quadrante più in basso della figura \ref{fig:Direct_aq_waveforms}, che rappresenta il segnale logico in ingresso ricostruito dai codici prodotti dall'ADC. Nella medesima figura il segnale in nero nel quadrante superiore rappresenta il segnale di conversione completata appena descritto, mentre le altre tracce sono come nelle figure \ref{fig:Triangular_wave_aquisition} e \ref{fig:Square_wave_aquisition}. Il segnale acquisito questa volta è una sinusoide oscillante tra $V_{max}$ = 0.0 V e $V_{min}$ = -3.2 V con frequenza f = 50 Hz. In figura \ref{fig:waveforms_no_sh_scope} è presentata una rassegna di forme d'onda prodotte dal generatore di funzioni nello stesso range dinamico e acquisite con l'ADC. E' interessante notare che la forma d'onda ricostruita risulta sfasata indietro rispetto al segnale analogico in ingresso di un tempo pari al periodo di conversione $\tau$ = (8 bit)/($f_{clk}$ (8 bit è la lunghezza del registro di scorrimento).
+
+\begin{figure}[H]%[!ht]
+\begin{center}
+\includegraphics[trim = {0 25 0 0},clip, width=0.50\textwidth]{analysis/output/direct_aq_waveforms.pdf}
+\caption{Acquisizione e conversione di una tensione sinusoidale. In rosso il complemento logico dell'uscita del comparatore. In nero nello stesso quadrante il segnale di conversione completata, in blu nel secondo quadrante l'uscita del DAC, nel quadrante più in basso in nero il segnale analogio e in blu il segnale ricostruito dall'ADC.}
+\label{fig:Direct_aq_waveforms}
 \end{center}
 \end{figure}
 
@@ -607,30 +622,33 @@ Finora è stato possibile eseguire il campionamento di segnali variabili nel tem
 \label{fig:circuit_sample_and_hold}
 \end{center}
 \end{figure}
-Per un buon funzionamento del circuito è inoltre necessario che la capacità del condensatore deve essere limitata il maniera tale da permettere il rapido \textit{aggancio} del segnale in ingresso nella transizione da sample a hold.
+Per un buon funzionamento del circuito è inoltre necessario che la capacità del condensatore deve essere limitata in maniera tale da permettere il rapido \textit{aggancio} del segnale in ingresso nella transizione da sample a hold.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Registrazione della conversione mediante scheda a microcontrollore}
-In questo paragrafo saranno analizzati i problemi che si generano se il segnale da convertire varia nel tempo e quali sono le possibili soluzioni da adottare. Nella conversione svolta dagli ADC il segnale di input è reso:
-\begin{itemize}
-    \item discreto nei valori, per mezzo della quantizzazione
-    \item discreto nel tempo, attraverso il campionamento 
-    
-\end{itemize}
-Negli ADC dunque il segnale analogico è \textit{campionato}, cioè prelevato ad intervalli regolari di tempo e convertito in digitale per mezzo della quantizzazione, durante la quale verrà approssimata l'ampiezza del segnale analogico attraverso un numero finito di combinazioni di bit.
-\subsection{Verifica del teorema del campionamento di Nyquist-Shannon con sample-hold e oscilloscopio}
-Risulta necessario capire quale sia la frequenza alla quale è possibile campionare un segnale senza perdere informazioni. Il \textit{Teorema del campionamento di Shannon} afferma che sia possibile ricostruire un segnale a partire dai suoi campioni se la frequenza di campionamento $f_c$ è almeno doppia rispetto al limite superiore $f_{MAX}$ dello spettro del segnale considerato nel suo  dominio di frequenza, secondo il teorema di Fourier. 
-\[f_c \ge 2 f_{MAX}\]
-Attraverso questa condizione analitica il teorema di Shannon evince quale sia il limite inferiore della $f_c$ per non perdere informazioni. A frequenze inferiori si presenterà il fenomeno di \textit{aliasing}, per cui sfruttando $f_c$ troppo basse si ottengono dei  campioni che non sono solo più affini al segnale effettivo, corrispondente alla frequenza maggiore dello spettro, ma anche ad onde con periodi maggiori, rendendo la ricostruzione non più univoca. 
-Se si conoscesse il tempo di conversione sarebbe possibile ricavare la frequenza massima che deve avere il segnale  per limitare l'errore a un quanto, ma ond'evitare di limitare eccessivamente la banda dell'ADC conviene \textit{bloccare} il segnale durante la conversione con un circuito si sample and hold, descritto nel paragrafo precendente.
+Tutti i sistemi di acquisizione dati prevedono dopo lo stadio ADC di campionamento e quantizzazione del segnale una opportuna logica digitale in grado di leggere i codici prodotti dalla conversione e di di memorizzarli o visualizzarli. Tale logica oggi è frequentemente costituita da microcontrollori, dispositivi programmabili quali CPLD o FPGA o interfacce USB, PCIexpress o di altro tipo. Nel nostro caso, come abbiamo già anticipato, questa logica è costituita da un microcontrollore Atmel montato su una scheda Arduino a cui sono collegati dal pin 2 al pin 5 le uscite dei J-K a partire dal MSB. Sul pin 6 è invece collegata l'uscita $Q_F$ del registro di scorrimento, già utilizzata in precedenza poiché fornisce un segnale di conversione completata. La scheda Arduino attende che questo pin passi allo stato alto, dopodiché legge in sequenza lo stato dei pin da 2 a 5, converte in intero decimale il codice relativo e lo scrive attraverso un'interfaccia SPI su un file di testo memorizzato su una scheda di memoria. E' presente un pin bistabile collegato ad un pulsante la cui pressione avvia e arresta l'acquisizione. Con il \textit{setup} appena presentato l'ADC si può considerare completo e possiamo ora effettuare nuove acquisizioni, ripetere la verifica del teorema di Nyquist con maggiore accuratezza, nonché valutare la linearità con il metodo della code density.
+%AGGIUNGERE PLOT ONDA TRIANGOLARE E QUADRA ACQUISITA DA ARDUINO
 
-Dalla \textit{figura \ref{fig:sampSH1}} alla \textit{figura \ref{fig:sampSH6}} sono riportati i segnali in visione sull'oscilloscopio. E' da notare che il ritardo dell'output,dovuto al tempo necessario allo shift register per scorrere tutti i bit, è stato eliminato mediante traslazione del segnale MTH , derivato dalla moltiplicazione tra il segnale in uscita dal DAC ed il segnale di conversione completata. Ciò è appunto dovuto al tempo necessario allo shift register per scorrere tutti i bit. Si osserva inoltre come la curva generata dai picchi del segnale di output sia un ottima approssimazione del segnale in ingresso, complice il fatto di una $f_c$ molto maggiore rispetto a quella dell'input % aggiungere valori frequenze 
+%In questo paragrafo saranno analizzati i problemi che si generano se il segnale da convertire varia nel tempo e quali sono le possibili soluzioni da adottare. Nella conversione svolta dagli ADC il segnale di input è reso:
+%\begin{itemize}
+%    \item discreto nei valori, per mezzo della quantizzazione
+%    \item discreto nel tempo, attraverso il campionamento 
+%\end{itemize}
+%Negli ADC dunque il segnale analogico è \textit{campionato}, cioè prelevato ad intervalli regolari di tempo e convertito in digitale per mezzo della quantizzazione, durante la quale verrà approssimata l'ampiezza del segnale analogico attraverso un numero finito di combinazioni di bit.
+%\subsection{Verifica del teorema del campionamento di Nyquist-Shannon con sample-hold e oscilloscopio}
+%Risulta necessario capire quale sia la frequenza alla quale è possibile campionare un segnale senza perdere informazioni. Il \textit{Teorema del campionamento di Shannon} afferma che sia possibile ricostruire un segnale a partire dai suoi campioni se la frequenza di campionamento $f_c$ è almeno doppia rispetto al limite superiore $f_{MAX}$ dello spettro del segnale considerato nel suo  dominio di frequenza, secondo il teorema di Fourier. 
+%\[f_c \ge 2 f_{MAX}\]
+%Attraverso questa condizione analitica il teorema di Shannon evince quale sia il limite inferiore della $f_c$ per non perdere informazioni. A frequenze inferiori si presenterà il fenomeno di \textit{aliasing}, per cui sfruttando $f_c$ troppo basse si ottengono dei  campioni che non sono più affini al solo segnale effettivo, corrispondente alla frequenza maggiore dello spettro, ma anche ad onde con periodi maggiori, rendendo la ricostruzione non più univoca. 
+%Se si conoscesse il tempo di conversione sarebbe possibile ricavare la frequenza massima che deve avere il segnale  per limitare l'errore a un quanto, ma ond'evitare di limitare eccessivamente la banda dell'ADC conviene \textit{bloccare} il segnale durante la conversione con un circuito di sample and hold, descritto nel paragrafo precendente.
+
+%In laboratorio è stata impostata una $f_{clk} = 8 kHz$ corrispondente ad una $f_c = 1 kHz$. 
+%Dalla \textit{figura \ref{fig:sampSH1}} alla \textit{figura \ref{fig:sampSH6}} sono riportati i segnali in visione sull'oscilloscopio. È da notare che il ritardo dell'output,dovuto al tempo necessario al registro di scorrimento per scorrere tutti i bit, è stato eliminato mediante traslazione del segnale MTH, derivato dalla moltiplicazione tra il segnale in uscita dal DAC ed il segnale di conversione completata. La curva generata dai picchi del segnale di output risulta essere una buona approssimazione solo per segnali in input di frequenze sensibilmente inferiori alla metà della $f_c$, che nel caso specifico è pari a 1 kHz. È comunque possibile notare dalla \textit{figura \ref{fig:sampSH5}} che la curva generata presenta ancora una frequenza compatibile con quella in input. Si può considerare il risultato soddisfacente per la verifica del teorema di Shannon. Nella \textit{figura \ref{fig:sampSH6}} è visibile un esempio di frequenze di aliasing: a causa della scarsa risoluzione di campionamento infatti non è più possibile riconoscere una curva univoca.
 \clearpage
 \clearpage
 \begin{figure}[H]%[!ht]
 \begin{center}
 \includegraphics[ width=0.50\textwidth]{analysis/output/campionamento_50Hz.pdf}
-\newline
-\caption{Campionamento di forma d'onda sinusoidale f = 50 Hz. In rosso il segnale logico di controllo del sample-hold, in nero il segnale in uscita dal sample-hold, in verde il segnale in uscita dal DAC, il blu il segnale analogico in ingresso e in grigio il segnale ricostruito dall'ADC.}
+
+\caption{Campionamento di forma d'onda sinusoidale $f = 50 Hz$. In rosso il segnale logico di controllo del sample-hold, in nero il segnale in uscita dal sample-hold, in verde il segnale in uscita dal DAC, il blu il segnale analogico in ingresso e in grigio il segnale ricostruito dall'ADC.}
 \label{fig:sampSH1}
 \end{center}
 \end{figure}
@@ -688,7 +706,7 @@ Dalla \textit{figura \ref{fig:sampSH1}} alla \textit{figura \ref{fig:sampSH6}} s
 \begin{figure*}[t]%[t]
 \centering
 \includegraphics[trim = {150 0 0 400}, width=1.1\textwidth]{analysis/output/cumulative_nyquist_mcu.pdf}
-\caption{campionamento di segnale sinusoidale con frequenze da 5 a 2000 Hz}
+\caption{campionamento di segnale sinusoidale con frequenze da 5 a 2000 Hz. In rosso il segnale in ingresso, in blu il fit effettuato con una sinusoide di frequenza incognita passante per i punti campionati.}
 \label{fig:nyquist_mcu_cumulative}
 \end{figure*}
 
@@ -701,7 +719,7 @@ Dalla \textit{figura \ref{fig:sampSH1}} alla \textit{figura \ref{fig:sampSH6}} s
 Dopo aver valutato le prestazioni dell'ADC al variare della frequenza dei segnali in ingresso, in questo paragrafo passiamo ora alla valutazione della linearità utilizzando il metodo della \textit{code density}. Si tratta di inviare all'ingresso analogico (prima del circuito \textit{sample \& hold}) un'onda triangolare che sopra uniformemente tutto il range dinamico dell'ADC e di studiare quindi le frequenze con cui si presentano i vari codici nei dati acquisiti. Naturalmente nel caso ideale ci si attenderebbe una distribuzione uniforme.
 
 I seguenti istogrammi rappresentano le frequenze dei codici in 8 prese dati effettuate a diverse frequenze di clock dopo aver normalizzato la media a 1. La linea rossa tratteggiata indica tale riferimento.
-Affinché questa misurazione interessi tutti i codici in modo uniforme, il range di variazione del segnale di \textit{input} deve eccedere superiormente e inferiormente le soglie di \textit{clipping} dell'ADC. Per questa ragione si è scelto di utilizzare una forma d'onda triangolare con estremi -4.5 V e +0.5 V. Inoltre si è applicato uno \textit{sweep} di frequenza da 5 Hz a 50 Hz eseguito in $\Delta T$ = 35 s
+Affinché questa misurazione interessi tutti i codici in modo uniforme, il range di variazione del segnale di \textit{input} deve eccedere superiormente e inferiormente le soglie di \textit{clipping} dell'ADC, naturalmente il primo e l'ultimo codice non verranno quindi considerati. Per questa ragione si è scelto di utilizzare una forma d'onda triangolare con estremi -4.5 V e +0.5 V. Inoltre si è applicato uno \textit{sweep} di frequenza da 5 Hz a 50 Hz eseguito in $\Delta T$ = 35 s
 con lo scopo di evitare che la scelta accidentale di frequenze multiple e sottomultiple di quella di campionamento influissero sull'uniformità dei codici acquisiti. Lo \textit{sweep} elimina anche eventuali \textit{bias} dovuti ad uno sfasamento costante tra il segnale da acquisire e il clock.
 Infine i condici pari allo 0 ed al $2^n$, che nel caso specifico corrisponderà a 15, sono stati esclusi dall'istogramma poiché \textit{l'overflow} e \textit{l'underflow} che si verificano agli estremi della rampa rendono privi di significato questi due \textit{bin}.
 
