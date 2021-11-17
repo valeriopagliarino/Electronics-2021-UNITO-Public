@@ -625,10 +625,11 @@ Finora è stato possibile eseguire il campionamento di segnali variabili nel tem
 Per un buon funzionamento del circuito è inoltre necessario che la capacità del condensatore deve essere limitata in maniera tale da permettere il rapido \textit{aggancio} del segnale in ingresso nella transizione da sample a hold.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Registrazione della conversione mediante scheda a microcontrollore}
-Tutti i sistemi di acquisizione dati prevedono dopo lo stadio ADC di campionamento e quantizzazione del segnale una opportuna logica digitale in grado di leggere i codici prodotti dalla conversione e di di memorizzarli o visualizzarli. Tale logica oggi è frequentemente costituita da microcontrollori, dispositivi programmabili quali CPLD o FPGA o interfacce USB, PCIexpress o di altro tipo. Nel nostro caso, come abbiamo già anticipato, questa logica è costituita da un microcontrollore Atmel montato su una scheda Arduino a cui sono collegati dal pin 2 al pin 5 le uscite dei J-K a partire dal MSB. Sul pin 6 è invece collegata l'uscita $Q_F$ del registro di scorrimento, già utilizzata in precedenza poiché fornisce un segnale di conversione completata. La scheda Arduino attende che questo pin passi allo stato alto, dopodiché legge in sequenza lo stato dei pin da 2 a 5, converte in intero decimale il codice relativo e lo scrive attraverso un'interfaccia SPI su un file di testo memorizzato su una scheda di memoria. E' presente un pin bistabile collegato ad un pulsante la cui pressione avvia e arresta l'acquisizione. Con il \textit{setup} appena presentato l'ADC si può considerare completo e possiamo ora effettuare nuove acquisizioni, ripetere la verifica del teorema di Nyquist con maggiore accuratezza, nonché valutare la linearità con il metodo della code density. Si considerino, ad esempio, i due grafici nelle figure \ref{fig:mcu_sine} e \ref{fig:mcu_triang} in cui si osserva rispettivamente:
+Tutti i sistemi di acquisizione dati prevedono dopo lo stadio ADC di campionamento e quantizzazione del segnale una opportuna logica digitale in grado di leggere i codici prodotti dalla conversione e di di memorizzarli o visualizzarli. Tale logica oggi è frequentemente costituita da microcontrollori, dispositivi programmabili quali CPLD o FPGA o interfacce USB, PCIexpress o di altro tipo. Nel nostro caso, come abbiamo già anticipato, questa logica è costituita da un microcontrollore Atmel montato su una scheda Arduino a cui sono collegati dal pin 2 al pin 5 le uscite dei J-K a partire dal MSB. Sul pin 6 è invece collegata l'uscita $Q_F$ del registro di scorrimento, già utilizzata in precedenza poiché fornisce un segnale di conversione completata. La scheda Arduino attende che questo pin passi allo stato alto, dopodiché legge in sequenza lo stato dei pin da 2 a 5, converte in intero decimale il codice relativo e lo scrive attraverso un'interfaccia SPI su un file di testo memorizzato su una scheda di memoria. È presente un pin bistabile collegato ad un pulsante la cui pressione avvia e arresta l'acquisizione. Con il \textit{setup} appena presentato l'ADC si può considerare completo e possiamo ora effettuare nuove acquisizioni, ripetere la verifica del teorema di Nyquist con maggiore accuratezza, nonché valutare la linearità con il metodo della code density. Si considerino, ad esempio, i due grafici nelle figure \ref{fig:mcu_sine} e \ref{fig:mcu_triang} in cui si osserva rispettivamente:
 \begin{itemize}
-    \item l'acquisizione di una forma d'onda sinusoidale con range dinamico tra $V_{max}$ = 0.0 V e $V_{min}$ = -0.0 V e frequenza f = 0 Hz;
-    \item l'acquisizione di una forma d'onda triangolare con range dinamico tra $V_{max}$ = 0.0 V e $V_{min}$ = -0. V e frequenza f = 0 Hz;
+    \item l'acquisizione di una forma d'onda sinusoidale con range dinamico tra $V_{max}$ = -0.4 V e $V_{min}$ = -3 V e frequenza f = 50 Hz;
+    \item l'acquisizione di una forma d'onda triangolare con range dinamico tra $V_{max}$ = -0.4 V e $V_{min}$ = -3. V e frequenza f = 5 Hz;
+    \item l'acquisizione di una forma d'onda quadra con range dinamico tra $V_{max}$ = -0.4 V e $V_{min}$ = -3. V, frequenza f = 50 Hz e duty cycle del $40 \%$;
     %%%%%VALORI NUMERICI DA INSERIRE!!
 \end{itemize}
 
@@ -648,7 +649,13 @@ Tutti i sistemi di acquisizione dati prevedono dopo lo stadio ADC di campionamen
 \end{center}
 \end{figure}
 
-
+\begin{figure}[H]%[!ht]
+\begin{center}
+\includegraphics[trim = {0 25 0 0},clip, width=0.50\textwidth]{analysis/output/mcu_square.pdf}
+\caption{Acquisizione con microcontrollore forma d'onda quadra}
+\label{fig:mcu_triang}
+\end{center}
+\end{figure}
 
 %AGGIUNGERE PLOT ONDA TRIANGOLARE E QUADRA ACQUISITA DA ARDUINO
 
