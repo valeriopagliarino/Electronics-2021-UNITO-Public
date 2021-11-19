@@ -672,7 +672,7 @@ con $f_N$ la \textit{folding frequency}, cioè la frequenza più alta che può e
 
 In laboratorio è stata impostata una $f_{clk} = 8 kHz$ corrispondente ad una $f_c = 1 kHz$. 
 Dalla \textit{figura \ref{fig:sampSH1}} alla \textit{figura \ref{fig:sampSH6}} sono riportati i segnali visualizzati sull'oscilloscopio. 
-Nel primo quadrante in alto osserviamo il segnale logico di pilotaggio del \textit{sample} \& \textit{hold} (campionamento al livello alto, mantenimento al livello basso), nel secondo quadrante osserviamo invece in verde l'uscita del DAC che mostra il ciclo di approssimazione del SAR, in nero osserviamo il segnale in ingresso dopo essere passato per il circuito \textit{sample} \& \textit{hold}; nell'ultimo quadrante, infine, osserviamo in blu il segnale analogico in ingresso proveniente dal generatore di funzioni, mentre in grigio, con i picchi evidenziati dai cursori, il risultato della conversione che si ottiene moltiplicando l'uscita del DAC con il segnale di pilotaggio in rosso che rappresenta a tutti gli effetti un segnale di conversione completata. 
+Nel primo quadrante in alto osserviamo il segnale logico di pilotaggio del \textit{sample} \& \textit{hold} (campionamento al livello alto, mantenimento al livello basso), nel secondo quadrante osserviamo invece in verde l'uscita del DAC che mostra il ciclo di approssimazione del SAR, in nero osserviamo il segnale in ingresso dopo essere passato per il circuito \textit{sample} \& \textit{hold}; nell'ultimo quadrante, infine, osserviamo in blu il segnale analogico in ingresso proveniente dal generatore di funzioni, mentre in grigio, con i picchi evidenziati dai marker, il risultato della conversione che si ottiene moltiplicando l'uscita del DAC con il segnale di pilotaggio in rosso che rappresenta a tutti gli effetti un segnale di conversione completata. 
 
 Una spezzata tratteggiata unisce i punti ricostruiti e osserviamo come al di sotto della frequenza di Nyquist costituisca una forma d'onda periodica con frequenza pari a quella del segnale in ingresso blu, mentre a frequenze superiori a quelle di Nyquist si verifichi il fenomeno dell'\textit{aliasing}, vedere figura \ref{fig:sampSH6} in particolare).
 
@@ -732,7 +732,7 @@ Queste osservazioni qualitative si possono per il momento considerare soddisface
 \end{center}
 \end{figure}
 
-\clearpage 
+
 \begin{figure*}[t]%[t]
 \centering
 \includegraphics[trim = {150 0 0 400}, width=1.1\textwidth]{analysis/output/cumulative_nyquist_mcu.pdf}
@@ -785,14 +785,10 @@ $f_n$  &  $f_f$ & $f_o$  &   $f_a $ \\ \hline
 
 (Tutte le frequenze espresse in \textit{Hertz}). \\ Z di compatibilità tra $f_o$ e $f_f$: 0 fino a 500 Hz di frequenza nominale, poi (1.1, 1.8, 3.2, 41, 42) $\cdot 10^5$
 \\
-\vspace{55 mm}
+\vspace{5 mm}
 
 Osserviamo immediatamente che al di sotto delle frequenza di Nyquist, pari alla metà della frequenza di campionamento, le sinusoidi vengono ricostruite correttamente e le frequenze risultano ampiamente compatibili entro il livello di significatività usuale del 5 \%. Al contrario, sopra a tale frequenza la discrepanza apprezzabile graficamente nella figura è confermata dai test di compatibilità. La frequenza su cui converge il minimizzatore che cerca di interpolare i campioni registrati in questi casi è compatibile con la frequenza di \textit{aliasing} attesa. La verifica del teorema di Nyquist può così dirsi completata con successo.
 
-%%%%%%%%% 
-% TUTTI I PARAGRAFI SULLA LINEARITA'
-% SONO COMPLETI
-%%%%%%%%%
 
 \subsection{Valutazione della linearità con metodo della \textit{code density}}
 Dopo aver valutato le prestazioni dell'ADC al variare della frequenza dei segnali in ingresso, in questo paragrafo passiamo ora alla valutazione della linearità utilizzando il metodo della \textit{code density}. Si tratta di inviare all'ingresso analogico (prima del circuito \textit{sample \& hold}) un'onda triangolare che sopra uniformemente tutto il range dinamico dell'ADC e di studiare quindi le frequenze con cui si presentano i vari codici nei dati acquisiti. Naturalmente nel caso ideale ci si attenderebbe una distribuzione uniforme.
@@ -800,7 +796,7 @@ Dopo aver valutato le prestazioni dell'ADC al variare della frequenza dei segnal
 I seguenti istogrammi rappresentano le frequenze dei codici in 8 prese dati effettuate a diverse frequenze di \textit{clock} dopo aver normalizzato la media a 1. La linea rossa tratteggiata indica tale riferimento.
 Affinché questa misurazione interessi tutti i codici in modo uniforme, il range di variazione del segnale di \textit{input} deve eccedere superiormente e inferiormente le soglie di \textit{clipping} dell'ADC, naturalmente il primo e l'ultimo codice non verranno quindi considerati. Per questa ragione si è scelto di utilizzare una forma d'onda triangolare con estremi -4.5 V e +0.5 V. Inoltre si è applicato uno \textit{sweep} di frequenza da 5 Hz a 50 Hz eseguito in $\Delta T$ = 35 s
 con lo scopo di evitare che la scelta accidentale di frequenze multiple e sottomultiple di quella di campionamento influissero sull'uniformità dei codici acquisiti. Lo \textit{sweep} elimina anche eventuali \textit{bias} dovuti ad uno sfasamento costante tra il segnale da acquisire e il clock.
-Infine i condici pari allo 0 ed al $2^n$, che nel caso specifico corrisponderà a 15, sono stati esclusi dall'istogramma poiché \textit{l'overflow} e \textit{l'underflow} che si verificano agli estremi della rampa rendono privi di significato questi due \textit{bin}.
+Infine i codici pari allo 0 ed al $2^n - 1$, che nel caso specifico corrisponderà a 15, sono stati esclusi dall'istogramma poiché \textit{l'overflow} e \textit{l'underflow} che si verificano agli estremi della rampa rendono privi di significato questi due \textit{bin}.
 
 \begin{figure}[H]%[!ht]
 \begin{center}
@@ -813,19 +809,25 @@ Infine i condici pari allo 0 ed al $2^n$, che nel caso specifico corrisponderà 
 \caption{$\sigma = 0.031$}
 \includegraphics[width=0.48\textwidth]{analysis/output/dnl_2_600hz_bars.pdf}
 \label{fig:graph_dnl_600_hz}
+
+
+
 %3
 \caption{$\sigma = 0.028$}
 \includegraphics[width=0.48\textwidth]{analysis/output/dnl_3_800hz_bars.pdf}
 \label{fig:graph_dnl_800_hz}
 %4
-\caption{$\sigma = 0.030$}
-\includegraphics[width=0.48\textwidth]{analysis/output/dnl_4_1000hz_bars.pdf}
-\label{fig:graph_dnl_1000_hz}
+
 \end{center}
 \end{figure}
 
-\begin{figure}[H]
+\begin{figure}[H]%[!ht]
 \begin{center}
+
+\caption{$\sigma = 0.030$}
+\includegraphics[width=0.48\textwidth]{analysis/output/dnl_4_1000hz_bars.pdf}
+\label{fig:graph_dnl_1000_hz}
+
 %5
 \caption{$\sigma = 0.043$}
 \includegraphics[width=0.48\textwidth]{analysis/output/dnl_5_1500hz_bars.pdf}
@@ -838,6 +840,13 @@ Infine i condici pari allo 0 ed al $2^n$, che nel caso specifico corrisponderà 
 \caption{$\sigma = 0.099$}
 \includegraphics[width=0.48\textwidth]{analysis/output/dnl_7_5000hz_bars.pdf}
 \label{fig:graph_dnl_5000_hz}
+\end{center}
+\end{figure}
+\\
+\begin{figure}[H]%[!ht]
+\begin{center}
+
+
 %8
 \caption{$\sigma = 0.16$}
 \includegraphics[width=0.48\textwidth]{analysis/output/dnl_8_8000hz_bars.pdf}
@@ -878,7 +887,6 @@ Osserviamo come i codici con maggiori ricorrenze abbiano seguito l'inversione de
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Valori mancanti}
-Durante una serie di acquisizioni effettuate a frequenze $f$ elevate rispetto a $f_{clock}$, con $f_{clock}$ multipla di $f$ si è osservato il fenomeno mostrato in \textit{figura \ref{fig:missing}}, cioè che il microcontrollore salta con una certa periodicità alcune letture. Questo potrebbe essere dovuto a qualche \textit{interrupt} legato a qualche libreria che sospende temporaneamente l'esecuzione del programma principale; per esempio si potrebbe trattare della libreria per la gestione della SPI che dialoga con il \textit{controller} della scheda di memoria. Questo effetto introdurrebbe sicuramente un \textit{bias} nelle verifiche di linearità qualora queste venissero effettuate con frequenze di clock multiple della frequenza del segnale oppure con sfasamento costante tra segnale e clock. Questo è uno dei motivi per cui il test di linearità discusso nei paragrafi precedenti è stato eseguito utilizzando uno \textit{sweep} in frequenza. Nelle condizioni sopra menzionate la distanza tra letture mancanti è nell'ordine di 50 ms. 
 
 \begin{figure}[H]%[!ht]
 \begin{center}
@@ -888,12 +896,16 @@ Durante una serie di acquisizioni effettuate a frequenze $f$ elevate rispetto a 
 \end{center}
 \end{figure}
 
+Durante una serie di acquisizioni effettuate a frequenze $f$ elevate rispetto a $f_{clock}$, con $f_{clock}$ multipla di $f$ si è osservato il fenomeno mostrato in \textit{figura \ref{fig:missing}}, cioè che il microcontrollore salta con una certa periodicità alcune letture. Questo potrebbe essere dovuto a qualche \textit{interrupt} legato a qualche libreria che sospende temporaneamente l'esecuzione del programma principale; per esempio si potrebbe trattare della libreria per la gestione della SPI che dialoga con il \textit{controller} della scheda di memoria. Questo effetto introdurrebbe sicuramente un \textit{bias} nelle verifiche di linearità qualora queste venissero effettuate con frequenze di clock multiple della frequenza del segnale oppure con sfasamento costante tra segnale e clock. Questo è uno dei motivi per cui il test di linearità discusso nei paragrafi precedenti è stato eseguito utilizzando uno \textit{sweep} in frequenza. Nelle condizioni sopra menzionate la distanza tra letture mancanti è nell'ordine di 50 ms. 
+
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Discussione dei risultati e conclusioni}
 Nella presente relazione di laboratorio, dopo aver analizzato il comportamento di alcuni circuiti logici fondamentali, è stata affrontata la caratterizzazione di un ADC ad approssimazioni successive a 4 bit. 
 \\
 
-La verifica delle tavole di verità degli integrati logici ha dato esito positivo, con l'osservazione degli stati logici attesi; si è quindi proceduto con la misurazione delle caratteristiche di trasferimento in tensione degli integrati logici, che si sono dimostrate adeguate per ottenere una rigenerazione del segnale ad ogni porta, anziché un suo progressivo deterioramento. Si è però osservata una tensione di uscita in corrispondenza dello stato logico alto talvolta inferiore ai 5 V richiesti dallo standard TTL, non solo in presenza di carico sull'uscita, ma anche in condizioni di circuito aperto. Per la porta logica NOT è stato possibile calcolare in modo accurato anche il ritardo di propagazione del segnale logico t = (5.6428 $\pm$ 0.0007) ns mediante misurazione della frequenza di accordatura di un \textit{ring oscillator} realizzato collegato in cascata 7 inverter.
+La verifica delle tavole di verità degli integrati logici ha dato esito positivo, con l'osservazione degli stati logici attesi; si è quindi proceduto con la misurazione delle caratteristiche di trasferimento in tensione degli integrati logici, che si sono dimostrate adeguate per ottenere una rigenerazione del segnale ad ogni porta, anziché un suo progressivo deterioramento. Si è però osservata una tensione di uscita in corrispondenza dello stato logico alto talvolta inferiore ai 5 V richiesti dallo standard TTL, non solo in presenza di carico sull'uscita, ma anche in condizioni di circuito aperto. Per la porta logica NOT è stato possibile calcolare in modo accurato anche il ritardo di propagazione del segnale logico t = (5.6428 $\pm$ 0.0007) ns mediante misurazione della frequenza di accordatura di un \textit{ring oscillator} realizzato collegando in cascata 7 inverter.
 \\
 
 È stata quindi affrontata la caratterizzazione dei circuiti logici sequenziali (flip-flop e registri) verificando non solo la corretta rappresentazione degli stati logici, ma anche la commutazione in prossimità dei fronti di \textit{clock} corretti (\textit{positive-edge} per quanto riguarda il registro a scorrimento e \textit{negative-edge} per quanto riguarda i flip-flop J-K). Nell'analizzare i circuiti logici di controllo del registro a scorrimento è stata misurata la durata del segnale asincrono di \textit{clear}, pari a $\Delta\tau$ = (46 $\pm$ 5) ns. Questo valore di durata è in realtà critico per il corretto funzionamento dell'ADC, in quanto la durata è pari alla somma tra il ritardo introdotto dal circuito logico ausiliario (vedere U8 in schema principale) e il tempo di reset del registro. Se qualche integrato logico necessitasse di un tempo maggiore per recepire il segnale di reset di quello impiegato dal registro, probabilmente emergerebbe un malfunzionamento. Tale evenienza in laboratorio non è però mai stata osservata.
@@ -906,10 +918,10 @@ Si commentano ora i risultati delle misure effettuate sull'ADC a montaggio compl
 \\
 %Range dinamico compresso vuol dire che anziché lavorare tra 0 e 5V l'ADC lavora tra 0 e 3.3 V circa. La colpa è dei J-K.
 
-Si è quindi passati al campionamento di segnali analogici variabili nel tempo e alla verifica dapprima qualitativa, poi maggiormente quantitativa, del teorema di Nyquist-Shannon e del profilo di linearità del nostro ADC con il metodo della \textit{code density}. L'ADC ha dimostrato di essere in grado di ricostruire correttamente segnali analogici arbitrari e armoniche sinusoidali con frequenze fino alla metà della frequenza di campionamento, come previsto dal suddetto teorema; per effettuare queste acquisizioni la frequenza di \textit{clock} è stata impostata a 8 KHz. Lo studio della linearità con il metodo della \textit{code density} ha invece messo in luce delle discrepanze importanti rispetto alla distribuzione uniforme attesa per frequenze di clock superiori a 1.5 KHz comprendenti sequenze ben definite di bit che risultavano sistematicamente sopra o sotto il livello atteso. Dopo esserci assicurati che questo effetto non dipendesse dalla fase o dalla frequenza della rampa analogica impiegata impostando uno \textit{sweep}, abbiamo studiato la dipendenza della non linearità della frequenza di \textit{clock}, osservando una crescita costante da 1.5 KHz fino alla massima frequenza raggiunta, pari a 8 KHz. Questo ci porta ad affermare che la massima frequenza di campionamento a cui il nostro ADC opera in modo sufficientemente lineare è pari a 187 Hz, un valore estremamente sottodimensionato, se confrontato con quanto richiesto dalla applicazioni. È stato osservato che queste problematiche di linearità non dipendono dalla scheda a microcontrollore, ma proprio dal circuito dell'ADC. Uno dei principali colli di bottiglia del sistema preso in esame, quando si tenta di lavorare a frequenze più elevate, è probabilmente l'amplificatore operazionale \textit{LM741}. Infine, è stato osservato che la scheda a microcontrollore salta in modo piuttosto regolare delle letture, ma questo potrebbe essere risolvibile anche solo ottimizzando il suo \textit{firmware}.
+Si è quindi passati al campionamento di segnali analogici variabili nel tempo e alla verifica dapprima qualitativa, poi maggiormente quantitativa, del teorema di Nyquist-Shannon e del profilo di linearità del nostro ADC con il metodo della \textit{code density}. L'ADC ha dimostrato di essere in grado di ricostruire correttamente segnali analogici arbitrari e armoniche sinusoidali con frequenze fino alla metà della frequenza di campionamento, come previsto dal suddetto teorema; per effettuare queste acquisizioni la frequenza di \textit{clock} è stata impostata a 8 KHz. Lo studio della linearità con il metodo della \textit{code density} ha invece messo in luce delle discrepanze importanti rispetto alla distribuzione uniforme attesa per frequenze di clock superiori a 1.5 KHz comprendenti sequenze ben definite di bit che risultavano sistematicamente sopra o sotto il livello atteso. Dopo esserci assicurati che questo effetto non dipendesse dalla fase o dalla frequenza della rampa analogica impiegata impostando uno \textit{sweep}, abbiamo studiato la dipendenza della non linearità della frequenza di \textit{clock}, osservando una crescita costante da 1.5 KHz fino alla massima frequenza raggiunta, pari a 8 KHz. Questo ci porta ad affermare che la massima frequenza di campionamento a cui il nostro ADC opera in modo sufficientemente lineare è pari a 187 Hz, un valore estremamente sottodimensionato, se confrontato con quanto richiesto dalle applicazioni. È stato osservato che queste problematiche di linearità non dipendono dalla scheda a microcontrollore, ma proprio dal circuito dell'ADC. Uno dei principali colli di bottiglia del sistema preso in esame, quando si tenta di lavorare a frequenze più elevate, è probabilmente l'amplificatore operazionale \textit{LM741}. Infine, è stato osservato che la scheda a microcontrollore salta in modo piuttosto regolare delle letture, ma questo potrebbe essere risolvibile anche solo ottimizzando il suo \textit{firmware}.
 \\
 
-Nonostante queste problematiche emerse, l'obiettivo di questa esperienza di laboratorio - realizzare un ADC SAR a 4 bit - può considerarsi sicuramente raggiunto. Il \textit{design} può essere facilmente migliorato e scalato a maggiori risoluzioni senza eccessiva crescita della complessità e, in generale, i principi qui dimostrati possono essere implementati a scale di integrazione molto più elevata realizzando convertitori effettivamente utilizzabili per svariate applicazioni nelle quali non sia necessario raggiungere velocità di campionamento troppo elevate (in tal caso conviene orientarsi su convertitori \textit{pipeline}) o risoluzioni troppo elevate (in tal caso i \textit{Delta-Sigma} rimangono più indicati), ma dove è richiesto un buon bilanciamento delle due, unito ad una complessità relativamente ridotta. Infine, si segnala una caratteristica che sarebbe particolarmente interessante da introdurre in futuro: si tratta della possibilità di utilizzare una tensione $V_{ref}$ di fondo scala dell'ADC diversa dal livello alto delle uscite dei J-K mediante uno stadio a transistor di tipo \textit{totem-pole}; questo consentirebbe di sfruttare al meglio in range dinamico disponibile.
+Nonostante queste problematiche emerse, l'obiettivo di questa esperienza di laboratorio - realizzare un ADC SAR a 4 bit - può considerarsi sicuramente raggiunto. Il \textit{design} può essere facilmente migliorato e scalato a maggiori risoluzioni senza eccessiva crescita della complessità e, in generale, i principi qui dimostrati possono essere implementati a scale di integrazione molto più elevata realizzando convertitori effettivamente utilizzabili per svariate applicazioni nelle quali non sia necessario raggiungere velocità di campionamento troppo elevate (in tal caso conviene orientarsi su convertitori \textit{pipeline}) o risoluzioni troppo elevate (in tal caso i \textit{Delta-Sigma} rimangono più indicati), ma dove sia richiesto un buon bilanciamento delle due, unito ad una complessità relativamente ridotta. Infine, si segnala una caratteristica che sarebbe particolarmente interessante da introdurre in futuro: si tratta della possibilità di utilizzare una tensione $V_{ref}$ di fondo scala dell'ADC diversa dal livello alto delle uscite dei J-K mediante uno stadio a transistor di tipo \textit{totem-pole}; questo consentirebbe di sfruttare al meglio il range dinamico disponibile.
 \\
 
 \begin{figure*}[t]%[t]
@@ -933,7 +945,7 @@ Nonostante queste problematiche emerse, l'obiettivo di questa esperienza di labo
 
 \section{Soglie di commutazione porta AND}
 
-Riportiamo qui una misurazione svolta sulle porte AND contenute nell'integrato \textit{SN74LS08N} con l'obiettivo di stimare i valori delle soglie commutazione degli ingressi. Per ricavare i grafici sottostanti uno dei due ingressi della porta AND è stato alimentato con un livello logico alto fisso, mentre all'altro ingresso veniva fornita una rampa simmetrica oscillante tra 0 e 5 V dal generatore di funzioni. L'oscilloscopio acquisiva sul primo canale tale rampa e sul secondo canale l'uscita della porta logica. E' stato così possibile osservare e misurare tramite cursori, che la commutazione verso l'alto avviene quando l'ingresso supera la soglia ${\Delta}V_1$ = (1.02 $\pm$ 0.05) V, mentre la commutazione verso il basso avviene quando l'ingresso scende sotto ${\Delta}V_1$ = (0.84 $\pm$ 0.05) V. Si osserva quindi una certa isteresi; seppur minima e in una regione del grafico particolarmente rumorosa.
+Riportiamo qui una misurazione svolta sulle porte AND contenute nell'integrato \textit{SN74LS08N} con l'obiettivo di stimare i valori delle soglie di commutazione degli ingressi. Per ricavare i grafici sottostanti uno dei due ingressi della porta AND è stato alimentato con un livello logico alto fisso, mentre all'altro ingresso veniva fornita una rampa simmetrica oscillante tra 0 e 5 V dal generatore di funzioni. L'oscilloscopio acquisiva sul primo canale tale rampa e sul secondo canale l'uscita della porta logica. È stato così possibile osservare e misurare tramite cursori, che la commutazione verso l'alto avviene quando l'ingresso supera la soglia ${\Delta}V_1$ = (1.02 $\pm$ 0.05) V, mentre la commutazione verso il basso avviene quando l'ingresso scende sotto ${\Delta}V_1$ = (0.84 $\pm$ 0.05) V. Si osserva quindi una certa isteresi; seppur minima e in una regione del grafico particolarmente rumorosa.
 
 \begin{figure}[H]%[!ht]
 \begin{center}
@@ -954,7 +966,7 @@ Riportiamo qui una misurazione svolta sulle porte AND contenute nell'integrato \
 \end{figure}
 
 \section{Alimentazione dei circuiti e scheda ausiliaria}
-I circuiti descritti in questa relazione per il loro funzionamento hanno richiesto tre livelli di tensioni di alimentazione: $\pm$ 15 V per lo stadio analogico contenente il \textit{sample} \& \textit{hold} e gli amplificatori operazionali e +5 V per l'alimentazione degli integrati TTL. La tensione duale era fornita dall'alimentatore GW-Instek GPS-4303 per la cui descrizione, così come quella degli altri strumenti, si rimanda alla relazione di elettronica analogica ed è stata misurata con il multimetro ottenendo i seguenti valori: $V_+$ = (15.1 $\pm$ 0.1) e V $V_-$ = (-14.9 $\pm$ 0.1) V. La tensione TTL, invece, è stata fornita da una scheda ausiliaria progettata dal Dipartimento di Fisica contenente al suo interno, oltre agli switch e ad una serie di LED con ingressi in standard TTL, un regolatore di tensione lineare LDO (low dropout) che genera la tensione + 5 V a partire dalla + 15 V.
+I circuiti descritti in questa relazione per il loro funzionamento hanno richiesto tre livelli di tensioni di alimentazione: $\pm$ 15 V per lo stadio analogico contenente il \textit{sample} \& \textit{hold} e gli amplificatori operazionali e +5 V per l'alimentazione degli integrati TTL. La tensione duale era fornita dall'alimentatore GW-Instek GPS-4303 per la cui descrizione, così come quella degli altri strumenti, si rimanda alla relazione di elettronica analogica ed è stata misurata ottenendo i seguenti valori: $V_+$ = (15.1 $\pm$ 0.1) e V $V_-$ = (-14.9 $\pm$ 0.1) V. La tensione TTL, invece, è stata fornita da una scheda ausiliaria progettata dal Dipartimento di Fisica contenente al suo interno, oltre agli switch e ad una serie di LED con ingressi in standard TTL, un regolatore di tensione lineare LDO (low dropout) che genera la tensione + 5 V a partire dalla + 15 V.
 
 \section{Tabella calibrazione DAC}
 
@@ -1020,7 +1032,6 @@ binario & $V_{inf}  \pm 0.1 \ V$ \\ \hline
 
 \tableofcontents % Indice
 
-\newpage
 
 \printbibliography % Bibliografia
 
