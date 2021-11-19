@@ -109,7 +109,7 @@ void plot_devstd(double *freq, double *devstd, const int size){
     canvas->SetGrid();
 
     TGraph *g = new TGraph(size, freq, devstd);
-    g->SetTitle("Distribuzione #sigma"); 
+    g->SetTitle("Dipendenza di #sigma dalla frequenza di clock"); 
     g->GetXaxis()->SetTitle("Frequenza (kHz)"); 
     g->GetYaxis()->SetTitle("#sigma"); 
 
