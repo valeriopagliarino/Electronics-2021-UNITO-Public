@@ -203,7 +203,7 @@ Ripetiamo ora la medesima analisi per la porta NAND fissando un ingresso al live
 \label{fig:circuit_flip_flop}
 \end{center}
 \end{figure}
-Il \textit{Flip-Flop SR }, noto  anche come \textit{SR latch}, è uno dei circuiti digitali sequenziali fondamentali, si tratta di un dispositivo di memoria bistabile a singolo bit. È dotato di due ingressi: \textit{SET} e \textit{RESET}. Quando entrambi si trovano ad 1 il flip flop si trova in stato di memoria, cioè lo stato delle uscite Q e Q negato viene mantenuto costante, mentre quando uno tra gli ingressi SET e RESET viene portato a 0 l'uscita Q passa rispettivamente allo stato 1 o allo stato 0.
+Il \textit{Flip-Flop SR }, noto  anche come \textit{SR latch}, è uno dei circuiti digitali sequenziali fondamentali, si tratta di un dispositivo di memoria bistabile a singolo bit. È dotato di due ingressi: \textit{SET} e \textit{RESET}. Quando entrambi si trovano ad 1 il flip flop si trova in stato di memoria, cioè lo stato delle uscite Q e $ \overline{Q}$ viene mantenuto costante, mentre quando uno tra gli ingressi SET e RESET viene portato a 0 l'uscita Q passa rispettivamente allo stato 1 o allo stato 0.
 Il comportamento di un SR NAND Flip-Flop è quindi regolato dalla seguente tavola di verità:
 \begin{center}
 \begin{tabular}{ |c|c|c|c|c| } 
@@ -909,6 +909,28 @@ Nonostante queste problematiche emerse, l'obiettivo della presente esperienza di
 \clearpage
 
 \begin{appendices}
+
+\section{Soglie di commutazione porta AND}
+
+Riportiamo qui una misurazione svolta sulle porte AND contenute nell'integrato \textit{SN74LS08N} con l'obiettivo di stimare i valori delle soglie commutazione degli ingressi. Per ricavare i grafici sottostanti uno dei due ingressi della porta AND è stato alimentato con un livello logico alto fisso, mentre all'altro ingresso veniva fornita una rampa oscillante tra 0 e 5 V dal generatore di funzioni. L'oscilloscopio acquisiva sul primo canale tale rampa e sul secondo canale l'uscita della porta logica. E' stato così possibile osservare e misurare tramite cursori, che la commutazione verso l'alto avviene quando l'ingresso supera la soglia $\DeltaV_1$ = 1.02 V, mentre la commutazione verso il basso avviene quando l'ingresso scende sotto $\DeltaV_1$ = 840 mV. 
+
+\begin{figure}[H]%[!ht]
+\begin{center}
+\includegraphics[width=0.50\textwidth]{analysis/output/and-switching.pdf}
+\caption{Soglie di commutazione porta logica AND}
+\label{fig:AND-switching}
+\end{center}
+\end{figure}
+
+
+
+\begin{figure}[H]%[!ht]
+\begin{center}
+\includegraphics[width=0.50\textwidth]{data-source/26-10-21/ALL0003/F0003TEK.JPG}
+\caption{Soglie di commutazione porta logica AND, con cursori}
+\label{fig:AND-switching}
+\end{center}
+\end{figure}
 
 \section{Tabella calibrazione DAC}
 
