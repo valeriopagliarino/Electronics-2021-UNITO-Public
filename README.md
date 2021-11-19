@@ -1,6 +1,5 @@
 # Electronics Lab 2021 - Physics BS.C University of Turin
 
-Overleaf: https://www.overleaf.com/1929557672wtrfqgqyzsqp
 <p>
 
 Authors: 
@@ -10,18 +9,22 @@ Authors:
 - Federico Malnati federico.malnati@edu.unito.it
 
 #### Analog electronics:
-1. Delay line
-2. OpAmp open ring, OpAmp inverting
-4. OpAmp integrator, OpAmp deriv, OpAmp logarithmic
-5. OpAmp sum, OpAmp diff, OpAmp Schmitt trigger
-6. Silicon Photomultipliers
+1. OPA open ring, OPA inverting
+2. OPA integrator, OpAmp differentiator, OPA log-amplifier
+3. OPA mixer, OPA amplifier of differences, OPA Schmitt trigger
+4. Silicon Photomultipliers
+5. Delay line
+  
 
 #### Digital electronics:
-1. Gate TTL
-2. ADC Shift register
-4. ADC J/K
+1. TTL AND, NAND, OR gates
+2. AND and NOT gates VTC
+3. Inverter ring oscillator
+4. ADC Shift register and ctrl electronics
+5. ADC J/K
 5. ADC DAC-R-2R
-6. ADC Sampling
+6. ADC and DAC calibration
+7. ADC and DAC sampling, Nyqyist theorem and code density methood
 
 <p>
   
