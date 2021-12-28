@@ -10,21 +10,22 @@ Authors:
 
 #### Analog electronics:
 1. OPA open ring, OPA inverting
-2. OPA integrator, OpAmp differentiator, OPA log-amplifier
+2. OPA integrator, OPA differentiator, OPA log-amplifier
 3. OPA mixer, OPA amplifier of differences, OPA Schmitt trigger
-4. Silicon Photomultipliers
-5. Delay line
+4. Silicon Photomultiplier readout circuit
+5. Measurements of delay and interference on a transmission line
   
 
 #### Digital electronics:
 1. TTL AND, NAND, OR gates
 2. AND and NOT gates VTC
 3. Inverter ring oscillator
-4. ADC Shift register and ctrl electronics
+4. ADC shift register and ctrl electronics
 5. ADC J/K
 5. ADC DAC-R-2R
 6. ADC and DAC calibration
 7. ADC and DAC sampling, Nyqyist theorem and code density methood
+8. ADC interfaced with microcontroller
 
 <p>
   
